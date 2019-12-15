@@ -14,7 +14,7 @@ class CreateInternstatusesTable extends Migration
     public function up()
     {
         Schema::create('internstatuses', function (Blueprint $table) {
-            $table->bigIncrements('intern_status');
+            $table->bigIncrements('id');
             $table->string('status_name');
             $table->timestamps();
         });

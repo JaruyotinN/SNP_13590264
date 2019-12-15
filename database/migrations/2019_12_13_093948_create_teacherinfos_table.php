@@ -14,12 +14,24 @@ class CreateTeacherinfosTable extends Migration
     public function up()
     {
         Schema::create('teacherinfos', function (Blueprint $table) {
-            $table->bigIncrements('teacher_id');
-            $table->string('teacher_name');
-            $table->string('teacher_surname');
-            $table->string('uni_id');
-            $table->string('faculty_id');
-            $table->string('major_id');
+            $table->bigIncrements('id');
+            $table->string('teacher_name')->nullable();
+            $table->string('teacher_surname')->nullable();
+            $table->bigInteger('uni_id')->unsigned();
+            $table->foreign('uni_id')
+                ->references('id')
+                ->on('universities')
+                ->onDelete('cascade');
+            $table->bigInteger('faculty_id')->unsigned();
+            $table->foreign('faculty_id')
+                ->references('id')
+                ->on('faculties')
+                ->onDelete('cascade');
+            $table->bigInteger('major_id')->unsigned();
+            $table->foreign('major_id')
+                ->references('id')
+                ->on('majors')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,8 +14,12 @@ class CreateComeventsTable extends Migration
     public function up()
     {
         Schema::create('comevents', function (Blueprint $table) {
-            $table->bigIncrements('comevent_id');
-            $table->bigInteger('type_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('type_id')->unsigned();
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('joptypes')
+                ->onDelete('cascade');
             $table->string('comevent_desciption');
             $table->integer('comevent_quantity');
             $table->string('comevent_img');

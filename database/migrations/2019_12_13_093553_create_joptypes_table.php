@@ -14,8 +14,12 @@ class CreateJoptypesTable extends Migration
     public function up()
     {
         Schema::create('joptypes', function (Blueprint $table) {
-            $table->bigIncrements('type_id');
-            $table->bigInteger('job_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('job_id')->unsigned();
+            $table->foreign('job_id')
+                ->references('id')
+                ->on('jobs')
+                ->onDelete('cascade');
             $table->string('type_name');
             $table->timestamps();
         });

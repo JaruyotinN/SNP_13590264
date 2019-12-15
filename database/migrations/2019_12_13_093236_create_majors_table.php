@@ -14,8 +14,12 @@ class CreateMajorsTable extends Migration
     public function up()
     {
         Schema::create('majors', function (Blueprint $table) {
-            $table->bigIncrements('major_id');
-            $table->bigInteger('faculty_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('faculty_id')->unsigned();
+            $table->foreign('faculty_id')
+                ->references('id')
+                ->on('faculties')
+                ->onDelete('cascade');
             $table->string('major_name');
             $table->timestamps();
         });

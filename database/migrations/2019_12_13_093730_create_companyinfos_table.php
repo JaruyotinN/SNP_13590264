@@ -14,13 +14,13 @@ class CreateCompanyinfosTable extends Migration
     public function up()
     {
         Schema::create('companyinfos', function (Blueprint $table) {
-            $table->bigIncrements('com_id');
-            $table->string('com_name');
-            $table->string('com_address');
-            $table->string('district_id');
-            $table->string('province_id');
-            $table->string('com_prove');
-            $table->string('com_juristic');
+            $table->bigIncrements('id');
+            $table->string('com_name')->nullable();
+            $table->string('com_address')->nullable();
+            $table->string('district_id')->nullable();
+            $table->string('province_id')->nullable();
+            $table->string('com_prove')->nullable();
+            $table->string('com_juristic')->nullable();
             $table->timestamps();
         });
     }

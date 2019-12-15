@@ -15,8 +15,16 @@ class CreateComeventJoinsTable extends Migration
     {
         Schema::create('comevent_joins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->bigInteger('event_id');
+            $table->bigInteger('user_id')->unsigned()->default(1);
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->bigInteger('event_id')->unsigned()->default(1);
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('comevents')
+                ->onDelete('cascade');
             $table->string('comevent_ans01')->nullable();
             $table->string('comevent_ans02')->nullable();
             $table->timestamps();

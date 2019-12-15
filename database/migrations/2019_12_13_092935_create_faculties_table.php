@@ -14,8 +14,12 @@ class CreateFacultiesTable extends Migration
     public function up()
     {
         Schema::create('faculties', function (Blueprint $table) {
-            $table->bigIncrements('faculty_id');
-            $table->bigInteger('uni_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('uni_id')->unsigned();
+            $table->foreign('uni_id')
+                ->references('id')
+                ->on('universities')
+                ->onDelete('cascade');
             $table->integer('faculty_name');
             $table->timestamps();
         });

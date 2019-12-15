@@ -15,12 +15,12 @@ class CreateComeventsTable extends Migration
     {
         Schema::create('comevents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('comevent_desciption');
-            $table->integer('comevent_quantity');
-            $table->string('comevent_img');
-            $table->string('comevent_q1')->nullable();
-            $table->string('comevent_q2')->nullable();
-            $table->integer('comevent_invite');
+            $table->string('desciption');
+            $table->integer('quantity');
+            $table->string('img');
+            $table->string('question1')->nullable();
+            $table->string('question2')->nullable();
+            $table->integer('invite');
             $table->timestamps();
         });
         Schema::table('comevent_joins', function (Blueprint $table) {

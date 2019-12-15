@@ -14,7 +14,15 @@ class MajorController extends Controller
      */
     public function index()
     {
-        //
+        $majors = Major::get();
+        foreach($majors as $major){
+            $major->faculty->university;
+            $major->faculty->majors;
+
+            $major->cal = $major->ab(1,5);
+
+        }
+        return $majors;
     }
 
     /**

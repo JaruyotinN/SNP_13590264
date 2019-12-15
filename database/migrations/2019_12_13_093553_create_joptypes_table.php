@@ -20,7 +20,7 @@ class CreateJoptypesTable extends Migration
                 ->references('id')
                 ->on('jobs')
                 ->onDelete('cascade');
-            $table->string('type_name');
+            $table->string('name');
             $table->timestamps();
         });
         Schema::table('student_infos', function (Blueprint $table) {

@@ -15,7 +15,7 @@ class CreateInternstatusesTable extends Migration
     {
         Schema::create('internstatuses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status_name');
+            $table->string('title');
             $table->timestamps();
         });
         Schema::table('student_infos', function (Blueprint $table) {

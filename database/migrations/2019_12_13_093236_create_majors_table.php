@@ -20,7 +20,7 @@ class CreateMajorsTable extends Migration
                 ->references('id')
                 ->on('faculties')
                 ->onDelete('cascade');
-            $table->string('major_name');
+            $table->string('name');
             $table->timestamps();
         });
         Schema::table('student_infos', function (Blueprint $table) {

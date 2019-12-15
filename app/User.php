@@ -47,6 +47,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      */
     protected $appends = [
         'photo_url',
+        'role_name'
     ];
 
     /**
@@ -57,6 +58,18 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getPhotoUrlAttribute()
     {
         return 'https://www.gravatar.com/avatar/'.md5(strtolower($this->email)).'.jpg?s=200&d=mm';
+    }
+
+    public function getRoleNameAttribute()
+    {
+        $name = 'student';
+        if($this->role == 2){
+            $name = 'teacher';
+        }
+        else if($this->role == 3){
+            $name = 'company';
+        }
+        return $name;
     }
 
     /**
@@ -104,5 +117,9 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function student_info(){
+        return $this->hasOne('App\StudentInfo','id','id');
     }
 }

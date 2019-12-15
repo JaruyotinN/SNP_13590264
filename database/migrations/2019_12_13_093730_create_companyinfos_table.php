@@ -15,12 +15,12 @@ class CreateCompanyinfosTable extends Migration
     {
         Schema::create('companyinfos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('com_name')->nullable();
-            $table->string('com_address')->nullable();
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
             $table->string('district_id')->nullable();
             $table->string('province_id')->nullable();
-            $table->string('com_prove')->nullable();
-            $table->string('com_juristic')->nullable();
+            $table->string('prove')->nullable();
+            $table->string('juristic')->nullable();
             $table->timestamps();
         });
         Schema::table('company_staff', function (Blueprint $table) {

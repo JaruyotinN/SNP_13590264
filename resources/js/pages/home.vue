@@ -2,6 +2,10 @@
   <div class="container">
     <card title="home">
       login
+
+      <router-link :to="{name:'student'}">student</router-link>
+            <!-- <router-link to="/student">student</router-link> -->
+
       <div class="row">
         <div class="col-md-6" v-for="(test, index) in tests" :key="index">
           <test-card :test="test"/>

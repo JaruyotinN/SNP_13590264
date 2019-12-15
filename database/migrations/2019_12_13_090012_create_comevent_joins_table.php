@@ -19,12 +19,7 @@ class CreateComeventJoinsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
-            $table->bigInteger('event_id')->unsigned()->default(1);
-            $table->foreign('event_id')
-                ->references('id')
-                ->on('comevents')
-                ->onDelete('cascade');
+                ->onDelete('cascade');     
             $table->string('comevent_ans01')->nullable();
             $table->string('comevent_ans02')->nullable();
             $table->timestamps();

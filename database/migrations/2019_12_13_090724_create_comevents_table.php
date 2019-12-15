@@ -15,11 +15,6 @@ class CreateComeventsTable extends Migration
     {
         Schema::create('comevents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('type_id')->unsigned();
-            $table->foreign('type_id')
-                ->references('id')
-                ->on('joptypes')
-                ->onDelete('cascade');
             $table->string('comevent_desciption');
             $table->integer('comevent_quantity');
             $table->string('comevent_img');
@@ -28,6 +23,23 @@ class CreateComeventsTable extends Migration
             $table->integer('comevent_invite');
             $table->timestamps();
         });
+        Schema::table('comevent_joins', function (Blueprint $table) {
+            $table->bigInteger('event_id')->unsigned();
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('comevents')
+                ->onDelete('cascade');
+        });       
+        Schema::table('company_staff', function (Blueprint $table) {
+            $table->bigInteger('event_id')->unsigned();
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('comevents')
+                ->onDelete('cascade');
+        });    
+       
+       
+
     }
 
     /**

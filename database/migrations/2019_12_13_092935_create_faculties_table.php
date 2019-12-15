@@ -15,14 +15,16 @@ class CreateFacultiesTable extends Migration
     {
         Schema::create('faculties', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('uni_id')->unsigned();
-            $table->foreign('uni_id')
-                ->references('id')
-                ->on('universities')
-                ->onDelete('cascade');
             $table->integer('faculty_name');
             $table->timestamps();
         });
+        Schema::table('student_infos', function (Blueprint $table) {
+            $table->bigInteger('faculty_id')->unsigned();
+            $table->foreign('faculty_id')
+                ->references('id')
+                ->on('faculties')
+                ->onDelete('cascade');
+        }); 
     }
 
     /**

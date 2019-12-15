@@ -15,16 +15,6 @@ class CreateCompanyStaffTable extends Migration
     {
         Schema::create('company_staff', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('com_id')->unsigned();
-            $table->foreign('com_id')
-                ->references('id')
-                ->on('companyinfos')
-                ->onDelete('cascade');
-           $table->bigInteger('event_id')->unsigned();
-            $table->foreign('event_id')
-                ->references('id')
-                ->on('comevents')
-                ->onDelete('cascade');
             $table->string('staff_name');
             $table->string('staff_surname');
             $table->string('staff_career');
@@ -33,6 +23,7 @@ class CreateCompanyStaffTable extends Migration
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

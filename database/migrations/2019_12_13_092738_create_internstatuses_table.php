@@ -18,6 +18,20 @@ class CreateInternstatusesTable extends Migration
             $table->string('status_name');
             $table->timestamps();
         });
+        Schema::table('student_infos', function (Blueprint $table) {
+            $table->bigInteger('intern_id')->unsigned();
+            $table->foreign('intern_id')
+                ->references('id')
+                ->on('internstatuses')
+                ->onDelete('cascade');
+        });    
+        Schema::table('scores', function (Blueprint $table) {
+            $table->bigInteger('intern_id')->unsigned();
+            $table->foreign('intern_id')
+                ->references('id')
+                ->on('internstatuses')
+                ->onDelete('cascade');
+        });    
     }
 
     /**

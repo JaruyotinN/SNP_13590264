@@ -23,6 +23,13 @@ class CreateMajorsTable extends Migration
             $table->string('major_name');
             $table->timestamps();
         });
+        Schema::table('student_infos', function (Blueprint $table) {
+            $table->bigInteger('major_id')->unsigned();
+            $table->foreign('major_id')
+                ->references('id')
+                ->on('majors')
+                ->onDelete('cascade');
+        });     
     }
 
     /**

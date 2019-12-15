@@ -23,6 +23,13 @@ class CreateCompanyinfosTable extends Migration
             $table->string('com_juristic')->nullable();
             $table->timestamps();
         });
+        Schema::table('company_staff', function (Blueprint $table) {
+            $table->bigInteger('com_id')->unsigned();
+            $table->foreign('com_id')
+                ->references('id')
+                ->on('companyinfos')
+                ->onDelete('cascade');
+        });  
     }
 
     /**

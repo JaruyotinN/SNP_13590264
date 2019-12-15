@@ -34,6 +34,13 @@ class CreateTeacherinfosTable extends Migration
                 ->onDelete('cascade');
             $table->timestamps();
         });
+        Schema::table('student_infos', function (Blueprint $table) {
+            $table->bigInteger('teacher_id')->unsigned();
+            $table->foreign('teacher_id')
+                ->references('id')
+                ->on('teacherinfos')
+                ->onDelete('cascade');
+        });      
     }
 
     /**

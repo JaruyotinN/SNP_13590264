@@ -15,16 +15,11 @@ class CreateScoresTable extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('stu_id');
+            $table->bigInteger('stu_id')->unsigned();
             $table->foreign('stu_id')
                 ->references('id')
                 ->on('student_infos')
-                ->onDelete('cascade');
-            $table->bigInteger('type_id');
-            $table->foreign('type_id')
-                ->references('id')
-                ->on('joptypes')
-                ->onDelete('cascade');
+                ->onDelete('cascade'); 
             $table->integer('score');
             $table->timestamps();
         });

@@ -19,11 +19,20 @@
 
         <ul class="navbar-nav ml-auto">
           <!-- Authenticated -->
+           <li v-if="user" class="nav-item">
+             <router-link :to="{name:'student'}" class="nav-link" >หน้าหลัก</router-link>
+            </li>
+            <li v-if="user" class="nav-item">
+             <router-link :to="{name:'dairy'}" class="nav-link" >บันทึกฝึกงาน</router-link>
+            </li>
+            <li v-if="user" class="nav-item">
+             <router-link :to="{name:'status'}" class="nav-link">สถานะ</router-link>
+            </li>
           <li v-if="user" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark"
                href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             >
-              <img :src="user.photo_url" class="rounded-circle profile-photo mr-1">
+              <!-- <img :src="user.photo_url" class="rounded-circle profile-photo mr-1"> -->
               {{ user.name }} ({{user.role_name}})
             </a>
             <div class="dropdown-menu">
@@ -39,6 +48,7 @@
               </a>
             </div>
           </li>
+
           <!-- Guest -->
           <template v-else>
             <li class="nav-item">
@@ -88,6 +98,15 @@ export default {
 </script>
 
 <style scoped>
+.navbar{
+  background-color: #0047BA !important;
+}
+.navbar-nav li>a{
+  color: #ffffff !important;
+}
+.navbar-nav li>a:hover{
+  color: #E7B223 !important;
+}
 .profile-photo {
   width: 2rem;
   height: 2rem;

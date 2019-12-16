@@ -12,12 +12,13 @@
 import Navbar from '~/components/Navbar'
 import FooterApp from '~/components/Footer'
 
+
 export default {
   name: 'MainLayout',
 
   components: {
     Navbar,
-    FooterApp
+    FooterApp,
   }
 }
 </script>
@@ -27,8 +28,11 @@ export default {
 }
 </style>
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Kanit:400,700&display=swap&subset=thai');
   body{
     font-family: 'Kanit', sans-serif !important;
+  }
+  .bold{
+  font-weight: 700;
   }
 </style>

@@ -5,6 +5,8 @@ function page (path) {
 export default [
   // { path: '/', name: 'welcome', component: page('welcome.vue') },
   { path: '/students', name: 'student', component: page('student/index.vue') },
+  { path: '/dairy', name: 'dairy', component: page('student/dairy.vue') },
+  { path: '/status', name: 'status', component: page('student/status.vue') },
 
   { path: '/', name: 'login', component: page('auth/login.vue') },
   { path: '/register', name: 'register', component: page('auth/register.vue') },

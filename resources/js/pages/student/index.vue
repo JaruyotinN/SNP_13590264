@@ -4,8 +4,8 @@
     <!-- <card>
       login
     </card>
-      <router-link :to="{name:'student'}">student</router-link> -->
             <!-- <router-link to="/student">student</router-link> -->
+      <router-link :to="{name:'detail'}">detail</router-link>
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3">

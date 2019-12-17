@@ -35,4 +35,8 @@ export default {
   .bold{
   font-weight: 700;
   }
+  .center{
+    text-align: center;
+    margin: 0 auto;
+  }
 </style>

@@ -17,6 +17,7 @@ class ComStaffSeeder extends Seeder
             [    
                 'name'=>'Sname',
                 'surname'=>'Ssurname',
+                'division'=>'Future Trends'. $i,
                 'career'=>'Designer',
                 'email'=>'Saff@gmail.com',
                 'phonenumber'=>'097-xxx-xxxx',

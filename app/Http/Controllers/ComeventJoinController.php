@@ -12,9 +12,17 @@ class ComeventJoinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $user_joins = ComeventJoin::where('user_id',$user->id)->get();
+
+        foreach($user_joins as $join){
+            $join->comevent->staff->company;
+        }
+
+        return $user_joins;
     }
 
     /**
@@ -35,7 +43,16 @@ class ComeventJoinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = $request->user();
+
+        $comjoin = ComeventJoin::create($request->all());
+
+        $comjoin->update([
+            'user_id'=>$user->id
+        ]);
+
+        return $comjoin;
     }
 
     /**

@@ -1,16 +1,35 @@
 <template>
    <div class="container" >
     
-          <Detailheader :head="comevent"/>
+          <Detailheader :title="comevent.company.name" showBack="student" description="lqwdfeqeqeqe"/>
+
+          <!-- <Detailheader title="diary" showBack="dairy"/> -->
+
       <div class="row">
           <div class="col-md-12">
                 <Detailbody :body="comevent"/>
 
-              <div v-for="(question, index) in questions" :key="index">
-                <Detailquestion :question="question"/>
+          <div class="card mt-4">
+             <div class="col-12">
+                  <div class="card-info">
+                    <h5 class="bold mt-3">คำถามเด็กฝึกงาน</h5>
+                    <div class="form-group">
+                         <p>{{ comevent.question1 }}</p>
+                        <textarea class="form-control" v-model="form.question1" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                         <p>{{ comevent.question2 }}</p>
+                        <textarea class="form-control" v-model="form.question2" rows="3"></textarea>
+                    </div>
+                  </div> 
               </div>
+        </div>
               <div class="btn-detail-style mt-3 mb-3">
-                <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link>
+                <button class="btn btn-primary bold" @click="confirmJoin()">
+                  สมัครฝึกงาน
+                </button>
+                <!-- div.arm>ul>li.kk*5 -->
+                <!-- <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link> -->
 						  </div>
             </div>
       </div>
@@ -34,6 +53,11 @@ export default {
   },
 data() {
   return {
+    form:{
+      question1:'',
+      question2:'',
+      event_id:''
+    },
     bodys:[
     { 
       img:'https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/p960x960/51248284_779547722411675_3427955334721830912_o.png?_nc_cat=108&_nc_eui2=AeH9XH2PPZuSeGLO1nuw_wlrNgVQ8my7ji7dgg_Y1SSpZ98ttqIoVNRtvXwkI2F5kH7rRL7kuYJiCgOBrhUs-_rV-2nYOTbkgZ-l2ecVyeG2Vw&_nc_oc=AQmAvGTU0GD3wgF7XAx6aaR39_lpKs9xK-sarkzzNfpqpnZ2DVxBokWJwcHMDMsURE8&_nc_ht=scontent.fbkk13-1.fna&oh=eaca2f6ab9b3f4fee1744560e9923c3f&oe=5E79F2EF',
@@ -68,8 +92,16 @@ data() {
   },
   methods: {
     ...mapActions({
-      'fetch':'comevents/show'
-    })
+      fetch:'comevents/show',
+      join:'comevents/join'
+    }),
+    async confirmJoin(){
+      console.log('dqdwq')
+      this.form.event_id = this.comevent.id
+      await this.join(this.form)
+      this.$router.push({name:'status'})
+      
+    }
   },
   created(){
     this.fetch(this.id)

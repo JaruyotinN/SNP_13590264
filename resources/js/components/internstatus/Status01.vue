@@ -1,5 +1,6 @@
 <template>
 <div>
+
     <table class="table" >
     <thead>
         <tr>
@@ -11,26 +12,24 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="spaceUnder" >
-            <td><h5>บริษัท ไลค์มี</h5><label>Future Trends</label></td>
-            <td><h5>Graphic Design</h5></td>
-            <td class="center w15"><h5>รอ</h5></td>
-            <td class="center w15"><h5>มีการสัมภาษณ์</h5></td>
-            <td class="center w15"><h5>กำลังพิจารณา</h5></td>
-        </tr>
-        <tr class="spaceUnder" >
-            <td><h5>บริษัท ไลค์มี</h5><label>Future Trends</label></td>
-            <td><h5>Graphic Design</h5></td>
-            <td class="center w15"><h5>รอ</h5></td>
-            <td class="center w15"><h5>มีการสัมภาษณ์</h5></td>
-            <td class="center w15"><h5>กำลังพิจารณา</h5></td>
-        </tr>
-        <tr class="spaceUnder" >
-            <td><h5>บริษัท ไลค์มี</h5><label>Future Trends</label></td>
-            <td><h5>Graphic Design</h5></td>
-            <td class="center w15"><h5>รอ</h5></td>
-            <td class="center w15"><h5>มีการสัมภาษณ์</h5></td>
-            <td class="center w15"><h5>กำลังพิจารณา</h5></td>
+        
+        <tr class="spaceUnder" v-for="(userjoin, index) in userjoins" :key="index">
+            <td><h5> {{userjoin.comevent.staff.company.name}} </h5><label>{{userjoin.comevent.staff.division}} </label></td>
+            <td><h5> {{userjoin.comevent.requirement}} </h5></td>
+            <td class="center w15">
+                <i v-if="userjoin.check " class="fa fa-check-circle "></i>  
+                <i v-else class="fa fa-minus-circle"></i>
+            </td>
+            <td class="center w15">
+                <i v-if="userjoin.interview" class="fa fa-check-circle "></i>  
+                <i v-else class="fa fa-minus-circle"></i>
+            </td>
+            <td class="center w15">
+                <h5 v-if="userjoin.result == 0" >wait</h5>
+                <h5 v-else-if="userjoin.result == 1" >PASS</h5>
+                <h5 v-else-if="userjoin.result == 2" >NOPASS</h5>
+                <!-- <h5>{{ userjoin.result }}</h5> -->
+            </td>
         </tr>
     </tbody>
     </table>
@@ -52,12 +51,31 @@
 </template>
 
 <script>
-    export default {
-       
-    }
+import { mapGetters, mapActions } from "vuex";
+
+   export default {
+  middleware: 'auth',
+  methods: {
+   ...mapActions({
+     userjoin:'comevents/userjoin',
+   }),
+  },
+  created(){
+    this.userjoin()
+  },
+  computed:{
+  ...mapGetters({
+      userjoins:'comevents/userjoins',
+    }),
+  },
+   }
 </script>
 
 <style  scoped>
+i{
+    font-size: 2rem;
+    color: gray
+}
 h5{
     margin: 0;
 }

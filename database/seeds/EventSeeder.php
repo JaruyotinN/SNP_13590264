@@ -16,7 +16,7 @@ class EventSeeder extends Seeder
                 [    
                     'desciption'=> "บริษัท ไลค์มี จำกัดนั้นเป็นบริษัทที่มีแบร์ดหลากหลาย ทั้ง InfographicThailand , AomMoeny , ถุงเงิน Family , Future Trends",
                     'quantity' => 6,
-                    'requirement'=> " Graphic Desinger, illustrator , Motion Grapihc",
+                    'requirement'=> "Graphic Desinger",
                     'img'=> "https://i.imgur.com/q8JS4VX.png",
                     'question1'=> "Question01",
                     'question2'=> "Question02",

@@ -17,6 +17,7 @@ class CreateCompanyStaffTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('surname');
+            $table->string('division');
             $table->string('career');
             $table->string('email');
             $table->string('phonenumber');

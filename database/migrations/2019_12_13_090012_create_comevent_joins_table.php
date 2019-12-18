@@ -20,8 +20,11 @@ class CreateComeventJoinsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');     
-            $table->string('comevent_ans01')->nullable();
-            $table->string('comevent_ans02')->nullable();
+            $table->string('question1')->nullable();
+            $table->string('question2')->nullable();
+            $table->boolean('check')->default(0);
+            $table->boolean('interview')->default(0);
+            $table->integer('result')->default(0)->comment('0.wait 1.pass 2.notpass');
             $table->timestamps();
         });
     }

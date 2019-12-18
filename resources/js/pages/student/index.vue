@@ -1,11 +1,16 @@
 <template>
   <div class="container" >
     <Profile />
+
+    
+    <!-- <i class="fa fa-users"></i> -->
     <!-- <card>
       login
     </card>
+    
+
+    
             <!-- <router-link to="/student">student</router-link> -->
-      <router-link :to="{name:'detail'}">detail</router-link>
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-3">
@@ -21,8 +26,14 @@
           <div class="col-md-9">
                <h4 class="bold mt-5">สถานที่ฝึกงานที่เหมาะกับคุณ</h4>
             <div class="row">
-                <div class="col-md-4" v-for="(test, index) in tests" :key="index">
-                <test-card :test="test"/>
+                <div class="col-md-4 d-flex" v-for="(test, index) in comevents" :key="index">
+                <router-link :to="{name:'detail', params:{id:test.id}}">
+                <ComEventCard :test="test"/>
+                </router-link>
+
+                <!-- <button class="btn btn-danger" @click="confirmDel(test.id)">
+                  del
+                </button> -->
                 </div>
             </div>
           </div>
@@ -33,14 +44,53 @@
 
 
 <script>
-import TestCard from '~/components/TestCard'
+import ComEventCard from '~/components/ComEventCard'
 import Profile from '~/components/Profile'
 import Calendar from '~/components/Calendar'
+import { mapGetters, mapActions } from "vuex";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   middleware: 'auth',
+  methods: {
+   ...mapActions({
+     fetch:'comevents/fetch',
+    del:'comevents/del'
+   }),
+   confirmDel(id){
+     Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    this.del(id)
+    this.fetch()
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }
+})
+   }
+  },
+  created(){
+    this.fetch()
+  },
+  computed:{
+  ...mapGetters({
+      comevents:'comevents/comevents'
+    }),
+  },
 data() {
   return {
+  
     tests: [
     {
       img:'https://picsum.photos/id/237/200/300',
@@ -109,13 +159,16 @@ data() {
   }
 },
   components:{
-    TestCard,
+    ComEventCard,
     Profile,
     Calendar,
   }
 }
 </script>
 <style scoped>
+router-link{
+    text-decoration: none;
+}
 .card{
     padding-bottom: 10px;
     box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);

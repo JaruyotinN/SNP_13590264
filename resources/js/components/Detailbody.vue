@@ -1,5 +1,6 @@
 <template>
 <div class="row">
+
     <div class="col-md-6">
         <div class="mt-4">
             <div class="radio-img">
@@ -7,19 +8,19 @@
 		    </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" >
         <div class="card mt-4">
              <div class="col-12">
                   <div class="card-info">
                     <h5 class="bold mt-3">ข้อมูลการฝึกงาน</h5>
-                    <label>บริษัท : </label><label class="bold"> &nbsp{{ body.name }}</label><br>
-                    <label>หน่วยงาน : </label><label class="bold"> &nbsp{{ body.subname }}</label><br>
+                    <label>บริษัท : </label><label class="bold"> &nbsp{{ body.company.name }}</label><br>
+                    <label>หน่วยงาน : </label><label class="bold"> &nbsp Future Trends</label><br>
                     <label>จำนวนที่เปิดรับ : </label><label class="bold"> &nbsp{{ body.quantity }}</label><br>
                     <label>ตำแหน่งที่ต้องการ : </label><label class="bold"> &nbsp{{ body.requirement }}</label><br>
-                    <label>วันที่ทำการ : </label><label class="bold"> &nbsp{{ body.worktime }}</label><br>
-                    <label>สถานที่ : {{ body.address }}</label>
+                    <label>วันที่ทำการ : </label><label class="bold"> &nbsp จ-ศ</label><br>
+                    <label>สถานที่ : {{ body.company.address }}</label>
                     <h5 class="bold">ข้อมูลการฝึกงาน</h5>
-                    <p>&nbsp&nbsp{{ body.description }}</p>
+                    <p>&nbsp&nbsp{{ body.desciption }}</p>
                   </div> 
               </div>
         </div>

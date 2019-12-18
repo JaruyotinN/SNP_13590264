@@ -27,7 +27,8 @@
         </div>
     </div>
     <div class="btn-detail-style mt-3 mb-3">
-        <router-link class="btn btn-primary bold" :to="{name:'student'}">ดำเนินการขั้นต่อไป</router-link>
+         <button class="btn btn-primary bold" :to="{name:'student'}" @click="$emit('next', 3)">ดำเนินการขั้นต่อไป</button>
+       
 	</div>
 
 </div>

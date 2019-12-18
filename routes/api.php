@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/user', 'UserController@index');
     Route::resource('/majors', 'MajorController');
+    Route::resource('/comevents', 'ComeventController');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

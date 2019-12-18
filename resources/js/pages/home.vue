@@ -49,7 +49,7 @@
  }
 </style>
 <script>
-import TestCard from '~/components/TestCard'
+import TestCard from '~/components/ComEventCard'
 import Profile from '~/components/Profile'
 import Calendar from '~/components/Calendar'
 

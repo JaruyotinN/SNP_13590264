@@ -1,18 +1,16 @@
 <template>
    <div class="container" >
-     <div v-for="(head, index) in heads" :key="index">
-          <Detailheader :head="head"/>
-      </div>
+    
+          <Detailheader :head="comevent"/>
       <div class="row">
           <div class="col-md-12">
-              <div v-for="(body, index) in bodys" :key="index">
-                <Detailbody :body="body"/>
-              </div>
+                <Detailbody :body="comevent"/>
+
               <div v-for="(question, index) in questions" :key="index">
                 <Detailquestion :question="question"/>
               </div>
               <div class="btn-detail-style mt-3 mb-3">
-                <router-link class="btn btn-primary bold" :to="{name:'student'}">สมัครฝึกงาน</router-link>
+                <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link>
 						  </div>
             </div>
       </div>
@@ -23,9 +21,17 @@
 import Detailheader from '~/components/Detailheader'
 import Detailbody from '~/components/Detailbody'
 import Detailquestion from '~/components/Detailquestion'
-
+import {mapActions, mapGetters} from 'vuex'
 export default {
   middleware: 'auth',
+  computed:{
+    id(){
+      return parseInt(this.$route.params.id)
+    },
+    ...mapGetters({
+      comevent:'comevents/show'
+    })
+  },
 data() {
   return {
     bodys:[
@@ -59,6 +65,14 @@ data() {
     Detailheader,
     Detailbody,
     Detailquestion,
+  },
+  methods: {
+    ...mapActions({
+      'fetch':'comevents/show'
+    })
+  },
+  created(){
+    this.fetch(this.id)
   }
 }
 </script>

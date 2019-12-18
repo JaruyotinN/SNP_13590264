@@ -14,7 +14,16 @@ class ComeventController extends Controller
      */
     public function index()
     {
-        //
+        $comevents = Comevent::get();
+        foreach($comevents as $com){
+            // $com->staff->company;
+            $com->company;
+            foreach($com->staffs as $staff){
+                // $staff->company;
+            }
+            // $com->company;
+        }
+        return $comevents;
     }
 
     /**
@@ -46,7 +55,9 @@ class ComeventController extends Controller
      */
     public function show(Comevent $comevent)
     {
-        //
+        $comevent->staffs;
+        $comevent->company;
+        return $comevent;
     }
 
     /**
@@ -80,6 +91,7 @@ class ComeventController extends Controller
      */
     public function destroy(Comevent $comevent)
     {
-        //
+        $comevent->delete();
+        return 'delete';
     }
 }

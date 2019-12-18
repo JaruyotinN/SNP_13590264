@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="btn-detail-style mt-3 mb-3">
-        <router-link class="btn btn-primary bold" :to="{name:'student'}">ยืนยันบริษัทฝึกงาน</router-link>
+        <button class="btn btn-primary bold" :to="{name:'student'}" @click="$emit('next', 2)">ยืนยันบริษัทฝึกงาน</button>
 	</div>
 </div>
 </template>

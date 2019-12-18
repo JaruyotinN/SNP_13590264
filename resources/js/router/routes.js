@@ -7,7 +7,8 @@ export default [
   { path: '/students', name: 'student', component: page('student/index.vue') },
   { path: '/dairy', name: 'dairy', component: page('student/dairy.vue') },
   { path: '/status', name: 'status', component: page('student/status.vue') },
-  { path: '/detail', name: 'detail', component: page('student/detail.vue') },
+  { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
+  { path: '/edit', name: 'edit', component: page('student/edit.vue') },
 
   { path: '/', name: 'login', component: page('auth/login.vue') },
   { path: '/register', name: 'register', component: page('auth/register.vue') },

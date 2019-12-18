@@ -17,11 +17,12 @@ class CreateComeventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('desciption');
             $table->integer('quantity');
+            $table->string('requirement');
             $table->string('img');
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();
             $table->integer('invite');
-            $table->timestamps();
+ 
         });
         Schema::table('comevent_joins', function (Blueprint $table) {
             $table->bigInteger('event_id')->unsigned();

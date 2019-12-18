@@ -1,5 +1,5 @@
 <template>
-						<div class="card mt-4">
+			<div class="card mt-4 h-100">
 					  <div class="radio-img">
 							<img :src="test.img" center alt="..." class="card-img-top"/>
 						</div>
@@ -7,7 +7,7 @@
               <div class="col-12">
                   <div class="card-info">
                     <h5 class="bold"> {{ test.name }} </h5>
-                    <p>ประเภทงาน : {{ test.type }} </p>
+                    <p>ประเภทงาน : ออกแบบ</p>
                     <p>ตำแหน่งที่ต้องการ : {{ test.description }} </p>
                   </div> 
               </div>
@@ -16,12 +16,11 @@
 								<div class="col-12">
 									<div class="card-info">
 
-								<p class="mt-1">ที่อยู่ : {{ test.place }} </p>
+								<p class="mt-1">ที่อยู่ : {{ test.company.address }} </p>
 									</div>
 								</div>
 							</div>
-					</div>
-					</div>
+              </div>
 </template>
 
 <script>
@@ -42,7 +41,6 @@ p{
 }
 .radio-img{
   box-sizing: border-box;
-  height: 300px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   overflow: hidden;

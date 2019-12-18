@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             MajorSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
+            CompanySeeder::class,
+            EventSeeder::class,
+            ComStaffSeeder::class,
         ]);
     }
 }

@@ -13,9 +13,7 @@
 
                 </div>
                 <div class="col-md-2 mt-4">
-                    <a class="btn btn-success"
-                       style="width: 100% ; height: 50px; line-height: 35px;border-radius: 2rem; color:white;background-color: #0047BA ;border: none;  box-shadow:none;"
-                       href="/create">แก้ไข้ข้อมูล</a>
+                    <router-link class="btn btn-primary bold" :to="{name:'edit'}">แก้ไข้อมูล</router-link>
                 </div>
             </div>
             <hr>
@@ -38,6 +36,16 @@
 }
 .img-circle img{
     width: 100%;
+}
+.btn-primary {
+    width: 100% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:white;
+    background-color: #0047BA ;
+    border: none;  
+    box-shadow:none;
 }
 
 </style>

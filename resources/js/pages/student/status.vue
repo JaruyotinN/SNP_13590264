@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import Statusheader from '~/components/internstatus/Statusheader'
-import Status01 from '~/components/internstatus/Status01'
-import Status02 from '~/components/internstatus/Status02'
-import Status03 from '~/components/internstatus/Status03'
-import Status04 from '~/components/internstatus/Status04'
+import Statusheader from '~/components/Internstatus/Statusheader'
+import Status01 from '~/components/Internstatus/Status01'
+import Status02 from '~/components/Internstatus/Status02'
+import Status03 from '~/components/Internstatus/Status03'
+import Status04 from '~/components/Internstatus/Status04'
 
 export default {
   middleware: 'auth',

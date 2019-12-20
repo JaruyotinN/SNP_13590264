@@ -17,6 +17,8 @@ class CreateTeacherinfosTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
+            $table->string('img')->nullable();
+            $table->string('email')->nullable();
             $table->bigInteger('uni_id')->unsigned();
             $table->foreign('uni_id')
                 ->references('id')

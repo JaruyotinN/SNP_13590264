@@ -10,6 +10,12 @@ export default [
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit', name: 'edit', component: page('student/edit.vue') },
 
+  { path: '/company', name: 'company', component: page('company/index.vue') },
+  { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },
+  { path: '/list', name: 'list', component: page('company/list.vue') },
+  { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
+  
+
   { path: '/', name: 'login', component: page('auth/login.vue') },
   { path: '/register', name: 'register', component: page('auth/register.vue') },
   { path: '/password/reset', name: 'password.request', component: page('auth/password/email.vue') },

@@ -3,56 +3,32 @@
      <div class="col-md-12">
         <div class="row">
                    <div class="col-md-4">
-                            <h>บริษัท</h>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
-                            </div>
+                        <p>Portfolio</p>
+                        <div class="mt-2 mb-3">
+                            <input class="form-control" type="text" placeholder="port">
                         </div>
-                        <div class="col-md-4">
-                            <h>นามสกุล</h>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Resume</p>
+                        <div class="mt-2 mb-3">
+                            <input class="form-control" type="text" placeholder="resume">
                         </div>
-              </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p>URL สำหรับผลงาน</p>
+                        <div class="mt-2 mb-3">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                    </div>
+        </div>
                <div class="col-md-3 offset-9">
                 <div class="btn-detail-style mt-3 mb-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'status'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
+                    <router-link class="btn btn-primary bold" :to="{name:'student'}">บันทึกข้อมูล</router-link>
                 </div>
               </div>
-    </div>
-      <div class="col-md-12">
-            <div class="row">
-                <div class="row">
-                   <div class="col-md-4">
-                            <h>บริษัท</h>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <h>นามสกุล</h>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
-                            </div>
-                        </div>
-              </div>
-               <div class="col-md-3 offset-9">
-                <div class="btn-detail-style mt-3 mb-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'status'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
-                </div>
-              </div>
-            </div>  
-              <div class="col-md-3 offset-9">
-                <div class="btn-detail-style mt-3 mb-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'status'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
-                </div>
-              </div>
-              <hr>
-              
-
-      </div>     <!-- col-md-12 -->
-  </div>
+    </div> <!-- col-md-12 -->
+</div>  <!-- container -->
+   
 </template>
 
 <script>
@@ -70,21 +46,8 @@ data() {
 }
 </script>
 <style scoped>
-.f025{
-    font-size: 0.25rem;
-}
 .form-control{
     border-radius: 2rem;
-}
-.img-circle{
-    width: 125px;
-    height: 125px;
-    border-radius: 50%;
-    overflow: hidden; 
-    background-color: gray;
-}
-.img-circle img{
-    width: 100%;
 }
 .btn-detail-style .btn-primary{ 
     background-color: #0047BA ;

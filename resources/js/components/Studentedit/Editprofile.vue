@@ -1,18 +1,5 @@
 <template>
    <div class="container" >
-     <div class="col-md-12">
-            <div class="mb-3"> 
-                     <router-link :to="{name:'student'}">ย้อนกลับ</router-link>
-            </div>
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="mb-3 ml-3 mt-2">
-                        <h4 class="mb-2 bold">แก้ไขข้อมูลผู้ใช้งาน</h4>
-                    </div>
-                </div>
-            </div>
-            <hr>
-    </div>
       <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
@@ -26,39 +13,39 @@
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-4">
-                            <h>บริษัท</h>
+                            <p>ชื่อ</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่ชื่อของคุณ">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h>นามสกุล</h>
+                            <p>นามสกุล</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่นามสกุลของคุณ">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h>รหัส</h>
+                            <p>รหัสนักศึกษา</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่รหัสนักศึกษา">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h>มหาวิทยาลัย</h>
+                            <p>มหาวิทยาลัย</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่มหาวิทยาลัย">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h>คณะ</h>
+                            <p>คณะ</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่คณะของคุณ">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <h>เอก</h>
+                            <p>สาขา / เอก</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                                <input class="form-control" type="text" placeholder="โปรดใส่ สาขา / เอก ของคุณ">
                             </div>
                         </div>
                     </div>
@@ -66,7 +53,7 @@
             </div>  
               <div class="col-md-3 offset-9">
                 <div class="btn-detail-style mt-3 mb-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'status'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
+                    <router-link class="btn btn-primary bold" :to="{name:'student'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
                 </div>
               </div>
       </div>     <!-- col-md-12 -->

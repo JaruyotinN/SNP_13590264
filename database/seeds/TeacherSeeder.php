@@ -13,8 +13,19 @@ class TeacherSeeder extends Seeder
     {
         DB::table('teacherinfos')->insert([
             [
-                'name'=>'Tname',
-                'surname'=>'Tsurname',
+                'name'=>'Kowit',
+                'surname'=>'Meeboon',
+                'img'=>'',
+                'email'=>'Meeboon_k@silpakorn.edu',
+                'uni_id'=>1,
+                'faculty_id'=>1,
+                'major_id'=>1,
+            ],
+            [
+                'name'=>'Sarayut',
+                'surname'=>'Thibhodee',
+                'img'=>'',
+                'email'=>'Thibhodee_s@silpakorn.edu',
                 'uni_id'=>1,
                 'faculty_id'=>1,
                 'major_id'=>1,

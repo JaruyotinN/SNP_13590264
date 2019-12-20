@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             EventSeeder::class,
             ComStaffSeeder::class,
+            StudentPostSeeder::class,
         ]);
     }
 }

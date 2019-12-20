@@ -1,8 +1,8 @@
 <template>
    <div class="container" >
     
-          <Detailheader :title="comevent.company.name" showBack="student" description="lqwdfeqeqeqe"/>
-
+          <!-- <ColumHeader :title="comevent.company.name" showBack="student" description="lqwdfeqeqeqe"/> -->
+          <ColumHeader :title="comevent.company.name" showBack="student"/> 
           <!-- <Detailheader title="diary" showBack="dairy"/> -->
 
       <div class="row">
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Detailheader from '~/components/Detailheader'
+import ColumHeader from '~/components/ColumHeader'
 import Detailbody from '~/components/Detailbody'
 import Detailquestion from '~/components/Detailquestion'
 import {mapActions, mapGetters} from 'vuex'
@@ -86,7 +86,7 @@ data() {
     }
 },
   components:{
-    Detailheader,
+    ColumHeader,
     Detailbody,
     Detailquestion,
   },

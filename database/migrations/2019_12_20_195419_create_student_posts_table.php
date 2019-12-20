@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanyStaffTable extends Migration
+class CreateStudentPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateCompanyStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_staff', function (Blueprint $table) {
+        Schema::create('student_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('division');
+            $table->bigInteger('stu_id')->unsigned();
+            $table->foreign('stu_id')
+                ->references('id')
+                ->on('student_infos')
+                ->onDelete('cascade');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->string('img')->nullable();
-            $table->string('career');
-            $table->string('email');
-            $table->string('phonenumber');
             $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.
@@ -34,6 +34,6 @@ class CreateCompanyStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_staff');
+        Schema::dropIfExists('student_posts');
     }
 }

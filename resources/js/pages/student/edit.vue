@@ -1,13 +1,18 @@
 <template>
-   <div class="container" >
+   <div class="container" >  
+        <ColumHeader title='แก้ไขข้อมูลผู้ใช้งาน' showBack="student"/>
         <Editprofile />
-        <!-- <Editport />
-        <Editprofile /> -->
+        <ColumHeader title="แก้ไขข้อมูล Resume / Portfolio"/>
+        <Editport />
+        <ColumHeader title="แก้ไขข้อมูลความถนัด"/>
+        <Editscore />
       
   </div>
 </template>
 
 <script>
+
+import ColumHeader from '~/components/ColumHeader'
 import Editprofile from '~/components/Studentedit/Editprofile'
 import Editport from '~/components/Studentedit/Editport'
 import Editscore from '~/components/Studentedit/Editscore'
@@ -24,6 +29,7 @@ data() {
     }
 },
   components:{
+    ColumHeader,
     Editprofile,
     Editport,
     Editscore,

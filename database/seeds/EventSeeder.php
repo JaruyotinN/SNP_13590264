@@ -11,20 +11,85 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0 ; $i<10; $i++){
             DB::table('comevents')->insert([
                 [    
                     'desciption'=> "บริษัท ไลค์มี จำกัดนั้นเป็นบริษัทที่มีแบร์ดหลากหลาย ทั้ง InfographicThailand , AomMoeny , ถุงเงิน Family , Future Trends",
                     'quantity' => 6,
                     'requirement'=> "Graphic Desinger",
-                    'img'=> "https://i.imgur.com/q8JS4VX.png",
+                    'img'=> "https://i.imgur.com/7qZo9di.png",
                     'question1'=> "Question01",
                     'question2'=> "Question02",
-                    'com_id'=> 1+$i,
+                    'enddate'=> '13 กุมภาพันธ์ - 13 เมษายน',
+                    'com_id'=> 1,
+                    'type_id'=>1,
                     'invite'=> 5,
-                ]
+                ],
+                [    
+                    'desciption'=> "ศึกครานี้ใหญ่หลวงนักเตรียมตัวให้พร้อมเหล่าผู้กล้าทั้งหลาย เพราะการคัดเลือก นักศึกษาฝึกงาน Uppercuz trainee #10กำลังจะมาแล้ว! ",
+                    'quantity' => 6,
+                    'requirement'=> "Graphic Designer",
+                    'img'=> "https://i.imgur.com/QviIdUU.jpg",
+                    'question1'=> "Question01",
+                    'question2'=> "Question02",
+                    'enddate'=> '20 กุมภาพันธ์ - 25 เมษายน',
+                    'com_id'=> 1,
+                    'type_id'=>1,
+                    'invite'=> 5,
+                ],
+                [    
+                    'desciption'=> "Rabbit Digital Group ขอชวนน้องๆพร้อมจั๊มป์ด้วยกันกับ LAB Rabbit รุ่นที่ 1 โครงการกระต่ายลองงาน สร้างคุณให้กลายเป็นกระต่ายดัดแปลงที่แข็งแกร่งกว่าเดิม!",
+                    'quantity' => 6,
+                    'requirement'=> "Graphic Desinger",
+                    'img'=> "https://i.imgur.com/AWdPLxE.jpg",
+                    'question1'=> "Question01",
+                    'question2'=> "Question02",
+                    'enddate'=> '19 มีนาคม - 30 พฤษภาคม',
+                    'com_id'=> 2,
+                    'type_id'=>1,
+                    'invite'=> 5,
+                ],
+                [    
+                    'desciption'=> "ถ้าคุณรักงานออกแบบและพร้อมคิดงานเจ๋งๆให้สมองได้ระเบิดไอเดียออกมา รีบมาสมัครฝึกงานกับเราได้เลยได้ทำงานจริง ลุยสนามจริง เจ็บจริง เจอสนามการทำงานของชีวิตจริง",
+                    'quantity' => 6,
+                    'requirement'=> "Graphic Designer",
+                    'img'=> "https://i.imgur.com/fCDkXoQ.png",
+                    'question1'=> "Question01",
+                    'question2'=> "Question02",
+                    'enddate'=> '01 กุมภาพันธ์ - 30 เมษายน',
+                    'com_id'=> 4,
+                    'type_id'=>1,
+                    'invite'=> 5,
+                ],
+                [    
+                    'desciption'=> "รับสมัครนักศึกษาฝึกงาน สามารถออกแบบ Website Design ได้,ทำภาพเคลื่อนไหว motion graphicได้,มีความเข้าใจเรื่องของ CI และมีความคิดสร้างสรรค์ ทำงานเป็นระเบียบ",
+                    'quantity' => 6,
+                    'requirement'=> "Graphic Designer",
+                    'img'=> "https://i.imgur.com/jc898nY.jpg",
+                    'question1'=> "Question01",
+                    'question2'=> "Question02",
+                    'enddate'=> '04 กุมภาพันธ์ - 24 พฤษภาคม',
+                    'com_id'=> 5,
+                    'type_id'=>1,
+                    'invite'=> 5,
+                ],
+                [    
+                    'desciption'=> "โอกาสสำหรับน้องๆ การทำงานแบบ Survivors เอาชีวิตรอดในเมืองกรุง สำหรับคนที่มี “ความคิด” เยอะ แต่ไม่รู้จะเอาไปปล่อยที่ไหน Kidyers ซึ่งทำงานด้าน Digital Creative Agency เปิดรับสมัครนักศึกษาฝึกงาน",
+                    'quantity' => 6,
+                    'requirement'=> "Motion Graphic",
+                    'img'=> "https://i.imgur.com/y8nHtjM.jpg",
+                    'question1'=> "Question01",
+                    'question2'=> "Question02",
+                    'enddate'=> '29 มีนาคม - 30 มิถุนายน',
+                    'com_id'=> 6,
+                    'type_id'=>1,
+                    'invite'=> 5,
+                ],
+                
+                
+               
+                
+                
             ]);
-        }
-    
+
     }
 }

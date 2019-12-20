@@ -1,18 +1,8 @@
 <template>
   <div class="container" >
     <Profile />
-
-    
-    <!-- <i class="fa fa-users"></i> -->
-    <!-- <card>
-      login
-    </card>
-    
-
-    
-            <!-- <router-link to="/student">student</router-link> -->
       <div class="col-md-12">
-        <div class="row">
+        <div class="row mb-3">
           <div class="col-md-3">
                 <div class="card mt-4">
                 <div class="c-header">
@@ -26,7 +16,7 @@
           <div class="col-md-9">
                <h4 class="bold mt-5">สถานที่ฝึกงานที่เหมาะกับคุณ</h4>
             <div class="row">
-                <div class="col-md-4 d-flex" v-for="(test, index) in comevents" :key="index">
+                <div class="col-md-4 mb-2" v-for="(test, index) in comevents" :key="index">
                 <router-link :to="{name:'detail', params:{id:test.id}}">
                 <ComEventCard :test="test"/>
                 </router-link>

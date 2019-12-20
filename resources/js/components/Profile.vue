@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="img-circle ">
-                        <img src="https://learnodo-newtonic.com/wp-content/uploads/2015/01/Girl-with-a-Pearl-Earring-1665-Johannes-Vermeer.jpg">
+                        <img src="https://i.imgur.com/CTA3XtA.jpg">
                     </div>
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">นายณัทกฤช จารุโยธิน</h4>

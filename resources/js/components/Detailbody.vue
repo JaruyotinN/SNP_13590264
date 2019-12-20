@@ -3,7 +3,7 @@
 
     <div class="col-md-6">
         <div class="mt-4">
-            <div class="radio-img">
+            <div class="radio-img d-flex">
 		        <img :src="body.img" center alt="..." class="card-img-top"/>
 		    </div>
         </div>
@@ -42,7 +42,6 @@ export default {
 }
 .radio-img{
   box-sizing: border-box;
-  height: 500px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);

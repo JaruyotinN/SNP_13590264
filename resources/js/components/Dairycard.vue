@@ -13,7 +13,8 @@
                     </div>
                 </div>
                 <div class="col-10">
-                    <h5 class="mt-4 mb-4 p-1 bold" >{{dairy.description.substring(0,220)+"..."}}</h5>
+                    <h5 class="mt-4 p-1 bold">{{dairy.title}}</h5>
+                    <h5 class=" mb-4 p-1" >{{dairy.description.substring(0,220)+"..."}}</h5>
                     <div class="fix-position">
                         <p>บันทึกวันที่ : {{dairy.date}} โดย {{dairy.name}} {{dairy.number}} , เวลา {{dairy.time}}</p>
                     </div> 

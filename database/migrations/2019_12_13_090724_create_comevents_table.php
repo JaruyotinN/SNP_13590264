@@ -18,10 +18,12 @@ class CreateComeventsTable extends Migration
             $table->string('desciption');
             $table->integer('quantity');
             $table->string('requirement');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();
             $table->integer('invite');
+            $table->string('enddate')->nullable();
+            $table->timestamps();
  
         });
         Schema::table('comevent_joins', function (Blueprint $table) {

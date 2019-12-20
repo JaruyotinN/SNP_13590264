@@ -11,20 +11,81 @@ class ComStaffSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0 ; $i<10; $i++){
 
         DB::table('company_staff')->insert([
             [    
-                'name'=>'Sname',
-                'surname'=>'Ssurname',
-                'division'=>'Future Trends'. $i,
+                'name'=>'ฐนาธร',
+                'surname'=>'แสนหาญ',
+                'division'=>'Future Trends',
+                'img'=>'',
                 'career'=>'Designer',
-                'email'=>'Saff@gmail.com',
-                'phonenumber'=>'097-xxx-xxxx',
-                'event_id'=>1+$i,
-                'com_id'=>1+$i,
-            ]
+                'email'=>'tanatorn@likeme.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+            [    
+                'name'=>'อัญธิกา',
+                'surname'=>'กรุยทอง',
+                'division'=>'Uppercuz Creative Co.LTD',
+                'img'=>'',
+                'career'=>'Graphic Designer',
+                'email'=>'atika_g@Uppercuz.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+            
+           
+            
+            [    
+                'name'=>'จีรญาดา',
+                'surname'=>'กิจธนะภพรุ่ง',
+                'division'=>'Rabbit Digital Group',
+                'img'=>'',
+                'career'=>'Designer',
+                'email'=>'jirada@RabbitDigital.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+            [    
+                'name'=>'นพมล',
+                'surname'=>'วงษ์เซ็ง',
+                'division'=>'Grappik Creative Design',
+                'img'=>'',
+                'career'=>'Creative',
+                'email'=>'navamon@grappik.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+            [    
+                'name'=>'ธัญญ์ฐนนท์',
+                'surname'=>'พานิชเจริญ',
+                'division'=>'Inspire Digital Co.LTD',
+                'img'=>'',
+                'career'=>'Senoir Designer',
+                'email'=>'Panichalern@Inspiredigi.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+           
+            [    
+                'name'=>'กชนิภา',
+                'surname'=>'ลิลิตตระกูล',
+                'division'=>'Kidyer digital creative agency',
+                'img'=>'',
+                'career'=>'Content Creator',
+                'email'=>'Kodnipa@kidyer.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'event_id'=>1,
+                'com_id'=>1,
+            ],
+            
+
+
         ]);
-    }
 }
 }

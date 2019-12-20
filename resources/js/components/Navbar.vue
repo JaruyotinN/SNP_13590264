@@ -17,7 +17,7 @@
           </li> -->
         </ul>
 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto"  v-if="tab == 1">
           <!-- Authenticated -->
            <li v-if="user" class="nav-item">
              <router-link :to="{name:'student'}" class="nav-link" >หน้าหลัก</router-link>
@@ -40,6 +40,57 @@
                 <fa icon="cog" fixed-width />
                 {{ $t('settings') }}
               </router-link>
+              
+
+                <button class="btn btn-primary bold dropdown-item" @click="setTab(2)">to company</button>
+
+              <div class="dropdown-divider" />
+              <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
+                <fa icon="sign-out-alt" fixed-width />
+                {{ $t('logout') }}
+              </a>
+            </div>
+          </li>
+
+          <!-- Guest -->
+          <template v-else>
+            <li class="nav-item">
+              <router-link :to="{ name: 'login' }" class="nav-link" active-class="active">
+                {{ $t('login') }}
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link :to="{ name: 'register' }" class="nav-link" active-class="active">
+                {{ $t('register') }}
+              </router-link>
+            </li>
+          </template>
+        </ul>
+
+         <ul class="navbar-nav ml-auto"  v-else-if="tab == 2">
+          <!-- Authenticated -->
+           <li v-if="user" class="nav-item">
+             <router-link :to="{name:'company'}" class="nav-link" >หน้าหลัก company</router-link>
+            </li>
+            <li v-if="user" class="nav-item">
+             <router-link :to="{name:'internrequest'}" class="nav-link" >คำร้องขอฝึกงาน</router-link>
+            </li>
+            <li v-if="user" class="nav-item">
+             <router-link :to="{name:'list'}" class="nav-link">รายชื่อเด็กฝึกงาน</router-link>
+            </li>
+          <li v-if="user" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark"
+               href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >company
+            </a>
+            <div class="dropdown-menu">
+              <router-link :to="{ name: 'settings.profile' }" class="dropdown-item pl-3">
+                <fa icon="cog" fixed-width />
+                {{ $t('settings') }}
+              </router-link>
+              
+
+                <button class="btn btn-primary bold dropdown-item" @click="setTab(1)">to Student</button>
 
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
@@ -78,6 +129,7 @@ export default {
   },
 
   data: () => ({
+     tab:1,
     appName: window.config.appName
   }),
 
@@ -92,7 +144,10 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: 'login' })
-    }
+    },
+     setTab(tab) {
+      this.tab = tab
+    },
   }
 }
 </script>

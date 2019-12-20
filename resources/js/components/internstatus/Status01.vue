@@ -34,11 +34,11 @@
     </tbody>
     </table>
     <div class="col-md-10 offset-1 mt-5">
-        <h5 class="bold">ต้องการฝึกงานกับ</h5>
         <div class="input-group mb-3">
+            <h5 class="bold mt-auto mb-auto">ต้องการฝึกงานกับ</h5>
             <select class="custom-select" id="inputGroupSelect01">
                 <option selected>Choose...</option>
-                <option value="1">One</option>
+                <!-- <option v-for="(userjoin, index) in userjoins" :key="index" v-if="userjoin.result == 1">{{comevent.staff.company.name}}</option> -->
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
@@ -72,6 +72,10 @@ import { mapGetters, mapActions } from "vuex";
 </script>
 
 <style  scoped>
+.custom-select{
+    border-radius: 2rem !important;
+    margin-left: 1rem;
+}
 i{
     font-size: 2rem;
     color: gray

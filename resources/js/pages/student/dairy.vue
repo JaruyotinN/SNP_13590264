@@ -19,19 +19,21 @@ data() {
   return {
     dairys: [
     {
-      img:'https://learnodo-newtonic.com/wp-content/uploads/2015/01/Girl-with-a-Pearl-Earring-1665-Johannes-Vermeer.jpg',
-      description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque lorem non tellus rhoncus, quis rhoncus ligula sagittis. Phasellus viverra lectus sed dui vehicula, a congue ipsum vestibulum. Phasellus ornare eleifend libero nec aliquam. Duis sit amet eros sodales, bibendum odio quis, semper odio. Vestibulum ante ipsum primis in faucibus',
+      title:'ทำงานออกแบบเว็บ Hospital Eye ',
+      img:'https://i.imgur.com/CTA3XtA.jpg',
+      description:'ทำงาน UX/UI ของโรงพยาบาลครั้งแรก รู้สึกเครียดๆ เพราะทางบริษัทคาดหวังกับผลงานชิ้นนี่้มากๆผมจะพยายามทำสุดความสามารถเลยครับ',
       date:'20 Oct 2019' ,
       name:'นายณัทกฤช จารุโยธิน' ,
       number:'13590264',
       time:'10:20',
     },
     {
-      img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZgw7kYX_a6VzMCkp1Euyt6bypP8kb8nG9KJe_fK8bWauijcKo&s',
-      description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque lorem non tellus rhoncus, quis rhoncus ligula sagittis. Phasellus viverra lectus sed dui vehicula, a congue ipsum vestibulum. Phasellus ornare eleifend libero nec aliquam. Duis sit amet eros sodales, bibendum odio quis, semper odio. Vestibulum ante ipsum primis in faucibus',
+      title:'เขียน code Website E-Sport ROV Thailand',
+      img:'https://i.imgur.com/xNYcL05.jpg',
+      description:'เขียน code หน้าเว็บไซต์ทั้งหน้าจำนวนทั้งหมด 5 หน้า ภายใน 1 อาทิตย์เท่านั้น รู้สึกท้าทายความสามารถตัวเองมากๆ แต่ก็รู้สึกว่าเราต้องทำให้ได้เท่านั้น สู้!',
       date:'25 Oct 2019' ,
-      name:'นายโลเล็ม อิบซัม' ,
-      number:'13590999',
+      name:'นายณัฐพล ปัญญาดี' ,
+      number:'13590260',
       time:'20:18',
     },
     ]}

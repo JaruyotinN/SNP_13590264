@@ -31,7 +31,7 @@ class CreateJoptypesTable extends Migration
                 ->onDelete('cascade');
         });  
         Schema::table('comevents', function (Blueprint $table) {
-            $table->bigInteger('type_id')->unsigned();
+            $table->bigInteger('type_id')->unsigned()->nullable();
             $table->foreign('type_id')
                 ->references('id')
                 ->on('joptypes')

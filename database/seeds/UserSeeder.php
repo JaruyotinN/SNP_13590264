@@ -13,11 +13,23 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name'=>'Admin',
-                'email'=>'admin@interskip.com',
+                'name'=>'Student',
+                'email'=>'student@inlearnship.com',
                 'password'=> bcrypt('123456'),
                 'role'=> 1
-            ]
+            ],
+            [
+                'name'=>'Teacher',
+                'email'=>'teacher@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 2
+            ],
+            [
+                'name'=>'Company',
+                'email'=>'company@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
         ]);
     }
 }

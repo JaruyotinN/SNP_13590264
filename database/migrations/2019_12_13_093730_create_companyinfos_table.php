@@ -32,7 +32,7 @@ class CreateCompanyinfosTable extends Migration
                 ->onDelete('cascade');
         });  
         Schema::table('comevents', function (Blueprint $table) {
-            $table->bigInteger('com_id')->unsigned();
+            $table->bigInteger('com_id')->unsigned()->nullable();
             $table->foreign('com_id')
                 ->references('id')
                 ->on('companyinfos')

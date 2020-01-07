@@ -21,7 +21,7 @@ class CreateComeventsTable extends Migration
             $table->string('img')->nullable();
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();
-            $table->integer('invite');
+            $table->integer('invite')->default(5);
             $table->string('enddate')->nullable();
             $table->timestamps();
  

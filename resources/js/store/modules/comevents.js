@@ -6,6 +6,7 @@ export const state = {
   comevents: null,
   show: null,
   user_joins: null,
+  make_events:null,
 }
 
 
@@ -14,8 +15,7 @@ export const getters = {
     comevents: state => state.comevents,
     show: state => state.show,
     userjoins: state => state.user_joins,
-
-
+    makeevent: state => state.make_events,
 }
 
 // mutations
@@ -28,6 +28,9 @@ export const mutations = {
   },
   [types.FETCH_USER_JOIN] (state, data) {
     state.user_joins = data
+  },
+  [types.FETCH_MAKE_EVENT] (state, data) {
+    state.make_events = data
   }
 }
 
@@ -45,6 +48,15 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/comevent/join`)
       commit(types.FETCH_USER_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  
+  async makeevent ({ commit }, form) {
+    try {
+        const { data } = await axios.post(`/api/make_event`,form)
+        return data;
     } catch (e) {
       console.log(e)
     }

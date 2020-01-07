@@ -44,7 +44,14 @@ class ComeventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = $request->user();
+        $comjoin = Comevent::create($request->all());
+        $comjoin->update([
+            'user_id'=>$user->id
+        ]);
+
+        return $comjoin;
     }
 
     /**

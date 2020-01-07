@@ -12,11 +12,22 @@ class CompanyinfosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   
+        $user = $request->user();
+        $company = Companyinfos::where('id',$user->id)->get();
+        
+        // foreach($company as $com){
+        //     // $com->staff->company;
+        //     $com->company;
+        //     // foreach($com->staffs as $staff){
+        //     //     // $staff->company;
+        //     // }
+        //     // $com->company;
+        // }
+        return $company;
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -46,7 +57,8 @@ class CompanyinfosController extends Controller
      */
     public function show(Companyinfos $companyinfos)
     {
-        //
+        $companyinfos->company;
+        return $companyinfos;
     }
 
     /**

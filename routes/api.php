@@ -18,9 +18,12 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/user', 'UserController@index');
     Route::resource('/majors', 'MajorController');
+    Route::post('/make_event', 'ComeventController@store');
     Route::resource('/comevents', 'ComeventController');
     Route::post('/comevent_join', 'ComeventJoinController@store');
     Route::resource('/comevent/join', 'ComeventJoinController');
+    Route::resource('/company', 'CompanyinfosController');
+    
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

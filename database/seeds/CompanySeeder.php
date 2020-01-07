@@ -31,8 +31,6 @@ class CompanySeeder extends Seeder
                 'prove'=>"none",
                 'juristic'=>"none",
             ],
-           
-            
             [
                 'name'=>'แรปบิทเทล จำกัด',
                 'address'=>'1706/34, พระรามที่ 6, รองเมือง, ปทุมวัน, กรุงเทพมหานคร 10330',
@@ -51,7 +49,6 @@ class CompanySeeder extends Seeder
                 'prove'=>"none",
                 'juristic'=>"none",
             ],
-            
             [
                 'name'=>'อินสปาย ดิจิตัล จำกัด',
                 'address'=>'148/11 ซอย เอกชัย76 แยก 2-5

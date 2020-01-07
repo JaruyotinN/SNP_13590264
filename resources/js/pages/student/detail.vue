@@ -8,7 +8,7 @@
       <div class="row">
           <div class="col-md-12">
                 <Detailbody :body="comevent"/>
-
+          
           <div class="card mt-4">
              <div class="col-12">
                   <div class="card-info">
@@ -28,7 +28,6 @@
                 <button class="btn btn-primary bold" @click="confirmJoin()">
                   สมัครฝึกงาน
                 </button>
-                <!-- div.arm>ul>li.kk*5 -->
                 <!-- <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link> -->
 						  </div>
             </div>

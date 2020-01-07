@@ -1,22 +1,22 @@
 <template>
 			<div class="card mt-4 h-100">
 					  <div class="radio-img">
-							<img :src="test.img" center  class="card-img-top"/>
+							<img :src="event.img" center  class="card-img-top"/>
 						</div>
 						<div class="top-box">
               <div class="col-12">
                   <div class="card-info">
-                    <h5 class="bold mt-2"> {{ test.company.name }} </h5>
+                    <h5 class="bold mt-2"> {{ event.company.name }} </h5>
                    
-                    <p>ตำแหน่งที่ต้องการ : {{ test.requirement }} </p>
-                    <p>สิ้นสุดเมื่อ : {{ test.enddate }} </p>
+                    <p>ตำแหน่งที่ต้องการ : {{ event.requirement }} </p>
+                    <p>สิ้นสุดเมื่อ : {{ event.enddate }} </p>
                   </div> 
               </div>
             </div>
 							<div class="low-box">
 								<div class="col-12">
 									<div class="card-info">
-								<p class="mt-1">ที่อยู่ : {{ test.company.address }} </p>
+								<p class="mt-1">ที่อยู่ : {{ event.company.address }} </p>
 									</div>
 								</div>
 							</div>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-    props:['test']
+    props:['event']
 }
 </script>
 

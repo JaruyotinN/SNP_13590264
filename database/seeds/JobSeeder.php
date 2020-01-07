@@ -13,8 +13,29 @@ class JobSeeder extends Seeder
     {
         DB::table('jobs')->insert([
             [
-                'title'=>'designer',
-            ]
+                'title'=>'การตลาด/ประชาสัมพันธ์'
+            ],
+            [
+                'title'=>'การจัดการทรัพยากรมนุษย์'
+            ],
+            [
+                'title'=>'บริการการโรงแรม'
+            ],
+            [
+                'title'=>'Logistic ซัพพลายเชน'
+            ],
+            [
+                'title'=>'นักเขียน/Writer'
+            ],
+            [
+                'title'=>'โฆษณา/สื่อ/Creative'
+            ],
+            [
+                'title'=>'IT/Programmer'
+            ],
+            [
+                'title'=>'ออกแบบ/Graphic'
+            ],
         ]);
     }
 }

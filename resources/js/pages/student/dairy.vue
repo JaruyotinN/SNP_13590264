@@ -2,7 +2,7 @@
    <div class="container" >
      <Dairyheader />
       <div class="row">
-          <div class="col-md-12" v-for="(dairy, index) in dairys" :key="index">
+          <div class="col-md-12" v-for="(dairy, index) in interndairys" :key="index">
           <Dairycard :dairy="dairy"/>
           </div>
       </div>
@@ -16,29 +16,30 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   middleware: 'auth',
+  methods: {
+    ...mapActions({
+      fetch:'interndairys/fetch',
+    }),
+  },
+  data() {
+    return {
+      
+      }
+  },
+  components:{
+    Dairyheader,
+    Dairycard,
+  },
   computed:{
     id(){
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-      interndairy:'interndairy/show'
+       interndairys:'interndairys/interndairys'
     })
   },
-data() {
-  return {
-     
-    }
-},
-  components:{
-    ColumHeader,
-  },
-  methods: {
-    ...mapActions({
-      fetch:'interndairy/show',
-    }),
-  },
   created(){
-    this.fetch(this.id)
+     this.fetch()
   }
 }
 </script>

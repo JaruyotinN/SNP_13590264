@@ -45,7 +45,7 @@ export default {
   middleware: 'auth',
   methods: {
    ...mapActions({
-     fetch:'comevents/fetch',
+    fetch:'comevents/fetch',
     del:'comevents/del'
    }),
    confirmDel(id){
@@ -80,56 +80,6 @@ export default {
   },
 data() {
   return {
-  
-    tests: [
-    {
-      img:'https://picsum.photos/id/237/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-
-    },
-    {
-      img:'https://picsum.photos/id/230/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-    },
-    {
-      img:'https://picsum.photos/id/222/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-    },
-    {
-      img:'https://picsum.photos/id/264/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-
-    },
-    {
-      img:'https://picsum.photos/id/357/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-
-    },
-    {
-      img:'https://picsum.photos/id/123/200/300',
-      name:'บริษัท ไลค์ มี จำกัด',
-      type:'Graphic Design' ,
-      description:'Graphic Designer,illustrator,MoionGraphic',
-      place:'บางบอน,กรุงเทพ',
-
-    },
-     
-    ],
      infos: [
     {
       date: '1 ม.ค. - 6 พ.ค.',
@@ -144,7 +94,6 @@ data() {
       date: '30 พ.ค. - 5 ส.ค.',
       description:'ช่วงเวลาฝึกงาน โดยมีเวลารวมไม่น้อยกว่า 320 ชั่วโมง',
     }
-     
     ]
   }
 },

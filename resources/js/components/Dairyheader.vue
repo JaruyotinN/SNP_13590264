@@ -3,11 +3,11 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">บันทึกฝึกงาน</h4>
+                        <h4 class="mb-2 bold">บันทึกฝึกงาน </h4>
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-primary bold" :to="{name:'postdairy'}">เพิ่มบันทึกฝึกงาน</router-link>
+                    <router-link class="btn btn-primary bold" :to="{name:'postdairy', params: {id: users.name } }">เพิ่มบันทึกฝึกงาน</router-link>
                 </div>
             </div>
             <ul class="nav">
@@ -23,9 +23,21 @@
 </template>
 
 <script>
-    export default {
-        
-    }
+import { mapGetters, mapActions } from 'vuex'
+   
+   export default {
+    methods:{
+    ...mapActions({
+    fetch: 'auth/fetchUser',
+    })
+    },  
+    computed:{
+    ...mapGetters({
+      users:'auth/user'
+    }),
+    },
+}
+    
 </script>
 
 <style  scoped>

@@ -63,7 +63,7 @@ export const actions = {
   },
   async show ({ commit }, id) {
     try {
-        const { data } = await axios.get(`/api/comevents/${id}`)
+      const { data } = await axios.get(`/api/comevents/${id}`)
       commit(types.FETCH_COMEVENT_SHOW,  data )
 
     } catch (e) {

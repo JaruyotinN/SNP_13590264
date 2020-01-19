@@ -2,6 +2,8 @@
 <div class="container" >
       <ColumHeader title='เพิ่มบันทึกฝึกงาน ' showBack="student" description="รายละเอียดในบันทึกฝึกงานไม่สามารถแก้ไขในภายหลัง"/>
                 <div class="col-md-12 mt-2">
+                    {{user.student_info.id}}
+           
                  <div class="row" style="padding:20px;">
                         <div class="col-md-4">
                             <p>หัวข้อ</p>
@@ -12,65 +14,61 @@
                         <div class="col-md-12">
                             <p>เนื้อหา</p>
                             <div class="mt-2 mb-3">
-                               <textarea v-model="form.desciption" rows="4" cols="100">
+                                <div class>
+                                 <textarea v-model="form.description" rows="4" cols="100">
 
                                 </textarea>
+                              </div>
                             </div>
                         </div>  
                 </div>
         </div>   <!-- card -->
         <div class="btn-detail-style mt-3 mb-3">
-                <button class="btn btn-primary bold" @click="submit()">
-                  บันทึกฝึกงาน
-                </button>
+          <button class="btn btn-primary bold" @click="submit()">
+                  บันทึก
+          </button>
 			</div>
 </div>
 </template>
 <script>
-
+import Form from "vform";
 import ColumHeader from '~/components/ColumHeader'
 import {mapActions, mapGetters} from 'vuex'
 export default {
-  middleware: 'auth',
-  computed:{
-    id(){
-      return parseInt(this.$route.params.id)
-    },
-    ...mapGetters({
-    //   comevent:'comevents/show'
-    })
-  },
+middleware: 'auth',
 data() {
   return {
      form:{
       title:'',
-      desciption:'',
+      description:'',
       stu_id:'',
     },
     }
 },
+  computed:{
+    id(){
+      return parseInt(this.user.id)
+    },
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
   components:{
     ColumHeader,
   },
-  methods: {
+   methods: {
     ...mapActions({
-    //   fetch:'comevents/show',
-      dairy:'interndairy/makedairy'
+      makedairys:'interndairys/makedairys'
     }),
-   
     async submit(){
-
-    //   this.form.stu_id = this.comevent.id
-      await this.dairy(this.form)
-    //   this.$router.push({name:'student'})
-
+      this.form.stu_id = this.user.student_info.id
+      await this.makedairys(this.form)
+      this.$router.push({name:'dairy'})
     }
   },
-  created(){
-    this.fetch(this.id)
-  }
 }
 </script>
+
 
 <style scoped>
 .card{

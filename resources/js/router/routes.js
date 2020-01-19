@@ -15,6 +15,7 @@ export default [
   { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },
   { path: '/list', name: 'list', component: page('company/list.vue') },
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
+  { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
   
 
   { path: '/', name: 'login', component: page('auth/login.vue') },

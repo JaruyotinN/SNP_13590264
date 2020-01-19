@@ -42,7 +42,6 @@ class StudentPostController extends Controller
         $user = $request->user();
         $post = StudentPost::create($request->all());
        
-
         return $post;
     }
 

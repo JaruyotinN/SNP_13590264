@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'UserController@index');
-    Route::post('/make_dairy', 'StudentPostController@store');
+    Route::post('/make_dairys', 'StudentPostController@store');
     Route::resource('/interndairys', 'StudentPostController');
     
     
@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/comevent_join', 'ComeventJoinController@store');
     Route::resource('/comevent/join', 'ComeventJoinController');
     Route::resource('/company', 'CompanyinfosController');
+    Route::post('/items', 'UploadController@store');
     
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');

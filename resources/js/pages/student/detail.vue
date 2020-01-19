@@ -99,7 +99,7 @@ data() {
       this.form.event_id = this.comevent.id
       await this.join(this.form)
       this.$router.push({name:'status'})
-      
+
     }
   },
   created(){

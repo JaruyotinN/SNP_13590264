@@ -104,7 +104,6 @@
 
 </div>
 </template>
-
 <script>
 
 import ColumHeader from '~/components/ColumHeader'

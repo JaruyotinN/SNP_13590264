@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="clearfix">
+      <router-link to="/admin/room/1" class="float-left">
         <img src="/icon/left-arrow.png" width="40" style="margin-top:rem(10);" />
       </router-link>
       <h1 class="float-left ml-4">Create Item</h1>
@@ -108,7 +109,7 @@ export default {
       return parseInt(this.$route.query.room_id);
     },
     ...mapGetters({
-    
+      show: "item/show"
     }),
     id() {
       return parseInt(this.$route.params.id);
@@ -150,7 +151,22 @@ export default {
         });
       }
     },
-  
+    async update() {
+      if (this.image) {
+        this.form.image_url = await this.upImg({
+          image: this.image,
+          path: "items"
+        });
+      }
+      const { data } = await this.form.put(`/api/items/${this.id}`);
+
+      if (data) {
+        this.$router.push({
+          name: "admin.item.show",
+          params: { id: this.show.id }
+        });
+      }
+    },
     ...mapActions({
       fetch: "item/show"
     })
@@ -164,3 +180,20 @@ export default {
     }
   }
 };
+</script>
+
+<style scoped>
+.colorr {
+  background: #305a9a;
+}
+input,
+textarea {
+  border-color: #305a9a;
+}
+textarea {
+  min-height: 350px;
+}
+label {
+  color: #305a9a;
+}
+</style>

@@ -7,9 +7,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
-                    <a class="btn btn-success "
-                       style="width: 100% ; height: 50px; line-height: 35px;border-radius: 2rem; color:white;background-color: #0047BA ;border: none;  box-shadow:none;"
-                       href="/create">เพิ่มบันทึก</a>
+                    <router-link class="btn btn-primary bold" :to="{name:'postdairy'}">เพิ่มบันทึกฝึกงาน</router-link>
                 </div>
             </div>
             <ul class="nav">

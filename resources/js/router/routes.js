@@ -6,6 +6,7 @@ export default [
   // { path: '/', name: 'welcome', component: page('welcome.vue') },
   { path: '/students', name: 'student', component: page('student/index.vue') },
   { path: '/dairy', name: 'dairy', component: page('student/dairy.vue') },
+  { path: '/postdairy', name: 'postdairy', component: page('student/postdairy.vue') },
   { path: '/status', name: 'status', component: page('student/status.vue') },
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit', name: 'edit', component: page('student/edit.vue') },

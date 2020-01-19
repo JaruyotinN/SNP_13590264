@@ -14,7 +14,11 @@ class StudentPostController extends Controller
      */
     public function index()
     {
-        //
+        $studentpost = StudentPost::get();
+        foreach($studentpost as $stu){
+            $stu->post;
+        }
+        return $studentpost;
     }
 
     /**
@@ -35,7 +39,11 @@ class StudentPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+        $post = StudentPost::create($request->all());
+       
+
+        return $post;
     }
 
     /**
@@ -46,7 +54,8 @@ class StudentPostController extends Controller
      */
     public function show(StudentPost $studentPost)
     {
-        //
+        // $studentPost->staffs;
+        // return $studentPost;
     }
 
     /**

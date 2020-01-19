@@ -17,6 +17,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'UserController@index');
+    Route::post('/make_dairy', 'StudentPostController@store');
+    Route::resource('/interndairys', 'StudentPostController');
+    
+    
     Route::resource('/majors', 'MajorController');
     Route::post('/make_event', 'ComeventController@store');
     Route::resource('/comevents', 'ComeventController');

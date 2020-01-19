@@ -14,7 +14,11 @@ class StudentInfoController extends Controller
      */
     public function index()
     {
-        //
+        $user = $request->user();
+        $studentInfo = StudentInfo::where('id',$user->id)->get();
+        
+    
+        return $studentInfo;
     }
 
     /**
@@ -46,7 +50,9 @@ class StudentInfoController extends Controller
      */
     public function show(StudentInfo $studentInfo)
     {
-        //
+        $studentInfo->staffs;
+        $studentInfo->company;
+        return $studentInfo;
     }
 
     /**

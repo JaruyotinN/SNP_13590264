@@ -25,6 +25,7 @@ class ComeventController extends Controller
         }
         return $comevents;
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -46,14 +47,32 @@ class ComeventController extends Controller
     {
 
         $user = $request->user();
-        $comjoin = Comevent::create($request->all());
-        $comjoin->update([
+        $comevent = Comevent::create($request->all());
+        $comevent->update([
             'user_id'=>$user->id
         ]);
 
-        return $comjoin;
+        return $comevent;
     }
+    //test
 
+    // public function uploadImage(Request $request)
+    // {
+    //     $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+    //     $set = '/uploads/images/' . $request->path . '/' . $imageName;
+    //     $request->image->move(public_path('uploads/images/' . $request->path), $imageName);
+    //     return $set;
+    // }
+    // public function uploadFile(Request $request)
+    // {
+    //     $file = $request->file;
+    //     $filename = time() . $file->getClientOriginalName();
+    //     $path = '/uploads/files';
+    //     $file->move(public_path($path), $filename);
+    //     $set = '/uploads/files/' . $filename;
+    //     return $set;
+    // }
+    //test
     /**
      * Display the specified resource.
      *

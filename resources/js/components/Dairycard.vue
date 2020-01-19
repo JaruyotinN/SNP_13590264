@@ -8,7 +8,7 @@
                             <img :src="dairy.img" center alt="..." class="card-img-top"/>
                         </div>
                          <div class="center mt-3">
-                            <p>{{ dairy.name }}</p>
+                            <!-- <p>{{ dairy.name }}</p> -->
                         </div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <h5 class="mt-4 p-1 bold">{{dairy.title}}</h5>
                     <h5 class=" mb-4 p-1" >{{dairy.description.substring(0,220)+"..."}}</h5>
                     <div class="fix-position">
-                        <p>บันทึกวันที่ : {{dairy.date}} โดย {{dairy.name}} {{dairy.number}} , เวลา {{dairy.time}}</p>
+                        <!-- <p>บันทึกวันที่ : {{dairy.created_at}} โดย {{dairy.name}} {{dairy.number}} , เวลา {{dairy.time}}</p> -->
                     </div> 
                 </div>
             </div>

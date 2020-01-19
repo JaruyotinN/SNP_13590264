@@ -70,6 +70,12 @@
                                 </textarea>
                             </div>
                         </div>
+                         <div class="col-md-12">
+                            <p>ประวัติและผลงาน</p>
+                            <div class="mt-2 mb-3">
+                               <input class="form-control" type="file" name="img" @change="setImg" />
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="btn-detail-style btn-primary mt-3 mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 <p>คำถามเด็กฝึกงาน 01</p>
@@ -123,8 +129,8 @@ data() {
       question1:'',
       question2:'',
       invite:5,
+      com_id:1,
     },
-   
     }
 },
   components:{
@@ -137,7 +143,6 @@ data() {
     }),
     async confirmJoin(){
       await this.makeevent(this.form)
-      
     }
   },
   created(){

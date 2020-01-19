@@ -1,8 +1,8 @@
 <template>
 <div class="container" >
-      
-      <ColumHeader title='บริษัท ไลค์มี จำกัด' showBack="company" img="https://picsum.photos/id/237/200/300"/>
-     <div class="card mt-5">
+  <form @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
+    <ColumHeader title='บริษัท ไลค์มี จำกัด' showBack="company" img="https://picsum.photos/id/237/200/300"/>
+    <div class="card mt-5">
                 <div class="col-md-12 mt-2">
                  <ColumHeader  title='สร้างแบบฟอร์ม'/>
                  <div class="row" style="padding:20px;">
@@ -73,7 +73,10 @@
                          <div class="col-md-12">
                             <p>ประวัติและผลงาน</p>
                             <div class="mt-2 mb-3">
-                               <input class="form-control" type="file" name="img" @change="setImg" />
+                                <div class>
+                                  <input class="form-control" type="file" name="image" @change="setImg" />
+                                  <has-error :form="form" field="image" />
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -90,26 +93,50 @@
                             <textarea v-model="form.question2" rows="4" cols="100">
 
                             </textarea>
+                          </div>
+                          
 
-                    </div>
                 </div>
+               
         </div>   <!-- card -->
-        <div class="btn-detail-style mt-3 mb-3">
-                <button class="btn btn-primary bold" @click="confirmJoin()">
-                  สมัครฝึกงาน
-                </button>
-			</div>
-     </div>
-       
-
+        <div class="form-group row">
+          <div class="col-md-7 offset-md-5 d-flex">
+            <!-- Submit Button -->
+            <v-button
+              :loading="form.busy"
+              id="createbtn"
+              style="width:130px;"
+              class="text-white colorr"
+            >{{ id ? "update" : "save" }}</v-button>
+          </div>
+        </div>
+    </div>
+  </form>
 </div>
 </template>
 <script>
-
-import ColumHeader from '~/components/ColumHeader'
+import ColumHeader from '~/components/ColumHeader';
+import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
 export default {
   middleware: 'auth',
+  data: () => ({
+    form: new Form({
+      desciption:'',
+      quantity:'',
+      requirement:'',
+      img: "",
+      question1:'',
+      question2:'',
+      invite:5,
+      enddate:'',
+      com_id:1,
+      }),
+      image: "",
+    }),
+  components:{
+    ColumHeader,
+  },
   computed:{
     id(){
       return parseInt(this.$route.params.id)
@@ -118,34 +145,53 @@ export default {
       comevent:'comevents/show'
     })
   },
-data() {
-  return {
-     form:{
-      quantity:'',
-      enddate:'',
-      desciption:'',
-      requirement:'',
-      question1:'',
-      question2:'',
-      invite:5,
-      com_id:1,
+ methods: {
+    setImg(e) {
+      this.image = e.target.files[0];
     },
-    }
-},
-  components:{
-    ColumHeader,
-  },
-  methods: {
+    submitForm() {
+      if (this.id) {
+        this.update();
+      } else {
+        this.save();
+      }
+    },
+    async save() {
+      this.form.img = await this.upImg({
+        image: this.image,
+        path: "comevents"
+      });
+
+      const { data } = await this.form.post("/api/comevents");
+
+      if (data) {
+        this.$router.push({
+          name: "company",
+        });
+      }
+    },
+    async update() {
+      if (this.image) {
+        this.form.img = await this.upImg({
+         image: this.image,
+          path: "comevents"
+        });
+      }
+      const { data } = await this.form.put(`/api/comevents/${this.id}`);
+
+      if (data) {
+        this.$router.push({
+            name: "company",
+        });
+      }
+    },
     ...mapActions({
-      fetch:'comevents/show',
-      makeevent:'comevents/makeevent'
-    }),
-    async confirmJoin(){
-      await this.makeevent(this.form)
-    }
+      // fetch: "item/show"
+     
+    })
   },
   created(){
-    this.fetch(this.id)
+    // this.fetch(this.id)
   }
 }
 </script>

@@ -46,14 +46,24 @@ class ComeventController extends Controller
     public function store(Request $request)
     {
 
+
         $user = $request->user();
         $comevent = Comevent::create($request->all());
-        $comevent->update([
-            'user_id'=>$user->id
-        ]);
 
         return $comevent;
     }
+    // public function store(Request $request)
+    // {
+
+    //     $item = Item::create($request->all());
+    //     $soundLang = SoundLang::create([
+    //         "model" =>  "App\Item",
+    //         "relation_id" => $item->id,
+    //         "lang_id" => 1,
+    //         "file_url" => $request->file_url
+    //     ]);
+    //     return $item;
+    // }
     //test
 
     // public function uploadImage(Request $request)

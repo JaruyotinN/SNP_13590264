@@ -37,7 +37,14 @@ class CreateCompanyinfosTable extends Migration
                 ->references('id')
                 ->on('companyinfos')
                 ->onDelete('cascade');
-        });  
+        }); 
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->bigInteger('com_id')->unsigned()->nullable();
+            $table->foreign('com_id')
+                ->references('id')
+                ->on('companyinfos')
+                ->onDelete('cascade');
+        });     
         
     }
 

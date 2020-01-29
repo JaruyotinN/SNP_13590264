@@ -17,14 +17,13 @@ class ComeventJoinController extends Controller
         $user = $request->user();
 
         $user_joins = ComeventJoin::where('user_id',$user->id)->get();
-
         foreach($user_joins as $join){
             $join->comevent->staff->company;
+            $join->studentJoin;
         }
 
         return $user_joins;
     }
-
     /**
      * Show the form for creating a new resource.
      *

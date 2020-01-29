@@ -25,7 +25,6 @@ class StudentSeeder extends Seeder
                 'sendinvite'=>1,
                 'intern_id'=> 1,
                 'major_id'=> 1,
-                'type_id'=> 1,
                 'teacher_id'=> 1,
             ]
         ]);

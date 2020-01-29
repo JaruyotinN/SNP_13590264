@@ -27,6 +27,13 @@ class CreateStudentInfosTable extends Migration
             $table->integer('sendinvite')->nullable();
             $table->timestamps();
         });
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->bigInteger('stu_id')->unsigned()->nullable();
+            $table->foreign('stu_id')
+                ->references('id')
+                ->on('student_infos')
+                ->onDelete('cascade');
+        });    
     }
 
     /**

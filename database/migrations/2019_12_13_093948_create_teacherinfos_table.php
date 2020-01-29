@@ -42,7 +42,14 @@ class CreateTeacherinfosTable extends Migration
                 ->references('id')
                 ->on('teacherinfos')
                 ->onDelete('cascade');
-        });      
+        });
+        Schema::table('profiles', function (Blueprint $table) {
+            $table->bigInteger('teacher_id')->unsigned()->nullable();
+            $table->foreign('teacher_id')
+                ->references('id')
+                ->on('teacherinfos')
+                ->onDelete('cascade');
+        });        
     }
 
     /**

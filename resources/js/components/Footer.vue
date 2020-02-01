@@ -3,12 +3,11 @@
 		<div class="navbar nav-footer" >
 			<div class="container">
 		 		<div>
-		 		<p class="center">© 2019. EDUCATIONAL PURPOSE AS PART OF SENOIRPROJECT INTERNSKIP BY
+		 		<p class="center">© 2019. EDUCATIONAL PURPOSE AS PART OF SENOIRPROJECT INLEARNSHIP BY
             <strong>NATTAKIT JARUYOTIN</strong> ALL RIGHTS RESERVED.</p>
 		 </div>
 		</div>
-	</div>
-		  
+	</div> 
 	</footer>
 </template>
 

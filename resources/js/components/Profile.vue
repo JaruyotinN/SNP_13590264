@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="img-circle ">
-                        <img src="https://i.imgur.com/CTA3XtA.jpg">
+                        <img src="/uploads/images/comevents/profile.JPG">
                     </div>
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">นายณัทกฤช จารุโยธิน</h4>

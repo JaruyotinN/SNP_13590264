@@ -17,7 +17,7 @@
                <h4 class="bold mt-5">สถานที่ฝึกงานที่เหมาะกับคุณ</h4>
             <div class="row">
                 <div class="col-md-4 mb-2" v-for="(event, index) in comevents" :key="index">
-                <router-link :to="{name:'detail', params:{id:event.id}}">
+                <router-link :to="{name:'detail', params:{id:event.id }}">
                 <ComEventCard :event="event"/>
                 </router-link>
 

@@ -2,8 +2,6 @@
 <div class="container" >
       <ColumHeader title='เพิ่มบันทึกฝึกงาน ' showBack="student" description="รายละเอียดในบันทึกฝึกงานไม่สามารถแก้ไขในภายหลัง"/>
                 <div class="col-md-12 mt-2">
-                    {{user.student_info.id}}
-           
                  <div class="row" style="padding:20px;">
                         <div class="col-md-4">
                             <p>หัวข้อ</p>
@@ -15,7 +13,7 @@
                             <p>เนื้อหา</p>
                             <div class="mt-2 mb-3">
                                 <div class>
-                                 <textarea v-model="form.description" rows="4" cols="100">
+                                 <textarea v-model="form.description" type="text" rows="4" cols="100">
 
                                 </textarea>
                               </div>

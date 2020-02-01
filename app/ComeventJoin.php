@@ -11,8 +11,5 @@ class ComeventJoin extends Model
     public function comevent(){
         return $this->belongsTo('App\Comevent','event_id','id');
     }
-    public function studentJoin(){
-        return $this->belongsTo('App\StudentInfo','user_id','id');
-    }
 
 }

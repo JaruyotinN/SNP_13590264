@@ -12,9 +12,16 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   
+        $user = $request->user();
+        $infos = Profile::where('user_id',$user->id)->get();
+        foreach($infos as $info){
+            $info->student;
+            $info->company->event;
+            $info->teacher;       
+        }
+        return $infos;
     }
 
     /**

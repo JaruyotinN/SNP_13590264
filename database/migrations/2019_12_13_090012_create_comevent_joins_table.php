@@ -14,12 +14,12 @@ class CreateComeventJoinsTable extends Migration
     public function up()
     {
         Schema::create('comevent_joins', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id'); 
             $table->bigInteger('user_id')->unsigned()->default(1);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');     
+                ->onDelete('cascade');    
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();
             $table->boolean('check')->default(0);

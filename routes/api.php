@@ -17,18 +17,21 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'UserController@index');
+
+    Route::resource('/userinfo', 'ProfileController');
     Route::post('/make_dairys', 'StudentPostController@store');
     Route::resource('/interndairys', 'StudentPostController');
-    
     
     Route::resource('/majors', 'MajorController');
     Route::post('/make_event', 'ComeventController@store');
     Route::resource('/comevents', 'ComeventController');
+    Route::get('/getcomevent', 'ComeventController@getcomevent');
+    Route::get('/getstudent', 'ComeventJoinController@getstudent');
     Route::post('/comevent_join', 'ComeventJoinController@store');
     Route::resource('/comevent/join', 'ComeventJoinController');
     Route::resource('/company', 'CompanyinfosController');
     Route::post('uploadImage', 'UploadController@uploadImage');
-    
+
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

@@ -43,7 +43,7 @@
               </ul>
             </div>
              <hr>
-            <div class="col-md-12 mb-2" v-for="(event, index) in events" :key="index">
+            <div class="col-md-12 mb-2" v-for="(event, index) in userjoins" :key="index">
                 <!-- <router-link :to="{name:'detail'}"> -->
                 <ComReqCard :event="event"/>
                 <!-- </router-link> -->
@@ -77,10 +77,22 @@ data() {
      ]
   }
   }, 
+  methods: {
+   ...mapActions({
+     userjoin:'comevents/userjoin',
+   }),
+  },
+  created(){
+    this.userjoin()
+  },
+  computed:{
+  ...mapGetters({
+      userjoins:'comevents/userjoins',
+    }),
+  },
   components:{
   ComReqCard
-   
-  }
+  },
 }
 </script>
 

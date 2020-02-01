@@ -8,7 +8,11 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <router-link class="btn btn-primary bold" :to="{name:'postevent'}">สร้างแบบฟอร์มฝึกงาน</router-link>
+              <div class="col-md-12" v-for="(info, index) in infos" :key="index">
+                 <router-link :to="{name:'postevent', params:{id:info.id }}">
+                   <div class="btn btn-primary bold">สร้างแบบฟอร์มฝึกงาน</div>
+                </router-link>
+              </div>
             </div>     
             <div class="col-md-12">
                      <div class="input-group mt-2 mb-3 m-auto">
@@ -55,13 +59,14 @@
 <script>
 
 import CompanyCard from '~/components/Companyindex/CompanyCard'
+import {mapActions, mapGetters} from 'vuex'
 export default {
     
 data() {
   return {
        cards: [
      {
-      img:'https://picsum.photos/id/237/200/300',
+      img:'/uploads/images/comevents/profile.JPG',
       name:'นายณัทกฤช จารุโยธิน',
       university:'มหาวิทยาลัยศิลปากร' ,
       type: 'Graphic Design',
@@ -71,7 +76,7 @@ data() {
 
     },
     {
-      img:'https://picsum.photos/id/222/200/300',
+      img:'/uploads/images/comevents/DSCF9731.jpeg',
       name:'นายสิทธิชัย อยู่ถาวร',
       university:'มหาวิทยาลัยศิลปากร' ,
       type: 'Graphic Design',
@@ -80,7 +85,7 @@ data() {
       score2: 'Basic',
     },
     {
-      img:'https://picsum.photos/id/123/200/300',
+      img:'/uploads/images/comevents/DSCF9683.JPG',
       name:'นายณัฐพล ปัญญาดี',
       university:'มหาวิทยาลัยศิลปากร' ,
       type: 'Graphic Design',
@@ -95,6 +100,22 @@ data() {
    components:{
     CompanyCard,
    
+  },
+  computed:{
+    id(){
+      return parseInt(this.$route.params.id)
+    },
+    ...mapGetters({
+      infos:'profile/userinfos'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetch:'profile/fetch'
+    })
+  },
+  created(){
+     this.fetch()
   }
 }
 </script>

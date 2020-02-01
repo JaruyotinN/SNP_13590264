@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comevent;
+use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComeventController extends Controller
 {
@@ -14,7 +16,7 @@ class ComeventController extends Controller
      */
     public function index()
     {
-        $comevents = Comevent::get();
+        $comevents = Comevent::orderBy('created_at', 'desc')->get();
         foreach($comevents as $com){
             // $com->staff->company;
             $com->company;
@@ -24,6 +26,14 @@ class ComeventController extends Controller
             // $com->company;
         }
         return $comevents;
+    }
+
+    public function getcomevent(Request $request)
+    {   
+        $user = $request->user();
+        $infos = Profile::where('user_id',$user->id)->select('com_id')->get();
+        $event = DB::table('comevents')->where('com_id',$infos[0]->com_id)->get();
+        return $event;
     }
     
 
@@ -52,36 +62,7 @@ class ComeventController extends Controller
 
         return $comevent;
     }
-    // public function store(Request $request)
-    // {
-
-    //     $item = Item::create($request->all());
-    //     $soundLang = SoundLang::create([
-    //         "model" =>  "App\Item",
-    //         "relation_id" => $item->id,
-    //         "lang_id" => 1,
-    //         "file_url" => $request->file_url
-    //     ]);
-    //     return $item;
-    // }
-    //test
-
-    // public function uploadImage(Request $request)
-    // {
-    //     $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-    //     $set = '/uploads/images/' . $request->path . '/' . $imageName;
-    //     $request->image->move(public_path('uploads/images/' . $request->path), $imageName);
-    //     return $set;
-    // }
-    // public function uploadFile(Request $request)
-    // {
-    //     $file = $request->file;
-    //     $filename = time() . $file->getClientOriginalName();
-    //     $path = '/uploads/files';
-    //     $file->move(public_path($path), $filename);
-    //     $set = '/uploads/files/' . $filename;
-    //     return $set;
-    // }
+ 
     //test
     /**
      * Display the specified resource.

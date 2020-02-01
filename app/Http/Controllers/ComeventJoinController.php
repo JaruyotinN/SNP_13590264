@@ -15,15 +15,29 @@ class ComeventJoinController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-
         $user_joins = ComeventJoin::where('user_id',$user->id)->get();
         foreach($user_joins as $join){
             $join->comevent->staff->company;
-            $join->studentJoin;
+            // $join->studentJoin;
+            // $join->comevent->company;
         }
 
         return $user_joins;
     }
+    public function getstudent()
+    {
+        $student_joins = ComeventJoin::get();
+        foreach($student_joins as $join){
+            $join->student;
+            // $join->studentJoin;
+            // $join->comevent->company;
+        }
+
+        return $student_joins;
+    }
+
+   
+    
     /**
      * Show the form for creating a new resource.
      *

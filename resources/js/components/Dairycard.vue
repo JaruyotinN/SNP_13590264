@@ -5,7 +5,7 @@
                 <div class="col-2">
                     <div class="content-left mt-4">
                         <div class="img-circle">
-                            <img :src="dairy.img" center alt="..." class="card-img-top"/>
+                            <img src="/uploads/images/comevents/user.png" style="opacity:20%" center alt="..." class="card-img-top"/>
                         </div>
                          <div class="center mt-3">
                             <!-- <p>{{ dairy.name }}</p> -->

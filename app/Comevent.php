@@ -16,5 +16,6 @@ class Comevent extends Model
     public function company(){
         return $this->belongsTo('App\Companyinfos','com_id','id');
     }
+    
 
 }

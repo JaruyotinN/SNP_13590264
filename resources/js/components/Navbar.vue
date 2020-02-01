@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
       <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
-        InternSkip
+         <img src="/uploads/images/comevents/inlearnship-02.png" center alt="..." class="img-size"/>
       </router-link>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
@@ -153,6 +153,14 @@ export default {
 </script>
 
 <style scoped>
+.img-size{
+    margin: 0 auto;
+    height: 50px;
+
+}
+.img-size img{
+    width: 100%;
+}
 .navbar{
   background-color: #0047BA !important;
 }

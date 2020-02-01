@@ -7,7 +7,7 @@
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-primary bold" :to="{name:'postdairy', params: {id: users.name } }">เพิ่มบันทึกฝึกงาน</router-link>
+                    <router-link class="btn btn-primary bold" :to="{name:'postdairy', params: {id: users.id} }">เพิ่มบันทึกฝึกงาน</router-link>
                 </div>
             </div>
             <ul class="nav">

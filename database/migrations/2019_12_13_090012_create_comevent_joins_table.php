@@ -19,7 +19,7 @@ class CreateComeventJoinsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');    
+                ->onDelete('cascade');     
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();
             $table->boolean('check')->default(0);

@@ -21,8 +21,7 @@ class CreateStudentPostsTable extends Migration
                 ->on('student_infos')
                 ->onDelete('cascade');
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->string('img')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

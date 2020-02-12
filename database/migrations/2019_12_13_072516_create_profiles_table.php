@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+            $table->string('profile_type')->comment('1.student 2.teacher 3.company')->nullable();
             $table->timestamps();
         });
        

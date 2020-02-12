@@ -33,6 +33,7 @@ class CreateInternstatusesTable extends Migration
                 ->onDelete('cascade');
         });    
     }
+    
 
     /**
      * Reverse the migrations.

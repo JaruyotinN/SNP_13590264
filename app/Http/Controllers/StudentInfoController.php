@@ -12,13 +12,18 @@ class StudentInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = $request->user();
-        $studentInfo = StudentInfo::where('id',$user->id)->get();
+        $studentInfos = StudentInfo::where('id',$user->id)->get();
+        // $studentInfos = StudentInfo::get();
+        // foreach($studentInfos as $student){
+        //     $student->studentinfo;
+          
+        // }
+
+        return $studentInfos;
         
-    
-        return $studentInfo;
     }
 
     /**

@@ -24,8 +24,11 @@
                   </div> 
               </div>
         </div>
+        <div  v-for="(info, index) in infos" :key="index">
+            <input class="form-control" type="hidden" v-model="form.stu_id = info.id">
+        </div>
               <div class="btn-detail-style mt-3 mb-3">
-                <button class="btn btn-primary bold" @click="confirmJoin()">
+                <button class="btn btn-primary bold" @click="cheack()">
                   สมัครฝึกงาน
                 </button>
                 <!-- <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link> -->
@@ -40,6 +43,9 @@ import ColumHeader from '~/components/ColumHeader'
 import Detailbody from '~/components/Detailbody'
 import Detailquestion from '~/components/Detailquestion'
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+
 export default {
   middleware: 'auth',
   computed:{
@@ -47,7 +53,8 @@ export default {
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-      comevent:'comevents/show'
+      comevent:'comevents/show',
+      infos:'profile/userinfos',
     })
   },
 data() {
@@ -55,7 +62,8 @@ data() {
     form:{
       question1:'',
       question2:'',
-      event_id:''
+      event_id:'',
+      stu_id:'',
     },
     bodys:[
     { 
@@ -92,18 +100,39 @@ data() {
   methods: {
     ...mapActions({
       fetch:'comevents/show',
-      join:'comevents/join'
+      join:'comevents/join',
+      fetchprofile:'profile/fetch',
     }),
+    cheack(){
+     Swal.fire({
+    title: 'ยืนยันการสมัครฝึกงาน',
+    text: "หากยืนยันแล้วจะไม่สามารถแก้ไขได้",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'ยืนยันการสมัคร',
+    }).then((result) => {
+      if (result.value) {
+        this.confirmJoin()
+        Swal.fire(
+          'สมัครการฝึกงานเรียบร้อย',
+          'ผลการสมัครของคุณอยู่ในสถานะฝึกงาน',
+          'success',
+        )
+      }
+    })
+   },
     async confirmJoin(){
-      console.log('dqdwq')
       this.form.event_id = this.comevent.id
       await this.join(this.form)
       this.$router.push({name:'status'})
-
     }
   },
   created(){
-    this.fetch(this.id)
+    this.fetch(this.id),
+    this.fetchprofile()
   }
 }
 </script>

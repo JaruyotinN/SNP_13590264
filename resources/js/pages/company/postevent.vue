@@ -8,10 +8,10 @@
                  <ColumHeader  title='สร้างแบบฟอร์ม'/>
                  <div class="row" style="padding:20px;">
                         <div class="col-md-6" >
-                           <input class="form-control" type="hidden" v-model="form.com_id = info.com_id">
+                           <input class="form-control" type="hidden" v-model="form.com_id = info.id">
                             <p>บริษัท</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" v-bind:value="info.company.name" disabled>
+                                <input class="form-control" type="text" v-bind:value="info.name" disabled>
                             </div>
                         </div>
                         <div class="col-md-6">

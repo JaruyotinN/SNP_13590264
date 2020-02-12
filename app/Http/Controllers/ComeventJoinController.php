@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ComeventJoin;
+use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComeventJoinController extends Controller
 {
@@ -15,25 +17,27 @@ class ComeventJoinController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $user_joins = ComeventJoin::where('user_id',$user->id)->get();
-        foreach($user_joins as $join){
-            $join->comevent->staff->company;
-            // $join->studentJoin;
-            // $join->comevent->company;
-        }
+        $user_joins = ComeventJoin::where('user_id',$user->id)
+        ->join('comevents', 'comevent_joins.event_id', '=', 'comevents.id')
+        ->join('companyinfos', 'comevents.com_id', '=', 'companyinfos.id')->get();
 
         return $user_joins;
     }
-    public function getstudent()
+    public function getstudent(Request $request)
     {
-        $student_joins = ComeventJoin::get();
-        foreach($student_joins as $join){
-            $join->student;
-            // $join->studentJoin;
-            // $join->comevent->company;
-        }
+        $user = $request->user();
+        $comjoin = DB::table('profiles')
+                ->join('users', 'profiles.user_id', '=', 'users.id')
+                ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
+                ->join('comevents', 'comevents.com_id', '=', 'companyinfos.id')
+                ->join('comevent_joins', 'comevent_joins.event_id', '=', 'comevents.id')
+                ->join('student_infos', 'comevent_joins.stu_id' ,'=', 'student_infos.id')
+        ->get();
 
-        return $student_joins;
+        // foreach($comjoin as $com){
+           
+        // }
+        return $comjoin;
     }
 
    
@@ -58,9 +62,7 @@ class ComeventJoinController extends Controller
     {
 
         $user = $request->user();
-
         $comjoin = ComeventJoin::create($request->all());
-
         $comjoin->update([
             'user_id'=>$user->id
         ]);

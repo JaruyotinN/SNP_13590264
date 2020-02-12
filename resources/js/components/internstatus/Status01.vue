@@ -14,8 +14,8 @@
     <tbody>
         
         <tr class="spaceUnder" v-for="(userjoin, index) in userjoins" :key="index">
-            <td><h5> {{userjoin.comevent.staff.company.name}} </h5><label>{{userjoin.comevent.staff.division}} </label></td>
-            <td><h5> {{userjoin.comevent.requirement}} </h5></td>
+            <td><h5> {{userjoin.name}} </h5><label>none </label></td>
+            <td><h5> {{userjoin.requirement}} </h5></td>
             <td class="center w15">
                 <i v-if="userjoin.check " class="fa fa-check-circle "></i>  
                 <i v-else class="fa fa-minus-circle"></i>

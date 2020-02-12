@@ -8,7 +8,7 @@
                             <div class="mt-2 mb-3">
                                 <input class="form-control" v-model="form.title" type="text" placeholder="">
                             </div>
-                        </div>        
+                        </div>    
                         <div class="col-md-12">
                             <p>เนื้อหา</p>
                             <div class="mt-2 mb-3">

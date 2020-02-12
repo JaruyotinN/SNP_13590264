@@ -15,6 +15,11 @@ class CreateTeacherinfosTable extends Migration
     {
         Schema::create('teacherinfos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('profile_id')->unsigned()->nullable();
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->string('img')->nullable();
@@ -42,14 +47,7 @@ class CreateTeacherinfosTable extends Migration
                 ->references('id')
                 ->on('teacherinfos')
                 ->onDelete('cascade');
-        });
-        Schema::table('profiles', function (Blueprint $table) {
-            $table->bigInteger('teacher_id')->unsigned()->nullable();
-            $table->foreign('teacher_id')
-                ->references('id')
-                ->on('teacherinfos')
-                ->onDelete('cascade');
-        });        
+        });   
     }
 
     /**

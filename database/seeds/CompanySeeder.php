@@ -13,14 +13,15 @@ class CompanySeeder extends Seeder
     {
        
         DB::table('companyinfos')->insert([
-            [
+            [   
                 'name'=>'ไลค์มี จำกัด',
                 'address'=>'126/5 อาคาร ไทยศรี ชั้น2 ถนนกรุงธนบุรี แขวงบางลำภูล่าง เขตคลองสาน กรุงเทพมหานคร 10600',
-                'logo'=>'',
+                'logo'=>'/uploads/images/comevents/likeme.jpg',
                 'district_id'=>1,
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>3,
             ],
             [
                 'name'=>'อัปเปอร์คัซ ครีเอทีฟ จำกัด',
@@ -30,6 +31,7 @@ class CompanySeeder extends Seeder
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>NULL,
             ],
             [
                 'name'=>'แรปบิทเทล จำกัด',
@@ -39,6 +41,7 @@ class CompanySeeder extends Seeder
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>NULL,
             ],
             [
                 'name'=>'กราฟปิ้ก จำกัด',
@@ -48,6 +51,7 @@ class CompanySeeder extends Seeder
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>NULL,
             ],
             [
                 'name'=>'อินสปาย ดิจิตัล จำกัด',
@@ -58,6 +62,7 @@ class CompanySeeder extends Seeder
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>NULL,
             ],
             [
                 'name'=>'คิดเยอะ ครีเอทีฟ จำกัด',
@@ -67,6 +72,7 @@ class CompanySeeder extends Seeder
                 'province_id'=>1,
                 'prove'=>"none",
                 'juristic'=>"none",
+                'profile_id'=>NULL,
             ],
         ]);
     }

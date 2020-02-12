@@ -15,6 +15,11 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('profile_id')->unsigned()->nullable();
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->string('number')->nullable();
@@ -27,13 +32,14 @@ class CreateStudentInfosTable extends Migration
             $table->integer('sendinvite')->nullable();
             $table->timestamps();
         });
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('comevent_joins', function (Blueprint $table) {
             $table->bigInteger('stu_id')->unsigned()->nullable();
             $table->foreign('stu_id')
-                ->references('id')
-                ->on('student_infos')
-                ->onDelete('cascade');
-        });    
+            ->references('id')
+            ->on('student_infos')
+            ->onDelete('cascade');
+        });   
+         
     }
 
     /**

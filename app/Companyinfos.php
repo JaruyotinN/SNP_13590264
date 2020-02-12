@@ -12,4 +12,10 @@ class Companyinfos extends Model
     public function event(){
         return $this->hasMany('App\Comevent','com_id','id');
     }
+    public function companyinfo(){
+        return $this->belongsTo('App\Profile','profile_id','id');
+    }
+    public function profile(){
+        return $this->belongsTo('App\Profile','user_id','id');
+    }
 }

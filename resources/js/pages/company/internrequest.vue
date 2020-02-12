@@ -43,7 +43,7 @@
               </ul>
             </div>
              <hr>
-            <div class="col-md-12 mb-2" v-for="(event, index) in userjoins" :key="index">
+            <div class="col-md-12 mb-2" v-for="(event, index) in studentjoins" :key="index">
                 <!-- <router-link :to="{name:'detail'}"> -->
                 <ComReqCard :event="event"/>
                 <!-- </router-link> -->
@@ -55,6 +55,7 @@
 
 <script>
 import ComReqCard from '~/components/ComReqCard'
+import {mapActions, mapGetters} from 'vuex'
 export default {
 
 data() {
@@ -79,15 +80,15 @@ data() {
   }, 
   methods: {
    ...mapActions({
-     userjoin:'comevents/userjoin',
+     fetchstudentjoin:'comevents/fetchstudentjoin',
    }),
   },
   created(){
-    this.userjoin()
+    this.fetchstudentjoin()
   },
   computed:{
   ...mapGetters({
-      userjoins:'comevents/userjoins',
+      studentjoins:'comevents/studentjoins',
     }),
   },
   components:{

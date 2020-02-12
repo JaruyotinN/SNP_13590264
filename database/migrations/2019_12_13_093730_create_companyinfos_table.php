@@ -15,6 +15,11 @@ class CreateCompanyinfosTable extends Migration
     {
         Schema::create('companyinfos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('profile_id')->unsigned()->nullable();
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('logo')->nullable();
             $table->string('address')->nullable();
@@ -37,14 +42,7 @@ class CreateCompanyinfosTable extends Migration
                 ->references('id')
                 ->on('companyinfos')
                 ->onDelete('cascade');
-        }); 
-        Schema::table('profiles', function (Blueprint $table) {
-            $table->bigInteger('com_id')->unsigned()->nullable();
-            $table->foreign('com_id')
-                ->references('id')
-                ->on('companyinfos')
-                ->onDelete('cascade');
-        });     
+        });  
         
     }
 

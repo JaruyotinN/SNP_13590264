@@ -4,6 +4,7 @@ import router from '~/router'
 import Swal from 'sweetalert2'
 import i18n from '~/plugins/i18n'
 
+
 // Request interceptor
 axios.interceptors.request.use(request => {
   const token = store.getters['auth/token']

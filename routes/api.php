@@ -15,13 +15,10 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
-
     Route::get('/user', 'UserController@index');
-
     Route::resource('/userinfo', 'ProfileController');
     Route::post('/make_dairys', 'StudentPostController@store');
     Route::resource('/interndairys', 'StudentPostController');
-    
     Route::resource('/majors', 'MajorController');
     Route::post('/make_event', 'ComeventController@store');
     Route::resource('/comevents', 'ComeventController');
@@ -31,6 +28,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/comevent/join', 'ComeventJoinController');
     Route::resource('/company', 'CompanyinfosController');
     Route::post('uploadImage', 'UploadController@uploadImage');
+
+    //try
+    Route::resource('/studentinfo', 'StudentInfoController');
 
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');

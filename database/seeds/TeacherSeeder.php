@@ -12,7 +12,7 @@ class TeacherSeeder extends Seeder
     public function run()
     {
         DB::table('teacherinfos')->insert([
-            [
+            [   
                 'name'=>'Kowit',
                 'surname'=>'Meeboon',
                 'img'=>'',
@@ -20,6 +20,7 @@ class TeacherSeeder extends Seeder
                 'uni_id'=>1,
                 'faculty_id'=>1,
                 'major_id'=>1,
+                'profile_id'=>2,
             ],
             [
                 'name'=>'Sarayut',
@@ -29,6 +30,7 @@ class TeacherSeeder extends Seeder
                 'uni_id'=>1,
                 'faculty_id'=>1,
                 'major_id'=>1,
+                'profile_id'=>NULL,
             ]
         ]);
     }

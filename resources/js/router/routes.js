@@ -16,6 +16,7 @@ export default [
   { path: '/list', name: 'list', component: page('company/list.vue') },
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
+  { path: '/comeventsreq/:id', name: 'stureq_detail', component: page('company/requestdetail.vue') },
   
 
   { path: '/', name: 'login', component: page('auth/login.vue') },

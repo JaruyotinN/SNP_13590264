@@ -20,18 +20,19 @@
                             </div>
                         </td>
                         <td>
-                            <p class="mt-4 p-1 bold">{{event.name}}</p>
+                            <p class="mt-4 p-1">{{event.name}} {{event.surname}}</p>
                         </td>
                         <td>
-                            <p class="mt-4 p-1 bold">{{event.link}}</p>
+                            <p class="mt-4 p-1 bold">link</p>
                         </td>
                         <td>
-                            <label> {{event.resume}}</label>
+                            <label> {{event.cv}}</label>
                             <label> {{event.port}}</label>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-success">Success</button>
-                            <button type="button" class="btn btn-outline-danger">Danger</button>
+                             <router-link :to="{name:'stureq_detail', params:{id:event.id }}">
+                                  <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
+                            </router-link>
                         </td>
                         </tr>
                     </tbody>
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+
 export default {
     props:['event']
 }

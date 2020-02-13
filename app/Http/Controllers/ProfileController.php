@@ -22,19 +22,19 @@ class ProfileController extends Controller
             $info = DB::table('profiles')
             ->join('users', 'profiles.user_id', '=', 'users.id')
             ->join('student_infos', 'student_infos.profile_id', '=', 'profiles.id')
-        ->get();   
+            ->where('user_id',$user->id)->get();   
         }
         else if($infos[0]->profile_type == 'T'){
             $info = DB::table('profiles')
             ->join('users', 'profiles.user_id', '=', 'users.id')
             ->join('teacherinfos', 'teacherinfos.profile_id', '=', 'profiles.id')
-        ->get();
+            ->where('user_id',$user->id)->get();   
         }
         else if($infos[0]->profile_type == 'C'){
             $info = DB::table('profiles')
                 ->join('users', 'profiles.user_id', '=', 'users.id')
                 ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
-            ->get();
+                ->where('user_id',$user->id)->get();   
         }
         return $info;
     }

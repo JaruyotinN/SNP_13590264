@@ -10,10 +10,10 @@
                         <p class="m-0">มหาวิทยาลัยศิลปากร คณะเทคโนโลยีสารสนเทศและการสื่อสาร</p>
                         <p class="m-0">สาขา ออกแบบเว็บและสื่อโต้ตอบ รหัส 13590264</p>
                     </div>
-
                 </div>
                 <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-primary bold" :to="{name:'edit'}">แก้ไข้อมูล</router-link>
+                    <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link>
+                    <!-- <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.id}}">แก้ไข้อมูล</router-link> -->
                 </div>
             </div>
             <hr>
@@ -21,8 +21,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
     export default {
-        
+    computed: mapGetters({
+    user: 'auth/user'
+  }),
     }
 </script>
 

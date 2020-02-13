@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">บันทึกฝึกงาน </h4>
+                        <h4 class="mb-2 bold">คำร้องขอฝึกงาน</h4>
                     </div>
                 </div>
                 <div class="col-md-2">

@@ -98,6 +98,11 @@
             </div>
               <div class="col-md-3 offset-9">
                 <div class="btn-detail-style mt-3 mb-3">
+                    <v-button
+                    :loading="form.busy"
+                    id="createbtn"
+                    class="btn btn-primary bold"
+                    >{{ id ? "update" : "save" }}</v-button>
                     <router-link class="btn btn-primary bold" :to="{name:'student'}">บันทึกความถนัด</router-link>
                 </div>
               </div>

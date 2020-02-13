@@ -24,6 +24,18 @@ class ProfileSeeder extends Seeder
                 'user_id'=>3,
                 'profile_type'=>'C',
             ],
+            [
+                'user_id'=>4,
+                'profile_type'=>'S',
+            ],
+            [
+                'user_id'=>5,
+                'profile_type'=>'S',
+            ],
+            [
+                'user_id'=>6,
+                'profile_type'=>'S',
+            ],
         ]);
     }
 }

@@ -32,6 +32,7 @@ class ComeventJoinController extends Controller
                 ->join('comevents', 'comevents.com_id', '=', 'companyinfos.id')
                 ->join('comevent_joins', 'comevent_joins.event_id', '=', 'comevents.id')
                 ->join('student_infos', 'comevent_joins.stu_id' ,'=', 'student_infos.id')
+
         ->get();
 
         // foreach($comjoin as $com){

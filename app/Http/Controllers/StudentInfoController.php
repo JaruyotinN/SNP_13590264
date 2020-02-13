@@ -12,18 +12,10 @@ class StudentInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $user = $request->user();
-        $studentInfos = StudentInfo::where('id',$user->id)->get();
-        // $studentInfos = StudentInfo::get();
-        // foreach($studentInfos as $student){
-        //     $student->studentinfo;
-          
-        // }
-
-        return $studentInfos;
-        
+    public function index()
+    {   
+        $studentinfos = StudentInfo::orderBy('id', 'desc')->get();
+        return $studentinfos;
     }
 
     /**
@@ -53,11 +45,10 @@ class StudentInfoController extends Controller
      * @param  \App\StudentInfo  $studentInfo
      * @return \Illuminate\Http\Response
      */
-    public function show(StudentInfo $studentInfo)
-    {
-        $studentInfo->staffs;
-        $studentInfo->company;
-        return $studentInfo;
+    public function show(StudentInfo $StudentInfo) 
+    {   
+        $StudentInfo = StudentInfo::all();
+        return $StudentInfo;
     }
 
     /**

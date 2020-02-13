@@ -4,7 +4,6 @@
           <!-- <ColumHeader :title="comevent.company.name" showBack="student" description="lqwdfeqeqeqe"/> -->
           <ColumHeader :title="comevent.company.name" showBack="student"/> 
           <!-- <Detailheader title="diary" showBack="dairy"/> -->
-
       <div class="row">
           <div class="col-md-12">
                 <Detailbody :body="comevent"/>

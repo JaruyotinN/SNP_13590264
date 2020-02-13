@@ -12,6 +12,7 @@
                 <calendar :info="info"/>
                 </div>
                 </div>
+
           </div>     
           <div class="col-md-9">
                <h4 class="bold mt-5">สถานที่ฝึกงานที่เหมาะกับคุณ</h4>

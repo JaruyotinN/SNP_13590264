@@ -30,6 +30,24 @@ class UserSeeder extends Seeder
                 'password'=> bcrypt('123456'),
                 'role'=> 3
             ],
+            [
+                'name'=>'Nattakit',
+                'email'=>'stu02@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 1
+            ],
+            [
+                'name'=>'Sitichai',
+                'email'=>'stu03@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 1
+            ],
+            [
+                'name'=>'Nattapon',
+                'email'=>'stu04@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 1
+            ],
         ]);
     }
 }

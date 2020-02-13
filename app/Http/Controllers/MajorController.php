@@ -18,9 +18,6 @@ class MajorController extends Controller
         foreach($majors as $major){
             $major->faculty->university;
             $major->faculty->majors;
-
-            $major->cal = $major->ab(1,5);
-
         }
         return $majors;
     }

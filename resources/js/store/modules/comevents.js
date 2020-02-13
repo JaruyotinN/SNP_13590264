@@ -8,6 +8,7 @@ export const state = {
   user_joins: null,
   make_events:null,
   student_joins:null,
+  showreqs:null,
 }
 
 
@@ -19,6 +20,7 @@ export const getters = {
     joinreqs: state => state.joinreqs,
     makeevent: state => state.make_events,
     studentjoins: state => state.student_joins,
+    showreqs: state => state.showreqs,
 }
 
 // mutations
@@ -40,6 +42,9 @@ export const mutations = {
   },
   [types.FETCH_STUDENT_JOIN] (state, data) {
     state.student_joins = data
+  },
+  [types.FETCH_COMEVENT_SHOWREQ] (state, data) {
+    state.showreqs = data
   },
 }
 
@@ -95,6 +100,15 @@ export const actions = {
       console.log(e)
     }
   },
+  async showreq ({ commit }, id) {
+    try {
+      const { data } = await axios.get(`/api/comeventsreq/${id}`)
+      commit(types.FETCH_COMEVENT_SHOWREQ,  data )
+
+    } catch (e) {
+      console.log(e)
+    }
+  },
   async join ({ commit }, form) {
     try {
         const { data } = await axios.post(`/api/comevent_join`,form)
@@ -103,7 +117,14 @@ export const actions = {
       console.log(e)
     }
   },
-
+  async update ({ commit }, form) {
+    try {
+        const { data } = await axios.post(`/api/comevent_join`,form)
+        return data;
+    } catch (e) {
+      console.log(e)
+    }
+  },
   async del ({ commit }, id) {
     try {
       await axios.delete(`/api/comevents/${id}`)

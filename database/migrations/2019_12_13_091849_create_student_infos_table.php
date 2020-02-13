@@ -23,9 +23,8 @@ class CreateStudentInfosTable extends Migration
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->string('number')->nullable();
+            $table->string('img')->nullable();
             $table->string('address')->nullable();
-            $table->string('district_id')->nullable();
-            $table->string('province_id')->nullable();
             $table->string('port')->nullable();
             $table->string('cv')->nullable();
             $table->string('url_port')->nullable();

@@ -182,8 +182,6 @@ export default {
     },
     
     ...mapActions({
-
-      // fetch: "item/show"
       fetch:'profile/fetch'
     })
   },

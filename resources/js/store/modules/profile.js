@@ -19,6 +19,9 @@ export const mutations = {
   [types.FETCH_USERINFO] (state, data) {
     state.userinfos = data
   },
+  [types.FETCH_USERSHOW] (state, data) {
+    state.show = data
+  },
 }
 
 // actions
@@ -34,8 +37,8 @@ export const actions = {
 
   async show ({ commit }, id) {
     try {
-      const { data } = await axios.get(`/api/comevents/${id}`)
-      commit(types.FETCH_COMEVENT_SHOW,  data )
+      const { data } = await axios.get(`/api/userinfo/${id}`)
+      commit(types.FETCH_USERSHOW,  data )
 
     } catch (e) {
       console.log(e)

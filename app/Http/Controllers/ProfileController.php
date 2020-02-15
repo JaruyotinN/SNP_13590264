@@ -39,7 +39,6 @@ class ProfileController extends Controller
         return $info;
     }
 
-            // ->select('events_tb.*', 'company_staff_tb.*','company_tb.*')
     
 
     /**
@@ -69,9 +68,10 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Profile $profile ,$id)
     {
-        //
+        $profile = Profile::find($id);
+        return $profile;
     }
 
     /**

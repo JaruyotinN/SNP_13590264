@@ -12,8 +12,8 @@
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link>
-                    <!-- <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.id}}">แก้ไข้อมูล</router-link> -->
+                    <!-- <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link> -->
+                    <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.id}}">แก้ไข้อมูล</router-link>
                 </div>
             </div>
             <hr>

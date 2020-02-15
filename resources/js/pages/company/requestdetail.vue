@@ -1,13 +1,28 @@
 <template>
    <div class="container" >    
     <ColumHeader title="Hello" showBack="student"/> 
-    <pre>
-      {{
-        studentInfo
-      }}
-    </pre>
+   <pre> {{studentjoins}}</pre>
       <div class="row">
-          
+        <div class="col-6">
+          <div id='example-3'>
+            <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="John" v-model="checkedNames">
+            <label for="john">John</label>
+            
+            <br>
+            <span>Checked names: {{ checkedNames }}</span>
+        </div>
+        </div>
+        <div class="col-6">
+            <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+            <span>Selected: {{ selected }}</span>
+        </div>
           <div class="col-md-12">
               <div class="btn-detail-style mt-3 mb-3">
                 <button class="btn btn-primary bold" @click="cheack()">
@@ -33,6 +48,7 @@ export default {
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
+       studentjoins:'comevents/showstujoin',
       studentInfo:'comevents/showreqs',
       infos:'profile/userinfos',
     })
@@ -52,6 +68,7 @@ data() {
   },
   methods: {
     ...mapActions({
+      fetchstudentjoin:'comevents/showstujoin',
       fetch:'comevents/showreqs',
       fetchprofile:'profile/fetch',
     }),
@@ -83,7 +100,7 @@ data() {
   },
   created(){
     this.fetch(this.id),
-    this.fetchprofile()
+    this.fetchstudentjoin()
   }
 }
 </script>

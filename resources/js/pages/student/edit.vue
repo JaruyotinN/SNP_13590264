@@ -1,5 +1,7 @@
 <template>
-   <div class="container" >  
+   <div class="container" > 
+       <!-- <pre>{{user}}</pre>  -->
+       <pre>{{info}}</pre>
         <div class="col-md-12">
         <form @submit.prevent="update" @keydown="form.onKeydown($event)">
         <ColumHeader title='แก้ไขข้อมูลผู้ใช้งาน' showBack="student"/>
@@ -223,9 +225,13 @@ export default {
     ColumHeader,
     
   },
-  computed: mapGetters({
-    info:'profile/userinfos'
+  computed:{
+       ...mapGetters({
+    info:'profile/userinfos',
+    user: 'profile/show'
+   
   }),
+  },
   
   created () {
     // Fill the form with user data.
@@ -233,6 +239,7 @@ export default {
     this.form.keys().forEach(key => {
       this.form[key] = this.info[key]
     })
+     
   },
   methods: {
     async update () {
@@ -240,8 +247,10 @@ export default {
       this.$store.dispatch('auth/updateUser', { user: data })
     },
     ...mapActions({
-      fetch:'profile/fetch'
+      fetch:'profile/fetch',
+      fetchshow:'profile/show'
     })
+   
   }
    
 }

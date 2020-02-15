@@ -79,7 +79,7 @@ class ComeventJoinController extends Controller
      */
     public function show(ComeventJoin $comeventJoin)
     {
-        //
+        
     }
 
     /**

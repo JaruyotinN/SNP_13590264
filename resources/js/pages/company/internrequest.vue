@@ -57,7 +57,7 @@
 import ComReqCard from '~/components/ComReqCard'
 import {mapActions, mapGetters} from 'vuex'
 export default {
-
+middleware: 'auth',
 data() {
   return {
      events: [

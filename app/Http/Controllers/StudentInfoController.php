@@ -14,8 +14,10 @@ class StudentInfoController extends Controller
      */
     public function index()
     {   
-        $studentinfos = StudentInfo::orderBy('id', 'desc')->get();
-        return $studentinfos;
+        
+        $studentInfos = StudentInfo::get();
+        dd($studentInfos);
+        return $studentInfos;
     }
 
     /**
@@ -45,10 +47,10 @@ class StudentInfoController extends Controller
      * @param  \App\StudentInfo  $studentInfo
      * @return \Illuminate\Http\Response
      */
-    public function show(StudentInfo $StudentInfo) 
+    public function show(StudentInfo $studentInfo)
     {   
-        $StudentInfo = StudentInfo::all();
-        return $StudentInfo;
+        $studentInfo= StudentInfo::get();
+        return $studentInfo;
     }
 
     /**

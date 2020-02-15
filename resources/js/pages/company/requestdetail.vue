@@ -1,8 +1,13 @@
 <template>
    <div class="container" >    
     <ColumHeader title="Hello" showBack="student"/> 
+    <pre>
+      {{
+        studentInfo
+      }}
+    </pre>
       <div class="row">
-          {{showreqs}}
+          
           <div class="col-md-12">
               <div class="btn-detail-style mt-3 mb-3">
                 <button class="btn btn-primary bold" @click="cheack()">
@@ -28,7 +33,7 @@ export default {
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-      showreqs:'comevents/showreqs',
+      studentInfo:'comevents/showreqs',
       infos:'profile/userinfos',
     })
   },
@@ -47,7 +52,7 @@ data() {
   },
   methods: {
     ...mapActions({
-      fetch:'comevents/showreq',
+      fetch:'comevents/showreqs',
       fetchprofile:'profile/fetch',
     }),
     cheack(){

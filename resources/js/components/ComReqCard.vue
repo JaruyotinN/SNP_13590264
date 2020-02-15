@@ -30,7 +30,7 @@
                             <label> {{event.port}}</label>
                         </td>
                         <td>
-                             <router-link :to="{name:'stureq_detail', params:{id:event.id }}">
+                             <router-link :to="{name:'stureq', params:{id:event.id }}">
                                   <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
                             </router-link>
                         </td>

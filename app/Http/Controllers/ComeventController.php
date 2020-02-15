@@ -20,9 +20,9 @@ class ComeventController extends Controller
         foreach($comevents as $com){
             // $com->staff->company;
             $com->company;
-            foreach($com->staffs as $staff){
-                // $staff->company;
-            }
+            // foreach($com->staffs as $staff){
+            //     // $staff->company;
+            // }
             // $com->company;
         }
         return $comevents;
@@ -55,15 +55,13 @@ class ComeventController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $user = $request->user();
         $comevent = Comevent::create($request->all());
 
         return $comevent;
     }
  
-    //test
+    
     /**
      * Display the specified resource.
      *
@@ -72,8 +70,9 @@ class ComeventController extends Controller
      */
     public function show(Comevent $comevent)
     {
-        $comevent->staffs;
-        $comevent->company;
+        // $comevent->staffs;
+        // $comevent->company;
+        dd($comevent);
         return $comevent;
     }
 

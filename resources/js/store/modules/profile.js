@@ -19,9 +19,6 @@ export const mutations = {
   [types.FETCH_USERINFO] (state, data) {
     state.userinfos = data
   },
-  [types.FETCH_DAIRY_SHOW] (state, data) {
-    state.show = data
-  }, 
 }
 
 // actions

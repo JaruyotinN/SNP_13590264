@@ -8,6 +8,7 @@ export default [
   { path: '/dairy', name: 'dairy', component: page('student/dairy.vue') },
   { path: '/postdairy', name: 'postdairy', component: page('student/postdairy.vue') },
   { path: '/status', name: 'status', component: page('student/status.vue') },
+  { path: '/showreqs/:id', name: 'stureq', component: page('company/requestdetail.vue') },
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit', name: 'edit', component: page('student/edit.vue') },
 
@@ -16,7 +17,7 @@ export default [
   { path: '/list', name: 'list', component: page('company/list.vue') },
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
-  { path: '/comeventsreq/:id', name: 'stureq_detail', component: page('company/requestdetail.vue') },
+  
   
 
   { path: '/', name: 'login', component: page('auth/login.vue') },

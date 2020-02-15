@@ -43,7 +43,7 @@ export const mutations = {
   [types.FETCH_STUDENT_JOIN] (state, data) {
     state.student_joins = data
   },
-  [types.FETCH_COMEVENT_SHOWREQ] (state, data) {
+  [types.FETCH_SHOWREQ] (state, data) {
     state.showreqs = data
   },
 }
@@ -100,10 +100,10 @@ export const actions = {
       console.log(e)
     }
   },
-  async showreq ({ commit }, id) {
+  async showreqs ({ commit }, id) {
     try {
-      const { data } = await axios.get(`/api/comeventsreq/${id}`)
-      commit(types.FETCH_COMEVENT_SHOWREQ,  data )
+      const { data } = await axios.get(`/api/showreqs/${id}`)
+      commit(types.FETCH_SHOWREQ,  data )
 
     } catch (e) {
       console.log(e)

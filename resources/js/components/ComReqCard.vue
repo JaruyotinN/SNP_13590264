@@ -16,21 +16,21 @@
                         <tr>
                         <td> 
                             <div class="img-circle">
-                                <img :src="event.img" center alt="..." class="card-img-top"/>
+                                <img :src="event.student.img" center alt="..." class="card-img-top"/>
                             </div>
                         </td>
                         <td>
-                            <p class="mt-4 p-1">{{event.name}} {{event.surname}}</p>
+                            <p class="mt-4 p-1">{{event.student.name}} {{event.student.surname}}</p>
                         </td>
                         <td>
                             <p class="mt-4 p-1 bold">link</p>
                         </td>
                         <td>
-                            <label> {{event.cv}}</label>
-                            <label> {{event.port}}</label>
+                            <label> {{event.student.cv}}</label>
+                            <label> {{event.student.port}}</label>
                         </td>
                         <td>
-                             <router-link :to="{name:'stureq', params:{id:event.id }}">
+                             <router-link :to="{name:'getstudent', params:{id:event.student.comevent_joins.id }}">
                                   <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
                             </router-link>
                         </td>

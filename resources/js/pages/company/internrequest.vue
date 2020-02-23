@@ -60,22 +60,6 @@ export default {
 middleware: 'auth',
 data() {
   return {
-     events: [
-     {
-      img:'https://picsum.photos/id/237/200/300',
-      name:'นายณัทกฤช จารุโยธิน',
-      link:'ข้อมูลเพิ่มเติม',
-      resume:'file/resume' ,
-      port: 'file/port',
-    },
-      {
-      img:'https://picsum.photos/id/124/200/300',
-      name:'นายณัฐพล ปัญญาดี',
-      link:'ข้อมูลเพิ่มเติม',
-      resume:'file/resume2' ,
-      port: 'file/port2',
-    },
-     ]
   }
   }, 
   methods: {

@@ -1,14 +1,14 @@
 <template>
    <div class="container" > 
-       <!-- <pre>{{user}}</pre>  -->
-       <pre>{{info}}</pre>
+       <pre>{{user}}</pre>
+       <pre>{{user.student.img}}</pre>
         <div class="col-md-12">
         <form @submit.prevent="update" @keydown="form.onKeydown($event)">
         <ColumHeader title='แก้ไขข้อมูลผู้ใช้งาน' showBack="student"/>
             <div class="row">
                 <div class="col-md-3">
-                    <div class="img-circle center">
-                        <img src="">
+                    <div class="img-circle center">     
+                        <img :src="form.img"/>
                     </div>
                     <div class="center mt-2">
                         <a class="f025" href="#">แก้ไขรูปโปรไฟล์</a>
@@ -67,20 +67,23 @@
             <div class="row">
                    <div class="col-md-4">
                         <p>Portfolio</p>
-                        <div class="mt-2 mb-3">
-                            <input class="form-control" type="text" placeholder="port">
+                         <div class="mt-2 mb-3">
+                                 <input v-model="form.port" :class="{ 'is-invalid': form.errors.has('port') }" class="form-control" type="text" name="port"  placeholder="port">
+                                <has-error :form="form" field="port" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <p>Resume</p>
                         <div class="mt-2 mb-3">
-                            <input class="form-control" type="text" placeholder="resume">
+                                 <input v-model="form.cv" :class="{ 'is-invalid': form.errors.has('cv') }" class="form-control" type="text" name="cv"  placeholder="cv">
+                                <has-error :form="form" field="port" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <p>URL สำหรับผลงาน</p>
                         <div class="mt-2 mb-3">
-                            <input class="form-control" type="text" placeholder="">
+                                 <input v-model="form.url_port" :class="{ 'is-invalid': form.errors.has('url_port') }" class="form-control" type="text" name="url_port"  placeholder="url_port">
+                                <has-error :form="form" field="url_port" />
                         </div>
                     </div>
         </div>
@@ -213,7 +216,7 @@ export default {
       name: "",
       surname: "",
       number: "",
-      image_url: "",
+      img:"",
       port: "",
       cv:"",
       url_port:"",
@@ -226,18 +229,20 @@ export default {
     
   },
   computed:{
+    id(){
+      return parseInt(this.$route.params.id)
+    },
        ...mapGetters({
-    info:'profile/userinfos',
     user: 'profile/show'
    
   }),
   },
   
-  created () {
+  async created () {
     // Fill the form with user data.
-    this.fetch()
+    await this.fetchshow(this.id),
     this.form.keys().forEach(key => {
-      this.form[key] = this.info[key]
+      this.form[key] = this.user.student[key]
     })
      
   },
@@ -247,7 +252,6 @@ export default {
       this.$store.dispatch('auth/updateUser', { user: data })
     },
     ...mapActions({
-      fetch:'profile/fetch',
       fetchshow:'profile/show'
     })
    

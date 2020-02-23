@@ -8,7 +8,7 @@ export const state = {
   user_joins: null,
   make_events:null,
   student_joins:null,
-  showreqs:null,
+  showstudent_join :null,
 }
 
 
@@ -20,7 +20,7 @@ export const getters = {
     joinreqs: state => state.joinreqs,
     makeevent: state => state.make_events,
     studentjoins: state => state.student_joins,
-    showreqs: state => state.showreqs,
+    showstudent_join: state => state.showstudent_join,
 }
 
 // mutations
@@ -43,8 +43,8 @@ export const mutations = {
   [types.FETCH_STUDENT_JOIN] (state, data) {
     state.student_joins = data
   },
-  [types.FETCH_SHOWREQ] (state, data) {
-    state.showreqs = data
+  [types.FETCH_SHOWSTUDENT_JOIN] (state, data) {
+    state.showstudent_join = data
   },
 }
 
@@ -62,6 +62,15 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent`)
       commit(types.FETCH_STUDENT_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async showjoin ({ commit }, id) {
+    try {
+      const { data } = await axios.get(`/api/getstudent/${id}`)
+      commit(types.FETCH_SHOWSTUDENT_JOIN,  data )
+
     } catch (e) {
       console.log(e)
     }
@@ -95,15 +104,6 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/comevents/${id}`)
       commit(types.FETCH_COMEVENT_SHOW,  data )
-
-    } catch (e) {
-      console.log(e)
-    }
-  },
-  async showreqs ({ commit }, id) {
-    try {
-      const { data } = await axios.get(`/api/showreqs/${id}`)
-      commit(types.FETCH_SHOWREQ,  data )
 
     } catch (e) {
       console.log(e)

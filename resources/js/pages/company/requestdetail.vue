@@ -1,7 +1,7 @@
 <template>
    <div class="container" >    
     <ColumHeader title="Hello" showBack="student"/> 
-   <pre> {{studentjoins}}</pre>
+
       <div class="row">
         <div class="col-6">
           <div id='example-3'>
@@ -48,8 +48,7 @@ export default {
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-       studentjoins:'comevents/showstujoin',
-      studentInfo:'comevents/showreqs',
+  
       infos:'profile/userinfos',
     })
   },
@@ -68,8 +67,7 @@ data() {
   },
   methods: {
     ...mapActions({
-      fetchstudentjoin:'comevents/showstujoin',
-      fetch:'comevents/showreqs',
+
       fetchprofile:'profile/fetch',
     }),
     cheack(){

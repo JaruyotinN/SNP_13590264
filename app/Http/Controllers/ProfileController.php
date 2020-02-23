@@ -71,6 +71,9 @@ class ProfileController extends Controller
     public function show(Profile $profile ,$id)
     {
         $profile = Profile::find($id);
+        
+        $profile->student;
+
         return $profile;
     }
 

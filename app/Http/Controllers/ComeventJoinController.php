@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ComeventJoin;
+use App\Companyinfos;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,22 +24,45 @@ class ComeventJoinController extends Controller
 
         return $user_joins;
     }
+
     public function getstudent(Request $request)
     {
         $user = $request->user();
-        $comjoin = DB::table('profiles')
-                ->join('users', 'profiles.user_id', '=', 'users.id')
-                ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
-                ->join('comevents', 'comevents.com_id', '=', 'companyinfos.id')
-                ->join('comevent_joins', 'comevent_joins.event_id', '=', 'comevents.id')
-                ->join('student_infos', 'comevent_joins.stu_id' ,'=', 'student_infos.id')
 
-        ->get();
+        //ต้องเอา id ของ Companyinfo
+        $infos = Profile::where('user_id',$user->id)->get();
+        foreach($infos as $info){
+            $company_id = $info->company;
+        }
+
+        //whereHas คือการ where ด้วย Model 
+        $comjoins = Profile::where('profile_type','S')->whereHas('student', function ($query) use ($company_id){
+            $query->whereHas('comevent_joins',function($query) use ($company_id){
+                $query->whereHas('comevent',function($query) use ($company_id) {
+                    $query->where('com_id', $company_id->id);
+                }); 
+            });
+        })->get();
+
+        //ข้อมูลที่ได้เป็น Array 
+       foreach($comjoins as $com){
+           $com->student->comevent_joins;
+       }
+
+       return $comjoins;
+        // $comjoin = DB::table('profiles')
+        //         ->join('users', 'profiles.user_id', '=', 'users.id')
+        //         ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
+        //         ->join('comevents', 'comevents.com_id', '=', 'companyinfos.id')
+        //         ->join('comevent_joins', 'comevent_joins.event_id', '=', 'comevents.id')
+        //         ->join('student_infos', 'comevent_joins.stu_id' ,'=', 'student_infos.id')
+        //         ->select('comevent_joins.*','student_infos.*')
+        // ->get();
+
 
         // foreach($comjoin as $com){
            
         // }
-        return $comjoin;
     }
 
    
@@ -77,9 +101,12 @@ class ComeventJoinController extends Controller
      * @param  \App\ComeventJoin  $comeventJoin
      * @return \Illuminate\Http\Response
      */
-    public function show(ComeventJoin $comeventJoin)
+    public function show(ComeventJoin $comeventJoin ,$id )
     {
-        
+        $comeventJoin = ComeventJoin::find($id);
+        $comeventJoin->student;
+
+        return $comeventJoin;
     }
 
     /**

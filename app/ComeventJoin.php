@@ -14,6 +14,7 @@ class ComeventJoin extends Model
     public function student(){
         return $this->belongsTo('App\StudentInfo','stu_id','id');
     }
+    
 
 
 }

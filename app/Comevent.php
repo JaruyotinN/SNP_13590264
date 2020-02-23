@@ -16,6 +16,11 @@ class Comevent extends Model
     public function company(){
         return $this->belongsTo('App\Companyinfos','com_id','id');
     }
+    public function eventjoin(){
+        return $this->hasMany('App\ComeventJoin','event_id','id');
+    }
+    
+    
     
 
 }

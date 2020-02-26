@@ -1,7 +1,6 @@
 <template>
    <div class="container" > 
-       <pre>{{user}}</pre>
-       <pre>{{user.student.img}}</pre>
+       <!-- <pre>{{user}}</pre> -->
         <div class="col-md-12">
         <form @submit.prevent="update" @keydown="form.onKeydown($event)">
         <ColumHeader title='แก้ไขข้อมูลผู้ใช้งาน' showBack="student"/>
@@ -40,19 +39,22 @@
                         <div class="col-md-4">
                             <p>มหาวิทยาลัย</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="โปรดใส่มหาวิทยาลัย">
+                                <input v-model="form.major.faculty.university.name" :class="{ 'is-invalid': form.errors.has('university') }" class="form-control" type="text" name="university"  placeholder="มหาวิทยาลัย">
+                                <has-error :form="form" field="university" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <p>คณะ</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="โปรดใส่คณะของคุณ">
+                                <input v-model="form.major.faculty.name" :class="{ 'is-invalid': form.errors.has('faculty') }" class="form-control" type="text" name="faculty"  placeholder="คณะ">
+                                <has-error :form="form" field="faculty" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <p>สาขา / เอก</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="โปรดใส่ สาขา / เอก ของคุณ">
+                                <input v-model="form.major.name" :class="{ 'is-invalid': form.errors.has('major') }" class="form-control" type="text" name="major"  placeholder="สาขา / เอก">
+                                <has-error :form="form" field="major" />
                             </div>
                         </div>
                     </div>
@@ -216,6 +218,9 @@ export default {
       name: "",
       surname: "",
       number: "",
+      major:"",
+      university:"",
+      faculty:"",
       img:"",
       port: "",
       cv:"",

@@ -11,5 +11,8 @@ class StudentInfo extends Model
     public function comevent_joins(){
         return $this->hasOne('App\ComeventJoin','stu_id','id');
     }
+    public function major(){
+        return $this->belongsTo('App\Major','major_id','id');
+    }
 
 }

@@ -19,24 +19,43 @@ class ProfileController extends Controller
         $infos = Profile::where('user_id',$user->id)->get();
          
         if($infos[0]->profile_type == 'S'){
-            $info = DB::table('profiles')
-            ->join('users', 'profiles.user_id', '=', 'users.id')
-            ->join('student_infos', 'student_infos.profile_id', '=', 'profiles.id')
-            ->where('user_id',$user->id)->get();   
-        }
-        else if($infos[0]->profile_type == 'T'){
-            $info = DB::table('profiles')
-            ->join('users', 'profiles.user_id', '=', 'users.id')
-            ->join('teacherinfos', 'teacherinfos.profile_id', '=', 'profiles.id')
-            ->where('user_id',$user->id)->get();   
-        }
-        else if($infos[0]->profile_type == 'C'){
-            $info = DB::table('profiles')
-                ->join('users', 'profiles.user_id', '=', 'users.id')
-                ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
-                ->where('user_id',$user->id)->get();   
-        }
-        return $info;
+            $getinfo = Profile::where('profile_type','S')->whereHas('student', function ($query) use ($user) {
+                $query->where('user_id',$user->id);
+            })->get();
+
+            foreach($getinfo as $com){
+                $com->student->major->faculty->university;
+            } 
+        } else if($infos[0]->profile_type == 'T'){
+            $getinfo = Profile::where('profile_type','T')->whereHas('teacher', function ($query) use ($user) {
+                $query->where('user_id',$user->id);
+            })->get();
+
+            foreach($getinfo as $com){
+                $com->teacher->major->faculty->university;
+            } 
+        } else if($infos[0]->profile_type == 'C'){
+            $getinfo = Profile::where('profile_type','C')->whereHas('company', function ($query) use ($user) {
+                $query->where('user_id',$user->id);
+            })->get();
+
+            foreach($getinfo as $com){
+                $com->company;
+            } 
+        } 
+        // else if($infos[0]->profile_type == 'T'){
+        //     $info = DB::table('profiles')
+        //     ->join('users', 'profiles.user_id', '=', 'users.id')
+        //     ->join('teacherinfos', 'teacherinfos.profile_id', '=', 'profiles.id')
+        //     ->where('user_id',$user->id)->get();   
+        // }
+        // else if($infos[0]->profile_type == 'C'){
+        //     $info = DB::table('profiles')
+        //         ->join('users', 'profiles.user_id', '=', 'users.id')
+        //         ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
+        //         ->where('user_id',$user->id)->get();   
+        // }
+        return $getinfo;
     }
 
     
@@ -71,8 +90,7 @@ class ProfileController extends Controller
     public function show(Profile $profile ,$id)
     {
         $profile = Profile::find($id);
-        
-        $profile->student;
+        $profile->student->major->faculty->university;
 
         return $profile;
     }

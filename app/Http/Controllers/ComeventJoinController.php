@@ -50,19 +50,7 @@ class ComeventJoinController extends Controller
        }
 
        return $comjoins;
-        // $comjoin = DB::table('profiles')
-        //         ->join('users', 'profiles.user_id', '=', 'users.id')
-        //         ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
-        //         ->join('comevents', 'comevents.com_id', '=', 'companyinfos.id')
-        //         ->join('comevent_joins', 'comevent_joins.event_id', '=', 'comevents.id')
-        //         ->join('student_infos', 'comevent_joins.stu_id' ,'=', 'student_infos.id')
-        //         ->select('comevent_joins.*','student_infos.*')
-        // ->get();
-
-
-        // foreach($comjoin as $com){
-           
-        // }
+       
     }
 
    

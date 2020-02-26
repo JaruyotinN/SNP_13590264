@@ -1,14 +1,16 @@
 <template>
 <div class="col-md-12">
             <div class="row">
+                <pre>{{user}}</pre>
                 <div class="col-md-10">
                     <div class="img-circle ">
                         <img src="/uploads/images/comevents/profile.JPG">
                     </div>
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">นายณัทกฤช จารุโยธิน</h4>
+                        <h4 class="mb-2 bold">{{user.student_info.name}} {{user.student_info.surname}}</h4>
                         <p class="m-0">มหาวิทยาลัยศิลปากร คณะเทคโนโลยีสารสนเทศและการสื่อสาร</p>
-                        <p class="m-0">สาขา ออกแบบเว็บและสื่อโต้ตอบ รหัส 13590264</p>
+                        <label class="m-0">สาขา ออกแบบเว็บและสื่อโต้ตอบ</label>
+                        <label class="m-0">รหัส {{user.student_info.number}}</label>
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">

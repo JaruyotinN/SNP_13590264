@@ -14,8 +14,9 @@ class Profile extends Model
          return $this->hasOne('App\Companyinfos','profile_id','id');
      }
      public function teacher(){
-         return $this->belongsTo('App\Teacherinfos','profile_id','id');
+         return $this->hasOne('App\Teacherinfos','profile_id','id');
      }
+     
      public function getProfile(){
          $trans = User::where('user_id', $this->id);
          return $trans;

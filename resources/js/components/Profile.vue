@@ -1,21 +1,20 @@
 <template>
 <div class="col-md-12">
-            <div class="row">
-                <pre>{{user}}</pre>
+            <div class="row" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
                 <div class="col-md-10">
                     <div class="img-circle ">
-                        <img src="/uploads/images/comevents/profile.JPG">
-                    </div>
+                        <img :src="user.student.img">
+                    </div> 
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">{{user.student_info.name}} {{user.student_info.surname}}</h4>
-                        <p class="m-0">มหาวิทยาลัยศิลปากร คณะเทคโนโลยีสารสนเทศและการสื่อสาร</p>
-                        <label class="m-0">สาขา ออกแบบเว็บและสื่อโต้ตอบ</label>
-                        <label class="m-0">รหัส {{user.student_info.number}}</label>
+                        <h4 class="mb-2 bold">{{user.student.name}} {{user.student.surname}}</h4>
+                        <p class="m-0">{{user.student.major.faculty.university.name}} คณะ {{user.student.major.faculty.name}}</p>
+                        <label class="m-0">สาขา {{ user.student.major.name}}</label>
+                        <label class="m-0">รหัส {{user.student.number}}</label>
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
                     <!-- <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link> -->
-                    <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.id}}">แก้ไข้อมูล</router-link>
+                    <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.user_id}}">แก้ไข้อมูล</router-link>
                 </div>
             </div>
             <hr>
@@ -23,12 +22,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-    export default {
-    computed: mapGetters({
-    user: 'auth/user'
-  }),
-    }
+import {mapActions, mapGetters} from 'vuex'
+export default {
+    
+data() {
+  return {
+   
+  }
+  },
+  computed:{
+    ...mapGetters({
+      users:'profile/userinfos'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetch:'profile/fetch'
+    })
+  },
+  created(){
+     this.fetch()
+  }
+}
 </script>
 
 <style  scoped>

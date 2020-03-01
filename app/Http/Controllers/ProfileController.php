@@ -23,24 +23,28 @@ class ProfileController extends Controller
                 $query->where('user_id',$user->id);
             })->get();
 
-            foreach($getinfo as $com){
-                $com->student->major->faculty->university;
+            foreach($getinfo as $info){
+                $info->student->major->faculty->university;
+                $info->student->scores;
+                foreach($info->student->scores as $score){
+                    $score->joptype->job;
+                }
             } 
         } else if($infos[0]->profile_type == 'T'){
             $getinfo = Profile::where('profile_type','T')->whereHas('teacher', function ($query) use ($user) {
                 $query->where('user_id',$user->id);
             })->get();
 
-            foreach($getinfo as $com){
-                $com->teacher->major->faculty->university;
+            foreach($getinfo as $info){
+                $info->teacher->major->faculty->university;
             } 
         } else if($infos[0]->profile_type == 'C'){
             $getinfo = Profile::where('profile_type','C')->whereHas('company', function ($query) use ($user) {
                 $query->where('user_id',$user->id);
             })->get();
 
-            foreach($getinfo as $com){
-                $com->company;
+            foreach($getinfo as $info){
+                $info->company;
             } 
         } 
         // else if($infos[0]->profile_type == 'T'){
@@ -52,7 +56,7 @@ class ProfileController extends Controller
         // else if($infos[0]->profile_type == 'C'){
         //     $info = DB::table('profiles')
         //         ->join('users', 'profiles.user_id', '=', 'users.id')
-        //         ->join('companyinfos', 'companyinfos.profile_id', '=', 'profiles.id')
+        //         ->join('infopanyinfos', 'infopanyinfos.profile_id', '=', 'profiles.id')
         //         ->where('user_id',$user->id)->get();   
         // }
         return $getinfo;

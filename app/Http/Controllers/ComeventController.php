@@ -70,9 +70,8 @@ class ComeventController extends Controller
      */
     public function show(Comevent $comevent)
     {
-        // $comevent->staffs;
-        // $comevent->company;
-        dd($comevent);
+        $comevent->staffs;
+        $comevent->company;
         return $comevent;
     }
 

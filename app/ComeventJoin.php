@@ -16,5 +16,4 @@ class ComeventJoin extends Model
     }
     
 
-
 }

@@ -70,7 +70,7 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent/${id}`)
       commit(types.FETCH_SHOWSTUDENT_JOIN,  data )
-
+      console.log(data)
     } catch (e) {
       console.log(e)
     }
@@ -104,7 +104,7 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/comevents/${id}`)
       commit(types.FETCH_COMEVENT_SHOW,  data )
-
+      console.log("hello")
     } catch (e) {
       console.log(e)
     }

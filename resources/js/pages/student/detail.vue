@@ -24,7 +24,7 @@
               </div>
         </div>
         <div  v-for="(info, index) in infos" :key="index">
-            <input class="form-control" type="hidden" v-model="form.stu_id = info.id">
+            <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id">
         </div>
               <div class="btn-detail-style mt-3 mb-3">
                 <button class="btn btn-primary bold" @click="cheack()">

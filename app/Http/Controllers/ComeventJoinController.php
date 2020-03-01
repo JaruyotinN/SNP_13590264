@@ -90,10 +90,16 @@ class ComeventJoinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(ComeventJoin $comeventJoin ,$id )
+    {   
+        // $comeventJoin->getstudent()
+        // $comeventJoin->student;
+        // return $comeventJoin;
+    }
+
+    public function showcomjoin(ComeventJoin $comeventJoin ,$id )
     {
         $comeventJoin = ComeventJoin::find($id);
         $comeventJoin->student;
-
         return $comeventJoin;
     }
 

@@ -1,7 +1,7 @@
 <template>
-   <div class="container" >
-      <div class="col-md-12">
-           <h5 class="bold center">**ความถนัดสามารถเลือกได้สูงสุด 4 ประเภทจากคะแนนทั้งหมด 15 คะแนน**</h5>
+    <div class="col-md-12">
+       <ColumHeader title="แก้ไขข้อมูลความถนัด"/>
+        <h5 class="bold center">**ความถนัดสามารถเลือกได้สูงสุด 4 ประเภทจากคะแนนทั้งหมด 15 คะแนน**</h5>
             <div class="row mt-3">
                 <div class="col-md-6">
                     <p>หมวดหมู่ที่ 1</p>
@@ -96,33 +96,78 @@
                     </div>
                 </div>
             </div>
-              <div class="col-md-3 offset-9">
+            <div class="col-md-3 offset-9">
                 <div class="btn-detail-style mt-3 mb-3">
                     <v-button
                     :loading="form.busy"
                     id="createbtn"
                     class="btn btn-primary bold"
                     >{{ id ? "update" : "save" }}</v-button>
-                    <router-link class="btn btn-primary bold" :to="{name:'student'}">บันทึกความถนัด</router-link>
                 </div>
               </div>
-      </div>     <!-- col-md-12 -->
-  </div>
+    </div>     <!-- col-md-12 -->
 </template>
 
 <script>
+import Form from 'vform'
+import {mapActions, mapGetters} from 'vuex'
+import ColumHeader from '~/components/ColumHeader'
+import Editprofile from '~/components/Studentedit/Editprofile'
+import Editport from '~/components/Studentedit/Editport'
 
 export default {
   middleware: 'auth',
-data() {
-  return {
-     heads: [
-    {
+ data: () => ({
+    form: new Form({
+      name: "",
+      surname: "",
+      number: "",
+      major:"",
+      university:"",
+      faculty:"",
+      img:"",
+      port: "",
+      cv:"",
+      url_port:"",
+    }),
+    image: "",
+    file: ""
+  }),
+  components:{
+    ColumHeader,
+  },
+  computed:{
+    id(){
+      return parseInt(this.$route.params.id)
     },
-    ],
-    }
-},
+       ...mapGetters({
+    user: 'profile/show'
+   
+  }),
+  },
+  
+  async created () {
+    // Fill the form with user data.
+    await this.fetchshow(this.id),
+    this.form.keys().forEach(key => {
+      this.form[key] = this.user.student[key]
+    })
+     
+  },
+  methods: {
+    async update () {
+      const { data } = await this.form.patch('/api/settings/profile')
+      this.$store.dispatch('auth/updateUser', { user: data })
+    },
+    ...mapActions({
+      fetchshow:'profile/show'
+    })
+   
+  }
+   
 }
+
+
 </script>
 <style scoped>
 .w-30{

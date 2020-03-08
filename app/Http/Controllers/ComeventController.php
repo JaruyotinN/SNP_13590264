@@ -84,6 +84,7 @@ class ComeventController extends Controller
     public function edit(Comevent $comevent)
     {
         //
+
     }
 
     /**

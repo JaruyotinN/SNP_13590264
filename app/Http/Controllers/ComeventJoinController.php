@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comevent;
 use App\ComeventJoin;
 use App\Companyinfos;
 use App\Profile;
@@ -121,9 +122,23 @@ class ComeventJoinController extends Controller
      * @param  \App\ComeventJoin  $comeventJoin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ComeventJoin $comeventJoin)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $comeventJoin = ComeventJoin::find($id);
+        if ($request->get == '1'){
+            $comeventJoin->update([
+                'cheack' => $request->cheack,
+            ]);
+        } else if ($request->get == '2'){
+            $comeventJoin->update([
+                'interview' => $request->interview,
+                'result' => $request->result,
+            ]);
+        }
+       
+
+        return $comeventJoin;
+        
     }
 
     /**

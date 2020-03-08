@@ -2,7 +2,7 @@
 <div class="col-md-12">
             <div class="row" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
                 <div class="col-md-10">
-                    <div class="img-circle ">
+                    <div class="img-circle">
                         <img :src="user.student.img">
                     </div> 
                     <div class="mb-3 ml-3 mt-2" style="float: left">
@@ -10,14 +10,19 @@
                         <p class="m-0">{{user.student.major.faculty.university.name}} คณะ {{user.student.major.faculty.name}}</p>
                         <label class="m-0">สาขา {{ user.student.major.name}}</label>
                         <label class="m-0">รหัส {{user.student.number}}</label>
+                          <!-- <pre>{{user}}</pre>
+                          <div v-for="(helo, index) in user.student.scores" :key="index" :class="{ active: index == 0 }">
+                              {{helo.joptype.job.title}} / {{helo.joptype.name}}
+                          </div> -->
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
+                 
                     <!-- <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link> -->
-                    <router-link class="btn btn-primary bold" :to="{name:'edit', params:{id:user.user_id}}">แก้ไข้อมูล</router-link>
+                    <router-link class="btn btn-outline-primary bold" :to="{name:'edit', params:{id:user.user_id}}">แก้ไข้อมูลส่วนตัว</router-link>
                 </div>
             </div>
-            <hr>
+            <hr class="hr-yellow">
     </div>
 </template>
 
@@ -57,14 +62,13 @@ data() {
 .img-circle img{
     width: 100%;
 }
-.btn-primary {
+.btn-outline-primary {
     width: 100% ; 
     height: 50px; 
     line-height: 35px;
     border-radius: 2rem; 
-    color:white;
-    background-color: #0047BA ;
-    border: none;  
+    color:#133CBA;
+    border: 2px solid #133CBA ;
     box-shadow:none;
 }
 

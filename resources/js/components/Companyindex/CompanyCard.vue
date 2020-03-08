@@ -1,8 +1,8 @@
 <template>
-			<div class="card mt-3"> 
+			<div class="card mt-3 mb-2"> 
              <div class="row">
-                <div class="col-md-10">
-                    <div class="img-circle mt-2 mr-3">
+                <div class="col-md-6">
+                    <div class="img-circle ml-3 mt-2 mr-3">
                         <img :src="card.img">
                     </div>
                     <div class="mb-3 ml-3 mt-2" style="float: left">
@@ -24,10 +24,28 @@
                             <label>{{card.score2}}</label>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-primary bold" :to="{name:'edit'}">ส่งคำเชิญ</router-link>
+                <div class="col-md-3">
+                     <div class="mb-3 mt-2 mr-3" style="float: left">
+                        <div class="f-1">
+                          <label>resume</label>
+                          <br>
+                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
+                        </div>
+                    </div>
+                    <div class="mb-3 mr-3 mt-2" style="float:left">
+                        <div class="f-1">
+                          <label>portfoilo</label>
+                           <br>
+                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <router-link class="btn btn-primary bold" :to="{name:'edit'}"> 
+                      <i class="fa fa-envelope-open fa-2x"></i>
+                       <p>ส่งคำเชิญ</p>
+                    </router-link>
                 </div>
             </div>
     </div>
@@ -64,16 +82,19 @@ a{
 }
 .card{
     padding: 20px 20px 10px 20px;
-    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
 }
 .btn-primary {
-    width: 100% ; 
-    height: 50px; 
-    line-height: 35px;
-    border-radius: 2rem; 
+    display: block;
+    margin: 0 auto;
+    width: 75% ; 
+    padding-top: 10px;
+    height: 75%; 
+    line-height: 25px;
+    border-radius: 5px;
     color:white;
-    background-color: #0047BA ;
+    background-color: #0A63B3;
     border: none;  
     box-shadow:none;
 }

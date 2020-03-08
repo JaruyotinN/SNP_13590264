@@ -29,10 +29,13 @@
                             <label> {{event.student.cv}}</label>
                             <label> {{event.student.port}}</label>
                         </td>
-                        <td>
+                        <td>   
+                            <form class="was-validated" @submit.prevent="update" @keydown="form.onKeydown($event)">
                              <router-link :to="{name:'getstudent', params:{id:event.student.comevent_joins.id }}">
                                   <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
+                                  
                             </router-link>
+                            </form>
                         </td>
                         </tr>
                     </tbody>
@@ -44,9 +47,24 @@
 </template>
 
 <script>
+import Form from "vform";
 
 export default {
-    props:['event']
+    props:['event'],
+    data: () => ({
+    form: new Form({
+      cheack:1,
+      get:1,
+    }),
+    }),
+     methods: {
+    async update() {
+
+      const { data } = await this.form.put(`/api/update/${this.id}`);
+      
+    },
+  },
+
 }
 </script>
 

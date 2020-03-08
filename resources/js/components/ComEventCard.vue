@@ -1,22 +1,23 @@
 <template>
-			<div class="card mt-4 h-100">
+			<div class="card mt-4 h-95">
 					  <div class="radio-img">
 							<img :src="event.img" center  class="card-img-top"/>
 						</div>
 						<div class="top-box">
               <div class="col-12">
                   <div class="card-info">
-                    <h5 class="bold mt-2"> {{ event.company.name }} </h5>
-                   
+                    <label class="bold mt-2 color-dblue">บริษัท{{ event.company.name }} </label>
+                    <p class="mb-2 color-dblue">Division / หน่วยงาน</p>
+                    <p>ประเภทงาน : {{ event.requirement }} </p>
                     <p>ตำแหน่งที่ต้องการ : {{ event.requirement }} </p>
-                    <p>สิ้นสุดเมื่อ : {{ event.enddate }} </p>
+                    <p>ระยะเวลา : {{ event.enddate }} </p>
                   </div> 
               </div>
             </div>
 							<div class="low-box">
 								<div class="col-12">
 									<div class="card-info">
-								<p class="mt-1">ที่อยู่ : {{ event.company.address }} </p>
+								<p class="mt-1"><i class="fa fa-map-marker fa-2x color-orange"></i> {{ event.company.address }} </p>
 									</div>
 								</div>
 							</div>
@@ -33,9 +34,15 @@ export default {
 a{
   text-decoration: none;
 }
+label{
+  margin: 0;
+}
 p{
   margin: 0;
   font-size: 0.75rem;
+}
+.h-95{
+  height: 95%;
 }
 .card{
     padding-bottom: 10px;

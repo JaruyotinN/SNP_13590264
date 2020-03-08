@@ -2,16 +2,23 @@
 <div class="container" >
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <div class="mb-3 ml-3 mt-2" style="float: left">
                     <h4 class="mb-2 bold">ค้นหาเด็กฝึกงาน</h4>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
-              <div class="col-md-12" v-for="(info, index) in infos" :key="index">
+            <div class="col-md-6 mb-3">
+              <div class="row" v-for="(info, index) in infos" :key="index">
+                <div class="col-6">
                  <router-link :to="{name:'postevent', params:{id:info.id }}">
-                   <div class="btn btn-primary bold">สร้างแบบฟอร์มฝึกงาน</div>
+                   <div class="btn btn-outline-warning bold">สร้างข้อมูลพนักงาน</div>
                 </router-link>
+                </div>
+                 <div class="col-6">
+                 <router-link :to="{name:'postevent', params:{id:info.id }}">
+                   <div class="btn btn-outline-primary bold">สร้างแบบฟอร์มฝึกงาน</div>
+                </router-link>
+                 </div>
               </div>
             </div>     
             <div class="col-md-12">
@@ -38,16 +45,17 @@
                             <router-link class="btn btn-detail-style bold" :to="{name:'student'}">ค้นหา</router-link>
                         </div> 
                     </div> 
-                    <hr>   
+                    <hr class="hr-yellow mt-4 mb-4">   
                     <label>ผลการค้นหา ... </label>
-                    <label class="bold">มหาวิทยาลัยศิลปากร</label>
+                    <label class="bold color-dblue">มหาวิทยาลัยศิลปากร</label>
                     <label>| ความถนัด</label>
-                    <label class="bold">ออกแบบ Graphic </label>
+                    <label class="bold color-dblue">ออกแบบ Graphic </label>
                     <div class="row">
                     <div class="col-md-12 mb-2" v-for="(card, index) in cards" :key="index">
-                        <router-link :to="{name:'detail', params:{id:card.id}}">
+                        <!-- <router-link :to="{name:'detail', params:{id:card.id}}">
                         <CompanyCard :card="card"/>
-                        </router-link>
+                        </router-link> -->
+                          <CompanyCard :card="card"/>
                     </div>
                     </div>
             </div>
@@ -125,25 +133,33 @@ data() {
 .custom-select{
    width: 80% !important;
    border-radius: 2rem !important;
+   border:none;
 }
 
 .input-group {
     height: 100px;
-    background-color: #0047BA;
+    background-color: #F0DDCF;
     padding: 10px;
     border-radius: 1rem !important;
 }
-.btn-primary{
+.btn-outline-primary {
     width: 100% ; 
     height: 50px; 
-    line-height: 45px;
+    line-height: 35px;
     border-radius: 2rem; 
-    color:#ffff;
-    background-color: #0047BA ;
-    border: none;  
+    color:#133CBA;
+    border: 2px solid #133CBA ;
     box-shadow:none;
 }
-
+.btn-outline-warning{
+    width: 100% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#FFB105;
+    border: 2px solid #FFB105;
+    box-shadow:none;
+}
 .btn-detail-style {
     width: 100% ; 
     height: 40px;

@@ -8,6 +8,7 @@ export const state = {
   user_joins: null,
   student_joins:null,
   showstudent_join :null,
+  jobs:null,
 }
 
 
@@ -19,6 +20,7 @@ export const getters = {
     joinreqs: state => state.joinreqs,
     studentjoins: state => state.student_joins,
     showstudent_join: state => state.showstudent_join,
+    jobs: state => state.jobs,
 }
 
 // mutations
@@ -41,6 +43,9 @@ export const mutations = {
   [types.FETCH_SHOWSTUDENT_JOIN] (state, data) {
     state.showstudent_join = data
   },
+  [types.FETCH_JOB] (state, data) {
+    state.jobs = data
+  },
 }
 
 // actions
@@ -57,6 +62,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent`)
       commit(types.FETCH_STUDENT_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchjob ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/jobtypes`)
+      commit(types.FETCH_JOB,  data )
     } catch (e) {
       console.log(e)
     }

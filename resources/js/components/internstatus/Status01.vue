@@ -25,10 +25,10 @@
                 <i v-else class="fa fa-minus-circle"></i>
             </td>
             <td class="center w15">
-                <h5 v-if="userjoin.result == 0" >wait</h5>
-                <h5 v-else-if="userjoin.result == 1" >PASS</h5>
-                <h5 v-else-if="userjoin.result == 2" >NOPASS</h5>
-                <!-- <h5>{{ userjoin.result }}</h5> -->
+                <h5 v-if="userjoin.result == 0" >รอการพิจารณา</h5>
+                <h5 v-else-if="userjoin.result == 1" >ต้องการให้มาสัมภาษณ์</h5>
+                <h5 v-else-if="userjoin.result == 2" >อยู่ในการพิจารณา</h5>
+                <h5 v-else-if="userjoin.result == 3" >ผ่าน</h5>
             </td>
         </tr>
     </tbody>

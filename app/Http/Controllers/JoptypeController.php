@@ -14,7 +14,7 @@ class JoptypeController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

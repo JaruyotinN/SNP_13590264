@@ -46,6 +46,7 @@
                                 </select>
                              </div>
                         </div>
+                
                         <div class="col-md-4">
                             <p>วันปิดรับ</p>
                             <div class="mt-2 mb-3">
@@ -53,19 +54,33 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p>หมวดหมู่ที่เกี่ยวข้อง</p>
+                            <p>หมวดหมู่ที่เกี่ยวข้อง ID: {{ form.job_id }}</p>
                             <div class="mt-2 mb-3">
-                                <textarea rows="4" cols="50">
-
-                                </textarea>
+                               <ul class="ks-cboxtags">
+                                  <div class="" v-for="(job, index) in jobs" :key="index">
+                                     <li><input :id="job.id" type="checkbox" :value="job.id" v-model="form.job_id"><label :for="job.id" >{{job.title}}</label></li>
+                                  </div>
+                               </ul>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <p>ตำแหน่งที่ต้องการ</p>
-                            <div class="mt-2 mb-3">
-                               <textarea v-model="form.requirement" rows="4" cols="50">
 
-                                </textarea>
+                        <div class="col-md-6">
+                            <p>ตำแหน่งที่ต้องการ ID :  {{ form.requirement }}</p>
+                            <div class="mt-2 mb-3 overflow-auto" style="height:200px;">
+
+                              <ul class="ks-cboxtags">
+                               <div class="" v-for="(job, index) in jobs" :key="index">
+                                  <div class="" v-for="(type, index) in job.jobtypes" :key="index">
+                                      <div class="" v-for="(catagory, index) in form.job_id.length" :key="index">
+                                        <div  v-if="type.job_id == form.job_id[index]">
+                                          <li><input :id="type.name" type="checkbox" :value="type.id" v-model="form.requirement"><label :for="type.name" >{{type.name}}</label></li>
+                                            <!-- <input class="typestyle" type="checkbox" :value="type.id" v-model="form.requirement" >
+                                            <label>{{type.name}}</label> -->
+                                        </div>
+                                      </div>
+                                  </div>
+                               </div>
+                               </ul>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -133,7 +148,8 @@ export default {
     form: new Form({
       desciption:'',
       quantity:'',
-      requirement:'',
+      job_id:[],
+      requirement:[],
       img: "",
       question1:'',
       question2:'',
@@ -148,10 +164,8 @@ export default {
   },
   computed:{
     ...mapGetters({
-      infos:'profile/userinfos'
-      
-      // comevent:'comevents/show',
-     
+      infos:'profile/userinfos',
+      jobs: 'comevents/jobs'
     })
   },
  methods: {
@@ -173,6 +187,9 @@ export default {
         path: "comevents"
       });
 
+      this.form.job_id = this.form.job_id.join();	
+      this.form.requirement = this.form.requirement.join();	
+     
       const { data } = await this.form.post("/api/comevents");
 
       if (data) {
@@ -183,16 +200,19 @@ export default {
     },
     
     ...mapActions({
-      fetch:'profile/fetch'
+      fetch:'profile/fetch',
+      fetchjob : 'comevents/fetchjob'
     })
   },
   created(){
      this.fetch()
+     this.fetchjob()
   }
 }
 </script>
 
 <style scoped>
+
 .card{
     padding-bottom: 10px;
     box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);
@@ -229,5 +249,74 @@ export default {
 }
 .custom-select{
     border-radius: 2rem !important;
+}
+
+/* //toggle botton */
+ul.ks-cboxtags {
+    list-style: none;
+}
+ul.ks-cboxtags li{
+  display: inline;
+  float: left;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 5px 0px 5px 0px;
+    font-size: 0.75rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
 }
 </style>

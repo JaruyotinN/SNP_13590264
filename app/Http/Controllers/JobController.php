@@ -14,7 +14,11 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $jobs = Job::get();
+        foreach($jobs as $job){
+           $job->jobtypes;
+        }
+        return $jobs;
     }
 
     /**

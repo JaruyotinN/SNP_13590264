@@ -21,7 +21,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '13 กุมภาพันธ์ - 13 เมษายน',
                     'com_id'=> 1,
-                    'type_id'=>1,
+                    'job_id'=>8,
                     'invite'=> 5,
                 ],
                 [    
@@ -33,7 +33,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '20 กุมภาพันธ์ - 25 เมษายน',
                     'com_id'=> 2,
-                    'type_id'=>1,
+                    'job_id'=>8,
                     'invite'=> 5,
                 ],
                 [    
@@ -45,7 +45,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '19 มีนาคม - 30 พฤษภาคม',
                     'com_id'=> 3,
-                    'type_id'=>1,
+                    'job_id'=>8,
                     'invite'=> 5,
                 ],
                 [    
@@ -57,7 +57,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '01 กุมภาพันธ์ - 30 เมษายน',
                     'com_id'=> 4,
-                    'type_id'=>1,
+                    'job_id'=>8,
                     'invite'=> 5,
                 ],
                 [    
@@ -69,7 +69,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '04 กุมภาพันธ์ - 24 พฤษภาคม',
                     'com_id'=> 5,
-                    'type_id'=>1,
+                     'job_id'=>8,
                     'invite'=> 5,
                 ],
                 [    
@@ -81,7 +81,7 @@ class EventSeeder extends Seeder
                     'question2'=> "Question02",
                     'enddate'=> '29 มีนาคม - 30 มิถุนายน',
                     'com_id'=> 6,
-                    'type_id'=>1,
+                     'job_id'=>8,
                     'invite'=> 5,
                 ],
                 

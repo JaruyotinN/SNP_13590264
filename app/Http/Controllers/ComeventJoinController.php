@@ -127,12 +127,13 @@ class ComeventJoinController extends Controller
         $comeventJoin = ComeventJoin::find($id);
         if ($request->get == '1'){
             $comeventJoin->update([
-                'cheack' => $request->cheack,
+                'check' => $request->check,
             ]);
         } else if ($request->get == '2'){
             $comeventJoin->update([
                 'interview' => $request->interview,
                 'result' => $request->result,
+                'check' => $request->check,
             ]);
         }
        

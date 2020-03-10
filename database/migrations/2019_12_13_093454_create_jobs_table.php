@@ -18,6 +18,7 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->timestamps();
         });
+
     }
 
     /**

@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/make_dairys', 'StudentPostController@store');
     Route::resource('/interndairys', 'StudentPostController');
     Route::resource('/majors', 'MajorController');
+    Route::resource('/jobtypes', 'JobController');
     Route::resource('/comevents', 'ComeventController');
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');

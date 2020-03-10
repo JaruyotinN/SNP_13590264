@@ -31,10 +31,16 @@
                         </td>
                         <td>   
                             <form class="was-validated" @submit.prevent="update" @keydown="form.onKeydown($event)">
-                             <router-link :to="{name:'getstudent', params:{id:event.student.comevent_joins.id }}">
+                             <!-- <router-link :to="{name:'getstudent', params:{id:event.student.comevent_joins.id }}" @click="update(event.student.comevent_joins.id)" >
                                   <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
-                                  
-                            </router-link>
+                            </router-link> -->
+                             <input class="form-control" type="hidden" v-model="form.id = event.student.comevent_joins.id">
+                            <v-button
+                            :loading="form.busy"
+                            id="createbtn"
+                            style="width:130px;"
+                            class="text-white colorr"
+                            >ข้อมูลเพิ่มเติม</v-button>
                             </form>
                         </td>
                         </tr>
@@ -53,15 +59,22 @@ export default {
     props:['event'],
     data: () => ({
     form: new Form({
-      cheack:1,
+      check:1,
       get:1,
+      id:"",
     }),
     }),
      methods: {
     async update() {
+      const { data } = await this.form.put(`/api/update/${this.form.id}`);
+      console.log(data);
 
-      const { data } = await this.form.put(`/api/update/${this.id}`);
-      
+       if (data) {
+        this.$router.push({
+          name: "getstudent",
+          params: { id: this.form.id }
+        });
+      }
     },
   },
 

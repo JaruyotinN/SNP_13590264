@@ -18,6 +18,7 @@ class CreateComeventsTable extends Migration
             $table->text('desciption');
             $table->integer('quantity');
             $table->string('requirement');
+            $table->string('job_id');
             $table->string('img')->nullable();
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();

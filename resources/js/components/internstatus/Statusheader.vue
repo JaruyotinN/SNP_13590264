@@ -10,13 +10,34 @@
         </ul>
     </div>
     <hr>
+
+   
 </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import {mapActions, mapGetters} from 'vuex'
+export default {
+    
+data() {
+  return {
+   
+  }
+  },
+  computed:{
+    ...mapGetters({
+      users:'profile/userinfos'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetch:'profile/fetch'
+    })
+  },
+  created(){
+     this.fetch()
+  }
+}
 </script>
 
 <style  scoped>

@@ -12,7 +12,8 @@ class EventSeeder extends Seeder
     public function run()
     {
             DB::table('comevents')->insert([
-                [    
+                [   
+                    'division'=> "Future Trend", 
                     'desciption'=> "บริษัท ไลค์มี จำกัดนั้นเป็นบริษัทที่มีแบร์ดหลากหลาย ทั้ง InfographicThailand , AomMoeny , ถุงเงิน Family , Future Trends",
                     'quantity' => 6,
                     'requirement'=> "Graphic Desinger",
@@ -24,7 +25,8 @@ class EventSeeder extends Seeder
                     'job_id'=>8,
                     'invite'=> 5,
                 ],
-                [    
+                [   
+                    'division'=> "Uppercuz trainee #10", 
                     'desciption'=> "ศึกครานี้ใหญ่หลวงนักเตรียมตัวให้พร้อมเหล่าผู้กล้าทั้งหลาย เพราะการคัดเลือก นักศึกษาฝึกงาน Uppercuz trainee #10กำลังจะมาแล้ว! ",
                     'quantity' => 6,
                     'requirement'=> "Graphic Designer",
@@ -36,7 +38,8 @@ class EventSeeder extends Seeder
                     'job_id'=>8,
                     'invite'=> 5,
                 ],
-                [    
+                [   
+                    'division'=> "Rabbit Digital Group", 
                     'desciption'=> "Rabbit Digital Group ขอชวนน้องๆพร้อมจั๊มป์ด้วยกันกับ LAB Rabbit รุ่นที่ 1 โครงการกระต่ายลองงาน สร้างคุณให้กลายเป็นกระต่ายดัดแปลงที่แข็งแกร่งกว่าเดิม!",
                     'quantity' => 6,
                     'requirement'=> "Graphic Desinger",
@@ -48,7 +51,8 @@ class EventSeeder extends Seeder
                     'job_id'=>8,
                     'invite'=> 5,
                 ],
-                [    
+                [   
+                    'division'=> "Grappik", 
                     'desciption'=> "ถ้าคุณรักงานออกแบบและพร้อมคิดงานเจ๋งๆให้สมองได้ระเบิดไอเดียออกมา รีบมาสมัครฝึกงานกับเราได้เลยได้ทำงานจริง ลุยสนามจริง เจ็บจริง เจอสนามการทำงานของชีวิตจริง",
                     'quantity' => 6,
                     'requirement'=> "Graphic Designer",
@@ -60,7 +64,8 @@ class EventSeeder extends Seeder
                     'job_id'=>8,
                     'invite'=> 5,
                 ],
-                [    
+                [   
+                    'division'=> "Inspire digital", 
                     'desciption'=> "รับสมัครนักศึกษาฝึกงาน สามารถออกแบบ Website Design ได้,ทำภาพเคลื่อนไหว motion graphicได้,มีความเข้าใจเรื่องของ CI และมีความคิดสร้างสรรค์ ทำงานเป็นระเบียบ",
                     'quantity' => 6,
                     'requirement'=> "Graphic Designer",
@@ -72,7 +77,8 @@ class EventSeeder extends Seeder
                      'job_id'=>8,
                     'invite'=> 5,
                 ],
-                [    
+                [   
+                    'division'=> "kidyer",  
                     'desciption'=> "โอกาสสำหรับน้องๆ การทำงานแบบ Survivors เอาชีวิตรอดในเมืองกรุง สำหรับคนที่มี “ความคิด” เยอะ แต่ไม่รู้จะเอาไปปล่อยที่ไหน Kidyers ซึ่งทำงานด้าน Digital Creative Agency เปิดรับสมัครนักศึกษาฝึกงาน",
                     'quantity' => 6,
                     'requirement'=> "Motion Graphic",

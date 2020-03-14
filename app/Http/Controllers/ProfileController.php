@@ -27,7 +27,7 @@ class ProfileController extends Controller
                 $info->student->major->faculty->university;
                 $info->student->scores;
                 foreach($info->student->scores as $score){
-                    $score->joptype->job;
+                    $score->joptype;
                 }
             } 
         } else if($infos[0]->profile_type == 'T'){

@@ -7,7 +7,7 @@
               <div class="col-12">
                   <div class="card-info">
                     <label class="bold mt-2 color-dblue">บริษัท{{ event.company.name }} </label>
-                    <p class="mb-2 color-dblue">Division / หน่วยงาน</p>
+                    <p class="mb-2 color-dblue">{{ event.division }}</p>
                     <p>ประเภทงาน : {{ event.requirement }} </p>
                     <p>ตำแหน่งที่ต้องการ : {{ event.requirement }} </p>
                     <p>ระยะเวลา : {{ event.enddate }} </p>

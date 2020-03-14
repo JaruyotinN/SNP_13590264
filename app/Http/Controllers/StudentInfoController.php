@@ -73,10 +73,36 @@ class StudentInfoController extends Controller
      * @param  \App\StudentInfo  $studentInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StudentInfo $studentInfo)
-    {
-        //
+
+    public function update(Request $request, $id)
+    {   
+        $Student = StudentInfo::find($id);
+
+            if ($request->get == '1'){
+                $Student->update([
+                    'name' => $request->name,
+                    'surname' => $request->surname,
+                    'number' => $request->number,
+                ]);
+            } else if ($request->get == '2'){
+                $Student->update([
+                    'port' => $request->port,
+                    'cv' => $request->cv,
+                    'url_port' => $request->url_port,
+                ]);
+            } else if ($request->get == '4'){
+                $Student->update([
+                    'intern_id' => 3,
+                ]);
+            }
+           
+        return $Student;
+        
     }
+    // public function update(Request $request, StudentInfo $studentInfo)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.

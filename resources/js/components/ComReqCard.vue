@@ -34,6 +34,7 @@
                              <!-- <router-link :to="{name:'getstudent', params:{id:event.student.comevent_joins.id }}" @click="update(event.student.comevent_joins.id)" >
                                   <p class="mt-4 p-1 bold">ข้อมูลเพิ่มเติม</p>
                             </router-link> -->
+                            {{event.student.comevent_joins.id}}
                              <input class="form-control" type="hidden" v-model="form.id = event.student.comevent_joins.id">
                             <v-button
                             :loading="form.busy"

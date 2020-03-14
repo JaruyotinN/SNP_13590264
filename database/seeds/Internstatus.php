@@ -13,8 +13,23 @@ class Internstatus extends Seeder
     {
         DB::table('internstatuses')->insert([
             [
-                'title'=>'เด็กฝึกงาน'
-            ]
+                'title'=>'ยังไม่มีสถานที่ฝึกงาน'
+            ],
+            [
+                'title'=>'ยืนยันสถานที่ฝึกงาน'
+            ],
+            [
+                'title'=>'มีสถานที่ฝึกงาน'
+            ],
+            [
+                'title'=>'รอการฝึกงาน'
+            ],
+            [
+                'title'=>'กำลังฝึกงาน'
+            ],
+            [
+                'title'=>'สิ้นสุดฝึกงาน'
+            ],
         ]);
     }
 }

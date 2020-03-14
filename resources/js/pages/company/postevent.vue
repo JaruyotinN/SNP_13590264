@@ -18,7 +18,7 @@
                         <div class="col-md-6">
                             <p>หน่วยงาน / แผนก</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" placeholder="หน่วยงานหรือแผนกของคุณ">
+                                <input class="form-control" v-model="form.division" type="text" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -146,6 +146,7 @@ export default {
   middleware: 'auth',
   data: () => ({
     form: new Form({
+      division:'',
       desciption:'',
       quantity:'',
       job_id:[],

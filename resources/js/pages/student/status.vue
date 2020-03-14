@@ -1,51 +1,59 @@
 <template>
-  <div class="container" >
-      <div class="col-md-12">
+  <div class="container">
+      <div class="col-md-12" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
             <div class="mb-5">
         <h4 class="center bold mb-3">สถานะของการฝึกงาน</h4>
-        <ul class="progressbar mt-3">
+        <ul class="progressbar mt-3" v-if="user.student.intern_id == 1">
             <li class="active">ผลการตอบรับจากทางบริษัท</li>
-            <li :class="checkActive(2)">ยืนยันจากสถานที่ฝึกงาน</li>
-            <li :class="checkActive(3)">ตรวจสอบข้อมูลเพื่อยืนยัน</li>
-            <li :class="checkActive(4)">รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
+            <li>ยืนยันจากสถานที่ฝึกงาน</li>
+            <li>ตรวจสอบข้อมูลเพื่อยืนยัน</li>
+            <li>รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
+        </ul>
+         <ul class="progressbar mt-3" v-if="user.student.intern_id == 2">
+            <li class="active">ผลการตอบรับจากทางบริษัท</li>
+            <li class="active">ยืนยันจากสถานที่ฝึกงาน</li>
+            <li>ตรวจสอบข้อมูลเพื่อยืนยัน</li>
+            <li>รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
+        </ul>
+        <ul class="progressbar mt-3" v-if="user.student.intern_id == 3">
+            <li class="active">ผลการตอบรับจากทางบริษัท</li>
+            <li class="active">ยืนยันจากสถานที่ฝึกงาน</li>
+            <li class="active">ตรวจสอบข้อมูลเพื่อยืนยัน</li>
+            <li>รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
+        </ul>
+        <ul class="progressbar mt-3" v-if="user.student.intern_id == 4">
+            <li class="active">ผลการตอบรับจากทางบริษัท</li>
+            <li class="active">ยืนยันจากสถานที่ฝึกงาน</li>
+            <li class="active">ตรวจสอบข้อมูลเพื่อยืนยัน</li>
+            <li class="active">รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
         </ul>
           </div>
+          {{user.student.intern_id}}
           <hr>
-          <Status01  v-if="tab == 1" @next="setTab"/>
-          <Status02 v-if="tab == 2" @next="setTab"/>
-          <Status03 v-if="tab == 3" @next="setTab" :body="body"/>
-          <Status04  v-if="tab == 4"/>
+      
+          <Status01  v-if="user.student.intern_id == 1"/>
+          <Status02 v-else-if="user.student.intern_id == 2" />
+          <Status03 v-else-if="user.student.intern_id == 3" :body="body"/>
+          <Status04 v-else-if="user.student.intern_id == 4"/>
           
       </div>
 
-      <!-- <div v-if="type === 'A'">
-        A
-      </div>
-      <div v-else-if="type === 'B'">
-        B
-      </div>
-      <div v-else-if="type === 'C'">
-        C
-      </div>
-      <div v-else>
-        Not A/B/C
-      </div> -->
   </div>
 </template>
 
 <script>
-import Statusheader from '~/components/Internstatus/Statusheader'
 import Status01 from '~/components/Internstatus/Status01'
 import Status02 from '~/components/Internstatus/Status02'
 import Status03 from '~/components/Internstatus/Status03'
 import Status04 from '~/components/Internstatus/Status04'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   middleware: 'auth',
 data() {
   return {
     tab:1,
-    body:
+ body:
     {  
       name:'ณัทกฤช',
       surname:'จารุโยธิน',
@@ -62,23 +70,34 @@ data() {
       tsurname:'อิปซัม',
       tpnum:'09x-xxx-xxx',
     },
+
     }
 },
   components:{
-    Statusheader,
     Status01,
     Status02,
     Status03,
     Status04,
   },
-  methods: {
-    setTab(tab) {
-      this.tab = tab
-    },
-    checkActive(tab){
-      return this.tab >= tab ? 'active' : ''
-    }
+  computed:{
+    ...mapGetters({
+      users:'profile/userinfos'
+    })
   },
+  methods: {
+    ...mapActions({
+      fetch:'profile/fetch'
+    }),
+    // setTab(tab) {
+    //   this.tab = tab
+    // },
+    // checkActive(tab){
+    //   return this.tab >= tab ? 'active' : ''
+    // }
+  },
+  created(){
+     this.fetch()
+  }
 }
 </script>
 

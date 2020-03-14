@@ -47,7 +47,6 @@ export default {
   },
 data: () => ({
     form: new Form({
-      check:1,
       interview:'',
       result:'',
       get:2,

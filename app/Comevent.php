@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comevent extends Model
 
 {
-    protected $fillable = ['desciption','quantity','requirement','img','enddate','question1','question2','job_id','com_id','invite'];
+    protected $fillable = ['division','desciption','quantity','requirement','img','enddate','question1','question2','job_id','com_id','invite'];
     public function staff(){
         return $this->hasOne('App\CompanyStaff','event_id','id')->latest();
     }

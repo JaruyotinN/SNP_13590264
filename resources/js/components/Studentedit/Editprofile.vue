@@ -37,30 +37,35 @@
                         <div class="col-md-4">
                             <p>มหาวิทยาลัย</p>
                             <div class="mt-2 mb-3">
-                                <input v-model="form.major.faculty.university.name" :class="{ 'is-invalid': form.errors.has('university') }" class="form-control" type="text" name="university"  placeholder="มหาวิทยาลัย">
+                                <input disabled v-model="form.major.faculty.university.name" :class="{ 'is-invalid': form.errors.has('university') }" class="form-control" type="text" name="university"  placeholder="มหาวิทยาลัย">
                                 <has-error :form="form" field="university" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <p>คณะ</p>
                             <div class="mt-2 mb-3">
-                                <input v-model="form.major.faculty.name" :class="{ 'is-invalid': form.errors.has('faculty') }" class="form-control" type="text" name="faculty"  placeholder="คณะ">
+                                <input disabled  v-model="form.major.faculty.name" :class="{ 'is-invalid': form.errors.has('faculty') }" class="form-control" type="text" name="faculty"  placeholder="คณะ">
                                 <has-error :form="form" field="faculty" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <p>สาขา / เอก</p>
                             <div class="mt-2 mb-3">
-                                <input v-model="form.major.name" :class="{ 'is-invalid': form.errors.has('major') }" class="form-control" type="text" name="major"  placeholder="สาขา / เอก">
+                                <input disabled v-model="form.major.name" :class="{ 'is-invalid': form.errors.has('major') }" class="form-control" type="text" name="major"  placeholder="สาขา / เอก ">
                                 <has-error :form="form" field="major" />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div> 
+            {{user.student.id}}
+             <input class="form-control" type="hidden" v-model="form.id = user.student.id">
               <div class="col-md-3 offset-9">
                 <div class="btn-detail-style mt-3 mb-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'student'}">บันทึกข้อมูลผู้ใช้งาน</router-link>
+                    <button class="btn btn-primary bold" 
+                    :loading="form.busy">
+                    บันทึกข้อมูลผู้ใช้งาน
+                    </button>
                 </div>
               </div>
         </form>
@@ -76,6 +81,7 @@ export default {
   middleware: 'auth',
  data: () => ({
     form: new Form({
+      get:1,
       name: "",
       surname: "",
       number: "",
@@ -83,6 +89,7 @@ export default {
       university:"",
       faculty:"",
       img:"",
+      id:'',
     }),
     image: "",
     file: ""
@@ -112,8 +119,17 @@ export default {
   methods: {
     ...mapActions({
       fetchshow:'profile/show'
-    })
-   
+    }),
+    async update() {
+
+     const { data } = await this.form.put(`/api/updateprofile/${this.form.id}`);
+     console.log(data)
+      if (data) {
+        this.$router.push({
+          name: "student",
+        });
+      }
+    },
   }
    
 }

@@ -11,8 +11,8 @@
                         <label class="m-0">สาขา {{ user.student.major.name}}</label>
                         <label class="m-0">รหัส {{user.student.number}}</label>
                           <!-- <pre>{{user}}</pre>
-                          <div v-for="(helo, index) in user.student.scores" :key="index" :class="{ active: index == 0 }">
-                              {{helo.joptype.job.title}} / {{helo.joptype.name}}
+                          <div v-for="(score, index) in user.student.scores" :key="index" :class="{ active: index == 0 }">
+                              {{score.joptype.name}}
                           </div> -->
                     </div>
                 </div>

@@ -15,10 +15,11 @@ class CreateComeventsTable extends Migration
     {
         Schema::create('comevents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('desciption');
-            $table->integer('quantity');
-            $table->string('requirement');
-            $table->string('job_id');
+            $table->string('division')->nullable();   
+            $table->text('desciption')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('requirement')->nullable();
+            $table->string('job_id')->nullable();
             $table->string('img')->nullable();
             $table->string('question1')->nullable();
             $table->string('question2')->nullable();

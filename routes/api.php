@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
     Route::get('/getstudent/{id}', 'ComeventJoinController@showcomjoin');
     Route::resource('/update', 'ComeventJoinController');
-    Route::resource('/update', 'ComeventJoinController');
+    Route::resource('/updateprofile', 'StudentInfoController');
     // Route::post('/comevent_update', 'ComeventJoinController@update');
     Route::post('/comevent_join', 'ComeventJoinController@store');
     Route::resource('/comevent/join', 'ComeventJoinController');

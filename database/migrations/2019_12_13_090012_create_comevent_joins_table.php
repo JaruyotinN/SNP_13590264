@@ -19,12 +19,13 @@ class CreateComeventJoinsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');     
-            $table->string('question1')->nullable();
-            $table->string('question2')->nullable();
+                ->onDelete('cascade');  
+            $table->text('question1')->nullable();
+            $table->text('question2')->nullable();
             $table->boolean('check')->default(0);
             $table->boolean('interview')->default(0);
-            $table->integer('result')->default(0)->comment('0.wait 1.pass 2.notpass');
+            $table->integer('result')->default(0)->comment('0.wait 1.interview 2.consider 3.pass 99.notpass');
+            $table->integer('stu_confirm')->default(0)->comment('0.wait 1.yes 2.no');
             $table->timestamps();
         });
     }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Comevent;
 use App\ComeventJoin;
-use App\Companyinfos;
 use App\Profile;
+use App\StudentInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,9 +18,12 @@ class ComeventJoinController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $user_joins = ComeventJoin::where('user_id',$user->id)
-        ->join('comevents', 'comevent_joins.event_id', '=', 'comevents.id')
-        ->join('companyinfos', 'comevents.com_id', '=', 'companyinfos.id')->get();
+        $user_joins = ComeventJoin::where('user_id',$user->id,)
+        ->orderBy('result', 'desc')
+        ->get();
+        foreach($user_joins as $com){
+            $com->comevent->company;
+        }
 
         return $user_joins;
     }
@@ -125,6 +127,10 @@ class ComeventJoinController extends Controller
     public function update(Request $request, $id)
     {   
         $comeventJoin = ComeventJoin::find($id);
+        
+        $stu_id = $request->stu_id;
+        $studentJoin = StudentInfo::find($stu_id);
+
         if ($request->get == '1'){
             $comeventJoin->update([
                 'check' => $request->check,
@@ -133,7 +139,13 @@ class ComeventJoinController extends Controller
             $comeventJoin->update([
                 'interview' => $request->interview,
                 'result' => $request->result,
-                'check' => $request->check,
+            ]);
+        } else if ($request->get == '3'){
+            $comeventJoin->update([
+                'stu_confirm' => $request->stu_confirm,
+            ]);
+            $studentJoin->update([
+                'intern_id' => 2,
             ]);
         }
        

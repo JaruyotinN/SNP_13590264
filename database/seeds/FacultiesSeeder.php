@@ -13,7 +13,7 @@ class FacultiesSeeder extends Seeder
     {
         DB::table('faculties')->insert([
             [
-                'name'=>'ICT',
+                'name'=>'คณะเทคโนโลยีสารสนเทศและการสื่อสาร',
                 'uni_id'=>1,
             ]
         ]);

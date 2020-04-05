@@ -15,8 +15,8 @@ class StudentPostController extends Controller
     public function index()
     {
         $studentpost = StudentPost::get();
-        foreach($studentpost as $stu){
-            $stu->post;
+        foreach($studentpost as $post){
+            $post->student;
         }
         return $studentpost;
     }

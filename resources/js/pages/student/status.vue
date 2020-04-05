@@ -29,7 +29,7 @@
         </ul>
           </div>
           {{user.student.intern_id}}
-          <hr>
+          <hr class="hr-orange">
       
           <Status01  v-if="user.student.intern_id == 1"/>
           <Status02 v-else-if="user.student.intern_id == 2" />

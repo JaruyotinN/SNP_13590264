@@ -1,36 +1,48 @@
 <template>
    <div class="container" >
-    
-          <!-- <ColumHeader :title="comevent.company.name" showBack="student" description="lqwdfeqeqeqe"/> -->
-          <ColumHeader :title="comevent.company.name" showBack="student"/> 
-          <!-- <Detailheader title="diary" showBack="dairy"/> -->
+          <ColumHeader :title="comevent.company.name" showBack="student" :img="comevent.company.logo"/> 
       <div class="row">
           <div class="col-md-12">
                 <Detailbody :body="comevent"/>
-          
           <div class="card mt-4">
-             <div class="col-12">
-                  <div class="card-info">
-                    <h5 class="bold mt-3">คำถามเด็กฝึกงาน</h5>
-                    <div class="form-group">
+              <div class="card-info">
+                  <h5 class="bold mt-4 center">ตำแหน่งที่จะสมัคร</h5>
+                    <div class="col-md-10 m-auto">
+                        <hr class="hr-orange">
+                    </div>
+              </div> 
+          </div>
+          <div class="card mt-4">
+              <div class="card-info">
+                  <h5 class="bold mt-4 center">คำถามถึงนักศึกษาฝึกงาน</h5>
+                    <div class="col-md-10 m-auto">
+                        <hr class="hr-orange">
+                         <div class="form-group">
                          <p>{{ comevent.question1 }}</p>
                         <textarea class="form-control" v-model="form.question1" rows="3"></textarea>
+                        </div>         
                     </div>
-                    <div class="form-group">
+              </div> 
+          </div>
+          <div class="card mt-4">
+              <div class="card-info">
+                  <h5 class="bold mt-4 center">คำถามถึงนักศึกษาฝึกงาน</h5>
+                    <div class="col-md-10 m-auto">
+                        <hr class="hr-orange">
+                         <div class="form-group">
                          <p>{{ comevent.question2 }}</p>
                         <textarea class="form-control" v-model="form.question2" rows="3"></textarea>
+                        </div>         
                     </div>
-                  </div> 
-              </div>
-        </div>
+              </div> 
+          </div>
         <div  v-for="(info, index) in infos" :key="index">
             <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id">
         </div>
-              <div class="btn-detail-style mt-3 mb-3">
-                <button class="btn btn-primary bold" @click="cheack()">
+              <div class="mt-3 mb-3 center">
+                <button class="btn-outline-primary bold" @click="cheack()">
                   สมัครฝึกงาน
                 </button>
-                <!-- <router-link class="btn btn-primary bold" :to="{name:'status'}">สมัครฝึกงาน</router-link> -->
 						  </div>
             </div>
       </div>
@@ -136,7 +148,7 @@ data() {
 }
 </script>
 <style scoped>
-.btn-detail-style .btn-primary{ 
+/* .btn-detail-style .btn-primary{ 
     background-color: #0047BA ;
     border:none; 
     border-radius: 30px;
@@ -160,5 +172,32 @@ data() {
   text-align: center;
   padding-top:20px ;
   padding-bottom:20px;
+} */
+.btn-outline-primary {
+    width: 40% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
+}
+textarea {
+  overflow: auto;
+  box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+  border-radius: 5px;
+  outline: none !important; 
+}
+.card-info{
+    margin-top: 2px;
+    padding: 5px 0 5px 0;
+    font-size: 1rem;
+    line-height: 19px;
+    color: #4A4A4A;
+}
+.card{
+    padding-bottom: 10px;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+    border-radius: 5px;
 }
 </style>

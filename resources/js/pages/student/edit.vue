@@ -9,7 +9,10 @@
                         <img :src="form.img"/>
                     </div>
                     <div class="center mt-2">
-                        <a class="f025" href="#">แก้ไขรูปโปรไฟล์</a>
+                         <a class="f025" href="#">
+                        <input type="file" name="image" @change="setImg" />
+                        </a>
+                        <!-- <a class="f025" href="#">แก้ไขรูปโปรไฟล์</a> -->
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -78,16 +81,22 @@
         <div class="row">
             <div class="col-md-4">
                 <p>Portfolio</p>
-                <div class="mt-2 mb-3">
+                <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
+                <div class>
+                    <input  type="file" @change="setFile" />
+                    <has-error :form="form" field="file" />
+                </div>
+                <!-- <div class="mt-2 mb-3">
                     <input v-model="form2.port" :class="{ 'is-invalid': form2.errors.has('port') }" class="form-control" type="text" name="port"  placeholder="port">
                     <has-error :form="form2" field="port" />
-                </div>
+                </div> -->
             </div>
             <div class="col-md-4">
                 <p>Resume</p>
-                <div class="mt-2 mb-3">
-                    <input v-model="form2.cv" :class="{ 'is-invalid': form2.errors.has('cv') }" class="form-control" type="text" name="cv"  placeholder="cv">
-                    <has-error :form="form2" field="port" />
+                <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Resume ของคุณ</a>
+                <div class>
+                    <input  type="file" @change="setFile" />
+                    <has-error :form="form" field="file" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -132,7 +141,6 @@ export default {
       university:"",
       faculty:"",
       img:"",
-
     }),
     form2: new Form({
       id:'',
@@ -170,13 +178,30 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchshow:'profile/show'
+      fetchshow:'profile/show',
+      
     }),
+    openWindow: function (link) {
+         window.open(link);
+    },
+    setImg(e) {
+      this.image = e.target.files[0];
+    },
+    setFile(e) {
+      this.file = e.target.files[0];
+    },
     async update(useform) {
     
     let checkform = useform == 1 ? true : false;
     
     if(checkform) {
+
+        if (this.image) {
+        this.form.img = await this.upImg({
+          image: this.image,
+          path: "updateprofile"
+        });
+        }
         const { data } = await this.form.put(`/api/updateprofile/${this.form.id}`);
         console.log(data)
         if (data) {
@@ -184,13 +209,21 @@ export default {
           name: "student",
         });
       }
+
     } else {
+
+        if (this.file) {
+        this.form2.port = await this.uploadFile({
+        file: this.file,
+        path: "updateprofile"
+        });
+      }
         const { data } = await this.form2.put(`/api/updateprofile/${this.form2.id}`);
         console.log(data)
+        
     }
     },
-  }
-   
+  }  
 }
 
 </script>

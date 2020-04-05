@@ -2,13 +2,12 @@
    <div class="container" >    
      
     <ColumHeader title="ข้อมูลของนักศึกษา" showBack="internrequest"/> 
-      <pre>{{showstudent}}</pre>  
+      <pre>{{showstudent}}</pre> 
+                <label>check : {{showstudent.check}} , interview : {{showstudent.interview}} , result : {{showstudent.result}}</label> 
       <form class="was-validated" @submit.prevent="update" @keydown="form.onKeydown($event)">
           <h4>มีการสอบสัมภาษณ์</h4>
           <input class="tgl tgl-flat" id="cb4" type="checkbox"  v-model="form.interview"/>
           <label class="tgl-btn" for="cb4"></label>{{form.interview}}
-          
-          <span>Selected: {{ form.result }}</span>
           <div class="form-group">
             <select class="custom-select" v-model="form.result" required> 
               <option value="0">รอการพิจารณา</option>
@@ -17,7 +16,8 @@
               <option value="3">ผ่าน</option>
             </select>
             <div class="invalid-feedback">Example invalid custom select feedback</div>
-          </div>
+          </div> 
+          <label>inputinterview: {{form.interview}} , inputresult: {{ form.result }}</label> 
            <div class="btn-detail-style mt-3 mb-3">
                 <button class="btn btn-primary bold" 
                 :loading="form.busy">

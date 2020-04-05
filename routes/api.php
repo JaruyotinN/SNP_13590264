@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/comevent/join', 'ComeventJoinController');
     Route::resource('/company', 'CompanyinfosController');
     Route::post('uploadImage', 'UploadController@uploadImage');
+    Route::post('uploadFile', 'UploadController@uploadFile');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 });

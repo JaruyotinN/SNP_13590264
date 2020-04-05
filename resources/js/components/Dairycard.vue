@@ -5,10 +5,10 @@
                 <div class="col-2">
                     <div class="content-left mt-4">
                         <div class="img-circle">
-                            <img src="/uploads/images/comevents/user.png" style="opacity:20%" center alt="..." class="card-img-top"/>
+                            <img :src="dairy.student.img" center alt="..." class="card-img-top"/>
                         </div>
                          <div class="center mt-3">
-                            <!-- <p>{{ dairy.name }}</p> -->
+                            <p>{{ dairy.student.name }} {{ dairy.student.surname }} </p>
                         </div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <h5 class="mt-4 p-1 bold">{{dairy.title}}</h5>
                     <h5 class=" mb-4 p-1" >{{dairy.description}}</h5>
                     <div class="fix-position">
-                        <!-- <p>บันทึกวันที่ : {{dairy.created_at}} โดย {{dairy.name}} {{dairy.number}} , เวลา {{dairy.time}}</p> -->
+                        <p>บันทึกวันที่ : {{dairy.created_at}} โดย {{dairy.student.name}} {{dairy.student.number}} </p>
                     </div> 
                 </div>
             </div>
@@ -57,8 +57,8 @@ p{
     position: absolute;
 }
 .card{
-    padding-bottom: 10px;
-    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);
+    padding : 1.5rem;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
 }
 .card-info{

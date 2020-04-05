@@ -18,6 +18,8 @@ export default [
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
   
+  { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },
+  { path: '/studairy', name: 'studairy', component: page('teacher/dairy.vue') },
   
 
   { path: '/', name: 'login', component: page('auth/login.vue') },

@@ -45,7 +45,7 @@ p{
 }
 .card{
     padding-bottom: 10px;
-    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.5);
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
    
 }

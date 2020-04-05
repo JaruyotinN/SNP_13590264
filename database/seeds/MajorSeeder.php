@@ -14,12 +14,16 @@ class MajorSeeder extends Seeder
         DB::table('majors')->insert([
             [
                 'faculty_id'=>1,
-                'name'=>'web'
+                'name'=>'ออกแบบเว็บและสื่อโต้ตอบ'
             ],
             [
                 'faculty_id'=>1,
-                'name'=>'game'
-            ]
+                'name'=>'ออกแบบเกม'
+            ],
+            [
+                'faculty_id'=>1,
+                'name'=>'ออกแบบแอนิเมชัน'
+            ],
         ]);
     }
 }

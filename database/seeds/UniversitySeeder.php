@@ -13,7 +13,7 @@ class UniversitySeeder extends Seeder
     {
         DB::table('universities')->insert([
             [
-                'name'=>'Silpakorn university',
+                'name'=>'มหาวิทยาลัยศิลปากร',
             ]
         ]);
     }

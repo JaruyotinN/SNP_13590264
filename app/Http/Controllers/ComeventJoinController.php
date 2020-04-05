@@ -19,7 +19,7 @@ class ComeventJoinController extends Controller
     {
         $user = $request->user();
         $user_joins = ComeventJoin::where('user_id',$user->id,)
-        ->orderBy('result', 'desc')
+        ->orderBy('id')
         ->get();
         foreach($user_joins as $com){
             $com->comevent->company;

@@ -1,8 +1,7 @@
 <template>
 <div>
-
-    <table class="table" >
-    <thead>
+    <table class="table mb-5" >
+    <thead class="color-dblue">
         <tr>
         <th>ชื่อบริษัท</th>
         <th>ตำแหน่ง</th>
@@ -22,41 +21,57 @@
                 <i v-else class="fa fa-minus-circle"></i>
             </td>
             <td class="center w15">
-                <i v-if="userjoin.interview" class="fa fa-check-circle "></i>  
-                <i v-else class="fa fa-minus-circle"></i>
+                <p v-if="userjoin.interview" class="mt-2">มีสัมภาษณ์</p>
+                <p v-else class="mt-2" >ไม่มีสัมภาษณ์</p>
+                <!-- <i v-if="userjoin.interview" class="fa fa-check-circle "></i>  
+                <i v-else class="fa fa-minus-circle"></i> -->
             </td>
             <td class="center w15">
-                <h5 v-if="userjoin.result == 0" >รอการพิจารณา</h5>
-                <h5 v-else-if="userjoin.result == 1" >ต้องการให้มาสัมภาษณ์</h5>
-                <h5 v-else-if="userjoin.result == 2" >อยู่ในการพิจารณา</h5>
-                <h5 v-else-if="userjoin.result == 3" >ผ่าน</h5>
+                <p v-if="userjoin.result == 0" class="badge waiting">รอการพิจารณา</p>
+                <p v-else-if="userjoin.result == 1" class="badge in-progress">ต้องการให้มาสัมภาษณ์</p>
+                <p v-else-if="userjoin.result == 2" class="badge in-review">อยู่ในการพิจารณา</p>
+                <p v-else-if="userjoin.result == 3" class="badge approved">ผ่านการพิจารณา</p>
+                <p v-else-if="userjoin.result == 50" class="badge invite">คำเชิญให้มาฝึกงาน</p>
+                <p v-else-if="userjoin.result == 99" class="badge disapproved">ไม่ผ่านการพิจารณา</p>
             </td>
         </tr>
     </tbody>
     </table>
-  
-    <form class="was-validated"  @submit.prevent="update" @keydown="form.onKeydown($event)">
-    <div class="col-md-10 offset-1 mt-5" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
-        <label>comeventjoin_id : {{form.id}} stu_id : {{form.stu_id}}</label>
-        <div class="input-group mb-3">
-            <h5 class="bold mt-auto mb-auto">เลือกบริษัทที่นักศึกษาต้องการฝึกงาน</h5>
-            <select class="custom-select" v-model="form.id" required>
-                <option v-for="(userjoin, index) in userjoins" :key="index" :value="userjoin.id" v-if="userjoin.result == 3">บริษัท {{userjoin.comevent.company.name}}</option>
-            </select>
-        </div>
-          <input class="form-control" type="hidden" v-model="form.stu_id = user.student.id">
-          <p class="center color-orange " >*** หากยืนยันบริษัทฝึกงานเรียบร้อยจะไม่สามารถแก้ไขในภายหลัง ***</p>
+    <form class="was-validated"  @submit.prevent="check" @keydown="form.onKeydown($event)">
+    <div class="card mt-4">
+              <div class="card-info">
+                    <div class="col-md-10 offset-1 mt-5" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
+                    <div class="col-md-10 m-auto">
+                         <h5 class="bold mt-auto mb-auto center">เลือกบริษัทที่นักศึกษาต้องการฝึกงาน</h5>
+                          <p class="center color-orange" >*** หากยืนยันบริษัทฝึกงานเรียบร้อยจะไม่สามารถแก้ไขในภายหลัง ***</p>
+                          <br>
+                           <div class="input-group mb-3">
+                                <select class="custom-select" v-model="form.id" required>
+                                    <option v-for="(userjoin, index) in userjoins" :key="index" :value="userjoin.id" v-if="userjoin.result == 3">บริษัท {{userjoin.comevent.company.name}}</option>
+                                </select>
+                            </div>
+                             <label>comeventjoin_id : {{form.id}} stu_id : {{form.stu_id}}</label>
+                             <input class="form-control" type="hidden" v-model="form.stu_id = user.student.id">
+                    </div>
+              </div> 
+                <div class="mt-3 mb-3 center">
+                    <button v-if="form.id == false" class="btn-outline-secondary bold" disabled>โปรดเลือกบริษัทที่ต้องการฝึกงาน</button>
+                    <button v-else class="btn-outline-primary bold" :loading="form.busy" >ยืนยันบริษัทฝึกงาน</button>
+                </div>
+            </div>
     </div>
-    <div class="btn-detail-style mt-3 mb-3">
-        <button class="btn btn-primary bold" :loading="form.busy">ยืนยันบริษัทฝึกงาน</button>
-	</div>
     </form>
+   
+  
+   
 </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Form from "vform";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
    export default {
   middleware: 'auth',
@@ -73,6 +88,27 @@ import Form from "vform";
      userjoin:'comevents/userjoin',
      fetch:'profile/fetch'
    }),
+   check(){
+       Swal.fire({
+        title: 'ยืนยันบริษัทที่ต้องการฝึกงาน',
+        text: "หากยืนยันบริษัทฝึกงานเรียบร้อยจะไม่สามารถแก้ไขในภายหลัง",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'ยกเลิก',
+        confirmButtonText: 'ยืนยันการสมัคร'
+        }).then((result) => {
+        if (result.value) {
+          this.update()
+            Swal.fire(
+          'ยืนยันเสร็จสิ้น',
+          'ยินดีด้วยคุณได้สถานที่ฝึกงานเรียบร้อย',
+          'success',
+            )
+        }
+        })  
+   },
       async update() {
 
      const { data } = await this.form.put(`/api/update/${this.form.id}`);
@@ -175,7 +211,7 @@ tr.spaceUnder>td {
   .table th {
       border-top: none !important;
   }
-  .btn-detail-style .btn-primary{ 
+  /* .btn-detail-style .btn-primary{ 
     background-color: #0047BA ;
     border:none; 
     border-radius: 30px;
@@ -199,5 +235,74 @@ tr.spaceUnder>td {
   text-align: center;
   padding-top:20px ;
   padding-bottom:20px;
+} */
+.btn-outline-primary {
+    width: 40% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
 }
+.btn-outline-secondary {
+    width: 40% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    border: 2px solid ;
+    box-shadow:none;
+}
+.card-info{
+    margin-top: 2px;
+    padding: 5px 0 5px 0;
+    font-size: 1rem;
+    line-height: 19px;
+    color: #4A4A4A;
+}
+.card{
+    padding-bottom: 10px;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+    border-radius: 5px;
+}
+
+/* badge */
+.badge {
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  padding: 15px 15px;
+  border-radius: 5px;
+}
+
+.badge.approved {
+  background:#E0F2DE;
+  color: #8BD882;
+}
+
+.badge.disapproved {
+  background: #EDBEBE;
+  color: #BF5C5C;
+}
+
+.badge.in-progress {
+  background: #FFE2DB;
+  color: #FE7250;
+}
+
+.badge.in-review {
+  background:#F5E8C4;
+  color: #FFB105;
+}
+
+.badge.waiting {
+  background: #ECEEF0;
+  color: #9DA3AB;
+}
+
+.badge.invite {
+  background: #E4EFFE;;
+  color: #133CBA;
+}
+
 </style>

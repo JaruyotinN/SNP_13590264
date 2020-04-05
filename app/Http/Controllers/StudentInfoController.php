@@ -83,6 +83,7 @@ class StudentInfoController extends Controller
                     'name' => $request->name,
                     'surname' => $request->surname,
                     'number' => $request->number,
+                    'img' => $request->img,
                 ]);
             } else if ($request->get == '2'){
                 $Student->update([

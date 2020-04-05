@@ -20,15 +20,117 @@ class ComeventController extends Controller
     public function index(Request $request)
     {   
         $user = $request->user();
+        $arrayuserjob = [];
+
         
-        $get_job = DB::table('scores')
+        $comevent = DB::table('scores')
             ->where('user_id','=',$user->id)
             ->join('joptypes','scores.type_id','=','joptypes.id')
             ->join('jobs','jobs.id','=','joptypes.job_id')
             ->select('jobs.id')
             ->get();
 
+        //ต้องเอา id ของ Companyinfo
+        // foreach($userjobs as $index=>$e){
+        //     $arrayuserjob[$e];
+        // }
 
+        //ประกาศไว้้เก็บค่า
+        $positions = [];
+        $prices = [];
+        $persons = [];
+
+        $arraycomevent = [];
+        $arrayjob = [];
+        
+        //หาประเภทงานที่ user กำหนด
+        $userjobs = Score::where('user_id','=',$user->id)->get();
+        foreach($userjobs as $index=>$userjob){
+            $arrayjob[$index] =  $userjob->joptype->job_id;
+        }
+
+         //แยกไม่ให้มีซ้ำ
+        $uniquejobid = array_unique($arrayjob); 
+        $jobidtostring = implode(',',$uniquejobid);
+        $explodeuserjobs =  explode(',', $jobidtostring);
+        $getcom = [];
+        // foreach($ex as $index=>$e){
+        //                 $positions[] = $e;
+        //                 if(!empty($ex_bd)){
+        //                     $prices[$e] = $ex_bg[$index];
+        //                 }
+        //                 if(!empty($ex_ps)){
+        //                     $persons[$e] = $ex_ps[$index];
+        //                 }
+        // }
+        //index คือขนาดของ explodeuserjobs 0,1,2  //$e คือข้อมูลที่อยู่ในนั้น
+            // $comevents = Comevent::orderBy('created_at', 'desc')
+            // ->where('job_id','like','%'.$explodeuserjobs.'%')->get();
+ 
+
+        // $users = User::where('username','like','%'.$username.'%')
+        // ->orWhere('email','like','%'.$username.'%')
+        // ->orWhere('name','like','%'.$username.'%')
+        // ->orWhere('aka','like','%'.$username.'%')
+        // ->get();
+        //index คือขนาดของ explodeuserjobs 0,1,2  //$e คือข้อมูลที่อยู่ในนั้น
+        // $comevents = Comevent::orderBy('created_at', 'desc')->get();
+        //     foreach($comevents as $com){
+        //         $comjobid =  explode(',',$com->job_id);
+        //         $show = 0;
+        //         foreach($explodeuserjobs as $index=>$e){
+        //         foreach($comjobid as $num=>$com){
+        //             if($explodeuserjobs[$index] == $comjobid[$num]){
+        //                $show = 1;
+        //             }
+        //         }
+        //     }     
+        // }
+
+        // $merged = collect($arrays2)->map(function ($value) use ($arrays1)  {
+
+        //     foreach($arrays1 as $array){
+        //         if($value["bulk_id"]==$array["bulk_id"]){
+        //             $value["itemId"] = $array["itemId"];
+        //         }
+        //     }
+    
+        //     return $value;
+        // });
+    
+
+        //  $comevents = Comevent::orderBy('created_at', 'desc')->get();
+        //  foreach($comevents as $com){
+        //         $comjobid =  explode(',',$com->job_id);
+        //         //แยกค่าของ User แต่ละตัว
+  
+
+                
+        //         // $arraycomevent[$index] = $ex;
+        //             // if($comeventjobid == $userjobid){
+        //             //     $getcomevents = Comevent::where('id', $com->id)->get();
+        //             //     foreach($getcomevents as $getcom){
+        //             //     $getcom->company;
+        //             // }
+        // }
+        
+        // if(!empty($post_team->pre_position_id)){  
+        //     $ex =  explode(',',$post_team->pre_position_id); 
+        //     $ex_bg = explode(',',$post_team->prebudget); 
+        //     $ex_ps = explode(',',$post_team->pre_person); 
+        //     if(!empty($ex)){
+        //         foreach($ex as $index=>$e){
+        //             $positions[] = $e;
+        //             if(!empty($ex_bd)){
+        //                 $prices[$e] = $ex_bg[$index];
+        //             }
+        //             if(!empty($ex_ps)){
+        //                 $persons[$e] = $ex_ps[$index];
+        //             }
+        //         }
+        //     }
+        // }
+        
         // $search = Comevent::where('job_id','like','%'.$get_job.'%')
         //     ->orWhere('requirement','like','%'.$username.'%')
         //     ->orWhere('name','like','%'.$username.'%')
@@ -41,22 +143,7 @@ class ComeventController extends Controller
             // $array1 = array(20, 11, 29, 88);
             // $array2 = array(29, 20, 1, 2, 1, 27);
                 
-            //     function isInArray($array, $searchIn) {
-            //         static $inc = array();
-                    
-            //         foreach ($array as $v) {
-            //             if (is_array($v) && sizeof($v) > 0) {
-            //                 isInArray($v, $searchIn);
-            //             } else if (!is_array($v) && in_array($v, $searchIn)) {
-            //                 isset($inc[$v]) ? $inc[$v]++ : $inc[$v] = 1;
-            //             }
-            //         }
-                    
-            //         return $inc;
-            //     }
-                
-            // $totals = isInArray($array2, $array1);
-            // var_dump($totals);
+    
             
         // TRY FIND IN ARRAY 
 
@@ -94,7 +181,7 @@ class ComeventController extends Controller
             // }
             // $com->company;
         }
-        return $comevents;
+        return   $comevents;
     }
 
     public function getcomevent(Request $request)

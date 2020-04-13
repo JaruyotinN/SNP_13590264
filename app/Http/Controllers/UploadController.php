@@ -18,9 +18,19 @@ class UploadController extends Controller
     {
         $file = $request->file;
         $filename = time() . $file->getClientOriginalName();
-        $path = '/uploads/files';
+        $path = '/uploads/files/Portfolio';
         $file->move(public_path($path), $filename);
         $set = '/uploads/files/' . $filename;
         return $set;
     }
+    public function uploadCv(Request $request)
+    {
+        $file = $request->file;
+        $filename = time() . $file->getClientOriginalName();
+        $path = '/uploads/files/Resume';
+        $file->move(public_path($path), $filename);
+        $set = '/uploads/files/' . $filename;
+        return $set;
+    }
+    
 }

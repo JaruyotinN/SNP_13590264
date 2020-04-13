@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/company', 'CompanyinfosController');
     Route::post('uploadImage', 'UploadController@uploadImage');
     Route::post('uploadFile', 'UploadController@uploadFile');
+    Route::post('uploadCv', 'UploadController@uploadCv');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 });

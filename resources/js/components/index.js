@@ -17,3 +17,4 @@ import { HasError, AlertError, AlertSuccess } from 'vform'
 ].forEach(Component => {
   Vue.component(Component.name, Component)
 })
+

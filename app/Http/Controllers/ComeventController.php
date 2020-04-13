@@ -29,7 +29,6 @@ class ComeventController extends Controller
             $arrayjob[$index] =  $userjob->joptype->job_id;
             //นำมา loop เอา job_id ของแต่ละ jobtype เก็บไว้ใน arrayjob
         } 
-
         $uniquejobid = array_unique($arrayjob); //ค่าใน arrayjob เอาค่าไม่ซ้ำ
        
 
@@ -44,17 +43,25 @@ class ComeventController extends Controller
                 }
             }       
         }
-
         $uniquecomjob = array_unique($arraycomjob); //ค่าใน arraycomjob เอาค่าไม่ซ้ำ
-        $comevents = Comevent::orderBy('created_at', 'desc')
-        ->whereIn('id', $uniquecomjob)->get();  //หา comevents ที่มีใน array uniquecomjob
-            foreach($comevents as $com){
-                $com->company; //เชื่อมข้อมูลใน module เอาข้อมูล company
+
+        if(!empty($uniquejobid)){ //ถ้ามี job_id ที่ userกรอกให้แสดง comevent ที่ตรงกับ user ต้องการ
+            $comevents = Comevent::orderBy('created_at', 'desc')
+            ->whereIn('id', $uniquecomjob)->get();  //หา comevents ที่มีใน array uniquecomjob
+                foreach($comevents as $com){
+                    $com->company; //เชื่อมข้อมูลใน module เอาข้อมูล company
             }
             return $comevents;
+        } else { //ถ้าไม่มีมี job_id ที่ userกรอกให้แสดง comevent ทั้งหมด
+            $comevents = Comevent::orderBy('created_at', 'desc')->get();
+                foreach($comevents as $com){
+                    $com->company; //เชื่อมข้อมูลใน module เอาข้อมูล company
+            }
+            return $comevents;
+        }
         
     }
-
+    
     public function getcomevent(Request $request)
     {   
         $user = $request->user();

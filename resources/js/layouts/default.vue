@@ -12,7 +12,6 @@
 import Navbar from '~/components/Navbar'
 import FooterApp from '~/components/Footer'
 
-
 export default {
   name: 'MainLayout',
 

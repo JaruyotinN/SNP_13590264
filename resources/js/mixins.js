@@ -20,6 +20,22 @@ export default {
           } else {
             return null;
           }
+        },
+        async uploadCv(set) {
+          console.log("uploadCv start");
+          console.log(set);
+          if (set.file) {
+            const config = {
+              headers: { "content-type": "multipart/form-data" }
+            };
+            let formData = new FormData();
+            formData.append("file", set.file);
+            formData.append("path", set.path);
+            const { data } = await axios.post("/api/uploadCv", formData, config);
+            return data;
+          } else {
+            return null;
+          }
         }
 },
 }

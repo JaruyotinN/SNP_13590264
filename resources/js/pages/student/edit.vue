@@ -1,20 +1,27 @@
 <template>
-   <div class="container" > 
-        <div class="col-md-12">
+<div class="container" > 
+     <div class="mb-5"> 
+        <router-link to="student">ย้อนกลับ</router-link>
+     </div>
+     <div class="card mt-5">
         <form @submit.prevent="update(1)" @keydown="form.onKeydown($event)">
-        <ColumHeader title='แก้ไขข้อมูลผู้ใช้งาน' showBack="student"/>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="img-circle center">     
-                        <img :src="form.img"/>
-                    </div>
-                    <div class="center mt-2">
-                         <a class="f025" href="#">
-                        <input type="file" name="image" @change="setImg" />
-                        </a>
-                        <!-- <a class="f025" href="#">แก้ไขรูปโปรไฟล์</a> -->
-                    </div>
-                </div>
+            <div class="col-md-12">
+              <div class="mt-4 mb-4">
+                  <h5 class="bold">แก้ไขข้อมูลผู้ใช้งาน</h5>
+              </div>
+              <hr class="hr-orange">
+              <div class="row mt-5">
+                  <div class="col-md-3">
+                      <div class="img-circle center">     
+                          <img :src="form.img"/>
+                      </div>
+                      <div class="center mt-2">
+                          <a class="f025" href="#">
+                          <input type="file" name="image" @change="setImg" />
+                          </a>
+                          <!-- <a class="f025" href="#">แก้ไขรูปโปรไฟล์</a> -->
+                      </div>
+                  </div>
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-4">
@@ -61,73 +68,99 @@
                         </div>
                     </div>
                 </div>
-            </div> 
-            {{user.student.id}}
-            <input class="form-control" type="hidden" v-model="form.get = 1">
-             <input class="form-control" type="hidden" v-model="form.id = user.student.id">
-              <div class="col-md-3 offset-9">
-                <div class="btn-detail-style mt-3 mb-3">
-                    <button class="btn btn-primary bold" 
-                    :loading="form.busy">
-                    บันทึกข้อมูลผู้ใช้งาน
-                    </button>
-                </div>
-              </div>
-        </form>
-            <!-- edit profile -->
+                
+              </div>  <!-- row -->
 
-        <form @submit.prevent="update(2)" @keydown="form2.onKeydown($event)">
-        <ColumHeader title='แก้ไขข้อมูล Resume / Portfolio'/>
-        <div class="row">
-            <div class="col-md-4">
-                <p>Portfolio</p>
-                <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
-                <div class>
-                    <input  type="file" @change="setFile" />
-                    <has-error :form="form" field="file" />
-                </div>
-                <!-- <div class="mt-2 mb-3">
-                    <input v-model="form2.port" :class="{ 'is-invalid': form2.errors.has('port') }" class="form-control" type="text" name="port"  placeholder="port">
-                    <has-error :form="form2" field="port" />
-                </div> -->
-            </div>
-            <div class="col-md-4">
-                <p>Resume</p>
-                <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Resume ของคุณ</a>
-                <div class>
-                    <input  type="file" @change="setFile" />
-                    <has-error :form="form" field="file" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <p>URL สำหรับผลงาน</p>
-                <div class="mt-2 mb-3">
-                    <input v-model="form2.url_port" :class="{ 'is-invalid': form2.errors.has('url_port') }" class="form-control" type="text" name="url_port"  placeholder="url_port">
-                    <has-error :form="form2" field="url_port" />
-                </div>
-            </div>
-             <input class="form2-control" type="hidden" v-model="form2.id = user.student.id">
-             <input class="form-control" type="hidden" v-model="form2.get = 2">
               <div class="col-md-3 offset-9">
-                <div class="btn-detail-style mt-3 mb-3">
-                    <button class="btn btn-primary bold" 
-                    :loading="form2.busy">
-                    บันทึกข้อมูลผู้ใช้งาน
+                  <input class="form-control" type="hidden" v-model="form.get = 1">
+                  <input class="form-control" type="hidden" v-model="form.id = user.student.id">
+                  <div class="mt-4 ">
+                    <!-- <button class="btn-outline-primary bold" @click="cheack()"> -->
+                    <button class="btn-outline-primary bold" :loading="form.busy">
+                      บันทึกข้อมูลผู้ใช้งาน
                     </button>
-                </div>
+                  </div>
               </div>
-        </div>
+              </div>
         </form>
+      </div> <!-- card -->
+      
+      <!-- edit profile -->
+      <div class="card mt-5">
+        <form @submit.prevent="update(2)" @keydown="form2.onKeydown($event)">
+        <div class="col-md-12">
+            <div class="mt-4 mb-4">
+                <h5 class="bold">แก้ไขข้อมูล Resume / Portfolio</h5>
+            </div>
+            <hr class="hr-orange">
+            <div class="row mt-5"> 
+                <div class="col-md-4">
+                    <div class="center textcustom">
+                      <i class="fa fa-file-image-o fa-3x color-dblue"></i>
+                      <p>Resume</p>
+                      <label>ขนาดไฟล์ห้ามเกิน 10 Mb.</label><br>
+                      <a href="" v-on:click.stop.prevent="openWindow(form2.cv)">Resume ของคุณ</a>
+                      <br>
+
+                      <div class="mt-3 upload-btn-wrapper">
+                        <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Resume</button>
+                        <input type="file" @change="setCV" />
+                        <has-error :form="form" field="file" />
+                      </div>
+                    </div>
+                    
+
+                </div>
+                <div class="col-md-4">
+                    <div class="center textcustom">
+                      <i class="fa fa-file-pdf-o fa-3x color-dblue"></i>
+                      <p>Portfolio</p>
+                      <label>ขนาดไฟล์ห้ามเกิน 10 Mb.</label><br>
+                      <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
+        
+                      <div class="mt-3 upload-btn-wrapper">
+                          <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Portfolio</button>
+                          <input type="file" @change="setPort" />
+                          <has-error :form="form" field="file" />
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="center textcustom">
+                      <i class="fa fa-file-code-o fa-3x color-dblue"></i>
+                      <p>URL สำหรับผลงาน</p>
+                      <label>เพิ่ม URL สำหรับผลงานของคุณ</label><br>
+                      <div class="mb-3 cmt-25">
+                          <input v-model="form2.url_port" :class="{ 'is-invalid': form2.errors.has('url_port') }" class="form-control" type="text" name="url_port"  placeholder="url_port">
+                          <has-error :form="form2" field="url_port" />
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-3 offset-9">
+                  <input class="form2-control" type="hidden" v-model="form2.id = user.student.id">
+                  <input class="form-control" type="hidden" v-model="form2.get = 2">
+                  <div class="mt-4 ">
+                    <!-- <button class="btn-outline-primary bold" @click="cheack()"> -->
+                    <button class="btn-outline-primary bold" :loading="form2.busy">
+                      บันทึกข้อมูลผู้ใช้งาน
+                    </button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
         <!-- edit port -->
-        </div>
-   </div>
+</div>
 </template>
 
 <script>
 import Form from 'vform'
 import {mapActions, mapGetters} from 'vuex'
 import ColumHeader from '~/components/ColumHeader'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   middleware: 'auth',
@@ -149,7 +182,8 @@ export default {
       url_port:"",
     }),
     image: "",
-    file: ""
+    filecv: "",
+    fileport: "",
   }),
   components:{
     ColumHeader,
@@ -187,8 +221,26 @@ export default {
     setImg(e) {
       this.image = e.target.files[0];
     },
-    setFile(e) {
-      this.file = e.target.files[0];
+    setCV(e) {
+      var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
+      console.log(FileSize);
+      if(FileSize <= 5){
+        console.log("size ok")
+        this.filecv = e.target.files[0];
+      } else {
+         console.log("too big");
+         Swal.fire(
+            
+            'ไฟล์ขนาดใหญ่เกินไป',
+            'ไฟล์ของคุณมีขนาดใหญ่เกินไป ลองใหม่อีกครั้ง',
+            'error',
+            //เหลือ Set Port
+          )
+      }
+      
+    },
+     setPort(e) {
+      this.fileport = e.target.files[0];
     },
     async update(useform) {
     
@@ -212,9 +264,15 @@ export default {
 
     } else {
 
-        if (this.file) {
+        if (this.filecv) {
+        this.form2.cv = await this.uploadCv({
+        file: this.filecv,
+        path: "updateprofile"
+        });
+      }
+        if (this.fileport) {
         this.form2.port = await this.uploadFile({
-        file: this.file,
+        file: this.fileport,
         path: "updateprofile"
         });
       }
@@ -228,11 +286,25 @@ export default {
 
 </script>
 <style scoped>
+.textcustom p{
+   padding: 10px 0  0 0 !important;
+   color: gray;
+   margin-block-start: 0rem;
+   margin-block-end: 0rem;
+} 
+.textcustom label{
+   font-size: 0.75rem;
+   color: gray;
+} 
+.cmt-25{
+  margin-top: 2.5rem;
+}
 .f025{
     font-size: 0.25rem;
 }
 .form-control{
     border-radius: 2rem;
+    font-size: 0.80rem;
 }
 .img-circle{
     width: 125px;
@@ -244,30 +316,15 @@ export default {
 .img-circle img{
     width: 100%;
 }
-.btn-detail-style .btn-primary{ 
-    background-color: #0047BA ;
-    border:none; 
-    border-radius: 30px;
-    width: 100%;
-    height: 60px;
-    padding-top:20px;
-}
-.btn-detail-style .btn-primary:hover { 
-    background-color:  #E7B223 ;
-    color: black;
-    font-size: 1.5rem;
-    border-radius: 60px;
-    width: 90%;
-    height: 60px;
-    padding-top:14px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    transition: 0.3s ease-in-out;
-}
-.btn-detail-style{
-  text-align: center;
-  padding-top:20px ;
-  padding-bottom:20px;
+.btn-outline-primary {
+    width: 80% ; 
+    height: 50px; 
+    float: right;
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
 }
 .custom-select{
     border-radius: 2rem !important;
@@ -275,4 +332,41 @@ export default {
 .form-control{
     border-radius: 2rem;
 }
+.card{
+    padding :25px;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+    border-radius: 5px;
+}
+
+/* upload btn */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.btn {
+  width: 80%;
+  height: calc(1.5em + 0.75rem + 2px);
+  color: #0A63B3;
+  background-color: #FFB105;
+  padding: 8px 20px;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+}
+
+.btnactive{
+  background-color: #0A63B3;
+  color: #FFB105;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0; 
+}
+
 </style>

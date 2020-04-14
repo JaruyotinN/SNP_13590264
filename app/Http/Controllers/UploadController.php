@@ -20,7 +20,7 @@ class UploadController extends Controller
         $filename = time() . $file->getClientOriginalName();
         $path = '/uploads/files/Portfolio';
         $file->move(public_path($path), $filename);
-        $set = '/uploads/files/' . $filename;
+        $set = '/uploads/files/Portfolio/' . $filename;
         return $set;
     }
     public function uploadCv(Request $request)
@@ -29,7 +29,7 @@ class UploadController extends Controller
         $filename = time() . $file->getClientOriginalName();
         $path = '/uploads/files/Resume';
         $file->move(public_path($path), $filename);
-        $set = '/uploads/files/' . $filename;
+        $set = '/uploads/files/Resume/' . $filename;
         return $set;
     }
     

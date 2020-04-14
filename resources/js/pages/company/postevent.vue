@@ -73,7 +73,7 @@
                                   <div class="" v-for="(type, index) in job.jobtypes" :key="index">
                                       <div class="" v-for="(catagory, index) in form.job_id.length" :key="index">
                                         <div  v-if="type.job_id == form.job_id[index]">
-                                          <li><input :id="type.name" type="checkbox" :value="type.id" v-model="form.requirement"><label :for="type.name" >{{type.name}}</label></li>
+                                          <li><input :id="type.name" type="checkbox" :value="type.name" v-model="form.requirement"><label :for="type.name" >{{type.name}}</label></li>
                                             <!-- <input class="typestyle" type="checkbox" :value="type.id" v-model="form.requirement" >
                                             <label>{{type.name}}</label> -->
                                         </div>

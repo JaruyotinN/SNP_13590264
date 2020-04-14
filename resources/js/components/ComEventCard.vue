@@ -6,18 +6,29 @@
 						<div class="top-box">
               <div class="col-12">
                   <div class="card-info">
-                    <label class="bold mt-2 color-dblue">บริษัท{{ event.company.name }} </label>
+                    <p class="bold mt-2 color-dblue">บริษัท{{ event.company.name }} </p>
                     <p class="mb-2 color-dblue">{{ event.division }}</p>
-                    <p>ประเภทงาน : {{ event.requirement }} </p>
-                    <p>ตำแหน่งที่ต้องการ : {{ event.requirement }} </p>
-                    <p>ระยะเวลา : {{ event.enddate }} </p>
+                    <input class="form-control" type="hidden" v-model="comeventjob = event.job_id">  
+                    <label>ประเภทงาน : </label>
+                    <label v-for="cj in comeventjob.split(',')"  v-bind:key="cj.id">
+                      <label v-for="(job, index) in jobs" :key="index" v-if="cj == job.id" >{{job.title}}</label>
+                      {{jobs.title}}
+                    </label>
+                   <br>
+                    <label>ตำแหน่งที่ต้องการ : {{event.requirement}}</label>
+
+                   <br>
+                    <label>ระยะเวลา : {{ event.enddate }} </label><br>
+                   
+                
+                 
                   </div> 
               </div>
             </div>
 							<div class="low-box">
 								<div class="col-12">
 									<div class="card-info">
-								<p class="mt-1"><i class="fa fa-map-marker fa-2x color-orange"></i> {{ event.company.address }} </p>
+								<label class="mt-1"><i class="fa fa-map-marker fa-2x color-orange"></i> {{ event.company.address }} </label>
 									</div>
 								</div>
 							</div>
@@ -25,8 +36,28 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
-    props:['event']
+    props:['event'],
+    data() {
+      return{
+        comeventjob: "",
+      }
+    },
+    computed: {
+      ...mapGetters({
+        jobs: 'comevents/jobs',
+      }),
+       
+    },
+    methods: {
+      ...mapActions({
+        fetch : 'comevents/fetchjob'
+      }),
+    },
+    created(){
+      this.fetch()
+    },
 }
 </script>
 
@@ -36,10 +67,13 @@ a{
 }
 label{
   margin: 0;
+  font-size: 0.75rem;
 }
 p{
   margin: 0;
-  font-size: 0.75rem;
+}
+.display-inline{
+  display: inline;
 }
 .h-95{
   height: 95%;

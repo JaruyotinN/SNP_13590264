@@ -68,7 +68,7 @@ export const actions = {
   },
   async fetchjob ({ commit }) {
     try {
-      const { data } = await axios.get(`/api/jobtypes`)
+      const { data } = await axios.get(`/api/jobs`)
       commit(types.FETCH_JOB,  data )
     } catch (e) {
       console.log(e)

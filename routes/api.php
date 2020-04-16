@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/interndairys', 'StudentPostController');
     Route::resource('/majors', 'MajorController');
     Route::resource('/jobs', 'JobController');
+    Route::resource('/types', 'JoptypeController');
     Route::resource('/comevents', 'ComeventController');
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('uploadImage', 'UploadController@uploadImage');
     Route::post('uploadFile', 'UploadController@uploadFile');
     Route::post('uploadCv', 'UploadController@uploadCv');
+    Route::post('search', 'ScoreController@search');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
 });

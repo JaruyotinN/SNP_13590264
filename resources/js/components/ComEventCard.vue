@@ -46,13 +46,13 @@ export default {
     },
     computed: {
       ...mapGetters({
-        jobs: 'comevents/jobs',
+        jobs: 'jobs/jobs',
       }),
        
     },
     methods: {
       ...mapActions({
-        fetch : 'comevents/fetchjob'
+        fetch : 'jobs/fetchjob'
       }),
     },
     created(){

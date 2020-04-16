@@ -166,7 +166,7 @@ export default {
   computed:{
     ...mapGetters({
       infos:'profile/userinfos',
-      jobs: 'comevents/jobs'
+      jobs: 'jobs/jobs'
     })
   },
  methods: {
@@ -202,7 +202,7 @@ export default {
     
     ...mapActions({
       fetch:'profile/fetch',
-      fetchjob : 'comevents/fetchjob'
+      fetchjob : 'jobs/fetchjob'
     })
   },
   created(){

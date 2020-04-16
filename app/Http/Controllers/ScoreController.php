@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Joptype;
 use App\Score;
+use App\StudentInfo;
 use Illuminate\Http\Request;
 
 class ScoreController extends Controller
@@ -15,6 +17,24 @@ class ScoreController extends Controller
     public function index()
     {
         //
+    }
+
+     public function search(request $form)
+    {   
+
+        $intern_id = 1 ;
+       
+        $users = Score::where('type_id',$form->jobtypes_id)
+        ->where('score',$form->score)
+        ->whereHas('student', function ($query) use ($intern_id){
+                    $query->where('intern_id', $intern_id);
+        })->get();
+        
+        foreach($users as $user){
+            $user->student;
+        }
+    
+        return  $users;
     }
 
     /**

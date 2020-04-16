@@ -14,7 +14,11 @@ class JoptypeController extends Controller
      */
     public function index()
     {
-        
+        $types = Joptype::get();
+        foreach($types as $type){
+           $type->job;
+        }
+        return $types;
     }
 
     /**

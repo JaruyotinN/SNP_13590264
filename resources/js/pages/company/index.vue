@@ -20,31 +20,32 @@
                 </router-link>
                  </div>
               </div>
-            </div>     
+            </div>  
+            <pre>{{users}}</pre>
             <div class="col-md-12">
+                <form class="was-validated"  @submit.prevent="search" @keydown="form.onKeydown($event)">
                      <div class="input-group mt-2 mb-3 m-auto">
-                        <select class="custom-select col-md-3 m-auto" id="inputGroupSelect01">
-                            <option selected>หมวดหมู่</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select col-md-3 m-auto" v-model="form.job_id" required>
+                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
                         </select>
-                        <select class="custom-select col-md-3 m-auto" id="inputGroupSelect01">
-                            <option selected>เลือกหมวด</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                       <select class="custom-select col-md-3 m-auto" v-model="form.jobtypes_id" required>
+                             <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
+                             <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id == type.job_id">{{type.id}}{{type.name}}</option>
                         </select>
-                        <select class="custom-select col-md-3 m-auto" id="inputGroupSelect01">
-                            <option selected>ความถนัด</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select col-md-3 m-auto" v-model="form.score">
+                            <option value="" disabled hidden >เลือกระดับความถนัด</option>
+                            <option value="1">01 เริ่มต้น(Beginning)</option>
+                            <option value="2">02 พื้นฐาน(Basic)</option>
+                            <option value="3">03 เชี่ยวชาญ(Advance)</option>
                         </select>   
                         <div class="m-auto col-md-2">
-                            <router-link class="btn btn-detail-style bold" :to="{name:'student'}">ค้นหา</router-link>
+                            <button class="btn btn-detail-style  bold" :loading="form.busy">
+                              ค้นหา
+                            </button>
                         </div> 
                     </div> 
+                </form>
                     <hr class="hr-yellow mt-4 mb-4">   
                     <label>ผลการค้นหา ... </label>
                     <label class="bold color-dblue">มหาวิทยาลัยศิลปากร</label>
@@ -67,12 +68,19 @@
 <script>
 
 import CompanyCard from '~/components/Companyindex/CompanyCard'
+import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import axios from "axios";
+
 export default {
-    
-data() {
-  return {
-       cards: [
+  data: () => ({
+    form: new Form({
+      job_id:'',
+      jobtypes_id:'',
+      score:'',
+      }),
+      users:"",
+      cards: [
      {
       img:'/uploads/images/comevents/profile.JPG',
       name:'นายณัทกฤช จารุโยธิน',
@@ -102,28 +110,40 @@ data() {
       score2: 'Basic',
     },
     ]
-   
-  }
-  },
+   }),      
    components:{
     CompanyCard,
-   
   },
   computed:{
     id(){
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-      infos:'profile/userinfos'
+      infos:'profile/userinfos',
+      jobs: 'jobs/jobs',
+      types: 'jobs/types'
     })
   },
   methods: {
+    async search() {
+        this.users = "";
+        const { data } = await this.form.post(`/api/search`);
+        // const { data } = await axios.get(`/api/search/users/${this.form}`);
+        this.users = data;
+        console.log(data);
+        console.log(this.users);
+    },
     ...mapActions({
-      fetch:'profile/fetch'
+      fetch:'profile/fetch',
+      fetchjob : 'jobs/fetchjob',
+      fetchtype : 'jobs/fetchtype'
     })
+    
   },
   created(){
      this.fetch()
+     this.fetchjob()
+     this.fetchtype()
   }
 }
 </script>

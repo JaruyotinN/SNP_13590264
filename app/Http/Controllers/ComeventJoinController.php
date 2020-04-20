@@ -35,26 +35,83 @@ class ComeventJoinController extends Controller
         //ต้องเอา id ของ Companyinfo
         $infos = Profile::where('user_id',$user->id)->get();
         foreach($infos as $info){
-            $company_id = $info->company;
+            $usercom_id = $info->company->id;
         }
 
-        //whereHas คือการ where ด้วย Model 
-        $comjoins = Profile::where('profile_type','S')->whereHas('student', function ($query) use ($company_id){
-            $query->whereHas('comevent_joins',function($query) use ($company_id){
-                $query->whereHas('comevent',function($query) use ($company_id) {
-                    $query->where('com_id', $company_id->id);
-                }); 
-            });
-        })->get();
-
-        //ข้อมูลที่ได้เป็น Array 
-       foreach($comjoins as $com){
-           $com->student->comevent_joins;
-       }
+        $comjoins = ComeventJoin::where('com_id','=', $usercom_id)->get();
+        foreach($comjoins as $com){
+            $com->student;
+            $com->comevent;
+        }
 
        return $comjoins;
        
     }
+
+    public function studentconfirm(Request $request)
+    {
+        $user = $request->user();
+
+        //ต้องเอา id ของ Companyinfo
+        $infos = Profile::where('user_id',$user->id)->get();
+        foreach($infos as $info){
+            $usercom_id = $info->company->id;
+        }
+
+        // $cm = DB::table('comevent_joins')
+        //     ->join('student_infos', 'student_infos.id', '=', 'comevent_joins.stu_id')
+        //     ->where('comevent_joins.stu_confirm','=',1)
+        //     ->where('student_infos.intern_id','<=',5)
+        //     ->get();
+
+        $comjoins = ComeventJoin::where('com_id','=', $usercom_id)
+        ->where('stu_confirm','=',1)
+        ->get();
+
+        foreach($comjoins as $com){     
+           $com->student;
+           $com->comevent ;
+        }
+        
+
+       return $comjoins;
+       
+    }
+
+    // public function studentconfirm(Request $request)
+    // {
+    //     $user = $request->user();
+
+    //     //ต้องเอา id ของ Companyinfo
+    //     $infos = Profile::where('user_id',$user->id)->get();
+    //     foreach($infos as $info){
+    //         $company_id = $info->company;
+    //     }
+
+    //     //whereHas คือการ where ด้วย Model 
+    //     $comjoins = Profile::where('profile_type','S')->whereHas('student', function ($query) use ($company_id){
+    //         $query->whereHas('comevent_joins',function($query) use ($company_id){
+    //             $query->whereHas('comevent',function($query) use ($company_id) {
+    //                 $query->where('com_id', $company_id->id);
+    //             }); 
+    //         });
+    //     })->get();
+
+    //     //ข้อมูลที่ได้เป็น Array 
+        
+    //    foreach($comjoins as $com){
+    //      $conf = $com->student->comevent_joins->stu_confirm;
+    //      $int_id   = $com->student->intern_id;
+    //      if ($conf == '1' &&  $int_id <= 6 ){
+    //          $com->student->comevent_joins->comevent ;
+    //      }
+    //    }
+
+    //    return $comjoins;
+       
+    // }
+    
+
 
    
     
@@ -103,6 +160,15 @@ class ComeventJoinController extends Controller
     {
         $comeventJoin = ComeventJoin::find($id);
         $comeventJoin->student;
+        $comeventJoin->comevent;
+        return $comeventJoin;
+    }
+
+    public function showstudentconfirm(ComeventJoin $comeventJoin ,$id )
+    {
+        $comeventJoin = ComeventJoin::find($id);
+        $comeventJoin->student;
+        $comeventJoin->comevent;
         return $comeventJoin;
     }
 

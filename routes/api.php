@@ -23,9 +23,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/jobs', 'JobController');
     Route::resource('/types', 'JoptypeController');
     Route::resource('/comevents', 'ComeventController');
+    Route::resource('/review', 'StudentReviewController');
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
     Route::get('/getstudent/{id}', 'ComeventJoinController@showcomjoin');
+    Route::get('/studentconfirm', 'ComeventJoinController@studentconfirm');
+    Route::get('/studentconfirm/{id}', 'ComeventJoinController@showstudentconfirm');
     Route::resource('/update', 'ComeventJoinController');
     Route::resource('/updateprofile', 'StudentInfoController');
     Route::post('/comevent_join', 'ComeventJoinController@store');

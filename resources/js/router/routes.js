@@ -10,8 +10,9 @@ export default [
   { path: '/status', name: 'status', component: page('student/status.vue') },
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit/:id', name: 'edit', component: page('student/edit.vue') },
-  { path: '/getstudent/:id', name: 'getstudent', component: page('company/requestdetail.vue') },
 
+  { path: '/review/:id', name: 'review', component: page('company/review.vue') },
+  { path: '/getstudent/:id', name: 'getstudent', component: page('company/requestdetail.vue') },
   { path: '/company', name: 'company', component: page('company/index.vue') },
   { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },
   { path: '/list', name: 'list', component: page('company/list.vue') },

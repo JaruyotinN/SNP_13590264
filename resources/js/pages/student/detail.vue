@@ -37,8 +37,9 @@
               </div> 
           </div>
         <div  v-for="(info, index) in infos" :key="index">
-            <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id">
+            <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id"> 
         </div>
+         <input class="form-control" type="hidden" v-model="form.com_id = comevent.com_id">  
               <div class="mt-3 mb-3 center">
                 <button class="btn-outline-primary bold" @click="cheack()">
                   สมัครฝึกงาน
@@ -75,6 +76,7 @@ data() {
       question2:'',
       event_id:'',
       stu_id:'',
+      com_id:'',
     },
     bodys:[
     { 

@@ -1,5 +1,6 @@
 <template>
 <div>
+    <div class="table-responsive">
     <table class="table mb-5" >
     <thead class="color-dblue">
         <tr>
@@ -37,6 +38,7 @@
         </tr>
     </tbody>
     </table>
+    </div>
     <form class="was-validated"  @submit.prevent="check" @keydown="form.onKeydown($event)">
     <div class="card mt-4">
               <div class="card-info">

@@ -2,7 +2,8 @@
    <div class="container" >    
      
     <ColumHeader title="ข้อมูลของนักศึกษา" showBack="internrequest"/> 
-      <pre>{{showstudent}}</pre> 
+      <!-- <pre>{{showstudent}}</pre>  -->
+        <h3>{{showstudent.student.name}} {{showstudent.student.surname}}</h3>
                 <label>check : {{showstudent.check}} , interview : {{showstudent.interview}} , result : {{showstudent.result}}</label> 
       <form class="was-validated" @submit.prevent="update" @keydown="form.onKeydown($event)">
           <h4>มีการสอบสัมภาษณ์</h4>
@@ -47,7 +48,7 @@ export default {
   },
 data: () => ({
     form: new Form({
-      interview:'',
+      interview:0,
       result:'',
       get:2,
     }),

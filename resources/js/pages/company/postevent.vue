@@ -176,12 +176,6 @@ export default {
     submitForm() {
         this.save();
     },
-    getData() {
-        axios.get('/some-url')
-            .then(data => {
-                this.form.com_id = data.email;
-            });
-    },
     async save() {
       this.form.img = await this.upImg({
         image: this.image,

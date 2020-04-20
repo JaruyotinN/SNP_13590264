@@ -1,7 +1,7 @@
 <template>
 <div class="container" > 
      <div class="mb-5"> 
-        <router-link to="student">ย้อนกลับ</router-link>
+        <router-link :to="{ name: 'student'}">ย้อนกลับ</router-link>
      </div>
      <div class="card mt-5">
         <form @submit.prevent="update(1)" @keydown="form.onKeydown($event)">

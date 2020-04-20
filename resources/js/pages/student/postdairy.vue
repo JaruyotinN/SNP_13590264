@@ -2,7 +2,7 @@
 <div class="container" >
     <div class="col-md-12">
               <div class="mb-3"> 
-                      <router-link to="dairy">ย้อนกลับ</router-link>
+                      <router-link :to="{ name: 'dairy'}">ย้อนกลับ</router-link>
               </div>
               <div class="row">
                   <div class="col-md-10">

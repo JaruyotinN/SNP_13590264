@@ -8,6 +8,7 @@ export const state = {
   user_joins: null,
   student_joins:null,
   showstudent_join :null,
+  stuconfirm : null,
 }
 
 
@@ -19,6 +20,29 @@ export const getters = {
     joinreqs: state => state.joinreqs,
     studentjoins: state => state.student_joins,
     showstudent_join: state => state.showstudent_join,
+    stuconfirm : state => state.stuconfirm,
+    ongoing (state) {
+      if (state.stuconfirm) {
+        return state.stuconfirm.filter((stuconfirm) => {
+          return stuconfirm.student.intern_id <= 5
+        })
+      }
+    },
+    needreview (state) {
+      if (state.stuconfirm) {
+        return state.stuconfirm.filter((stuconfirm) => {
+          return stuconfirm.student.intern_id == 6 || stuconfirm.student.intern_id == 7
+        })
+      }
+    },
+    finishintern (state) {
+      if (state.stuconfirm) {
+        return state.stuconfirm.filter((stuconfirm) => {
+          return stuconfirm.student.intern_id == 8
+        })
+      }
+    },
+    
 }
 
 // mutations
@@ -41,6 +65,9 @@ export const mutations = {
   [types.FETCH_SHOWSTUDENT_JOIN] (state, data) {
     state.showstudent_join = data
   },
+  [types.FETCH_STUCONFIRM] (state, data) {
+    state.stuconfirm = data
+  },
 }
 
 // actions
@@ -57,6 +84,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent`)
       commit(types.FETCH_STUDENT_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchstuconfirm ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/studentconfirm`)
+      commit(types.FETCH_STUCONFIRM,  data )
     } catch (e) {
       console.log(e)
     }

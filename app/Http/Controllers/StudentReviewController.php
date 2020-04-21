@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ComeventJoin;
 use App\studentReview;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,14 @@ class StudentReviewController extends Controller
     {
         $user = $request->user();
         $review = studentReview::create($request->all());
+        $id = $review->id;
+
+        $comjoinid = $request->comevent_joins_id;
+        $comeventJoin = ComeventJoin::find($comjoinid);      
+      
+        $comeventJoin->update([
+            'sturev01_id' => $id
+        ]);
         return $review;
     }
 
@@ -51,6 +60,14 @@ class StudentReviewController extends Controller
     public function show(studentReview $studentReview)
     {
         //
+    }
+
+    public function showdetailreview(studentReview $studentReview ,$id )
+    {
+        $studentReview = studentReview::find($id);
+        $studentReview->student;
+        $studentReview->comeventjoin;
+        return $studentReview;
     }
 
     /**

@@ -90,7 +90,6 @@
                                       <p>โครงการที่สมัคร : {{stu.comevent.division}} </p>
                                       <p>ตำแหน่ง: {{ stu.question1 }} </p>
                                       <p>intern_id: {{ stu.student.intern_id }} </p>
-
                                     </div> 
                                 </div>
                               </div>
@@ -100,6 +99,7 @@
                                 <router-link v-if="stu.student.intern_id == 6" class="btn btn-outline-primary bold mt-3" :to="{name:'review', params:{id:stu.id}}">ประเมินผลครั้งที่ 1</router-link>
                                 <router-link v-else-if="stu.student.intern_id == 7" class="btn btn-outline-primary bold mt-3" :to="{name:'review', params:{id:stu.id}}">ประเมินผลครั้งที่ 2</router-link>
                                 </div>
+                                <router-link v-if="stu.sturev01_id != null"  :to="{name:'detailreview', params:{id:stu.sturev01_id}}">ผลการประเมิน 1</router-link>
                               </div>
                             </div>
                         </div>     

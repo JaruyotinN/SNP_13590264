@@ -58,11 +58,6 @@ class ComeventJoinController extends Controller
             $usercom_id = $info->company->id;
         }
 
-        // $cm = DB::table('comevent_joins')
-        //     ->join('student_infos', 'student_infos.id', '=', 'comevent_joins.stu_id')
-        //     ->where('comevent_joins.stu_confirm','=',1)
-        //     ->where('student_infos.intern_id','<=',5)
-        //     ->get();
 
         $comjoins = ComeventJoin::where('com_id','=', $usercom_id)
         ->where('stu_confirm','=',1)

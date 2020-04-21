@@ -9,6 +9,7 @@ export const state = {
   student_joins:null,
   showstudent_join :null,
   stuconfirm : null,
+  showdetailreview : null,
 }
 
 
@@ -42,6 +43,7 @@ export const getters = {
         })
       }
     },
+    showdetailreview : state => state.showdetailreview,
     
 }
 
@@ -67,6 +69,9 @@ export const mutations = {
   },
   [types.FETCH_STUCONFIRM] (state, data) {
     state.stuconfirm = data
+  },
+  [types.FETCH_SHOWDETAILREVIEW] (state, data) {
+    state.showdetailreview = data
   },
 }
 
@@ -100,6 +105,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent/${id}`)
       commit(types.FETCH_SHOWSTUDENT_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async showdetailreview ({ commit }, id) {
+    try {
+      const { data } = await axios.get(`/api/detailreview/${id}`)
+      commit(types.FETCH_SHOWDETAILREVIEW,  data )
     } catch (e) {
       console.log(e)
     }

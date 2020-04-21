@@ -12,6 +12,7 @@ export default [
   { path: '/edit/:id', name: 'edit', component: page('student/edit.vue') },
 
   { path: '/review/:id', name: 'review', component: page('company/review.vue') },
+  { path: '/detailreview/:id', name: 'detailreview', component: page('company/detailreview.vue') },
   { path: '/getstudent/:id', name: 'getstudent', component: page('company/requestdetail.vue') },
   { path: '/company', name: 'company', component: page('company/index.vue') },
   { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },

@@ -185,6 +185,7 @@ data() {
     box-shadow:none;
 }
 textarea {
+  padding : 1.5rem;
   overflow: auto;
   box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
   border-radius: 5px;

@@ -1,81 +1,135 @@
 <template>
-<div class="container"  >
+<div class="container" >
   <div  v-for="(info, index) in infos" :key="index" >
   <form @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
-    <ColumHeader title='บริษัท ไลค์มี จำกัด' showBack="company" img="/uploads/images/comevents/likeme.jpg"/>
-    <div class="card mt-5">
-                <div class="col-md-12 mt-2">
-                 <ColumHeader  title='สร้างแบบฟอร์ม'/>
-                 <div class="row" style="padding:20px;">
-                        <div class="col-md-6" >
-
-                           <input class="form-control" type="hidden" v-model="form.com_id = info.company.id">
-                            <p>บริษัท</p>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" type="text" v-bind:value="info.name" disabled>
-                            </div>
-                        </div>
+      <div class="mb-5"> 
+        <router-link :to="{ name: 'company'}">ย้อนกลับ</router-link>
+     </div>
+      <div class="col-md-12">
+          <div class="row">
+                <div class="col-md-10">
+                    <div class="mb-3 ml-3 mt-2" style="float: left">
+                        <h4 class="mt-4 bold">{{info.company.name}}</h4>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="img-circle" style="float:right;">
+                            <img :src="info.company.logo">
+                    </div>
+                </div>
+          </div>
+      </div>
+      <hr class="hr-yellow">
+          <div class="card mt-5 mb-3">
+                <div class="col-md-10 m-auto">
+                        <h4 class="mb-5 mt-5 bold">สร้างแบบฟอร์มประกาศรับนักศึกษาฝึกงาน</h4>   
+                    <hr class="hr-orange">
+                </div>
+                <div class="col-md-10 mt-2 m-auto">
+                   <div class="row" style="padding:20px;">
+                     <input class="form-control" type="hidden" v-model="form.com_id = info.company.id">
                         <div class="col-md-6">
-                            <p>หน่วยงาน / แผนก</p>
+                            <p>ชื่อประกาศ / โครงการ</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" v-model="form.division" type="text" placeholder="">
+                                <input class="form-control" v-model="form.division" type="text" placeholder="ชื่อโครงการของคุณ" required>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <p>ผู้ดูแล</p>
+                        <div class="col-md-3">
+                            <p>ผู้ดูแลโครงการ</p>
+                            <!-- <select class="custom-select col-md-3 m-auto" v-model="form.job_id" required>
+                              <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                              <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
+                            </select> -->
                              <div class="input-group mt-2 mb-3">
-                                <select class="custom-select" id="inputGroupSelect01">
-                                    <option selected>เลือกผู้ดูแล</option>
+                                <select class="custom-select" v-model="form.staff_id" required>
+                                   <option value="" disabled hidden>เลือกผู้ดูแลโครงการ</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
                              </div>
+                        </div> 
+
+                        <div class="col-md-3">
+                            <p>เวลาในการปฏิบัติงาน</p>
+                            <div class="input-group mt-2 mb-3">
+                                <select class="custom-select" v-model="form.jobtime" required>
+                                  <option value="" disabled hidden>เลือกเวลาปฏิบัติงาน</option>
+                                    <option value="8.00 - 16.00">8.00 - 16.00</option>
+                                    <option value="8.30 - 16.30">8.30 - 16.30</option>
+                                    <option value="9.00 - 17.00">9.00 - 17.00</option> 
+                                    <option value="9.30 - 17.30">9.30 - 17.30</option>
+                                    <option value="10.00 - 18.00">10.00 - 18.00</option>
+                                    <option value="กำหนดในภายหลัง">กำหนดในภายหลัง</option>
+                                </select>
+                             </div>
                         </div>
 
                         <div class="col-md-4">
-                            <p>จำนวน</p>
+                            <p>ค่าตอบแทน</p>
+                            <div class="mt-2 mb-3">
+                                  <input class="form-control" v-model="form.reward" type="text" placeholder="ค่าตอบแทน / วัน , ไม่มีใส่ -" required>
+                              </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <p>อัตราที่รับนักศึกษา / ตำแหน่ง</p>
                              <div class="input-group mt-2 mb-3">
-                                <select v-model="form.quantity" class="custom-select" id="inputGroupSelect01">
-                                    <option selected>จำนวน</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
+                                <select v-model="form.quantity" class="custom-select" id="inputGroupSelect01" required>
+                                    <option value="" disabled hidden>เลือกจำนวนที่ต้องการ</option>
+                                    <option value="1">1 อัตรา/ตำแหน่ง</option>
+                                    <option value="2">2 อัตรา/ตำแหน่ง</option>
+                                    <option value="3">3 อัตรา/ตำแหน่ง</option>
+                                    <option value="4">4 อัตรา/ตำแหน่ง</option>
+                                    <option value="5">5 อัตรา/ตำแหน่ง</option>
+                                    <option value="หลายอัตรา">รับหลายอัตรา</option>
                                 </select>
                              </div>
                         </div>
                 
                         <div class="col-md-4">
-                            <p>วันปิดรับ</p>
+                            <p>ปิดรับสมัคร</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" v-model="form.enddate" type="text" placeholder="">
+                               <transition name="calendar-fade">
+                                  <date-picker color="#E7B223"
+                                              @close="show = false"
+                                              v-if="show"
+                                              v-model="form.enddate">
+                                              </date-picker>
+                                </transition>
+                                 <!-- <DatePicker
+                                  v-if="show"
+                                  v-model="form.enddate"
+                                  @close="show = false"
+                                /> -->
+                                   <div class="input-group">
+                                        <input class="form-control py-2 border-right-0 border" type="text" @focus="show = true" v-model="form.enddate" required>
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent form-control"><i class="fa fa-calendar-o" aria-hidden="true"></i></div>
+                                        </span>
+                                    </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12 mt-3">
                             <p>หมวดหมู่ที่เกี่ยวข้อง ID: {{ form.job_id }}</p>
                             <div class="mt-2 mb-3">
-                               <ul class="ks-cboxtags">
-                                  <div class="" v-for="(job, index) in jobs" :key="index">
+                               <ul class="ks-cboxtags ">
+                                  <div  v-for="(job, index) in jobs" :key="index">
                                      <li><input :id="job.id" type="checkbox" :value="job.id" v-model="form.job_id"><label :for="job.id" >{{job.title}}</label></li>
                                   </div>
                                </ul>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12 mt-3">
                             <p>ตำแหน่งที่ต้องการ ID :  {{ form.requirement }}</p>
-                            <div class="mt-2 mb-3 overflow-auto" style="height:200px;">
-
+                            <div class="mt-2 mb-3 overflow-auto customebox" style="height:200px;">
                               <ul class="ks-cboxtags">
                                <div class="" v-for="(job, index) in jobs" :key="index">
                                   <div class="" v-for="(type, index) in job.jobtypes" :key="index">
                                       <div class="" v-for="(catagory, index) in form.job_id.length" :key="index">
                                         <div  v-if="type.job_id == form.job_id[index]">
                                           <li><input :id="type.name" type="checkbox" :value="type.name" v-model="form.requirement"><label :for="type.name" >{{type.name}}</label></li>
-                                            <!-- <input class="typestyle" type="checkbox" :value="type.id" v-model="form.requirement" >
-                                            <label>{{type.name}}</label> -->
                                         </div>
                                       </div>
                                   </div>
@@ -84,55 +138,46 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <p>ประวัติและผลงาน</p>
+                            <p>รายละเอียดเพิ่มเติมเกี่ยวกับประกาศฝึกงาน</p>
                             <div class="mt-2 mb-3">
-                               <textarea v-model="form.desciption" rows="4" cols="100">
-
+                               <textarea v-model="form.desciption" rows="4" cols="100" required>
                                 </textarea>
                             </div>
                         </div>
                          <div class="col-md-12">
-                            <p>ประวัติและผลงาน</p>
+                            <p>คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(1)</p>
                             <div class="mt-2 mb-3">
-                                <div class>
-                                  <input class="form-control" type="file" name="image" @change="setImg" />
-                                  <has-error :form="form" field="image" />
-                                </div>
+                               <textarea v-model="form.question1" rows="4" cols="100" required>
+                                </textarea>
                             </div>
-                            
+                        </div>
+                         <div class="col-md-12">
+                            <p>คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(2)</p>
+                            <div class="mt-2 mb-3">
+                               <textarea v-model="form.question2" rows="4" cols="100" required>
+                                </textarea>
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="btn-detail-style btn-primary mt-3 mb-3" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <p>คำถามเด็กฝึกงาน 01</p>
-                            </div>
+                            <p>ภาพประกาศรับนักศึกษาฝึกงาน</p>
+                            <div class="input-group mb-3">
+
+                                <input class="form-control custom-file-input" type="file" name="image" @change="setImg">
+                                <label class="custom-file-label" >{{image.name}}</label>
+                                <has-error :form="form" field="image" />
+                              </div>
+                            
                         </div>
-                            <div class="collapse" id="collapseExample">
-                            <p>Q1</p>
-                            <textarea v-model="form.question1" rows="4" cols="100">
-
-                            </textarea>
-                            <p>Q2</p>
-                            <textarea v-model="form.question2" rows="4" cols="100">
-
-                            </textarea>
-                          </div>
 
                 </div>
                
-        </div>   <!-- card -->
-        <div class="form-group row">
-          <div class="col-md-7 offset-md-5 d-flex">
-            <!-- Submit Button -->
-            <v-button
-            
-              :loading="form.busy"
-              id="createbtn"
-              style="width:130px;"
-              class="text-white colorr"
-            >บันทึก</v-button>
-          </div>
-        </div>
-    </div>
+        </div>   <!-- col-md-12 -->
+        </div> <!-- card -->
+         <div class="col-md-6 m-auto">
+            <button class="btn-outline-primary bold mb-3" :loading="form.busy">
+                สร้างแบบฟอร์มประกาศรับนักศึกษาฝึกงาน
+            </button>
+         </div>
     
   </form>
   </div>
@@ -141,6 +186,7 @@
 <script>
 import ColumHeader from '~/components/ColumHeader';
 import Form from "vform";
+import DatePicker from 'vue-md-date-picker'
 import {mapActions, mapGetters} from 'vuex'
 export default {
   middleware: 'auth',
@@ -149,6 +195,9 @@ export default {
       division:'',
       desciption:'',
       quantity:'',
+      jobtime:'',
+      staff_id:'',
+      reward:'',
       job_id:[],
       requirement:[],
       img: "",
@@ -159,9 +208,11 @@ export default {
       com_id:'',
       }),
       image: "",
+      show:'',
     }),
   components:{
     ColumHeader,
+    DatePicker,
   },
   computed:{
     ...mapGetters({
@@ -207,7 +258,29 @@ export default {
 </script>
 
 <style scoped>
-
+textarea {
+  width: 100%;
+  overflow: auto;
+  padding : 1.5rem;
+  box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+  border-radius: 5px;
+  outline: none !important; 
+  border:none;
+}
+.img-circle{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden; 
+    float: left;
+}
+.img-circle img{
+    width: 100%;
+}
+.customebox{
+  border-radius: 5px;
+  background-color: #F5F5F5;
+}
 .card{
     padding-bottom: 10px;
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
@@ -217,30 +290,17 @@ export default {
 .form-control{
     border-radius: 2rem;
 }
-.btn-detail-style .btn-primary{ 
-    background-color: #0047BA ;
-    border:none; 
-    border-radius: 30px;
-    width: 100%;
-    height: 60px;
-    padding-top:20px;
-}
-.btn-detail-style .btn-primary:hover { 
-    background-color:  #E7B223 ;
-    color: black;
-    font-size: 1.5rem;
-    border-radius: 60px;
-    width: 90%;
-    height: 60px;
-    padding-top:14px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    transition: 0.3s ease-in-out;
-}
-.btn-detail-style{
-  text-align: center;
-  padding-top:20px ;
-  padding-bottom:20px;
+.btn-outline-primary {
+    width: 70% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
 }
 .custom-select{
     border-radius: 2rem !important;
@@ -251,7 +311,6 @@ ul.ks-cboxtags {
     list-style: none;
 }
 ul.ks-cboxtags li{
-  display: inline;
   float: left;
 }
 ul.ks-cboxtags li label{
@@ -259,9 +318,9 @@ ul.ks-cboxtags li label{
     background-color: rgba(255, 255, 255, .9);
     border: 2px solid rgba(139, 139, 139, .3);
     color: #adadad;
-    border-radius: 25px;
+    border-radius: 2rem;
     white-space: nowrap;
-    margin: 5px 0px 5px 0px;
+    margin: 5px 5px 5px 5px;
     font-size: 0.75rem;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -298,12 +357,11 @@ ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
 }
 
 ul.ks-cboxtags li input[type="checkbox"]:checked + label {
-    border: 2px solid #1bdbf8;
-    background-color: #12bbd4;
+    border: 2px solid #133CBA;
+    background-color: #133CBA;
     color: #fff;
     transition: all .2s;
 }
-
 ul.ks-cboxtags li input[type="checkbox"] {
   display: absolute;
 }
@@ -312,6 +370,6 @@ ul.ks-cboxtags li input[type="checkbox"] {
   opacity: 0;
 }
 ul.ks-cboxtags li input[type="checkbox"]:focus + label {
-  border: 2px solid #e9a1ff;
+  border: 2px solid #FFB105;
 }
 </style>

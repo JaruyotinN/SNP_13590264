@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             TeacherSeeder::class,
             StudentSeeder::class,
             CompanySeeder::class,
-            EventSeeder::class,
             ComStaffSeeder::class,
+            EventSeeder::class,
             StudentPostSeeder::class,
            
         ]);

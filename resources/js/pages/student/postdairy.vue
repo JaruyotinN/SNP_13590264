@@ -99,6 +99,7 @@ data() {
     color: #4A4A4A;
 }
 textarea {
+  padding : 1.5rem;
   width: 100%;
   overflow: auto;
   box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;

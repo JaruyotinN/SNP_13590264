@@ -17,7 +17,14 @@ class CreateComeventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('division')->nullable();   
             $table->text('desciption')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('jobtime')->nullable();
+            $table->string('reward')->nullable();
+            $table->bigInteger('staff_id')->unsigned()->nullable();
+            $table->foreign('staff_id')
+                ->references('id')
+                ->on('company_staff')
+                ->onDelete('cascade');   
             $table->string('requirement')->nullable();
             $table->string('job_id')->nullable();
             $table->string('img')->nullable();
@@ -34,14 +41,7 @@ class CreateComeventsTable extends Migration
                 ->references('id')
                 ->on('comevents')
                 ->onDelete('cascade');
-        });       
-        Schema::table('company_staff', function (Blueprint $table) {
-            $table->bigInteger('event_id')->unsigned();
-            $table->foreign('event_id')
-                ->references('id')
-                ->on('comevents')
-                ->onDelete('cascade');
-        });    
+        });         
        
        
 

@@ -21,7 +21,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Designer',
                 'email'=>'tanatorn@likeme.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>1,
+                // 'event_id'=>1,
                 'com_id'=>1,
             ],
             [    
@@ -32,7 +32,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Graphic Designer',
                 'email'=>'atika_g@Uppercuz.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>2,
+                // 'event_id'=>2,
                 'com_id'=>2,
             ],
             
@@ -44,7 +44,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Designer',
                 'email'=>'jirada@RabbitDigital.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>3,
+                // 'event_id'=>3,
                 'com_id'=>3,
             ],
             [    
@@ -55,7 +55,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Creative',
                 'email'=>'navamon@grappik.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>4,
+                // 'event_id'=>4,
                 'com_id'=>4,
             ],
             [    
@@ -66,7 +66,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Senoir Designer',
                 'email'=>'Panichalern@Inspiredigi.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>5,
+                // 'event_id'=>5,
                 'com_id'=>5,
             ],
            
@@ -78,7 +78,7 @@ class ComStaffSeeder extends Seeder
                 'career'=>'Content Creator',
                 'email'=>'Kodnipa@kidyer.com',
                 'phonenumber'=>'09x-xxx-xxxx',
-                'event_id'=>6,
+                // 'event_id'=>6,
                 'com_id'=>6,
             ],
             

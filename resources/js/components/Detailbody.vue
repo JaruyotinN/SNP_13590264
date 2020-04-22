@@ -13,7 +13,7 @@
         <div class="card mt-4">
              <div class="col-12">
                   <div class="card-info">
-                    <h5 class="bold mt-3">ข้อมูลการฝึกงาน</h5>
+                    <h4 class="bold mt-3 color-blue">ข้อมูลการฝึกงาน</h4>
                     <label>บริษัท : </label><label class="bold"> &nbsp{{ body.company.name }}</label>
                      &nbsp &nbsp &nbsp
                     <label>หน่วยงาน : </label><label class="bold"> &nbsp {{ body.division }}</label><br>

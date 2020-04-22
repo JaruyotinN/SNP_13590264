@@ -3,46 +3,84 @@
           <ColumHeader :title="comevent.company.name" showBack="student" :img="comevent.company.logo"/> 
       <div class="row">
           <div class="col-md-12">
-                <Detailbody :body="comevent"/>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="mt-4">
+                        <div class="radio-img d-flex">
+                        <img :src="comevent.img" center alt="..." class="card-img-top"/>
+                    </div>
+                    </div>
+                </div>
+              
+                <div class="col-md-6" >
+                    <div class="card mt-4">
+                        <div class="col-12">
+                              <div class="card-info">
+                                <h4 class="bold mt-3 color-blue">ข้อมูลประกาศรับสมัครฝึกงาน</h4>
+                                <lable>โครงการ : </lable><label class="bold"> &nbsp {{ comevent.division }}</label><br>
+                                <label>จำนวนที่เปิดรับ อัตรา/ตำแหน่ง: </label><label class="bold"> &nbsp{{ comevent.quantity }}</label><br>
+                                <label>เวลาปฏิบัติงาน : </label><label class="bold"> &nbsp {{comevent.jobtime}}</label><br>
+                                <label>ค่าตอบแทน : </label><label class="bold"> &nbsp {{comevent.reward}}</label><br>
+                                <label>วันปิดรับสมัคร :</label> <label class="bold"> &nbsp {{comevent.enddate}}</label>
+                                <label>สถานที่บริษัท : {{ comevent.company.address }}</label>
+                                <hr class="hr-orange mt-3 mb-3">
+                                <h5 class="bold">รายละเอียดเพิ่มเติม</h5>
+                                <p>&nbsp&nbsp{{ comevent.desciption }}</p>
+                              </div> 
+                          </div>
+                    </div>
+                </div>
+            </div>
+
           <div class="card mt-4">
               <div class="card-info">
-                  <h5 class="bold mt-4 center">ตำแหน่งที่จะสมัคร</h5>
+                  <h5 class="bold mt-4 center">ตำแหน่งที่ต้องการสมัคร</h5>
                     <div class="col-md-10 m-auto">
-                        <hr class="hr-orange">
+                    <input class="form-control" type="hidden" v-model="comeventjob = comevent.requirement.split(',')">  
+                    <hr class="hr-orange">
+                    <div class="center">
+                       <div class="form-check-inline" v-for="(job, index) in comeventjob" :key="index" >
+                          <label class="form-check-label mt-3 mb-3">
+                            <input type="radio" class="form-check-input" :value="job" v-model="form.jobtype">{{job}}
+                          </label>
+                       </div>
+                    </div>
                     </div>
               </div> 
           </div>
           <div class="card mt-4">
               <div class="card-info">
-                  <h5 class="bold mt-4 center">คำถามถึงนักศึกษาฝึกงาน</h5>
+                  <h5 class="bold mt-4 center">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(1)</h5>
                     <div class="col-md-10 m-auto">
                         <hr class="hr-orange">
                          <div class="form-group">
                          <p>{{ comevent.question1 }}</p>
-                        <textarea class="form-control" v-model="form.question1" rows="3"></textarea>
+                        <textarea class="form-control" v-model="form.question1" rows="3" required></textarea>
                         </div>         
                     </div>
               </div> 
           </div>
           <div class="card mt-4">
               <div class="card-info">
-                  <h5 class="bold mt-4 center">คำถามถึงนักศึกษาฝึกงาน</h5>
+                  <h5 class="bold mt-4 center">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(2)</h5>
                     <div class="col-md-10 m-auto">
                         <hr class="hr-orange">
                          <div class="form-group">
                          <p>{{ comevent.question2 }}</p>
-                        <textarea class="form-control" v-model="form.question2" rows="3"></textarea>
+                        <textarea class="form-control" v-model="form.question2" rows="3" required></textarea>
                         </div>         
                     </div>
               </div> 
           </div>
         <div  v-for="(info, index) in infos" :key="index">
+            <input class="form-control" type="hidden" v-model="form.course_id = info.student.course.id">
             <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id"> 
         </div>
          <input class="form-control" type="hidden" v-model="form.com_id = comevent.com_id">  
               <div class="mt-3 mb-3 center">
                 <button class="btn-outline-primary bold" @click="cheack()">
-                  สมัครฝึกงาน
+                  ส่งคำร้องขอสมัครฝึกงาน
                 </button>
 						  </div>
             </div>
@@ -52,8 +90,6 @@
 
 <script>
 import ColumHeader from '~/components/ColumHeader'
-import Detailbody from '~/components/Detailbody'
-import Detailquestion from '~/components/Detailquestion'
 import {mapActions, mapGetters} from 'vuex'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -74,41 +110,18 @@ data() {
     form:{
       question1:'',
       question2:'',
+      jobtype:'',
+      course_id:'',
       event_id:'',
       stu_id:'',
       com_id:'',
     },
-    bodys:[
-    { 
-      img:'https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.0-9/p960x960/51248284_779547722411675_3427955334721830912_o.png?_nc_cat=108&_nc_eui2=AeH9XH2PPZuSeGLO1nuw_wlrNgVQ8my7ji7dgg_Y1SSpZ98ttqIoVNRtvXwkI2F5kH7rRL7kuYJiCgOBrhUs-_rV-2nYOTbkgZ-l2ecVyeG2Vw&_nc_oc=AQmAvGTU0GD3wgF7XAx6aaR39_lpKs9xK-sarkzzNfpqpnZ2DVxBokWJwcHMDMsURE8&_nc_ht=scontent.fbkk13-1.fna&oh=eaca2f6ab9b3f4fee1744560e9923c3f&oe=5E79F2EF',
-      name:'ไลค์ มี จำกัด',
-      subname:'Future Trends',
-      quantity:'6',
-      requirement:'Graphic Desinger, illustrator , Motion Grapihc',
-      worktime:'จ-ศ',
-      address:'126/5 อาคาร ไทยศรี ชั้น2 ถนนกรุงธนบุรี แขวงบางลำภูล่าง เขตคลองสาน กรุงเทพมหานคร 10600',
-      description:'บริษัท ไลค์มี จำกัดนั้นเป็นบริษัทที่มีแบร์ดหลากหลาย ทั้ง InfographicThailand , AomMoeny , ถุงเงิน Family , Future Trends',
-    },
-    ],
-    questions: [
-    {
-      text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius vehicula mauris, ut accumsan augue imperdiet vel. Phasellus neque est, commodo at condimentum eget, congue ut tortor. Pellentesque nec nisi mauris. In euismod feugiat odio, ut euismod quam mollis et. Curabitur pharetra nibh quis elit tincidunt malesuada. Nunc suscipit, odio non imperdiet ornare',
-    },
-    {
-      text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius vehicula mauris, ut accumsan augue imperdiet vel. Phasellus neque est, commodo at condimentum eget, congue ut tortor. Pellentesque nec nisi mauris. In euismod feugiat odio, ut euismod quam mollis et. Curabitur pharetra nibh quis elit tincidunt malesuada. Nunc suscipit, odio non imperdiet ornare',
-    },
-    ],
-     heads: [
-    {
-      name:'บริษัท ไลค์มี จำกัด',
-    },
-    ],
+    comeventjob:'',
+
     }
 },
   components:{
     ColumHeader,
-    Detailbody,
-    Detailquestion,
   },
   methods: {
     ...mapActions({
@@ -146,7 +159,8 @@ data() {
   created(){
     this.fetch(this.id),
     this.fetchprofile()
-  }
+  },
+
 }
 </script>
 <style scoped>
@@ -191,9 +205,18 @@ textarea {
   border-radius: 5px;
   outline: none !important; 
 }
+.radio-img{
+  box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+}
+.radio-img img {
+    width: 100%;
+}
 .card-info{
     margin-top: 2px;
-    padding: 5px 0 5px 0;
+    padding: 10px;
     font-size: 1rem;
     line-height: 19px;
     color: #4A4A4A;
@@ -203,4 +226,10 @@ textarea {
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
 }
+
+/* cheackbox */
+.form-check-inline {
+    padding-left: 1rem;
+}
+
 </style>

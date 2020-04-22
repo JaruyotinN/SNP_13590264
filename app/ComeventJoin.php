@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComeventJoin extends Model
 {
-    protected $fillable = ['user_id','stu_id','stu_confirm','jobtype','question1','question2','event_id','check','interview','result','com_id','sturev01_id','sturev02_id'];
+    protected $fillable = ['user_id','stu_id','stu_confirm','course_id','jobtype','question1','question2','event_id','check','interview','result','com_id','sturev01_id','sturev02_id'];
 
     public function comevent(){
         return $this->belongsTo('App\Comevent','event_id','id');

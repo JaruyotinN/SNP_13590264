@@ -21,7 +21,7 @@
             <li class="active">ตรวจสอบข้อมูลเพื่อยืนยัน</li>
             <li>รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
         </ul>
-        <ul class="progressbar mt-3" v-if="user.student.intern_id == 4">
+        <ul class="progressbar mt-3" v-if="user.student.intern_id >= 4">
             <li class="active">ผลการตอบรับจากทางบริษัท</li>
             <li class="active">ยืนยันจากสถานที่ฝึกงาน</li>
             <li class="active">ตรวจสอบข้อมูลเพื่อยืนยัน</li>
@@ -34,7 +34,7 @@
           <Status01  v-if="user.student.intern_id == 1"/>
           <Status02 v-else-if="user.student.intern_id == 2" />
           <Status03 v-else-if="user.student.intern_id == 3" :body="body"/>
-          <Status04 v-else-if="user.student.intern_id == 4"/>
+          <Status04 v-else-if="user.student.intern_id >= 4"/>
           
       </div>
 

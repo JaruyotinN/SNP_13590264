@@ -77,6 +77,8 @@ class StudentInfoController extends Controller
     public function update(Request $request, $id)
     {   
         $Student = StudentInfo::find($id);
+        $date = strtotime(date("Y-m-d"));
+       
 
             if ($request->get == '1'){
                 $Student->update([
@@ -84,6 +86,8 @@ class StudentInfoController extends Controller
                     'surname' => $request->surname,
                     'number' => $request->number,
                     'img' => $request->img,
+                    'phonenumber' => $request->phonenumber,
+                    'course_id' => $request->course_id,
                 ]);
             } else if ($request->get == '2'){
                 $Student->update([
@@ -95,7 +99,35 @@ class StudentInfoController extends Controller
                 $Student->update([
                     'intern_id' => 3,
                 ]);
-            }
+            } else if ($request->get == '5'){
+                $Student->update([
+                    'intern_id' => 4,
+                ]);
+            } else if ($request->get == '6'){
+                $start = strtotime($request->startdate);
+              
+                 if($date >= $start){
+                    $Student->update([
+                        'intern_id' => 6,
+                    ]);
+                 } else {
+                    $Student->update([
+                        'intern_id' => 5,
+                    ]);
+                 }
+            } else if ($request->get == '7'){
+                $end = strtotime($request->enddate);
+
+                if($date >= $end){
+                   $Student->update([
+                       'intern_id' => 7,
+                   ]);
+                } else {
+                   $Student->update([
+                       'intern_id' => 6,
+                   ]);
+                }
+           } 
            
         return $Student;
         

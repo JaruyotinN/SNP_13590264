@@ -26,6 +26,7 @@ class ProfileController extends Controller
             foreach($getinfo as $info){
                 $info->student->major->faculty->university;
                 $info->student->scores;
+                $info->student->course;
                 foreach($info->student->scores as $score){
                     $score->joptype;
                 }

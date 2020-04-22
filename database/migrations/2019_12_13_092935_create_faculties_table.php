@@ -18,6 +18,13 @@ class CreateFacultiesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        Schema::table('student_infos', function (Blueprint $table) {
+            $table->bigInteger('faculty_id')->unsigned();
+            $table->foreign('faculty_id')
+                ->references('id')
+                ->on('faculties')
+                ->onDelete('cascade');
+        });  
     }
 
     /**

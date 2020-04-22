@@ -10,6 +10,7 @@ export const state = {
   showstudent_join :null,
   stuconfirm : null,
   showdetailreview : null,
+  
 }
 
 

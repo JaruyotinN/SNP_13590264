@@ -45,6 +45,21 @@
                                 <has-error :form="form" field="number" />
                             </div>
                         </div>
+                         <div class="col-md-4">
+                            <p>เบอร์โทรศัพท์</p>
+                            <div class="mt-2 mb-3">
+                                 <input v-model="form.phonenumber" :class="{ 'is-invalid': form.errors.has('phonenumber') }" class="form-control" type="text" name="number"  placeholder="โปรดข้อมูลติดต่อ">
+                                <has-error :form="form" field="phonenumber" />
+                            </div>
+                        </div>
+                         <div class="col-md-8">
+                            <p>หลักสูตรฝึกงาน</p>
+                            <div class="mt-2 mb-3">
+                                <select class="custom-select" v-model="form.course_id" required>
+                                    <option v-for="(course, index) in courses" :key="index" :value="course.id" v-if="course.faculty_id == form.major.faculty.id">{{course.name}} {{course.description}}</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <p>มหาวิทยาลัย</p>
                             <div class="mt-2 mb-3">
@@ -98,8 +113,8 @@
                     <div class="center textcustom">
                       <i class="fa fa-file-image-o fa-3x color-dblue"></i>
                       <p>Resume</p>
-                      <label>ขนาดไฟล์ห้ามเกิน 10 Mb.</label><br>
-                      <a href="" v-on:click.stop.prevent="openWindow(form2.cv)">Resume ของคุณ</a>
+                      <label>ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
+                      <a href="" v-if="form2.cv != null" v-on:click.stop.prevent="openWindow(form2.cv)">Resume ของคุณ</a>
                       <br>
 
                       <div class="mt-3 upload-btn-wrapper">
@@ -115,8 +130,9 @@
                     <div class="center textcustom">
                       <i class="fa fa-file-pdf-o fa-3x color-dblue"></i>
                       <p>Portfolio</p>
-                      <label>ขนาดไฟล์ห้ามเกิน 10 Mb.</label><br>
-                      <a href="" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
+                      <label>ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
+                      <a href=""  v-if="form2.port != null" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
+                      <br>
         
                       <div class="mt-3 upload-btn-wrapper">
                           <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Portfolio</button>
@@ -169,6 +185,8 @@ export default {
       id:'',
       name: "",
       surname: "",
+      phonenumber: "",
+      course_id:"",
       number: "",
       major:"",
       university:"",
@@ -194,7 +212,8 @@ export default {
       return parseInt(this.$route.params.id)
     },
        ...mapGetters({
-    user: 'profile/show'
+    user: 'profile/show',
+    courses: 'profile/courses'
    
   }),
   },
@@ -202,6 +221,7 @@ export default {
   async created () {
     // Fill the form with user data.
     await this.fetchshow(this.id),
+    await this.fetchcourses(),
     this.form.keys().forEach(key => {
       this.form[key] = this.user.student[key]
     })
@@ -213,6 +233,7 @@ export default {
   methods: {
     ...mapActions({
       fetchshow:'profile/show',
+      fetchcourses:'profile/fetchcourses'
       
     }),
     openWindow: function (link) {
@@ -224,7 +245,7 @@ export default {
     setCV(e) {
       var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
       console.log(FileSize);
-      if(FileSize <= 5){
+      if(FileSize <= 2){
         console.log("size ok")
         this.filecv = e.target.files[0];
       } else {
@@ -328,6 +349,7 @@ export default {
 }
 .custom-select{
     border-radius: 2rem !important;
+    font-size: 0.80rem;
 }
 .form-control{
     border-radius: 2rem;

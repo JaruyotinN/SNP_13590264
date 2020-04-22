@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/majors', 'MajorController');
     Route::resource('/jobs', 'JobController');
     Route::resource('/types', 'JoptypeController');
+    Route::resource('/courses', 'StudentCoutseController');
     Route::resource('/comevents', 'ComeventController');
     Route::resource('/review', 'StudentReviewController');
     Route::get('/detailreview/{id}', 'StudentReviewController@showdetailreview');

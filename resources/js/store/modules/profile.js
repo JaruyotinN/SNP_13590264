@@ -5,6 +5,7 @@ import * as types from '../mutation-types'
 export const state = {
   userinfos: null,
   show: null,
+  courses: null,
 }
 
 
@@ -12,6 +13,7 @@ export const state = {
 export const getters = {
     userinfos: state => state.userinfos,
     show: state => state.show,
+    courses: state => state.courses,
 }
 
 // mutations
@@ -22,6 +24,9 @@ export const mutations = {
   [types.FETCH_USERSHOW] (state, data) {
     state.show = data
   },
+  [types.FETCH_COURSES] (state, data) {
+    state.courses = data
+  },
 }
 
 // actions
@@ -30,6 +35,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/userinfo`)
       commit(types.FETCH_USERINFO,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchcourses ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/courses`)
+      commit(types.FETCH_COURSES,  data )
     } catch (e) {
       console.log(e)
     }

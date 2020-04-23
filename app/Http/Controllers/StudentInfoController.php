@@ -90,6 +90,12 @@ class StudentInfoController extends Controller
                     'course_id' => $request->course_id,
                 ]);
             } else if ($request->get == '2'){
+                if($Student->port != $request->port){
+                    @unlink(public_path($Student->port));
+                }
+                if($Student->cv != $request->cv){
+                    @unlink(public_path($Student->cv));
+                }
                 $Student->update([
                     'port' => $request->port,
                     'cv' => $request->cv,

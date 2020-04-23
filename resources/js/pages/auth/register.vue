@@ -44,6 +44,7 @@
             </div>
           </div>
 
+
           <div class="form-group row">
             <div class="col-md-7 offset-md-3 d-flex">
               <!-- Submit Button -->
@@ -82,6 +83,7 @@ export default {
       email: '',
       password: '',
       role:1,
+     
       password_confirmation: ''
     }),
     mustVerifyEmail: false

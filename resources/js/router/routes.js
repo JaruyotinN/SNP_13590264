@@ -10,6 +10,7 @@ export default [
   { path: '/status', name: 'status', component: page('student/status.vue') },
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit/:id', name: 'edit', component: page('student/edit.vue') },
+  { path: '/try', name: 'try', component: page('student/try.vue') },
 
   { path: '/review/:id', name: 'review', component: page('company/review.vue') },
   { path: '/detailreview/:id', name: 'detailreview', component: page('company/detailreview.vue') },

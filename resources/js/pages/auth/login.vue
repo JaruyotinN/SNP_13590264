@@ -54,6 +54,8 @@
 
 <script>
 import Form from 'vform'
+import { mapGetters } from 'vuex'
+
 import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
@@ -74,6 +76,9 @@ export default {
     }),
     remember: false
   }),
+   computed: mapGetters({
+    user: 'auth/user'
+  }),
 
   methods: {
     async login () {
@@ -90,7 +95,18 @@ export default {
       await this.$store.dispatch('auth/fetchUser')
 
       // Redirect home.
-      this.$router.push({ name: 'student' })
+      if(this.user.role == 1)
+      {
+           this.$router.push({ name: 'student' })
+
+      } else if(this.user.role == 2)
+      {
+           this.$router.push({ name: 'teacher' })
+      } else if(this.user.role == 3)
+      {
+           this.$router.push({ name: 'company' })
+      }
+     
     }
   }
 }

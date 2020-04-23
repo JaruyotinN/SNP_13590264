@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/getstudent/{id}', 'ComeventJoinController@showcomjoin');
     Route::get('/studentconfirm', 'ComeventJoinController@studentconfirm');
     Route::get('/studentconfirm/{id}', 'ComeventJoinController@showstudentconfirm');
+    Route::get('/internconfirm', 'ComeventJoinController@internstepconfirm');
     Route::resource('/update', 'ComeventJoinController');
     Route::resource('/updateprofile', 'StudentInfoController');
     Route::post('/comevent_join', 'ComeventJoinController@store');
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('search', 'ScoreController@search');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
+
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

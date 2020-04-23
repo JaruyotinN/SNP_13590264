@@ -2,31 +2,44 @@
 <div class="card mt-4">
    <div class="card-info">
       <form @submit.prevent="check" @keydown="form.onKeydown($event)">
-          <h5 class="bold mt-4 center">ยืนยันข้อมูลผู้ดูแลการฝึกงาน</h5>
+          <h5 class="bold mt-4 center">ข้อมูลผู้ดูแลการฝึกงาน</h5>
           <div class="col-md-10 m-auto">
-              <div class="row">   
-                  <div class="col-md-6">
-                      <h>บริษัท</h>
+              <div class="row mt-3"  v-for="(intern, index) in internstep" :key="index">   
+                <!-- <pre>{{intern.comevent.staff}}</pre> -->
+                  <div class="col-md-6 mb-1">
+                      <h5 class="color-blue ml-1"><i class="fa fa-building"></i> บริษัท</h5>
                       <div class="mt-2 mb-3">
-                      <input class="form-control" type="text" placeholder="Comapany" value="บริษัท ไลค์มี จำกัด">
+                      <input class="form-control" disabled type="text" :value="intern.comevent.company.name">
                       </div>
                   </div>
-                  <div class="col-md-6">
-                      <h>หน่วยงาน</h>
+                  <div class="col-md-6 mb-1">
+                      <h5 class="color-blue mb-1"><i class="fa fa-font-awesome"></i> โครงการ</h5>
                       <div class="mt-2 mb-3">
-                      <input class="form-control" type="text" placeholder="Comapany" value="Future Trends">
+                      <input class="form-control" disabled type="text" :value="intern.comevent.division">
                       </div>
                   </div>
-                  <div class="col-md-6">
-                      <h>ผู้ดูแล</h>
+                  <div class="col-md-6 mb-1">
+                      <h5 class="color-blue mb-1"><i class="fa fa-user"></i> ผู้ดูแล</h5>
                       <div class="mt-2 mb-3">
-                      <input class="form-control" type="text" placeholder="Comapany" value="นางโลเล็ม ยิปซั่ม">
+                      <input class="form-control" disabled type="text" :value="'คุณ'+intern.comevent.staff.name+' '+intern.comevent.staff.surname">
                       </div>
                   </div>
-                  <div class="col-md-6">
-                      <h>ตำแหน่งผู้ดูแล</h>
+                  <div class="col-md-6 mb-1">
+                      <h5 class="color-blue mb-1"><i class="fa fa-certificate"></i> ตำแหน่งผู้ดูแล</h5>
                       <div class="mt-2 mb-3">
-                      <input class="form-control" type="text" placeholder="Comapany" value="Content Creator">
+                      <input class="form-control" disabled type="text" :value="intern.comevent.staff.career">
+                      </div>
+                  </div>
+                   <div class="col-md-6 mb-1">
+                      <h5 class="color-blue mb-1"><i class="fa fa-phone-square"></i> เบอร์โทรศัพท์</h5>
+                      <div class="mt-2 mb-3">
+                      <input class="form-control" disabled type="text" :value="intern.comevent.staff.phonenumber">
+                      </div>
+                  </div>
+                   <div class="col-md-6 mb-1">
+                      <h5 class="color-blue mb-1"><i class="fa fa-envelope"></i> Email</h5>
+                      <div class="mt-2 mb-3">
+                      <input class="form-control" disabled type="text" :value="intern.comevent.staff.email">
                       </div>
                   </div>
               </div>
@@ -58,7 +71,7 @@ import 'sweetalert2/src/sweetalert2.scss'
   }),
   methods: {
    ...mapActions({
-     userjoin:'comevents/userjoin',
+     fetchinternconfirm:'comevents/fetchinternconfirm',
      fetch:'profile/fetch'
    }),
       check(){
@@ -96,13 +109,12 @@ import 'sweetalert2/src/sweetalert2.scss'
     },
   },
   created(){
-    this.userjoin()
-    
+    this.fetchinternconfirm()
   },
   computed:{
   ...mapGetters({
       users:'profile/userinfos',
-      userjoins:'comevents/userjoins',
+      internstep:'comevents/internstepconfirm',
     }),
   },
    }
@@ -123,7 +135,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 }
 .card-info{
     margin-top: 2px;
-    padding: 5px 0 5px 0;
+    padding: 10px;
     font-size: 1rem;
     line-height: 19px;
     color: #4A4A4A;

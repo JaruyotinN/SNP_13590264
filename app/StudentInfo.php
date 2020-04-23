@@ -14,6 +14,9 @@ class StudentInfo extends Model
     public function major(){
         return $this->belongsTo('App\Major','major_id','id');
     }
+    public function teacher(){
+        return $this->belongsTo('App\Teacherinfos','teacher_id','id');
+    }
     public function scores(){
         return $this->hasMany('App\Score','stu_id','id');
     }

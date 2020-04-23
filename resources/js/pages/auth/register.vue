@@ -81,6 +81,7 @@ export default {
       name: '',
       email: '',
       password: '',
+      role:1,
       password_confirmation: ''
     }),
     mustVerifyEmail: false

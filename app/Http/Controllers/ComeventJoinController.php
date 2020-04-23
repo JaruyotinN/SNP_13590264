@@ -72,6 +72,28 @@ class ComeventJoinController extends Controller
        return $comjoins;
        
     }
+    
+    public function internstepconfirm(Request $request)
+    {
+        $user = $request->user();
+
+        $user = $request->user();
+        $user_joins = ComeventJoin::where('user_id',$user->id,)
+        ->where('stu_confirm',1)
+        ->get();
+
+        foreach($user_joins as $com){
+            $com->comevent->company;
+            $com->comevent->staff;
+            $com->student->teacher;
+            $com->student->course;
+            $com->student->major->faculty->university;
+        }
+
+        return $user_joins;
+
+       
+    }
 
     // public function studentconfirm(Request $request)
     // {

@@ -10,6 +10,7 @@ export const state = {
   showstudent_join :null,
   stuconfirm : null,
   showdetailreview : null,
+  internstepconfirm : null,
   
 }
 
@@ -22,6 +23,7 @@ export const getters = {
     joinreqs: state => state.joinreqs,
     studentjoins: state => state.student_joins,
     showstudent_join: state => state.showstudent_join,
+    internstepconfirm: state => state.internstepconfirm,
     stuconfirm : state => state.stuconfirm,
     ongoing (state) {
       if (state.stuconfirm) {
@@ -74,6 +76,9 @@ export const mutations = {
   [types.FETCH_SHOWDETAILREVIEW] (state, data) {
     state.showdetailreview = data
   },
+  [types.FETCH_INTERNCONFIRM] (state, data) {
+    state.internstepconfirm = data
+  },
 }
 
 // actions
@@ -82,6 +87,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/comevents`)
       commit(types.FETCH_COMEVENT,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchinternconfirm ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/internconfirm`)
+      commit(types.FETCH_INTERNCONFIRM,  data )
     } catch (e) {
       console.log(e)
     }

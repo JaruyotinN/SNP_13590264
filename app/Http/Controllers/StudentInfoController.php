@@ -81,6 +81,9 @@ class StudentInfoController extends Controller
        
 
             if ($request->get == '1'){
+                if($Student->img != $request->img){
+                    @unlink(public_path($Student->img));
+                }  
                 $Student->update([
                     'name' => $request->name,
                     'surname' => $request->surname,

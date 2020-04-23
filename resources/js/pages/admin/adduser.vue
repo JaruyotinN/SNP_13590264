@@ -117,7 +117,7 @@ data: () => ({
       start:'',
       end:'',
       role:1,
-     major_id:'',
+      major_id:'',
       faculty_id:'',
       password_confirmation: ''
     }),

@@ -45,11 +45,13 @@ class AdminController extends Controller
                             $stu_id = DB::table('student_infos')->insertGetId([
                                 'profile_id' => $profile_id,
                                 'faculty_id' => $request->faculty_id,
-                                'major_id' => $request->major_id,
+                                 'major_id' => $request->major_id,
                                 'intern_id' => 1,
                                 'teacher_id' => 1,
                                 'sendinvite' => 5,
                                 'number'=> $text.$i,
+                                
+                                
                             ]);
                             if($stu_id){
 

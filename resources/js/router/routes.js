@@ -13,6 +13,7 @@ export default [
   { path: '/try', name: 'try', component: page('student/try.vue') },
 
   { path: '/review/:id', name: 'review', component: page('company/review.vue') },
+  { path: '/review2/:id', name: 'review2', component: page('company/review2.vue') },
   { path: '/detailreview/:id', name: 'detailreview', component: page('company/detailreview.vue') },
   { path: '/getstudent/:id', name: 'getstudent', component: page('company/requestdetail.vue') },
   { path: '/company', name: 'company', component: page('company/index.vue') },

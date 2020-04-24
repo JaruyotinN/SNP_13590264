@@ -1,44 +1,42 @@
 <template>
     <div class="col-md-12">
        <ColumHeader title="แก้ไขข้อมูลความถนัด"/>
+       <form @submit.prevent="update(1)" @keydown="form.onKeydown($event)">
         <h5 class="bold center">**ความถนัดสามารถเลือกได้สูงสุด 4 ประเภทจากคะแนนทั้งหมด 15 คะแนน**</h5>
         <div class="row">
-            <div class="col-md-6" v-for="(helo, index) in user.student.scores" :key="index" :class="{ active: index == 0 }" >
-               
-                <p>หมวดหมู่ที่ 1</p>
-                {{helo.joptype.job.title}} / {{helo.joptype.name}}
+          <!-- {{form.index}}<br> {{form.title}} <br>{{form.name}}  -->
+          <!-- <pre>{{users.student.scores}}</pre> -->
+            <div class="col-md-6" v-for="(score, index) in users.student.scores" :key="index" >          
+              <!-- <pre> {{score}}</pre> -->
+       
+                <input class="form2-control" type="hidden" v-model="form.id = users.student.id">
+                <p>หมวดหมู่ที่ {{index+1}}</pre>                
                 <div class="input-group mt-2 mb-3">
-                  
-                    <select class="custom-select mr-1 w-30" id="inputGroupSelect01">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select col-md-5 m-auto" v-model="form.title[index]" required>
+                       <option  value="0" >โปรดระบุ</option>
+                            <option v-for="(job, i) in jobs" :key="i" :value="job.id">{{job.title}}</option>
                     </select>
-                    <select class="custom-select mr-2 w-30" id="inputGroupSelect01">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select col-md-5  m-auto" v-model="form.name[index]" required>
+                            <option  value="0" >โปรดระบุ</option>
+                            <!-- <option v-for="(type, index) in types" :key="index" :value="type.id">{{type.name}}</option> -->
+                             <option v-for="(type, i) in types" :key="i" v-if="form.title[index] == type.job_id" :value="type.id">{{type.name}}</option>
                     </select>
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>ความถนัด</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                     <select class="custom-select col-md-5  m-auto" v-model="form.score[index]" required>
+                            <option selected value="0" >ความถนัด</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                     </select>
                 </div>
             </div>
             </div>
-            <div class="col-md-3 offset-9">
-                <div class="btn-detail-style mt-3 mb-3">
-                    <v-button
-                    :loading="form.busy"
-                    id="createbtn"
-                    class="btn btn-primary bold"
-                    >{{ id ? "update" : "save" }}</v-button>
-                </div>
+            <div class="mt-4 ">
+                    <!-- <button class="btn-outline-primary bold" @click="cheack()"> -->
+                    <button class="btn-outline-primary bold" :loading="form.busy">
+                      บันทึกข้อมูลผู้ใช้งาน
+                    </button>
             </div>
+            </form>
     </div>     <!-- col-md-12 -->
 </template>
 
@@ -51,9 +49,11 @@ export default {
   middleware: 'auth',
  data: () => ({
     form: new Form({
-      title: "",
-      name: "",
-      score: "",
+      id:'',
+      index:[],
+      title: [ ],
+      name: [],
+      score: [],
     }),
   }),
   components:{
@@ -63,27 +63,74 @@ export default {
     id(){
       return parseInt(this.$route.params.id)
     },
-       ...mapGetters({
-    user: 'profile/show'
+      ...mapGetters({
+    users: 'profile/show',
+    jobs:'jobs/jobs',
+    types: 'jobs/types'
    
   }),
   },
   
   async created () {
     // Fill the form with user data.
+   var vm = this
+    this.fetchjob(),
+    this.fetchtype(),
     await this.fetchshow(this.id),
-    this.form.keys().forEach(key => {
-      this.form[key] = this.user.student.score[key]
-    })
+    // this.form.keys().forEach(key => {
+    //   this.form[key] = this.users.student.scores[key]
+    // })
+    //  this.users.student.scores.forEach(key => {
+    //   this.form.title[key] = this.users.student.scores[key].joptype.job.id
+    // })
+  //    $.each(this.users.student.scores, function(key, value) {
+  //   //  this.form.title.push(value.joptype.job.id);
      
+  //  });
+  this.users.student.scores.map(function(value, key) {
+  vm.form.index.push(value.id);
+    if(value.joptype){
+      console.log('if');
+         vm.form.title.push(value.joptype.job.id);
+          vm.form.name.push(value.joptype.id);
+    }else{
+      console.log('else');
+      vm.form.title.push(5);
+       vm.form.name.push(5);
+       
+    }
+vm.form.score.push(value.score);
+        
+        // if(value.jobtype){
+        //   console.log("jobtype");
+        //    vm.form.title.push(value.joptype.job.id);
+        //   vm.form.name.push(value.joptype.id);
+        //     vm.form.score.push(value.score);
+        // } else {
+        
+        // }
+      
+
+   });
+  //  console.log(this.users.student.scores)
   },
   methods: {
-    async update () {
-      const { data } = await this.form.patch('/api/settings/profile')
-      this.$store.dispatch('auth/updateUser', { user: data })
-    },
+    async update() {
+    
+        const { data } = await this.form.put(`/api/updatescore/${this.form.id}`);
+        console.log(data)
+      //   if (data) {
+      //   this.$router.push({
+      //     name: "student",
+      //   });
+      // }
+    } , 
+
     ...mapActions({
-      fetchshow:'profile/show'
+      fetchshow:'profile/show',
+      fetchjob: 'jobs/fetchjob',
+      fetchtype: 'jobs/fetchtype',
+
     })
    
   }

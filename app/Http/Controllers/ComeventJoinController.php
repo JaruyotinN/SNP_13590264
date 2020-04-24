@@ -24,7 +24,7 @@ class ComeventJoinController extends Controller
         foreach($user_joins as $com){
             $com->comevent->company;
         }
-
+       
         return $user_joins;
     }
 
@@ -38,10 +38,13 @@ class ComeventJoinController extends Controller
             $usercom_id = $info->company->id;
         }
 
-        $comjoins = ComeventJoin::where('com_id','=', $usercom_id)->get();
+        $comjoins = ComeventJoin::where('com_id','=', $usercom_id)
+        ->where('stu_confirm','=',0)
+        ->get();
         foreach($comjoins as $com){
-            $com->student;
+            $com->student->major->faculty->university;
             $com->comevent;
+            $com->student->course;
         }
 
        return $comjoins;
@@ -64,8 +67,9 @@ class ComeventJoinController extends Controller
         ->get();
 
         foreach($comjoins as $com){     
-           $com->student;
+           $com->student->major->faculty->university;
            $com->comevent ;
+           $com->student->course;
         }
         
 
@@ -94,43 +98,8 @@ class ComeventJoinController extends Controller
 
        
     }
-
-    // public function studentconfirm(Request $request)
-    // {
-    //     $user = $request->user();
-
-    //     //ต้องเอา id ของ Companyinfo
-    //     $infos = Profile::where('user_id',$user->id)->get();
-    //     foreach($infos as $info){
-    //         $company_id = $info->company;
-    //     }
-
-    //     //whereHas คือการ where ด้วย Model 
-    //     $comjoins = Profile::where('profile_type','S')->whereHas('student', function ($query) use ($company_id){
-    //         $query->whereHas('comevent_joins',function($query) use ($company_id){
-    //             $query->whereHas('comevent',function($query) use ($company_id) {
-    //                 $query->where('com_id', $company_id->id);
-    //             }); 
-    //         });
-    //     })->get();
-
-    //     //ข้อมูลที่ได้เป็น Array 
-        
-    //    foreach($comjoins as $com){
-    //      $conf = $com->student->comevent_joins->stu_confirm;
-    //      $int_id   = $com->student->intern_id;
-    //      if ($conf == '1' &&  $int_id <= 6 ){
-    //          $com->student->comevent_joins->comevent ;
-    //      }
-    //    }
-
-    //    return $comjoins;
-       
-    // }
     
-
-
-   
+  
     
     /**
      * Show the form for creating a new resource.

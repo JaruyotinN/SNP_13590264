@@ -21,7 +21,7 @@
                  </div>
               </div>
             </div>  
-            <pre>{{users}}</pre>
+             
             <div class="col-md-12">
                 <form class="was-validated"  @submit.prevent="search" @keydown="form.onKeydown($event)">
                      <div class="input-group mt-2 mb-3 m-auto">
@@ -52,12 +52,122 @@
                     <label>| ความถนัด</label>
                     <label class="bold color-dblue">ออกแบบ Graphic </label>
                     <div class="row">
-                    <div class="col-md-12 mb-2" v-for="(card, index) in cards" :key="index">
-                        <!-- <router-link :to="{name:'detail', params:{id:card.id}}">
-                        <CompanyCard :card="card"/>
-                        </router-link> -->
-                          <CompanyCard :card="card"/>
+              <div class="col-md-12" v-for="(stu, index) in users" :key="index">
+      	        <div class="card mt-3 mb-2"> 
+                  <div class="row">
+                      <div class="col-md-6">
+                        
+                            <div class="img-circle mb-3 ml-3 mt-2 float: left" v-if="stu.img !== null">
+                              <img :src="stu.img" >
+                            </div>
+                            <div class=" "  v-else>
+                              <i class="fa fa-user-circle" ></i>
+                            </div>
+                            <div class="mb-3 mt-2 ml-3" style="float: left">
+                              <div class="f-1 bold m-0">
+                                <label class="color-blue">{{stu.name}} {{stu.surname}} </label>
+                                <label>|</label>
+                                <!-- <label >{{stu.university}}</label> -->
+                              </div>
+                              <div class="f-075 m-0">
+                                  <!-- <label>{{stu.faculty}} </label> -->
+                                  <label>สาขา </label>
+                                  <!-- <label>{{stu.major}}</label> -->
+                                    <!-- <div  v-for="(sc, index) in stu.score" :key="index">
+                                    <label>{{sc.joptype.name}}({{sc.score}}) </label>
+                                  </div> -->
+                              </div>
+
+                            </div>   
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3 mt-2 mr-3" style="float: left">
+                              <div class="f-1" v-if="stu.port != null">
+                                <a  class="mb05" href="" v-on:click.stop.prevent="openWindow(stu.port )">Portfolio</a>
+                                <br>
+                                <i class="ml-1 fa fa-file-image-o fa-3x color-dblue" ></i>
+                              </div>
+                              <div class="f-1" v-else>
+                                <label>Portfolio</label>
+                                <br>
+                                <i class="ml-1 fa fa-file-image-o fa-3x color-gray" ></i>
+                              </div>
+                          </div>
+                          <div class="mb-3 mr-3 mt-2" style="float:left">
+                              <div class="f-1" v-if="stu.cv != null">
+                              <a class="mb05" href="" v-on:click.stop.prevent="openWindow(stu.cv )">Resume</a>
+                                <br>
+                                <i class="ml-1 fa fa-file-pdf-o fa-3x color-dblue" ></i>
+                              </div>
+                              <div class="f-1" v-else>
+                                <label>Resume</label>
+                                <br>
+                                <i class="ml-1 fa fa-file-pdf-o fa-3x color-gray" ></i>
+                              </div>
+                          </div>
+                          <form @submit.prevent="update(stu.id)" @keydown="form.onKeydown($event)">  
+                          <div class="col-md-6 mt-3" style="float:right">
+                          <button class="btn-outline-primary bold" :loading="form.busy">
+                            <i class="fa fa-info fa-lg"></i> พิจารณาคำร้อง
+                          </button>
+                          </div>
+                          </form>
+                    
+                      </div>
+                      
+                  </div>
+                </div>
+              </div>
+     
+                    <!-- <div class="col-md-12 mb-2" v-for="(user, index) in users" :key="index">
+                         <div class="card mt-3 mb-2"> 
+   
+                      <div class="row">
+                          <div class="col-md-6">
+                          <div class="img-circle ml-3 mt-2 mr-3">
+                              <img :src="user.student.img">
+                          </div>
+                    <div class="mb-3 ml-3 mt-2" style="float: left" v-for="(score, index) in user.student.scores" v-if="index == 1" :key="index">
+
+                        <div class="f-1 bold m-0">
+                          <label>{{user.student.name}}  {{user.student.surname}} </label>
+                          <label>|</label>
+                          <label>{{user.student.major.faculty.university.name}}</label>
+                        </div>
+                        <div class="f-1 m-0" >
+                            <label class="m-0">ทักษะหลัก :</label>
+                          
+                            <label>{{score.joptype.name}}</label>
+                            <label>|</label>
+                            <label>{{score.score}}</label>
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-3">
+                     <div class="mb-3 mt-2 mr-3" style="float: left">
+                        <div class="f-1">
+                          <label>resume</label>
+                          <br>
+                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
+                        </div>
+                    </div>
+                    <div class="mb-3 mr-3 mt-2" style="float:left">
+                        <div class="f-1">
+                          <label>portfoilo</label>
+                           <br>
+                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mt-3">
+                    <router-link class="btn btn-primary bold" :to="{name:'edit'}"> 
+                      <i class="fa fa-envelope-open fa-2x"></i>
+                       <p>ส่งคำเชิญ</p>
+                    </router-link>
+                </div>
+            </div>
+    </div>
+                    </div> -->
                     </div>
             </div>
         </div>
@@ -122,7 +232,18 @@ export default {
       infos:'profile/userinfos',
       jobs: 'jobs/jobs',
       types: 'jobs/types'
-    })
+    }),
+    sortedArray: function() {
+    function compare(a, b) {
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
+    }
+
+    return this.arrays.sort(compare);
+  }
   },
   methods: {
     async search() {
@@ -144,6 +265,7 @@ export default {
      this.fetch()
      this.fetchjob()
      this.fetchtype()
+     this.search()
   }
 }
 </script>
@@ -190,5 +312,30 @@ export default {
     border: none;  
     box-shadow:none;
 }
+.f-075{
+  font-size: 0.75rem !important;
+}
+.f-1{
+  font-size: 1rem !important;
+}
+.f-125{
+  font-size: 1.25rem !important;
+}
+.img-circle{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden; 
+    float: left;
+}
+.img-circle img{
+    width: 100%;
+}
+.card{
+    padding: 20px 20px 10px 20px;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+    border-radius: 5px;
+}
+
 
 </style>

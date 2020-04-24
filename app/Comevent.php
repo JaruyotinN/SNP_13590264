@@ -19,6 +19,5 @@ class Comevent extends Model
     }
     
     
-    
 
 }

@@ -16,43 +16,32 @@
   
               <ul class="nav ml-3">
                 <li>
-                   <div class="dropdown show">
-                      <a  href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="setTab(1)">
+                      <a  href="#"  @click="setTab(1)">
                     ดำเนินการอยู่ 
                       </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
                 </li>
                 <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                 <li>
-                  <button @click="setTab(2)">
-                  ประเมินนักศึกษาฝึกงาน
-                  </button>
-                   <!-- <div class="dropdown show">
-                      <a  href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="setTab(2)">
-                    ประเมินนักศึกษาฝึกงาน
+                  <a  href="#"  @click="setTab(2)">
+                    ประเมินนักศึกษา 
                       </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div> -->
+                  
 
                 </li>
                  <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-                 <li @click="setTab(3)">จบฝึกงาน</li>
+                 <li >
+                     <a  href="#"  @click="setTab(3)">
+                    จบฝึกงาน
+                      </a>
+                 </li>
               </ul>
             </div>
              <hr class="hr-yellow">
 
              <div v-if="tab == 1">
                 <div class="row" v-if="ongoing.length != 0 ">
-                  <div class="col-md-3 mb-2" v-for="(stu, index) in ongoing" :key="index" >
+                  <div class="col-md-4 mb-2" v-for="(stu, index) in ongoing" :key="index" >
+                    ฐฐ
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
                                 <img :src="stu.student.img" center  class="card-img-top"/>
@@ -60,11 +49,14 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                      <h5 class="bold mt-3">tab1</h5>   
-                                      <h5 class="bold mt-3"> {{ stu.student.name }} {{stu.student.surname }} </h5>     
-                                      <p>โครงการที่สมัคร : {{stu.comevent.division}} </p>
-                                      <p>ตำแหน่ง: {{ stu.question1 }} </p>
-                                      <p>intern_id: {{ stu.student.intern_id }} </p>
+                                       <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                      <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
+                                      <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
+                                       <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
+                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
+                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
+                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
+                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
                                     </div> 
                                 </div>
                               </div>
@@ -72,12 +64,15 @@
                     </div>
                 </div>
                 <div v-else>
-                      NO INFO
+                     <div class="col-md-12 center mt-5">
+                          <h3 class="bold color-dblue"> ยังไม่มีข้อมูลนักศึกษาฝึกงาน</h3>
+                    </div>
                 </div>
             </div> 
             <div v-if="tab == 2">
                 <div class="row" v-if="needreview.length != 0 ">
-                  <div class="col-md-3 mb-2" v-for="(stu, index) in needreview" :key="index" >
+                  <div class="col-md-4 mb-2" v-for="(stu, index) in needreview" :key="index" >
+                    <!-- <pre>{{stu}}</pre> -->
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
                                 <img :src="stu.student.img" center  class="card-img-top"/>
@@ -85,11 +80,17 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                      <h5 class="bold mt-3">tab2</h5>   
-                                      <h5 class="bold mt-3"> {{ stu.student.name }} {{stu.student.surname }} </h5>     
-                                      <p>โครงการที่สมัคร : {{stu.comevent.division}} </p>
-                                      <p>ตำแหน่ง: {{ stu.question1 }} </p>
-                                      <p>intern_id: {{ stu.student.intern_id }} </p>
+                                      <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                      <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
+                                      <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
+                                       <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
+                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
+                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
+                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
+                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                         <label v-if="stu.sturev01_id != null"  ><label>ผลประเมินครั้งที่ 1 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev01_id}}">ตรวจสอบผล</router-link> </label>
+                                         <label v-if="stu.sturev02_id != null"  ><label>ผลประเมินครั้งที่ 2 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev02_id}}">ตรวจสอบผล</router-link> </label>
+                                    
                                     </div> 
                                 </div>
                               </div>
@@ -97,22 +98,23 @@
                               <div class="col-12">
                                 <div class="card-info">
                                 <router-link v-if="stu.student.intern_id == 6" class="btn btn-outline-primary bold mt-3" :to="{name:'review', params:{id:stu.id}}">ประเมินผลครั้งที่ 1</router-link>
-                                <router-link v-else-if="stu.student.intern_id == 7" class="btn btn-outline-primary bold mt-3" :to="{name:'review', params:{id:stu.id}}">ประเมินผลครั้งที่ 2</router-link>
+                                <router-link v-else-if="stu.student.intern_id == 7" class="btn btn-outline-primary bold mt-3" :to="{name:'review2', params:{id:stu.id}}">ประเมินผลครั้งที่ 2</router-link>
                                 </div>
-                                <router-link v-if="stu.sturev01_id != null"  :to="{name:'detailreview', params:{id:stu.sturev01_id}}">ผลการประเมิน 1</router-link>
                               </div>
                             </div>
                         </div>     
                     </div>
                 </div>
                 <div v-else>
-                      NO INFO
+                    <div class="col-md-12 center mt-5">
+                          <h3 class="bold color-dblue"> ยังไม่มีข้อมูลนักศึกษาฝึกงาน</h3>
+                    </div>
                 </div>
             </div> 
 
             <div v-if="tab == 3">
                 <div class="row" v-if="finishintern.length != 0 ">
-                  <div class="col-md-3 mb-2" v-for="(stu, index) in finishintern" :key="index" >
+                  <div class="col-md-4 mb-2" v-for="(stu, index) in finishintern" :key="index" >
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
                                 <img :src="stu.student.img" center  class="card-img-top"/>
@@ -120,11 +122,14 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                      <h5 class="bold mt-3">tab3</h5>   
-                                      <h5 class="bold mt-3"> {{ stu.student.name }} {{stu.student.surname }} </h5>     
-                                      <p>โครงการที่สมัคร : {{stu.comevent.division}} </p>
-                                      <p>ตำแหน่ง: {{ stu.question1 }} </p>
-                                      <p>intern_id: {{ stu.student.intern_id }} </p>
+                                      <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                      <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
+                                      <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
+                                       <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
+                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
+                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
+                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
+                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
                                     </div> 
                                 </div>
                               </div>
@@ -132,7 +137,9 @@
                     </div>
                 </div>
                 <div v-else>
-                      NO INFO
+                    <div class="col-md-12 center mt-5">
+                          <h3 class="bold color-dblue"> ยังไม่มีข้อมูลนักศึกษาฝึกงาน</h3>
+                    </div>
                 </div>
             </div> 
              
@@ -143,6 +150,7 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import * as moment from 'moment';
 export default {
     
 data() {
@@ -181,6 +189,9 @@ data() {
     setTab(tab) {
       this.tab = tab
     },
+     moment: function (value) {
+          return moment(String(value)).format('L')
+      },
     
   },
   created(){
@@ -192,6 +203,9 @@ data() {
 </script>
 
 <style scoped>
+label{
+    font-size: 1rem;
+}
 .textcustom p{
    margin: 0 !important;
 } 
@@ -201,6 +215,9 @@ data() {
     border-radius: 50%;
     overflow: hidden; 
     float: left;
+}
+.card-info{
+  padding:10px;
 }
 .img-circle img{
     width: 100%;

@@ -16,12 +16,8 @@
                     </label>
                    <br>
                     <label>ตำแหน่งที่ต้องการ : {{event.requirement}}</label>
-
-                   <br>
-                    <label>ระยะเวลา : {{ event.enddate }} </label><br>
-                   
-                
-                 
+ 
+                    <label>ระยะเวลา : {{moment(event.enddate)}} </label><br>
                   </div> 
               </div>
             </div>
@@ -37,6 +33,8 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import * as moment from 'moment';
+
 export default {
     props:['event'],
     data() {
@@ -54,6 +52,10 @@ export default {
       ...mapActions({
         fetch : 'jobs/fetchjob'
       }),
+     moment: function (value) {
+          return moment(String(value)).format('LL')
+      },
+      
     },
     created(){
       this.fetch()

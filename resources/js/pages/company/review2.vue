@@ -10,8 +10,9 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">ประเมินนักศึกษาครั้งที่ 1</h4>
-                      
+                        <h4 class="mb-2 bold">ประเมินนักศึกษาครั้งที่ 2</h4>
+                        <!-- <label>comeventjoin_id : {{showstudent.id}} / {{form.comevent_joins_id}}</label>
+                        <label>student_id : {{showstudent.student.id}} / {{form.stu_id}} </label> -->
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -35,13 +36,22 @@
                     <h3 class="mb-2 bold center color-dblue">สรุปการประเมินผลการฝึกการฝึกประสบการณ์วิชาชีพ</h3>
                     <h4 class="mb-2 bold center">(สำหรับผู้ควบคุมการฝึกงาน)</h4>
                 </div>
-                  <div class="col-md-12" >
-                    <div class="col-md-6 m-auto">
-                            <button class="btn-outline-ct bold" disabled> 
+                <div class="col-md-12" >
+                    <div class="row" >
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-warning fright bold" disabled> 
                                 ประเมินครั้งที่ 1
                             </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary bold" disabled> 
+                                ประเมินครั้งที่ 2
+                        </button>
+    
                     </div>
                  </div>
+   
+                    </div>
                  <div class="col-md-12 center mt-5 mb-5">
                     <h5 class="mb-4 bold center ">โปรดแสดงความคิดเห็นต่อการปฏิบัติงานของนักศึกษาตามเกณฑ์การประเมินต่อไปนี้</h5>
                     <h5 class="mb-2 center">5 = ดีมาก&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4 = ดี&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 = ปานกลาง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 = น้อย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 = ปรับปรุง</h5>
@@ -204,7 +214,7 @@
                             </div>
                     </div>
                 </div>
-                 <input class="form-control" type="hidden" v-model="form.get = 1">
+                  <input class="form-control" type="hidden" v-model="form.get = 2">
                  <input class="form-control" type="hidden" v-model="form.comevent_joins_id = showstudent.id">
                  <input class="form-control" type="hidden" v-model="form.stu_id = showstudent.student.id">
                  <div class="mt-3 mb-3 center">
@@ -330,17 +340,6 @@ data: () => ({
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
-.btn-outline-active {
-    width: 40% ; 
-    height: 50px; 
-    float: right;
-    align-content: left;
-    line-height: 35px;
-    border-radius: 2rem; 
-    color:#133CBA;
-    border: 2px solid #133CBA ;
-    box-shadow:none;
-}
 .btn-outline-warning{
     width: 40% ; 
     height: 50px; 
@@ -350,6 +349,10 @@ data: () => ({
     border: 2px solid gray ;
     box-shadow:none;
 }
+.fright{
+    float: right;
+}
+
 .card{
     padding-bottom: 10px;
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
@@ -368,18 +371,5 @@ textarea {
   box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
   border-radius: 5px;
   outline: none !important; 
-}
-.btn-outline-ct{
-    width: 40% ; 
-    height: 50px; 
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
-    text-align: center;
-    line-height: 35px;
-    border-radius: 2rem; 
-    color:#133CBA;
-    border: 2px solid #133CBA ;
-    box-shadow:none;
 }
 </style>

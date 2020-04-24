@@ -99,7 +99,10 @@ class ProfileController extends Controller
         $profile = Profile::find($id);
         $profile->student->major->faculty->university;
         foreach($profile->student->scores as $score){
-            $score->joptype->job;
+            if($score->joptype != null){
+                $score->joptype->job;
+            }
+           
         }
 
         return $profile;

@@ -1,10 +1,9 @@
 <template>
    <div class="container" >
           <ColumHeader :title="comevent.company.name" showBack="student" :img="comevent.company.logo"/> 
-      <div class="row">
+      <div class="row">   
           <div class="col-md-12">
             <div class="row">
-
                 <div class="col-md-6">
                     <div class="mt-4">
                         <div class="radio-img d-flex">
@@ -22,7 +21,7 @@
                                 <label>จำนวนที่เปิดรับ อัตรา/ตำแหน่ง: </label><label class="bold"> &nbsp{{ comevent.quantity }}</label><br>
                                 <label>เวลาปฏิบัติงาน : </label><label class="bold"> &nbsp {{comevent.jobtime}}</label><br>
                                 <label>ค่าตอบแทน : </label><label class="bold"> &nbsp {{comevent.reward}}</label><br>
-                                <label>วันปิดรับสมัคร :</label> <label class="bold"> &nbsp {{comevent.enddate}}</label>
+                                <label>วันปิดรับสมัคร :</label> <label class="bold"> &nbsp {{moment(comevent.enddate)}}</label>
                                 <label>สถานที่บริษัท : {{ comevent.company.address }}</label>
                                 <hr class="hr-orange mt-3 mb-3">
                                 <h5 class="bold">รายละเอียดเพิ่มเติม</h5>
@@ -31,8 +30,10 @@
                           </div>
                     </div>
                 </div>
-            </div>
-
+            </div> 
+         
+          <div v-if="comevent.late == 0">
+          <div v-if="comevent.join == 0">
           <div class="card mt-4">
               <div class="card-info">
                   <h5 class="bold mt-4 center">ตำแหน่งที่ต้องการสมัคร</h5>
@@ -78,12 +79,29 @@
             <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id"> 
         </div>
          <input class="form-control" type="hidden" v-model="form.com_id = comevent.com_id">  
-              <div class="mt-3 mb-3 center">
-                <button class="btn-outline-primary bold" @click="cheack()">
+              <div class="mt-3 mb-3 center" >
+                <button class="btn-outline-primary bold"  @click="cheack()">
                   ส่งคำร้องขอสมัครฝึกงาน
                 </button>
 						  </div>
             </div>
+            <div v-else>
+                 <div class="mt-5 mb-3 center" >
+                <button class="btn-outline-warning bold" disabled >
+                  เข้าร่วมเรียบร้อย
+                </button>
+						  </div>
+            </div>
+            </div>
+            <div v-else>
+                 <div class="mt-5 mb-3 center" >
+                <button class="btn-outline-warning bold" disabled >
+                  ปิดรับสมัคร
+                </button>
+						  </div>
+            </div>
+          </div>
+          
       </div>
   </div>
 </template>
@@ -93,6 +111,7 @@ import ColumHeader from '~/components/ColumHeader'
 import {mapActions, mapGetters} from 'vuex'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
+import * as moment from 'moment';
 
 export default {
   middleware: 'auth',
@@ -103,6 +122,8 @@ export default {
     ...mapGetters({
       comevent:'comevents/show',
       infos:'profile/userinfos',
+  
+      
     })
   },
 data() {
@@ -117,7 +138,7 @@ data() {
       com_id:'',
     },
     comeventjob:'',
-
+    late : false,
     }
 },
   components:{
@@ -128,6 +149,7 @@ data() {
       fetch:'comevents/show',
       join:'comevents/join',
       fetchprofile:'profile/fetch',
+
     }),
     cheack(){
      Swal.fire({
@@ -154,11 +176,20 @@ data() {
       this.form.event_id = this.comevent.id
       await this.join(this.form)
       this.$router.push({name:'status'})
-    }
+    },
+    moment: function (value) {
+       return moment(String(value)).format('LL')
+    },
+    enddate: function () {
+       if(strtotime(comevent.enddate) > strtotime(date('Y-m-d'))){
+           return this.late = true;
+       }
+    },
   },
   created(){
     this.fetch(this.id),
     this.fetchprofile()
+
   },
 
 }
@@ -196,6 +227,15 @@ data() {
     border-radius: 2rem; 
     color:#133CBA;
     border: 2px solid #133CBA ;
+    box-shadow:none;
+}
+.btn-outline-warning{
+    width: 40% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:gray;
+    border: 2px solid gray ;
     box-shadow:none;
 }
 textarea {

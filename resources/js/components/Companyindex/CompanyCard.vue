@@ -1,28 +1,29 @@
 <template>
 			<div class="card mt-3 mb-2"> 
+        {{card}}
              <div class="row">
                 <div class="col-md-6">
                     <div class="img-circle ml-3 mt-2 mr-3">
-                        <img :src="card.img">
+                        <!-- <img :src="card.student.img"> -->
                     </div>
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <div class="f-1 bold m-0">
-                          <label>{{card.name}}</label>
+                          <!-- <label>{{card.student.name}}</label> -->
                           <label>|</label>
-                          <label>{{card.university}}</label>
+                          <!-- <label>{{card.major.faculty.university.name}}</label> -->
                         </div>
-                        <div class="f-1 m-0">
+                        <!-- <div class="f-1 m-0">
                             <label class="m-0">ทักษะหลัก :</label>
-                            <label>{{card.type}}</label>
+                            <label>{{card.student.scores.joptype.name}}</label>
                             <label>|</label>
-                            <label>{{card.score}}</label>
+                            <label>{{card.student.scores.score}}</label>
                         </div>
                         <div class="f-075 m-0">
                             <label >ทักษะรอง :</label>
-                            <label>{{card.type2}}</label>
+                            <label>{{card.student.scores.joptype.name}}</label>
                             <label>|</label>
-                            <label>{{card.score2}}</label>
-                        </div>
+                            <label>{{card.student.scores.score}}</label>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-md-3">

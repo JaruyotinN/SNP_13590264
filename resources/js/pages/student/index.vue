@@ -41,6 +41,7 @@ import { mapGetters, mapActions } from "vuex";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
+
 export default {
   middleware: 'auth',
   methods: {
@@ -80,6 +81,7 @@ export default {
   },
 data() {
   return {
+    
      infos: [
     {
       date: '1 ม.ค. - 6 พ.ค.',

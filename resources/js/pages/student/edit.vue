@@ -167,7 +167,8 @@
         </form>
       </div>
 
-        <!-- edit port -->
+      <Editscore/>
+ 
 </div>
 </template>
 
@@ -175,6 +176,7 @@
 import Form from 'vform'
 import {mapActions, mapGetters} from 'vuex'
 import ColumHeader from '~/components/ColumHeader'
+import Editscore from '~/components/Studentedit/Editscore'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
@@ -199,12 +201,14 @@ export default {
       cv:"",
       url_port:"",
     }),
+    
     image: "",
     filecv: "",
     fileport: "",
   }),
   components:{
     ColumHeader,
+    Editscore,
     
   },
   computed:{
@@ -233,7 +237,8 @@ export default {
   methods: {
     ...mapActions({
       fetchshow:'profile/show',
-      fetchcourses:'profile/fetchcourses'
+      fetchcourses:'profile/fetchcourses',
+     
       
     }),
     openWindow: function (link) {

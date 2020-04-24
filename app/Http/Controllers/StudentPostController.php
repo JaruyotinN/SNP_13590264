@@ -13,7 +13,8 @@ class StudentPostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        
         $studentpost = StudentPost::get();
         foreach($studentpost as $post){
             $post->student;

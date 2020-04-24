@@ -11,6 +11,7 @@ export const state = {
   stuconfirm : null,
   showdetailreview : null,
   internstepconfirm : null,
+  nointern:null,
   
 }
 
@@ -25,6 +26,7 @@ export const getters = {
     showstudent_join: state => state.showstudent_join,
     internstepconfirm: state => state.internstepconfirm,
     stuconfirm : state => state.stuconfirm,
+    
     ongoing (state) {
       if (state.stuconfirm) {
         return state.stuconfirm.filter((stuconfirm) => {

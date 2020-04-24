@@ -6,6 +6,7 @@ use App\Joptype;
 use App\Score;
 use App\StudentInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScoreController extends Controller
 {
@@ -14,27 +15,57 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
     }
 
-     public function search(request $form)
+     public function search(Request $request)
     {   
 
-        $intern_id = 1 ;
-       
-        $users = Score::where('type_id',$form->jobtypes_id)
-        ->where('score',$form->score)
-        ->whereHas('student', function ($query) use ($intern_id){
-                    $query->where('intern_id', $intern_id);
-        })->get();
+        // $intern_id = 1 ;
         
-        foreach($users as $user){
-            $user->student;
+
+        // if($form->jobtyoes_id != ""){
+        // $users = Score::where('type_id',$form->jobtypes_id)
+        // ->where('score',$form->score)
+        // ->whereHas('student', function ($query) use ($intern_id){
+        //             $query->where('intern_id', $intern_id);
+        // })->get();
+        // } else { 
+            
+        //      $users = Score::whereHas('student', function ($query) use ($intern_id){
+        //                  $query->where('intern_id', $intern_id);
+        //      })->groupBy('stu_id')->toSql();
+        //      echo '<pre>'; print_r($users); echo '</pre>';die();
+        // }
+        // foreach($users as $user){
+        //     $user->student->major->faculty->university;
+        //     $user->student->scores;
+        //     foreach($user->student->scores as $score){
+        //         $score->joptype;
+        //     }
+        // }
+        // foreach($profile->student->score as $key => $value){
+            //     if($value->type_id!=''){
+            //         $profile->student->score[$key]->joptypes = DB::table('joptypes')->where('id',$value->type_id)->get();
+            //     }
+            // }
+               // 
+        $user = $request->user();  
+        $profile = DB::table('profiles')->leftJoin('student_infos','student_infos.profile_id','profiles.id')
+                        ->where('profile_type','S')
+                        ->where('intern_id',1)
+                        ->get();  //ได้รายชื่อนักเรียน
+        foreach($profile as $key => $value){
+            $profile[$key]->student = DB::table('student_infos')->where('profile_id',$value->id)->first();
+            $profile[$key]->score = DB::table('scores')->where('user_id',$value->user_id)->get();
+            $profile[$key]->major = DB::table('majors')->where('id',$value->user_id)->first();
+            //$profile[$key]->faculty = DB::table('faculties')->where('id',$value->user_id)->first();
+            //$profile[$key]->university = DB::table('universities')->where('id',$value->user_id)->first();
+            
         }
-    
-        return  $users;
+        return  $profile;
     }
 
     /**
@@ -87,9 +118,16 @@ class ScoreController extends Controller
      * @param  \App\Score  $score
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Score $score)
+    public function update(Request $request, $id)
     {
-        //
+         
+        for($s = 0; $s < 4 ; $s++){
+            $score_id = DB::table('scores')->where('id',$request->index[$s])->update([
+                'score' => $request->score[$s],
+                'type_id' => $request->name[$s],
+                 ]);
+        }
+       return $score_id;
     }
 
     /**

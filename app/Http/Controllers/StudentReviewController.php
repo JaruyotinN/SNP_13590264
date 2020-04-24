@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ComeventJoin;
+use App\StudentInfo;
 use App\studentReview;
 use Illuminate\Http\Request;
 
@@ -40,14 +41,28 @@ class StudentReviewController extends Controller
     {
         $user = $request->user();
         $review = studentReview::create($request->all());
-        $id = $review->id;
+        $id = $review->id; 
 
         $comjoinid = $request->comevent_joins_id;
-        $comeventJoin = ComeventJoin::find($comjoinid);      
+        $comeventJoin = ComeventJoin::find($comjoinid);   
+
+        $stu_id = $request->stu_id;
+        $Student = StudentInfo::find($stu_id );
+        
+        
+        if ($request->get == '1'){
+            $comeventJoin->update([
+                'sturev01_id' => $id
+            ]);
+        } else if ($request->get == '2'){
+            $comeventJoin->update([
+                'sturev02_id' => $id
+            ]);
+            $Student->update([
+                'intern_id' => 8,
+            ]);
+        } 
       
-        $comeventJoin->update([
-            'sturev01_id' => $id
-        ]);
         return $review;
     }
 

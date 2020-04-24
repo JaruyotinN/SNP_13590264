@@ -5,6 +5,7 @@
               <div class="mb-3"> 
                     <router-link :to="{ name: 'admin'}">ย้อนกลับ</router-link>
               </div>
+              {{users}}
               <div class="row">
                   <div class="col-md-10">
                       <div class="mb-3 ml-3 mt-2">
@@ -13,20 +14,6 @@
                   </div>
               </div>
               <hr class="hr-yellow" >
-            <!-- <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" >
-              <has-error :form="form" field="name" />
-            </div>
-          </div> -->
-            <!-- <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
-            </div>
-          </div> -->
         <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('Start at') }}</label>
             <div class="col-md-7">
@@ -60,7 +47,7 @@
         </div>
 
 
-                     <div class="form-group row">
+            <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('faculty_id') }}</label>
             <div class="col-md-7">
               <input v-model="form.faculty_id" :class="{ 'is-invalid': form.errors.has('faculty_id') }" class="form-control" type="number" name="faculty_id">
@@ -75,28 +62,27 @@
               <has-error :form="form" field="major_id" />
             </div>
           </div>
-
-          
-                 <!-- <div class="card mt-4">
-                 <div class="row" style="padding:20px;">
-                        <div class="col-md-12">
-                            <p class="bold" >หัวข้อบันทึกฝึกงาน</p>
-                            <div class="mt-2 mb-3">
-                                <input class="form-control" v-model="form.title" type="text" placeholder="">
-                            </div>
-                        </div>    
-                        <div class="col-md-12">
-                            <p class="bold" >เนื้อหารายละเอียดบันทึกฝึกงาน</p>
-                            <div class="mt-2 mb-3">
-                                <div class>
-                                 <textarea v-model="form.description" type="text" rows="4" cols="100">
-
-                                </textarea>
-                              </div>
-                            </div>
-                        </div>  
+ 
+          <div class="row" v-for="i in 4">
+        
+             <label class="col-md-3 col-form-label text-md-right">{{ $t('ทักษะที่ '+i) }}</label>
+              <div class="col-md-7 mb-3">
+                    
+                     <div class="input-group mt-2 mb-3 m-auto">
+                        <select class="custom-select  m-auto" v-model="form.job_id[i]" required>
+                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
+                        </select>
+                       <select class="custom-select   m-auto" v-model="form.jobtypes_id[i]" required>
+                             <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
+                             <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id[i] == type.job_id">{{type.id}}{{type.name}}</option>
+                        </select>
+                        
+                       
+                </div> 
                 </div>
-                </div> -->
+          </div>
+          
         </div>  
       
         <div class="col-md-6 m-auto">
@@ -109,6 +95,7 @@
 </template>
 <script>
 import Form from "vform";
+
 import {mapActions, mapGetters} from 'vuex'
 export default {
 
@@ -118,13 +105,17 @@ data: () => ({
       end:'',
       role:1,
       major_id:'',
+      job_id:[],
+      jobtypes_id:[],
       faculty_id:'',
       password_confirmation: ''
     }),
   }),
   computed:{
     ...mapGetters({
-    
+       users:'profile/userinfos',
+       jobs: 'jobs/jobs',
+      types: 'jobs/types'
     })
   },
   components:{
@@ -132,7 +123,9 @@ data: () => ({
   },
    methods: {
     ...mapActions({
-      
+       fetch:'profile/fetch',
+      fetchjob : 'jobs/fetchjob',
+      fetchtype : 'jobs/fetchtype'
     }),
     async save() {
      
@@ -146,7 +139,9 @@ data: () => ({
     },
   },
    created(){
-   
+   this.fetchjob()
+     this.fetchtype()
+      this.fetch()
   }
 }
 </script>

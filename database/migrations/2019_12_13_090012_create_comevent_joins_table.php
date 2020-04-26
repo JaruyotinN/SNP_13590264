@@ -23,9 +23,10 @@ class CreateComeventJoinsTable extends Migration
             $table->string('jobtype')->nullable();
             $table->text('question1')->nullable();
             $table->text('question2')->nullable();
+            $table->string('interviewinfo')->nullable();
             $table->boolean('check')->default(0);
             $table->boolean('interview')->default(0);
-            $table->integer('result')->default(0)->comment('0.wait 1.interview 2.consider 3.pass 99.notpass');
+            $table->integer('result')->default(0)->comment('0.wait 1.interview 2.consider 3.pass 50.invite 99.notpass');
             $table->integer('stu_confirm')->default(0)->comment('0.wait 1.yes 2.no');
             $table->timestamps();
         });

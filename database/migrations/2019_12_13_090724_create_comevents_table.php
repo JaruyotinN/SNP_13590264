@@ -19,7 +19,9 @@ class CreateComeventsTable extends Migration
             $table->text('desciption')->nullable();
             $table->string('quantity')->nullable();
             $table->string('jobtime')->nullable();
-            $table->string('reward')->nullable();
+            $table->boolean('havereward')->nullable();
+            $table->integer('reward')->nullable();
+            $table->string('formreward')->nullable();
             $table->bigInteger('staff_id')->unsigned()->nullable();
             $table->foreign('staff_id')
                 ->references('id')

@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('uploadImage', 'UploadController@uploadImage');
     Route::post('uploadFile', 'UploadController@uploadFile');
     Route::post('uploadCv', 'UploadController@uploadCv');
+    Route::post('uploadTranscript', 'UploadController@uploadTranscript');
     Route::post('search', 'ScoreController@search');
     Route::resource('/updatescore', 'ScoreController');
     Route::patch('settings/profile', 'Settings\ProfileController@update');

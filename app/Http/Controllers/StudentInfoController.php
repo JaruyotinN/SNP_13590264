@@ -89,6 +89,7 @@ class StudentInfoController extends Controller
                     'surname' => $request->surname,
                     'number' => $request->number,
                     'img' => $request->img,
+                    'grade' => $request->grade,
                     'phonenumber' => $request->phonenumber,
                     'course_id' => $request->course_id,
                 ]);
@@ -99,10 +100,15 @@ class StudentInfoController extends Controller
                 if($Student->cv != $request->cv){
                     @unlink(public_path($Student->cv));
                 }
+                if($Student->transcript != $request->transcript){
+                    @unlink(public_path($Student->transcript));
+                }
                 $Student->update([
                     'port' => $request->port,
                     'cv' => $request->cv,
+                    'transcript' => $request->transcript,
                     'url_port' => $request->url_port,
+                    'url_port2' => $request->url_port2,
                 ]);
             } else if ($request->get == '4'){
                 $Student->update([

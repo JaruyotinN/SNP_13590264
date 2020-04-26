@@ -36,6 +36,7 @@
                 </div>
         </div>  
          <div  v-for="(info, index) in infos" :key="index">
+            <input class="form-control" type="hidden" v-model="form.user_id = info.user_id">
             <input class="form-control" type="hidden" v-model="form.stu_id = info.student.id">
         </div>
       
@@ -44,7 +45,6 @@
                   บันทึกฝึกงาน
           </button>
 			</div>
-      </div>
 </div>
 </template>
 <script>
@@ -59,6 +59,7 @@ data() {
       title:'',
       description:'',
       stu_id:'',
+      user_id:'',
     },
     }
 },

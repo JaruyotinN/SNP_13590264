@@ -46,13 +46,20 @@
                             </div>
                         </div>
                          <div class="col-md-4">
+                            <p>เกรดเฉลี่ย</p>
+                            <div class="mt-2 mb-3">
+                                 <input v-model="form.grade" :class="{ 'is-invalid': form.errors.has('grade') }" class="form-control" type="number" name="grade" step=".01" placeholder="โปรดใส่เกรดเฉลี่ย">
+                                <has-error :form="form" field="grade" />
+                            </div>
+                        </div>
+                         <div class="col-md-4">
                             <p>เบอร์โทรศัพท์</p>
                             <div class="mt-2 mb-3">
-                                 <input v-model="form.phonenumber" :class="{ 'is-invalid': form.errors.has('phonenumber') }" class="form-control" type="text" name="number"  placeholder="โปรดข้อมูลติดต่อ">
+                                 <input v-model="form.phonenumber" :class="{ 'is-invalid': form.errors.has('phonenumber') }" class="form-control" type="text" name="number"  placeholder="โปรดใส่ข้อมูลติดต่อ">
                                 <has-error :form="form" field="phonenumber" />
                             </div>
                         </div>
-                         <div class="col-md-8">
+                         <div class="col-md-4">
                             <p>หลักสูตรฝึกงาน</p>
                             <div class="mt-2 mb-3">
                                 <select class="custom-select" v-model="form.course_id" required>
@@ -113,7 +120,7 @@
                     <div class="center textcustom">
                       <i class="fa fa-file-image-o fa-3x color-dblue"></i>
                       <p>Resume</p>
-                      <label>ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
+                      <label>เฉพาะไฟล์ pdf / ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
                       <a href="" v-if="form2.cv != null" v-on:click.stop.prevent="openWindow(form2.cv)">Resume ของคุณ</a>
                       <br>
 
@@ -130,7 +137,7 @@
                     <div class="center textcustom">
                       <i class="fa fa-file-pdf-o fa-3x color-dblue"></i>
                       <p>Portfolio</p>
-                      <label>ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
+                      <label>เฉพาะไฟล์ pdf / ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
                       <a href=""  v-if="form2.port != null" v-on:click.stop.prevent="openWindow(form2.port)">Portfolio ของคุณ</a>
                       <br>
         
@@ -141,17 +148,49 @@
                       </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="center textcustom">
-                      <i class="fa fa-file-code-o fa-3x color-dblue"></i>
-                      <p>URL สำหรับผลงาน</p>
-                      <label>เพิ่ม URL สำหรับผลงานของคุณ</label><br>
-                      <div class="mb-3 cmt-25">
-                          <input v-model="form2.url_port" :class="{ 'is-invalid': form2.errors.has('url_port') }" class="form-control" type="text" name="url_port"  placeholder="url_port">
-                          <has-error :form="form2" field="url_port" />
+
+                 <div class="col-md-4">
+                    <div class="center textcustom">
+                      <i class="fa fa-file-o fa-3x color-dblue"></i>
+                      <p>Transcript</p>
+                      <label>เฉพาะไฟล์ pdf / ขนาดไฟล์ห้ามเกิน 2 Mb.</label><br>
+                      <a href=""  v-if="form2.transcript != null" v-on:click.stop.prevent="openWindow(form2.transcript)">Transcript ของคุณ</a>
+                      <br>
+                      <div class="mt-3 upload-btn-wrapper">
+                          <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Transcript</button>
+                          <input type="file" @change="setTS" />
+                          <has-error :form="form" field="file" />
                       </div>
-                  </div>
+                    </div>
                 </div>
+                <div class="col-md-10 m-auto ">
+                  <div class="row mt-5">
+                    <div class="col-md-4 mx-auto ">
+                      <div class="center textcustom">
+                          <i class="fa fa-file-code-o fa-3x color-dblue"></i>
+                          <p>URL สำหรับผลงาน 1</p>
+                          <label>เพิ่ม URL สำหรับผลงานของคุณ</label><br>
+                          <div class="mb-3 cmt-25">
+                              <input v-model="form2.url_port" :class="{ 'is-invalid': form2.errors.has('url_port') }" class="form-control" type="text" name="url_port"  placeholder="ใส่ Link URL ผลงานของคุณ">
+                              <has-error :form="form2" field="url_port" />
+                          </div>
+                      </div>
+                    </div>
+
+                      <div class="col-md-4 mx-auto">
+                      <div class="center textcustom">
+                          <i class="fa fa-file-code-o fa-3x color-dblue"></i>
+                          <p>URL สำหรับผลงาน 2</p>
+                          <label>เพิ่ม URL สำหรับผลงานของคุณ</label><br>
+                          <div class="mb-3 cmt-25">
+                              <input v-model="form2.url_port2" :class="{ 'is-invalid': form2.errors.has('url_port2') }" class="form-control" type="text" name="url_port2"  placeholder="ใส่ Link URL ผลงานของคุณ">
+                              <has-error :form="form2" field="url_port" />
+                          </div>
+                      </div>
+                    </div>                             
+                  </div>                
+                </div>
+
                 <div class="col-md-3 offset-9">
                   <input class="form2-control" type="hidden" v-model="form2.id = user.student.id">
                   <input class="form-control" type="hidden" v-model="form2.get = 2">
@@ -188,6 +227,7 @@ export default {
       name: "",
       surname: "",
       phonenumber: "",
+      grade:"",
       course_id:"",
       number: "",
       major:"",
@@ -199,11 +239,14 @@ export default {
       id:'',
       port: "",
       cv:"",
+      transcript:"",
       url_port:"",
+      url_port2:"",
     }),
     
     image: "",
     filecv: "",
+    filets:"",
     fileport: "",
   }),
   components:{
@@ -265,6 +308,24 @@ export default {
       }
       
     },
+    setTS(e) {
+      var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
+      console.log(FileSize);
+      if(FileSize <= 2){
+        console.log("size ok")
+        this.filets = e.target.files[0];
+      } else {
+         console.log("too big");
+         Swal.fire(
+            
+            'ไฟล์ขนาดใหญ่เกินไป',
+            'ไฟล์ของคุณมีขนาดใหญ่เกินไป ลองใหม่อีกครั้ง',
+            'error',
+            //เหลือ Set Port
+          )
+      }
+      
+    },
      setPort(e) {
       this.fileport = e.target.files[0];
     },
@@ -299,6 +360,12 @@ export default {
         if (this.fileport) {
         this.form2.port = await this.uploadFile({
         file: this.fileport,
+        path: "updateprofile"
+        });
+      }
+       if (this.filets) {
+        this.form2.transcript = await this.uploadTranscript({
+        file: this.filets,
         path: "updateprofile"
         });
       }

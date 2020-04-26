@@ -108,7 +108,8 @@
              <div class="row">
                 <div class="col-md-6">
                       <div class="img-circle mb-3 ml-3 mt-2 float: left">
-                        <img :src="stu.student.img">
+                         <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null"/>
+                        <img v-else :src="stu.student.img">
                       </div>
                         <div class="mb-3 mt-2 ml-3" style="float: left">
                         <div class="f-1 bold m-0">

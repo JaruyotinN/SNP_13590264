@@ -20,6 +20,11 @@ class CreateStudentPostsTable extends Migration
                 ->references('id')
                 ->on('student_infos')
                 ->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

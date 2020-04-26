@@ -15,7 +15,8 @@
             <div class="col-md-4"  >
                     <div class="mt-4">
                         <div class="radio-img d-flex">
-                        <img :src="showstudent.student.img" center alt="..." class="card-img-top"/>
+                        <img src="/uploads/images/comevents/user.png" v-if="showstudent.student.img == null" center alt="..." class="card-img-top"/>
+                        <img v-else :src="showstudent.student.img" center alt="..." class="card-img-top"/>
                     </div>
                     </div>
               </div>

@@ -12,10 +12,12 @@ class StudentPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
         
-        $studentpost = StudentPost::get();
+        $user = $request->user();
+        $studentpost = StudentPost::orderBy('created_at')
+        ->where('user_id',$user->id)->get();
         foreach($studentpost as $post){
             $post->student;
         }

@@ -43,7 +43,8 @@
                   <div class="col-md-4 mb-2" v-for="(stu, index) in ongoing" :key="index" >
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
-                                <img :src="stu.student.img" center  class="card-img-top"/>
+                                <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
+                                <img :src="stu.student.img" v-else center  class="card-img-top"/>
                             </div>
                               <div class="top-box textcustom">
                                 <div class="col-12">
@@ -74,6 +75,7 @@
                     <!-- <pre>{{stu}}</pre> -->
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
+                                <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
                                 <img :src="stu.student.img" center  class="card-img-top"/>
                             </div>
                               <div class="top-box textcustom">
@@ -116,6 +118,7 @@
                   <div class="col-md-4 mb-2" v-for="(stu, index) in finishintern" :key="index" >
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
+                                <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
                                 <img :src="stu.student.img" center  class="card-img-top"/>
                             </div>
                               <div class="top-box textcustom">

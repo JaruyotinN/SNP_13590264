@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comevent extends Model
 
 {
-    protected $fillable = ['division','desciption','quantity','jobtime','reward','staff_id','requirement','img','enddate','question1','question2','job_id','com_id','invite'];
+    protected $fillable = ['division','desciption','quantity','jobtime','havereward','formreward','reward','staff_id','requirement','img','enddate','question1','question2','job_id','com_id','invite'];
     public function staff(){
         return $this->belongsTo('App\CompanyStaff','staff_id','id');
     }
@@ -18,6 +18,6 @@ class Comevent extends Model
         return $this->hasMany('App\ComeventJoin','event_id','id');
     }
     
-    
+   
 
 }

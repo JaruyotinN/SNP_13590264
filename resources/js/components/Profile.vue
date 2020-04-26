@@ -3,7 +3,8 @@
             <div class="row" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
                 <div class="col-md-10">
                     <div class="img-circle">
-                        <img :src="user.student.img">
+                        <img src="/uploads/images/comevents/user.png" v-if="user.student.img == null" />
+                        <img v-else :src="user.student.img">
                     </div> 
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">{{user.student.name}} {{user.student.surname}}</h4>

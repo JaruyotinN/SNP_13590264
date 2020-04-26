@@ -56,12 +56,11 @@
       	        <div class="card mt-3 mb-2"> 
                   <div class="row">
                       <div class="col-md-6">
-                            <div class="img-circle mb-3 ml-3 mt-2 float: left" v-if="stu.img !== null">
-                              <img :src="stu.img" >
+                            <div class="img-circle mb-3 ml-3 mt-2 float: left">
+                               <img src="/uploads/images/comevents/user.png" v-if="stu.img == null"/>
+                              <img v-else :src="stu.img" >
                             </div>
-                            <div class=" "  v-else>
-                              <i class="fa fa-user-circle fa-5x" ></i>
-                            </div>
+ 
                             <div class="mb-3 mt-2 ml-3" style="float: left">
                               <div class="f-1 bold m-0">
                                 <label class="color-blue">{{stu.name}} {{stu.surname}} </label>

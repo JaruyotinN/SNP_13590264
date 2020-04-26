@@ -36,6 +36,22 @@ export default {
           } else {
             return null;
           }
+        },
+        async uploadTranscript(set) {
+          console.log("uploadTranscript start");
+          console.log(set);
+          if (set.file) {
+            const config = {
+              headers: { "content-type": "multipart/form-data" }
+            };
+            let formData = new FormData();
+            formData.append("file", set.file);
+            formData.append("path", set.path);
+            const { data } = await axios.post("/api/uploadTranscript", formData, config);
+            return data;
+          } else {
+            return null;
+          }
         }
 },
 }

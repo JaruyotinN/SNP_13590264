@@ -32,5 +32,14 @@ class UploadController extends Controller
         $set = '/uploads/files/Resume/' . $filename;
         return $set;
     }
+    public function uploadTranscript(Request $request)
+    {
+        $file = $request->file;
+        $filename = time() . $file->getClientOriginalName();
+        $path = '/uploads/files/Transcript';
+        $file->move(public_path($path), $filename);
+        $set = '/uploads/files/Transcript/' . $filename;
+        return $set;
+    }
     
 }

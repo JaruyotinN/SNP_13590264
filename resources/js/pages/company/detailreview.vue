@@ -22,7 +22,8 @@
                     </div>
                     <div class="col-md-4">
                    <div class="img-circle" style="float:right;">
-                            <img :src="showstudent.student.img">
+                             <img src="/uploads/images/comevents/user.png" v-if="showstudent.student.img == null" />
+                            <img v-else :src="showstudent.student.img">
                     </div>
                     </div>
                     </div>

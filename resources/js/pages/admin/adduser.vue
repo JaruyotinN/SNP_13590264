@@ -5,7 +5,7 @@
               <div class="mb-3"> 
                     <router-link :to="{ name: 'admin'}">ย้อนกลับ</router-link>
               </div>
-              {{users}}
+              <!-- {{users}} -->
               <div class="row">
                   <div class="col-md-10">
                       <div class="mb-3 ml-3 mt-2">

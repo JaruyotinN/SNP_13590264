@@ -122,7 +122,6 @@ export default {
     ...mapGetters({
       comevent:'comevents/show',
       infos:'profile/userinfos',
-  
       
     })
   },

@@ -27,17 +27,16 @@ class ScoreController extends Controller
         
 
         // if($form->jobtyoes_id != ""){
-        // $users = Score::where('type_id',$form->jobtypes_id)
-        // ->where('score',$form->score)
-        // ->whereHas('student', function ($query) use ($intern_id){
-        //             $query->where('intern_id', $intern_id);
-        // })->get();
+        //     $users = Score::where('type_id',$form->jobtypes_id)
+        //     ->where('score',$form->score)
+        //     ->whereHas('student', function ($query) use ($intern_id){
+        //                 $query->where('intern_id', $intern_id);
+        //     })->get();
         // } else { 
             
         //      $users = Score::whereHas('student', function ($query) use ($intern_id){
         //                  $query->where('intern_id', $intern_id);
-        //      })->groupBy('stu_id')->toSql();
-        //      echo '<pre>'; print_r($users); echo '</pre>';die();
+        //      })->get();
         // }
         // foreach($users as $user){
         //     $user->student->major->faculty->university;
@@ -47,25 +46,51 @@ class ScoreController extends Controller
         //     }
         // }
         // foreach($profile->student->score as $key => $value){
-            //     if($value->type_id!=''){
-            //         $profile->student->score[$key]->joptypes = DB::table('joptypes')->where('id',$value->type_id)->get();
-            //     }
-            // }
-               // 
+        //         if($value->type_id!=''){
+        //             $profile->student->score[$key]->joptypes = DB::table('joptypes')->where('id',$value->type_id)->get();
+        //         }
+        //     }
+
+            // return  $users;
+
         $user = $request->user();  
         $profile = DB::table('profiles')->leftJoin('student_infos','student_infos.profile_id','profiles.id')
                         ->where('profile_type','S')
                         ->where('intern_id',1)
                         ->get();  //ได้รายชื่อนักเรียน
+
+
+        
+        //  dd($profile);die();
+        
         foreach($profile as $key => $value){
             $profile[$key]->student = DB::table('student_infos')->where('profile_id',$value->id)->first();
             $profile[$key]->score = DB::table('scores')->where('user_id',$value->user_id)->get();
-            $profile[$key]->major = DB::table('majors')->where('id',$value->user_id)->first();
-            //$profile[$key]->faculty = DB::table('faculties')->where('id',$value->user_id)->first();
-            //$profile[$key]->university = DB::table('universities')->where('id',$value->user_id)->first();
-            
+            $profile[$key]->major = DB::table('majors')->where('id',$value->major_id)->first();
+            $profile[$key]->faculty = DB::table('faculties')->where('id',$value->faculty_id)->first();
+            $profile[$key]->university = DB::table('universities')->where('id',$profile[$key]->faculty->uni_id)->first();
+            foreach($profile[$key]->score as $kkey => $vvalue){
+                $profile[$key]->score[$kkey]->types = DB::table('joptypes')->where('id',$vvalue->type_id)->first();
+            }
         }
+
+        if($request->job_id){
+            $temp = [];
+            foreach($profile as $key => $value){ // loop student
+                foreach($value->score as $kkey => $vvalue){ //loop
+                    if($vvalue->type_id == $request->jobtypes_id && $vvalue->score >= $request->score){ // 2 >= 1
+                        array_push($temp,$value);
+                    }
+                }
+            }
+            return $temp;
+        }
+
+
+        // dd($profile);die();
+
         return  $profile;
+        
     }
 
     /**

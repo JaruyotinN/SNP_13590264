@@ -145,7 +145,8 @@ class ComeventJoinController extends Controller
     public function showcomjoin(ComeventJoin $comeventJoin ,$id )
     {
         $comeventJoin = ComeventJoin::find($id);
-        $comeventJoin->student;
+        $comeventJoin->student->course;
+        $comeventJoin->student->major->faculty->university;
         $comeventJoin->comevent;
         return $comeventJoin;
     }

@@ -47,35 +47,35 @@
                     </div> 
                 </form>
                     <hr class="hr-yellow mt-4 mb-4">   
-                    <label>ผลการค้นหา ... </label>
-                    <label class="bold color-dblue">มหาวิทยาลัยศิลปากร</label>
-                    <label>| ความถนัด</label>
-                    <label class="bold color-dblue">ออกแบบ Graphic </label>
+                   
                     <div class="row">
+                
+                      <!-- <pre>   {{users}}</pre> -->
               <div class="col-md-12" v-for="(stu, index) in users" :key="index">
+               
       	        <div class="card mt-3 mb-2"> 
                   <div class="row">
                       <div class="col-md-6">
-                        
                             <div class="img-circle mb-3 ml-3 mt-2 float: left" v-if="stu.img !== null">
                               <img :src="stu.img" >
                             </div>
                             <div class=" "  v-else>
-                              <i class="fa fa-user-circle" ></i>
+                              <i class="fa fa-user-circle fa-5x" ></i>
                             </div>
                             <div class="mb-3 mt-2 ml-3" style="float: left">
                               <div class="f-1 bold m-0">
                                 <label class="color-blue">{{stu.name}} {{stu.surname}} </label>
                                 <label>|</label>
-                                <!-- <label >{{stu.university}}</label> -->
+                                <label >{{stu.university.name}}</label>
                               </div>
                               <div class="f-075 m-0">
-                                  <!-- <label>{{stu.faculty}} </label> -->
+                                  <label>{{stu.faculty.name}} </label>
                                   <label>สาขา </label>
-                                  <!-- <label>{{stu.major}}</label> -->
-                                    <!-- <div  v-for="(sc, index) in stu.score" :key="index">
-                                    <label>{{sc.joptype.name}}({{sc.score}}) </label>
-                                  </div> -->
+                                  <label>{{stu.major.name}}</label>
+                                    <div  class="d-flex">
+                                      <!-- <pre>{{stu.score}}</pre> -->
+                                      <label v-for="(sc, index) in stu.score" :key="index" class="mr-1">{{sc.types.name}}({{sc.score}}) </label>
+                                    </div>
                               </div>
 
                             </div>   
@@ -108,11 +108,10 @@
                           <form @submit.prevent="update(stu.id)" @keydown="form.onKeydown($event)">  
                           <div class="col-md-6 mt-3" style="float:right">
                           <button class="btn-outline-primary bold" :loading="form.busy">
-                            <i class="fa fa-info fa-lg"></i> พิจารณาคำร้อง
+                            <i class="fa fa-envelope fa-lg"></i> ส่งคำเชิญ
                           </button>
                           </div>
                           </form>
-                    
                       </div>
                       
                   </div>

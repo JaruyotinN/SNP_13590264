@@ -28,7 +28,7 @@
             <li class="active">รับเอกสารอนุเคราะห์ขอฝึกงาน</li>
         </ul>
           </div>
-          {{user.student.intern_id}}
+          <!-- {{user.student.intern_id}} -->
           <hr class="hr-orange">
       
           <Status01  v-if="user.student.intern_id == 1"/>

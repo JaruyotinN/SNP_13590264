@@ -41,7 +41,6 @@
              <div v-if="tab == 1">
                 <div class="row" v-if="ongoing.length != 0 ">
                   <div class="col-md-4 mb-2" v-for="(stu, index) in ongoing" :key="index" >
-                    ฐฐ
                         <div class="card mt-4 h-100">
                             <div class="radio-img">
                                 <img :src="stu.student.img" center  class="card-img-top"/>

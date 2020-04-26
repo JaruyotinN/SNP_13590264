@@ -15,9 +15,9 @@
                 <li class="n-setup bold active">
                     <router-link :to="{name:'student'}">บันทึกทั้งหมด</router-link>
                 </li>
-                <li class="n-setup">
+                <!-- <li class="n-setup">
                     <router-link :to="{name:'student'}">บันทึกของตนเอง</router-link>
-                </li>
+                </li> -->
             </ul>
              <hr class="hr-yellow">
     </div>

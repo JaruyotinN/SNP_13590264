@@ -15,7 +15,7 @@
         
         <tr class="spaceUnder" v-for="(userjoin, index) in userjoins" :key="index">
             <!-- <pre>{{userjoin}}</pre> -->
-            <td><h5>{{userjoin.id}}  {{userjoin.comevent.company.name}} </h5><label>{{userjoin.comevent.division}} </label></td>
+            <td><h5> {{userjoin.comevent.company.name}} </h5><label>{{userjoin.comevent.division}} </label></td>
             <td><h5> {{userjoin.jobtype}} </h5></td>
             <td class="center w15">
                 <i v-if="userjoin.check " class="fa fa-check-circle "></i>  
@@ -52,7 +52,7 @@
                                     <option v-for="(userjoin, index) in userjoins" :key="index" :value="userjoin.id" v-if="userjoin.result == 3">บริษัท {{userjoin.comevent.company.name}}</option>
                                 </select>
                             </div>
-                             <label>comeventjoin_id : {{form.id}} stu_id : {{form.stu_id}}</label>
+                             <!-- <label>comeventjoin_id : {{form.id}} stu_id : {{form.stu_id}}</label> -->
                              <input class="form-control" type="hidden" v-model="form.stu_id = user.student.id">
                     </div>
               </div> 

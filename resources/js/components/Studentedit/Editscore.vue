@@ -1,9 +1,12 @@
 <template>
+<div class="card mt-5">
     <div class="col-md-12">
-       <ColumHeader title="แก้ไขข้อมูลความถนัด"/>
-       <form @submit.prevent="update(1)" @keydown="form.onKeydown($event)">
-        <h5 class="bold center">**ความถนัดสามารถเลือกได้สูงสุด 4 ประเภทจากคะแนนทั้งหมด 15 คะแนน**</h5>
-        <div class="row">
+       <div class="mt-4 mb-4">
+                  <h5 class="bold">แก้ไขข้อมูลความถนัด</h5>
+              </div>
+          <hr class="hr-orange">
+       <form @submit.prevent="cheack(1)" @keydown="form.onKeydown($event)">
+        <div class="row mt-3">
           <!-- {{form.index}}<br> {{form.title}} <br>{{form.name}}  -->
           <!-- <pre>{{users.student.scores}}</pre> -->
             <div class="col-md-6" v-for="(score, index) in users.student.scores" :key="index" >          
@@ -30,20 +33,25 @@
                 </div>
             </div>
             </div>
+            <div class="col-md-3 offset-9">
             <div class="mt-4 ">
                     <!-- <button class="btn-outline-primary bold" @click="cheack()"> -->
                     <button class="btn-outline-primary bold" :loading="form.busy">
                       บันทึกข้อมูลผู้ใช้งาน
                     </button>
             </div>
+            </div>
             </form>
     </div>     <!-- col-md-12 -->
+</div>
 </template>
 
 <script>
 import Form from 'vform'
 import {mapActions, mapGetters} from 'vuex'
 import ColumHeader from '~/components/ColumHeader'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   middleware: 'auth',
@@ -115,6 +123,27 @@ vm.form.score.push(value.score);
   //  console.log(this.users.student.scores)
   },
   methods: {
+    cheack(){
+     Swal.fire({
+    title: 'ยืนยันการแก้ไขข้อมูลเรียบร้อย',
+    text: "ข้อมูลของคุณจะเปลี่ยนแปลงยืนยันเพื่อดำเนินการต่อไป",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'ยืนยันการแก้ไข',
+    }).then((result) => {
+      if (result.value) {
+        this.update()
+        Swal.fire(
+          'แก้ไขข้อมูลเรียบร้อย',
+          'แก้ไขข้อมูลความถนัดเรียบร้อย',
+          'success',
+        )
+      }
+    })
+   },
     async update() {
     
         const { data } = await this.form.put(`/api/updatescore/${this.form.id}`);
@@ -149,29 +178,14 @@ vm.form.score.push(value.score);
 .form-control{
     border-radius: 2rem;
 }
-.btn-detail-style .btn-primary{ 
-    background-color: #0047BA ;
-    border:none; 
-    border-radius: 30px;
-    width: 100%;
-    height: 60px;
-    padding-top:20px;
-}
-.btn-detail-style .btn-primary:hover { 
-    background-color:  #E7B223 ;
-    color: black;
-    font-size: 1.5rem;
-    border-radius: 60px;
-    width: 90%;
-    height: 60px;
-    padding-top:14px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    transition: 0.3s ease-in-out;
-}
-.btn-detail-style{
-  text-align: center;
-  padding-top:20px ;
-  padding-bottom:20px;
+.btn-outline-primary {
+    width: 80% ; 
+    height: 50px; 
+    float: right;
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
 }
 </style>

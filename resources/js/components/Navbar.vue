@@ -18,7 +18,7 @@
         </ul>
 
          <!-- <ul class="navbar-nav ml-auto"  v-if="user.role == 1"> -->
-        <ul class="navbar-nav ml-auto"  v-if="tab == 1">
+        <ul class="navbar-nav ml-auto"  v-if="user.role == 1">
           <!-- Authenticated -->
            <li v-if="user" class="nav-item">
              <router-link :to="{name:'student'}" class="nav-link" >หน้าหลัก</router-link>
@@ -43,8 +43,8 @@
               </router-link>
               
 
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(2)">to company</button>
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(3)">to teacher</button>
+                <!-- <button class="btn btn-primary bold dropdown-item" @click="setTab(2)">to company</button>
+                <button class="btn btn-primary bold dropdown-item" @click="setTab(3)">to teacher</button> -->
 
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
@@ -69,7 +69,7 @@
           </template>
         </ul>
         
-         <ul class="navbar-nav ml-auto"  v-else-if="tab == 2">
+         <ul class="navbar-nav ml-auto"  v-else-if="user.role == 3">
           <!-- Authenticated -->
            <li v-if="user" class="nav-item">
              <router-link :to="{name:'company'}" class="nav-link" >หน้าหลัก company</router-link>
@@ -92,8 +92,8 @@
               </router-link>
               
 
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(1)">to Student</button>
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(3)">to teacher</button>
+                <!-- <button class="btn btn-primary bold dropdown-item" @click="setTab(1)">to Student</button>
+                <button class="btn btn-primary bold dropdown-item" @click="setTab(3)">to teacher</button> -->
 
 
               <div class="dropdown-divider" />
@@ -119,7 +119,7 @@
           </template>
         </ul>
 
-         <ul class="navbar-nav ml-auto"  v-else-if="tab == 3">
+         <ul class="navbar-nav ml-auto"  v-else-if="user.role == 2">
           <!-- Authenticated -->
            <li v-if="user" class="nav-item">
              <router-link :to="{name:'teacher'}" class="nav-link" >หน้าหลัก Teacher</router-link>
@@ -139,8 +139,8 @@
               </router-link>
               
 
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(1)">to Student</button>
-                <button class="btn btn-primary bold dropdown-item" @click="setTab(2)">to Company</button>
+                <!-- <button class="btn btn-primary bold dropdown-item" @click="setTab(1)">to Student</button>
+                <button class="btn btn-primary bold dropdown-item" @click="setTab(2)">to Company</button> -->
 
 
               <div class="dropdown-divider" />

@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             StudentSeeder::class,
             CompanySeeder::class,
             ComStaffSeeder::class,
-            EventSeeder::class,
             StudentPostSeeder::class,
+            EventSeeder::class,
             StudentCourseSeeder::class,
            
         ]);

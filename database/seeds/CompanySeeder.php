@@ -74,6 +74,39 @@ class CompanySeeder extends Seeder
                 'juristic'=>"none",
                 'profile_id'=>NULL,
             ],
+            [
+                'name'=>'บริษัท บางกอก เว็บ โซลูชั่น จำกัด',
+                'address'=>'182 หมู่บ้านตะวันรุ่ง ซอย 7 ถ.ลาดพร้าว 64 แยก 4
+                วังทองหลาง, วังทองหลาง, กรุงเทพมหานคร, 10310',
+                'logo'=>'',
+                'district_id'=>1,
+                'province_id'=>1,
+                'prove'=>"none",
+                'juristic'=>"none",
+                'profile_id'=>NULL,
+            ],
+            [
+                'name'=>'บริษัท มิราเคิล ไลฟ์ โค้ช จำกัด',
+                'address'=>'797/26 อาคาร H ชั้น 3 Happy Condo ลาดพร้าว 101 ถนนลาดพร้าว 101 แขวงคลองเจ้าคุณสิงห์ เขตบึงทองหลาง 10240
+                กรุงเทพมหานคร',
+                'logo'=>'',
+                'district_id'=>1,
+                'province_id'=>1,
+                'prove'=>"none",
+                'juristic'=>"none",
+                'profile_id'=>NULL,
+            ],
+            [
+                'name'=>'Robert Bosch Limited',
+                'address'=>'เอฟวายไอ เซ็นเตอร์ อาคาร1 ชั้น4 เลขที่ 2525 ถนนพระราม 4
+                คลองเตย, คลองเตย, กรุงเทพมหานคร, 10110',
+                'logo'=>'',
+                'district_id'=>1,
+                'province_id'=>1,
+                'prove'=>"none",
+                'juristic'=>"none",
+                'profile_id'=>NULL,
+            ],
         ]);
     }
 }

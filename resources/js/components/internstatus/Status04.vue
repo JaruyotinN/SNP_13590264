@@ -7,7 +7,7 @@
           <!-- <pre> {{intern}}</pre>
           <pre>{{intern.stu_id}}</pre>
           <pre>{{intern.student.course.end_date}}</pre> -->
-        <div class="card mt-4">
+        <!-- <div class="card mt-4">
              <div class="row">
                 <div class="col-md-9">
                    <label class="mt-3 ml-3"><i class="fa fa-file-pdf-o fa-2x color-dblue"></i> คำรองขอส่งตัว</label>
@@ -18,7 +18,7 @@
                     </a>
                 </div>
              </div>
-        </div>
+        </div> -->
         <div class="card mt-4">
              <div class="row">
                 <div class="col-md-9">

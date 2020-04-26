@@ -81,6 +81,36 @@ class ComStaffSeeder extends Seeder
                 // 'event_id'=>6,
                 'com_id'=>6,
             ],
+            [    
+                'name'=>'พานทอง',
+                'surname'=>'ส่องสว่างจิต',
+                'division'=>'BANGKOK WEB SOLUTION',
+                'img'=>'',
+                'career'=>'Senoir Devloper',
+                'email'=>'pantong@bkkweb.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'com_id'=>7,
+            ],
+            [    
+                'name'=>'สิทิกร',
+                'surname'=>'ผ่องใส',
+                'division'=>'Miracle Life Coach',
+                'img'=>'',
+                'career'=>'Senoir Devloper',
+                'email'=>'sitikorn@miraclelife.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'com_id'=>8,
+            ],
+            [    
+                'name'=>'พรเทพ',
+                'surname'=>'เจริญกิจ',
+                'division'=>'Robert Bosch Limited',
+                'img'=>'',
+                'career'=>'Devloper',
+                'email'=>'pontep@robertbosch.com',
+                'phonenumber'=>'09x-xxx-xxxx',
+                'com_id'=>9,
+            ],
             
 
 

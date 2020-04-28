@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/make_dairys', 'StudentPostController@store');
     Route::resource('/interndairys', 'StudentPostController');
     Route::resource('/majors', 'MajorController');
+    Route::resource('/facultys', 'FacultyController');
     Route::resource('/jobs', 'JobController');
     Route::resource('/types', 'JoptypeController');
     Route::resource('/courses', 'StudentCoutseController');
@@ -49,6 +50,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/updatescore', 'ScoreController');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
+
+    Route::resource('/allstudent', 'TeacherinfosController');
+    Route::post('findstudent', 'ScoreController@index');
 
 });
 

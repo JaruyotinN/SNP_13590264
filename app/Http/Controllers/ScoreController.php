@@ -23,35 +23,6 @@ class ScoreController extends Controller
      public function search(Request $request)
     {   
 
-        // $intern_id = 1 ;
-        
-
-        // if($form->jobtyoes_id != ""){
-        //     $users = Score::where('type_id',$form->jobtypes_id)
-        //     ->where('score',$form->score)
-        //     ->whereHas('student', function ($query) use ($intern_id){
-        //                 $query->where('intern_id', $intern_id);
-        //     })->get();
-        // } else { 
-            
-        //      $users = Score::whereHas('student', function ($query) use ($intern_id){
-        //                  $query->where('intern_id', $intern_id);
-        //      })->get();
-        // }
-        // foreach($users as $user){
-        //     $user->student->major->faculty->university;
-        //     $user->student->scores;
-        //     foreach($user->student->scores as $score){
-        //         $score->joptype;
-        //     }
-        // }
-        // foreach($profile->student->score as $key => $value){
-        //         if($value->type_id!=''){
-        //             $profile->student->score[$key]->joptypes = DB::table('joptypes')->where('id',$value->type_id)->get();
-        //         }
-        //     }
-
-            // return  $users;
 
         $user = $request->user();  
         $profile = DB::table('profiles')->leftJoin('student_infos','student_infos.profile_id','profiles.id')
@@ -85,9 +56,6 @@ class ScoreController extends Controller
             }
             return $temp;
         }
-
-
-        // dd($profile);die();
 
         return  $profile;
         

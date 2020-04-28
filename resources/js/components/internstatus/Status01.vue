@@ -279,7 +279,7 @@ tr.spaceUnder>td {
 
 .badge.approved {
   background:#E0F2DE;
-  color: #8BD882;
+  color: rgb(94, 139, 89);
 }
 
 .badge.disapproved {

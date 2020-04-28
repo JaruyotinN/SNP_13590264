@@ -55,10 +55,7 @@ class ComeventController extends Controller
             }
             echo '<pre>';print_r($user);echo '</pre>';die();
         **/
-
-        // echo '<pre>';print_r($userjob);echo '</pre>';die();
-        // echo '<pre>';print_r($userjobs);echo '</pre>';
-        // die();
+ 
         foreach($userjobs as $index=>$userjob){ 
             if($userjob->joptype != ''){
                 $arrayjob[$index] = $userjob->joptype->job_id;

@@ -2,7 +2,8 @@
 <div class="container" >
 
     <div class="mb-5"> 
-    <router-link :to="{ name: 'list'}">ย้อนกลับ</router-link>
+    <router-link v-if="user.role == 3" :to="{ name: 'list'}">ย้อนกลับ</router-link>
+    <router-link v-else-if="user.role == 2" :to="{ name: 'teacher'}">ย้อนกลับ</router-link>
      </div>
       <form @submit.prevent="submit()" @keydown="form.onKeydown($event)">
    <div class="col-md-12">
@@ -247,6 +248,7 @@ data: () => ({
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
+      user: 'auth/user',
       showstudent:'comevents/showdetailreview',
     })
   },

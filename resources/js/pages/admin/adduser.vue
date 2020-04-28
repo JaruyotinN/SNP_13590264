@@ -3,7 +3,7 @@
     <form @submit.prevent="save" @keydown="form.onKeydown($event)">
     <div class="col-md-12">
               <div class="mb-3"> 
-                    <router-link :to="{ name: 'admin'}">ย้อนกลับ</router-link>
+                    <router-link :to="{ name: 'teacher'}">ย้อนกลับ</router-link>
               </div>
               <!-- {{users}} -->
               <div class="row">

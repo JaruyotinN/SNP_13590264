@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Teacherinfos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherinfosController extends Controller
 {
@@ -12,9 +13,41 @@ class TeacherinfosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->teacher = DB::table('teacherinfos')->where('profile_id',$profile->id)->first();
+        $profile->teacher->major = DB::table('majors')->where('id',$profile->teacher->major_id)->first();
+        $profile->teacher->major->faculty = DB::table('faculties')->where('id',$profile->teacher->major->faculty_id)->first();
+
+        $students = DB::table('student_infos')->where('faculty_id',$profile->teacher->major->faculty->id)->orderBy('number')->get();
+       
+            foreach($students as $stu){
+                $stu->joincomevent = DB::table('comevent_joins')->where('stu_id',$stu->id)
+                ->where('stu_confirm',1)
+                ->first();
+                if($stu->joincomevent != null){
+                   $stu->joincomevent->comevent = DB::table('comevents')->where('id', $stu->joincomevent->event_id)->first();
+                   $stu->joincomevent->company = DB::table('companyinfos')->where('id', $stu->joincomevent->com_id)->first();
+                }
+            
+            }
+
+            // if($request->job_id){
+            //     $temp = [];
+            //     foreach($profile as $key => $value){ // loop student
+            //         foreach($value->score as $kkey => $vvalue){ //loop
+            //             if($vvalue->type_id == $request->jobtypes_id && $vvalue->score >= $request->score){ // 2 >= 1
+            //                 array_push($temp,$value);
+            //             }
+            //         }
+            //     }
+            //     return $temp;
+            // }
+
+        return $students;
     }
 
     /**

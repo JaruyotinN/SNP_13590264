@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Faculty;
+use App\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
 {
@@ -12,9 +14,22 @@ class FacultyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {    
+        $user = $request->user();
+
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->teacher = DB::table('teacherinfos')->where('profile_id',$profile->id)->first();
+        $profile->teacher->faculty = DB::table('faculties')->where('id',$profile->teacher->faculty_id)->first();
+      
+
+        $majors = Major::where('faculty_id',$profile->teacher->faculty->id)->get();
+        foreach($majors as $major){
+            $major->faculty;
+ 
+        }
+        return $majors;
+        
     }
 
     /**

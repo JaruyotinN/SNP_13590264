@@ -116,56 +116,7 @@
                   </div>
                 </div>
               </div>
-     
-                    <!-- <div class="col-md-12 mb-2" v-for="(user, index) in users" :key="index">
-                         <div class="card mt-3 mb-2"> 
-   
-                      <div class="row">
-                          <div class="col-md-6">
-                          <div class="img-circle ml-3 mt-2 mr-3">
-                              <img :src="user.student.img">
-                          </div>
-                    <div class="mb-3 ml-3 mt-2" style="float: left" v-for="(score, index) in user.student.scores" v-if="index == 1" :key="index">
-
-                        <div class="f-1 bold m-0">
-                          <label>{{user.student.name}}  {{user.student.surname}} </label>
-                          <label>|</label>
-                          <label>{{user.student.major.faculty.university.name}}</label>
-                        </div>
-                        <div class="f-1 m-0" >
-                            <label class="m-0">ทักษะหลัก :</label>
-                          
-                            <label>{{score.joptype.name}}</label>
-                            <label>|</label>
-                            <label>{{score.score}}</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                     <div class="mb-3 mt-2 mr-3" style="float: left">
-                        <div class="f-1">
-                          <label>resume</label>
-                          <br>
-                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
-                        </div>
-                    </div>
-                    <div class="mb-3 mr-3 mt-2" style="float:left">
-                        <div class="f-1">
-                          <label>portfoilo</label>
-                           <br>
-                          <i class="ml-1 fa fa-file fa-3x color-dblue" ></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mt-3">
-                    <router-link class="btn btn-primary bold" :to="{name:'edit'}"> 
-                      <i class="fa fa-envelope-open fa-2x"></i>
-                       <p>ส่งคำเชิญ</p>
-                    </router-link>
-                </div>
-            </div>
-    </div>
-                    </div> -->
+      
                     </div>
             </div>
         </div>

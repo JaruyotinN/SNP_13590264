@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::resource('/allstudent', 'TeacherinfosController');
     Route::post('findstudent', 'ScoreController@index');
+    Route::get('/alldairy', 'StudentPostController@studentdairy');
+    Route::resource('/detaildairy', 'StudentPostController');
 
 });
 

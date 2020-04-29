@@ -24,6 +24,7 @@ export default [
   
   { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },
   { path: '/studairy', name: 'studairy', component: page('teacher/dairy.vue') },
+  { path: '/detaildairy/:id', name: 'detaildairy', component: page('teacher/detaildairy.vue') },
 
   { path: '/adduser', name: 'adduser', component: page('admin/adduser.vue') },
   { path: '/admin', name: 'admin', component: page('admin/index.vue') },

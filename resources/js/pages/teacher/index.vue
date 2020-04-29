@@ -5,8 +5,8 @@
          <div class="col-md-9">
               <div class="mb-3 ml-3 mt-2" style="float: left">
                  <h4 class="mb-2 bold">สถานะการฝึกงานของนักศึกษา</h4>
-                   <p class="bold color-blue" v-if="tab == 1">รอพิจารณา </p>
-                    <p class="bold color-blue" v-if="tab == 2">อยู่ในการพิจารณา </p>
+                   <p class="bold color-blue" v-for="(major, index) in majors" :key="index" v-if="tab == major.id">นักศึกษาสาขา {{major.name}} </p>
+               
                </div>
           </div>
           <div class="col-md-3 mt-4">
@@ -15,14 +15,9 @@
       </div>
            <ul class="nav ml-3" >
                 
-                 <li>  
-                      <a  href="#"  @click="setTab(index)">
-                       ทั้งหมด
-                      </a>
-                </li>
-                <li v-for="(faculty, index) in facultys" :key="index">  
-                      <a  href="#"  @click="setTab(index)">
-                       {{faculty.name}}
+                <li v-for="(major, index) in majors" :key="index">  
+                      <a  href="#"  @click="setTab(major.id)">
+                       {{major.name}}
                       </a>
                 </li>
 
@@ -33,7 +28,6 @@
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">ข้อมูลนักศึกษาฝึกงาน</h4>
                         <p>เข้าสู่ระบบโดย "อาจารย์ {{user.teacher.name}} {{user.teacher.surname}}"</p>
-                        <input class="form-control" type="hidden" v-model="faculty_id = user.teacher.faculty_id">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -56,9 +50,10 @@
                     <th class="center " scope="col">ประเมินผล</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr v-for="(student, index) in students" :key="index">
-                      
+                <tbody v-for="(student, index) in students" :key="index">
+ 
+                    <input class="form-control" type="hidden" v-if="tab == 0" v-model="tab = students[0].major_id">  
+                      <tr v-if="student.major_id == tab"> 
                       <td class="center " scope="col">{{student.number}}</td>
                       <td>{{student.name}} {{student.surname}}</td>
                       <td>
@@ -106,23 +101,19 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   middleware: 'auth',
   methods: {
-    //   async search() {
-       
-    //     const { data } = await this.post(`/api/findstudent`);
-    //     // const { data } = await axios.get(`/api/search/users/${this.form}`);
-    //     this.students = data;
-    //     console.log(data);
-    //     console.log(this.users);
-    // },
+    setTab(tab) {
+      this.tab = tab
+    },
     ...mapActions({
        fetch:'profile/fetch',
        fetchallstudent:'teacher/fetchallstudent',
-       fetchfaculty:'teacher/fetchfaculty'
+       fetchmajor:'teacher/fetchmajor'
     }),
   },
   data() {
     return {
-      faculty_id: ''
+      tab: 0,
+
       }
   },
  
@@ -131,13 +122,13 @@ export default {
     ...mapGetters({
         users:'profile/userinfos',
         students:'teacher/allstudent',
-        facultys: 'teacher/facultys'
+        majors: 'teacher/majors'
     })
   },
   created(){
      this.fetch()
      this.fetchallstudent()
-     this.fetchfaculty()
+     this.fetchmajor()
   }
 }
 </script>

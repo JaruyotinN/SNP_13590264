@@ -1,19 +1,19 @@
 <template>
 <div class="container" >
+       <div class="mb-3"> 
+                    <router-link :to="{ name: 'studairy'}">ย้อนกลับ</router-link>
+        </div>
   <div class="col-12">
       <div class="row">
                 <div class="col-md-10">
-                    <div class="mb-3 ml-3 mt-2" style="float: left">
+                    <div class="mb-3 ml-3 mt-2" style="float: left" >
                         <h4 class="mb-2 bold">บันทึกฝึกงานของนักศึกษา</h4>
                     </div>
                 </div>
-                <div class="col-md-2 mt-4">
-                    <router-link class="btn btn-outline-primary bold" :to="{name:'postdairy', params: {id: users.id} }">เพิ่มบันทึกฝึกงาน</router-link>
-                </div>
             </div>
              <hr class="hr-yellow">
-            <div v-if="interndairys.length">
-            <div class="card mt-4" v-for="(dairy, index) in interndairys" :key="index" >
+            <div v-if="alldairys.length != 0 ">
+            <div class="card mt-4" v-for="(dairy, index) in alldairys" :key="index" >
               <div class="col-12">
                    <div class="row">
                         <div class="col-2">
@@ -38,11 +38,12 @@
               </div>            
 	        </div>
             </div>
-            <div class="row" v-else > 
+             <div class="row" v-else > 
                 <div class="col-md-12 center mt-5">
-                    <h3 class="bold color-dblue">ยังไม่มีข้อมูลบันทึกฝึกงานของนักศึกษา</h3>
+                    <h3 class="bold color-dblue">ไม่มีบันทึกฝึกงาน</h3>
                 </div>
             </div>
+            
     
     
   </div>
@@ -56,26 +57,21 @@ export default {
   middleware: 'auth',
   methods: {
     ...mapActions({
-      fetch:'interndairys/fetch',
+      fetch:'interndairys/fetchalldairy',
     }),
   },
-  data() {
-    return {
-      
-      }
-  },
+  
  
   computed:{
     id(){
       return parseInt(this.$route.params.id)
     },
     ...mapGetters({
-       interndairys:'interndairys/interndairys',
-       users:'auth/user',
+        alldairys:'interndairys/showalldairy',
     })
   },
   created(){
-     this.fetch()
+     this.fetch(this.id)
   }
 }
 </script>

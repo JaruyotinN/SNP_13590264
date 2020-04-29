@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\StudentInfo;
 use App\StudentPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentPostController extends Controller
 {
@@ -22,6 +24,28 @@ class StudentPostController extends Controller
             $post->student;
         }
         return $studentpost;
+    }
+
+    public function studentdairy(Request $request)
+    {
+        $user = $request->user();
+
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->teacher = DB::table('teacherinfos')->where('profile_id',$profile->id)->first();
+        $profile->teacher->major = DB::table('majors')->where('id',$profile->teacher->major_id)->first();
+        $profile->teacher->major->faculty = DB::table('faculties')->where('id',$profile->teacher->major->faculty_id)->first();
+
+        $students = DB::table('student_infos')->where('faculty_id',$profile->teacher->major->faculty->id)->orderBy('number')->get();
+       
+            foreach($students as $stu){
+                $stu->dairy = DB::table('student_posts')->where('stu_id',$stu->id)->get();
+                if($stu->dairy != null){
+                    $stu->count = DB::table('student_posts')->where('stu_id',$stu->id)->count();
+                }      
+            }
+
+
+        return $students;
     }
 
     /**
@@ -43,9 +67,12 @@ class StudentPostController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        $post = StudentPost::create($request->all());
+        $posts = StudentPost::create($request->all());
+        foreach($posts as $post){
+            $post->student;
+        }
        
-        return $post;
+        return $posts;
     }
 
     /**
@@ -54,10 +81,13 @@ class StudentPostController extends Controller
      * @param  \App\StudentPost  $studentPost
      * @return \Illuminate\Http\Response
      */
-    public function show(StudentPost $studentPost)
-    {
-        // $studentPost->staffs;
-        // return $studentPost;
+    public function show(StudentPost $studentPost,$id)
+    {   
+        $studentPost = StudentPost::orderBy('created_at')->where('stu_id',$id)->get();
+        foreach($studentPost as $post){
+            $post->student;
+        }
+        return  $studentPost;
     }
 
     /**

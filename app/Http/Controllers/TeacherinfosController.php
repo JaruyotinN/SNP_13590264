@@ -35,17 +35,6 @@ class TeacherinfosController extends Controller
             
             }
 
-            // if($request->job_id){
-            //     $temp = [];
-            //     foreach($profile as $key => $value){ // loop student
-            //         foreach($value->score as $kkey => $vvalue){ //loop
-            //             if($vvalue->type_id == $request->jobtypes_id && $vvalue->score >= $request->score){ // 2 >= 1
-            //                 array_push($temp,$value);
-            //             }
-            //         }
-            //     }
-            //     return $temp;
-            // }
 
         return $students;
     }

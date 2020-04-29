@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comevent;
 use App\ComeventJoin;
 use App\Profile;
 use App\StudentInfo;
@@ -48,6 +49,24 @@ class ComeventJoinController extends Controller
         }
 
        return $comjoins;
+       
+    }
+
+    public function getjoptype(Request $request)
+    {
+        $user = $request->user();
+
+        $infos = Profile::where('user_id',$user->id)->get();
+        foreach($infos as $info){
+            $usercom_id = $info->company->id;
+        }
+        $requirement = [];
+        $comjoins = Comevent::where('com_id','=', $usercom_id)->get();
+        foreach($comjoins as $index=>$com){
+            $arrayjob = explode(',',$com->requirement);
+            $requirement = array_unique(array_merge($requirement,$arrayjob));
+        }
+       return $requirement;
        
     }
 

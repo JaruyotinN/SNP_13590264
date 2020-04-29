@@ -80,6 +80,7 @@
                             <option value="1">ต้องการให้มาสัมภาษณ์</option>
                             <option value="2">อยู่ในการพิจารณา</option>
                             <option value="3">ผ่าน</option>
+                            <option value="99">ไม่ผ่าน</option>
                           </select>
                      </div>
                      </div>

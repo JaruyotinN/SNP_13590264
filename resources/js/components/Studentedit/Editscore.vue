@@ -80,47 +80,24 @@ export default {
   },
   
   async created () {
-    // Fill the form with user data.
-   var vm = this
-    this.fetchjob(),
-    this.fetchtype(),
-    await this.fetchshow(this.id),
-    // this.form.keys().forEach(key => {
-    //   this.form[key] = this.users.student.scores[key]
-    // })
-    //  this.users.student.scores.forEach(key => {
-    //   this.form.title[key] = this.users.student.scores[key].joptype.job.id
-    // })
-  //    $.each(this.users.student.scores, function(key, value) {
-  //   //  this.form.title.push(value.joptype.job.id);
-     
-  //  });
-  this.users.student.scores.map(function(value, key) {
-  vm.form.index.push(value.id);
-    if(value.joptype){
-      console.log('if');
-         vm.form.title.push(value.joptype.job.id);
-          vm.form.name.push(value.joptype.id);
-    }else{
-      console.log('else');
-      vm.form.title.push(5);
-       vm.form.name.push(5);
-       
-    }
-vm.form.score.push(value.score);
-        
-        // if(value.jobtype){
-        //   console.log("jobtype");
-        //    vm.form.title.push(value.joptype.job.id);
-        //   vm.form.name.push(value.joptype.id);
-        //     vm.form.score.push(value.score);
-        // } else {
-        
-        // }
-      
 
-   });
-  //  console.log(this.users.student.scores)
+      var vm = this
+      this.fetchjob(),
+      this.fetchtype(),
+      await this.fetchshow(this.id),
+  
+      this.users.student.scores.map(function(value, key) {
+      vm.form.index.push(value.id);
+      if(value.joptype){
+        vm.form.title.push(value.joptype.job.id);
+        vm.form.name.push(value.joptype.id);
+      }else {
+        vm.form.title.push(5);
+        vm.form.name.push(5);
+      }
+      vm.form.score.push(value.score);  
+      });
+
   },
   methods: {
     cheack(){

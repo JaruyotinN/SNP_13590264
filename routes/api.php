@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/detailreview/{id}', 'StudentReviewController@showdetailreview');
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
+
+    Route::get('/getjoptype', 'ComeventJoinController@getjoptype');
+    
     Route::get('/getstudent/{id}', 'ComeventJoinController@showcomjoin');
     Route::get('/studentconfirm', 'ComeventJoinController@studentconfirm');
     Route::get('/studentconfirm/{id}', 'ComeventJoinController@showstudentconfirm');

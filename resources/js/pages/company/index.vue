@@ -182,17 +182,6 @@ export default {
       jobs: 'jobs/jobs',
       types: 'jobs/types'
     }),
-    sortedArray: function() {
-    function compare(a, b) {
-      if (a.name < b.name)
-        return -1;
-      if (a.name > b.name)
-        return 1;
-      return 0;
-    }
-
-    return this.arrays.sort(compare);
-  }
   },
   methods: {
     async search() {

@@ -13,6 +13,7 @@ class CreateCompanyinfosTable extends Migration
      */
     public function up()
     {
+      
         Schema::create('companyinfos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('profile_id')->unsigned()->nullable();
@@ -21,11 +22,12 @@ class CreateCompanyinfosTable extends Migration
                 ->on('profiles')
                 ->onDelete('cascade');
             $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->string('logo')->nullable();
+            $table->string('phonenumber')->nullable();
             $table->string('address')->nullable();
-            $table->string('district_id')->nullable();
-            $table->string('province_id')->nullable();
-            $table->string('prove')->nullable();
+            $table->integer('province_id')->unsigned()->nullable();
+            $table->integer('amphure_id')->unsigned()->nullable();
             $table->string('juristic')->nullable();
             $table->timestamps();
         });

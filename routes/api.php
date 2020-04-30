@@ -65,7 +65,9 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
 
-    
+    Route::post('createuser', 'Auth\AdminController@createuser');
+
+    Route::resource('/province', 'ProvinceController');
 
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');

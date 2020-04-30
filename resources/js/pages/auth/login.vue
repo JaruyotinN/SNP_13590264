@@ -101,7 +101,7 @@ export default {
 
       } else if(this.user.role == 2)
       {
-           this.$router.push({ name: 'adduser' })
+           this.$router.push({ name: 'teacher' })
       } else if(this.user.role == 3)
       {
            this.$router.push({ name: 'company' })

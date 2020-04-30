@@ -3,7 +3,7 @@
     <div class="col-md-10 m-auto">
     <div class="card">
       <div class="col-md-10 m-auto" >
-        <form @submit.prevent="register" @keydown="form.onKeydown($event)">
+        <form @submit.prevent="register(role)" @keydown="form.onKeydown($event)">
           <div class="mt-4 mb-4">
             <h5 class="bold">สมัครสมาชิก</h5>
           </div>
@@ -30,13 +30,15 @@
                 </div>
 
                 <div class="form-group col-md-6">
+                  {{form.role}}
+                 
                   <label class="color-blue bold">ผู้ใช้งาน</label><br>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="role" value="teacher">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="form.role" value="1">
                         <label class="form-check-label" for="inlineRadio1">อาจารย์</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="role"  id="inlineRadio2" value="company">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="form.role"  id="inlineRadio2" value="2">
                         <label class="form-check-label" for="inlineRadio2">บริษัท</label>
                       </div>
                 </div>
@@ -44,89 +46,121 @@
             <!-- end row -->
           </div> 
 
-          <div v-if="role == 'teacher'">
+          <div v-if="form.role == 1">
               <div class="mt-4 mb-4">
                 <h5 class="bold">ข้อมูลของอาจารย์</h5>
               </div>
               <hr class="hr-orange">
-              <div class="row">
+
+              <div class="row"> 
                    <div class="form-group col-md-6">
                       <label class="color-blue bold">ชื่ออาจารย์</label>
-                      <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-                      <has-error :form="form" field="name" />
+                      <input v-model="form.tname" :class="{ 'is-invalid': form.errors.has('tname') }" class="form-control" type="text" name="tname">
+                      <has-error :form="form" field="tname" />
                   </div>
 
                    <div class="form-group col-md-6">
                       <label class="color-blue bold">นามสกุลอาจารย์</label>
-                     <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-                      <has-error :form="form" field="name" />
+                     <input v-model="form.tsurname" :class="{ 'is-invalid': form.errors.has('tsurname') }" class="form-control" type="text" name="tsurname">
+                      <has-error :form="form" field="tsurname" />
                   </div>
                   
                    <div class="form-group col-md-6">
                       <label class="color-blue bold">Email ของอาจารย์</label>
-                     <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-                      <has-error :form="form" field="name" />
+                     <input v-model="form.temail" :class="{ 'is-invalid': form.errors.has('temail') }" class="form-control" type="text" name="temail">
+                      <has-error :form="form" field="temail" />
                   </div>
 
                    <div class="form-group col-md-6">
+                      <label class="color-blue bold">หมายเลขโทรศัพท์</label>
+                     <input v-model="form.tphonenumber" :class="{ 'is-invalid': form.errors.has('tphonenumber') }" class="form-control" type="text" name="tphonenumber">
+                      <has-error :form="form" field="tphonenumber" />
+                  </div>
+
+                   <div class="form-group col-md-4">
                       <label class="color-blue bold">มหาวิทยาลัย</label>
-                      <select class="custom-select  m-auto" v-model="form.job" >
+                      <select class="custom-select  m-auto" v-model="form.uni_id" >
                             <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
                             <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
                       </select>
                   </div>
-                   <div class="form-group col-md-6">
+                   <div class="form-group col-md-4">
                       <label class="color-blue bold">คณะ</label>
-                      <select class="custom-select  m-auto" v-model="form.job" >
+                      <select class="custom-select  m-auto" v-model="form.faculty_id" >
                             <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
                             <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
                       </select>
                   </div>
 
-                   <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                       <label class="color-blue bold">สาขา</label>
-                      <select class="custom-select  m-auto" v-model="form.job" >
+                      <select class="custom-select  m-auto" v-model="form.major_id" >
                             <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
                             <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
                       </select>
                   </div>
 
-                   <div class="form-group col-md-12">
+                   <!-- <div class="form-group col-md-12">
                       <label class="color-blue bold">ภาพโปรไฟล์</label>
                       <div class="input-group mb-3">
                             <input class="form-control custom-file-input" type="file" name="image" @change="setImg">
                             <label class="custom-file-label" ></label>
                             <has-error :form="form" field="image" />
                       </div>
-            </div>           
+                  </div>            -->
              </div>
           </div>
-           <div v-else-if="role == 'company'">
+           <div v-else-if="form.role == 2">
               <div class="mt-4 mb-4">
                 <h5 class="bold">ข้อมูลของบริษัท</h5>
               </div>
               <hr class="hr-orange">
               <div class="row">
-                  <div class="form-group col-md-6">
+                
+                  <div class="form-group col-md-4">
                       <label class="color-blue bold">ชื่อบริษัท</label>
-                      <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-                      <has-error :form="form" field="name" />
+                      <input v-model="form.cname" :class="{ 'is-invalid': form.errors.has('cname') }" class="form-control" type="text" name="cname">
+                      <has-error :form="form" field="cname" />
                   </div>
 
-                   <div class="form-group col-md-6">
+                   <div class="form-group col-md-4">
+                      <label class="color-blue bold">Email ของบริษัท</label>
+                      <input v-model="form.cemail" :class="{ 'is-invalid': form.errors.has('cemail') }" class="form-control" type="text" name="cemail">
+                      <has-error :form="form" field="cemail" />
+                  </div>
+
+                   <div class="form-group col-md-4">
                       <label class="color-blue bold">หมายเลขโทรศัพท์</label>
-                      <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-                      <has-error :form="form" field="name" />
+                      <input v-model="form.cphonenumber" :class="{ 'is-invalid': form.errors.has('cphonenumber') }" class="form-control" type="text" name="cphonenumber">
+                      <has-error :form="form" field="cphonenumber" />
                   </div>
 
                   <div class="form-group col-md-12">
                       <label class="color-blue bold">ที่อยู่บริษัท</label>
-                      <textarea v-model="form.description" type="text" rows="4" cols="100">
+                      <textarea v-model="form.address" type="text" rows="2" cols="100">
 
                       </textarea>
                   </div>
+                  {{form.province_id}}
+                  <div class="form-group col-md-6">
+                      <label class="color-blue bold">จังหวัด</label>
+                      <select class="custom-select  m-auto" v-model="form.province_id" >
+                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option v-for="(loc, index) in location.province" :key="index" :value="loc.id">{{loc.name_th}}</option>
+                      </select>
+                  </div>
+
                   
                   <div class="form-group col-md-6">
+                      <label class="color-blue bold">อำเภอ / เขต</label>
+                      <select class="custom-select  m-auto" v-model="form.amphure_id" >
+                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option v-for="(loc, index) in location.amphures" v-if="loc.province_id == form.province_id" :key="index" :value="loc.id" >{{loc.name_th}}</option>
+                           
+                      </select>
+                  </div>
+
+                  <!-- <div class="form-group col-md-6">
                       <label class="color-blue bold">ภาพโปรไฟล์บริษัท</label>
                       <div class="input-group mb-3">
                             <input class="form-control custom-file-input" type="file" name="image" @change="setImg">
@@ -142,7 +176,8 @@
                             <label class="custom-file-label" ></label>
                             <has-error :form="form" field="image" />
                       </div>
-                  </div>           
+                  </div>            -->
+
              </div>
            </div>
 
@@ -164,12 +199,11 @@
 
 <script>
 import Form from 'vform'
+import {mapActions, mapGetters} from 'vuex'
 import LoginWithGithub from '~/components/LoginWithGithub'
 
 
 export default {
-  
-  
   middleware: 'guest',
 
   components: {
@@ -182,38 +216,69 @@ export default {
 
   data: () => ({
     form: new Form({
-      name: '',
-      email: '',
+      tname: '',
+      tsurname:'',
+      temail:'',
+      tphonenumber:'',
+      uni_id:'',
+      faculty_id:'',
+      major_id:'',
+
+      cname:'',
+      cemail:'',
+      cphonenumber:'',
+      address:'',
+      province_id:'',
+      amphure_id:'',
+
+      name:'',
+      emil:'',
       password: '',
-      role:1,
-      password_confirmation: ''
+
+      role:'',
     }),
-    role:'',
     mustVerifyEmail: false
   }),
-
+  computed:{
+    ...mapGetters({
+      location:'location/province',
+      
+    }),
+  },
   methods: {
-    async register () {
+    async register (role) {
+ 
       // Register the user.
-      const { data } = await this.form.post('/api/register')
+      // const { data } = await this.form.post('/api/register')
+       const { data } = await this.form.post("/api/createuser");
 
       // Must verify email fist.
-      if (data.status) {
-        this.mustVerifyEmail = true
-      } else {
+      if (data.status == 'success') {
+        alert('register success!!!')
         // Log in the user.
-        const { data: { token } } = await this.form.post('/api/login')
+        // const { data: { token } } = await this.form.post('/api/login')
 
-        // Save the token.
-        this.$store.dispatch('auth/saveToken', { token })
+        // // // Save the token.
+        // this.$store.dispatch('auth/saveToken', { token })
 
-        // Update the user.
-        await this.$store.dispatch('auth/updateUser', { user: data })
+        // // // Update the user.
+        // await this.$store.dispatch('auth/updateUser', { user: data })
 
         // Redirect home.
-        this.$router.push({ name: 'home' })
+  
+         this.$router.push({ name: 'login' })
+        
+      }else{
+        alert('error!!')
       }
-    }
+    },
+      ...mapActions({
+      fetchlocation:'location/fetch',
+    })
+  },
+    created(){
+     this.fetchlocation()
+    
   }
 }
 </script>

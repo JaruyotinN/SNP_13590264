@@ -12,7 +12,7 @@ class CreateTeacherinfosTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
         Schema::create('teacherinfos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('profile_id')->unsigned()->nullable();
@@ -24,6 +24,7 @@ class CreateTeacherinfosTable extends Migration
             $table->string('surname')->nullable();
             $table->string('img')->nullable();
             $table->string('email')->nullable();
+            $table->string('phonenumber')->nullable();
             $table->bigInteger('uni_id')->unsigned();
             $table->foreign('uni_id')
                 ->references('id')

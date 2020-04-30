@@ -165,7 +165,7 @@
                                 <input class="form-control custom-file-input" type="file" name="image" @change="setImg">
                                 <label class="custom-file-label" >{{image.name}}</label>
                                 <has-error :form="form" field="image" />
-                              </div>
+                            </div>
                             
                         </div>
 

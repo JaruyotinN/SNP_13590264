@@ -159,6 +159,10 @@ export default {
       get: 1,
       id: ""
     }),
+     form2: new Form({
+      result: '',
+      jobtype: '',
+    }),
     tab: 1,
     comeventjob: "",
     status: "all",
@@ -169,21 +173,21 @@ export default {
     setTab(tab) {
       this.tab = tab;
     },
-    count() {
-      console.log(this.studentjoins);
-      // var vm = this;
-      // vm.countdata = 0;
-      // this.studentjoins.map(function(value, key) {
-      //   console.log(value);
-      //   if (
-      //     (value.result == this.status || this.status == "all") &&
-      //     (value.jobtype == this.reqtype || thi.sreqtype == "all")
-      //   ) {
-      //     this.countdata++;
-      //   }
-      // });
-      // return this.countdata;
-    },
+    // count() {
+    //   console.log(this.studentjoins);
+    //   var vm = this;
+    //   vm.countdata = 0;
+    //   this.studentjoins.map(function(value, key) {
+    //     console.log(value);
+    //     if (
+    //       (value.result == this.status || this.status == "all") &&
+    //       (value.jobtype == this.reqtype || thi.sreqtype == "all")
+    //     ) {
+    //       this.countdata++;
+    //     }
+    //   });
+    //   return this.countdata;
+    // },
     ...mapActions({
       fetch: "profile/fetch",
       fetchstudentjoin: "comevents/fetchstudentjoin",
@@ -217,7 +221,22 @@ export default {
     this.fetchstudentjoin()
     this.fetch()
     this.fetchcomjob()
-    this.count()
+    // this.count()
+    // this.form2.keys().forEach(key => {
+    //   this.form2[key] = this.studentjoins[key]
+    //   console.log(studentjoins);
+
+    // })
+    //  this.studentjoins.forEach(key => {
+    //     console.log(studentjoins);
+    //     if (
+    //       (studentjoins.result == this.status || this.status == "all") &&
+    //       (studentjoins.jobtype == this.reqtype || this.reqtype == "all")
+    //     ) {
+    //       this.countdata++;
+    //     }
+      
+    // })
   }
 };
 </script>

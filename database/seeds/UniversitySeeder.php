@@ -14,6 +14,7 @@ class UniversitySeeder extends Seeder
         DB::table('universities')->insert([
             [
                 'name'=>'มหาวิทยาลัยศิลปากร',
+                'initial'=> 'มศก.'
             ]
         ]);
     }

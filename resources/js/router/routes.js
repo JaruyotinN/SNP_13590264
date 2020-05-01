@@ -20,6 +20,7 @@ export default [
   { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },
   { path: '/list', name: 'list', component: page('company/list.vue') },
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
+  { path: '/createstaff', name: 'createstaff', component: page('company/createstaff.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
   
   { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },

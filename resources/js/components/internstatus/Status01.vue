@@ -18,7 +18,7 @@
             <td><h5> {{userjoin.comevent.company.name}} </h5><label>{{userjoin.comevent.division}} </label></td>
             <td><h5> {{userjoin.jobtype}} </h5></td>
             <td class="center w15">
-                <i v-if="userjoin.check " class="fa fa-check-circle "></i>  
+                <i v-if="userjoin.check " class="fa fa-check-circle color-dblue"></i>  
                 <i v-else class="fa fa-minus-circle"></i>
             </td>
             <td class="center w15">

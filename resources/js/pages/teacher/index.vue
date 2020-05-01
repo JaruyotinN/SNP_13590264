@@ -5,7 +5,8 @@
          <div class="col-md-9">
               <div class="mb-3 ml-3 mt-2" style="float: left">
                  <h4 class="mb-2 bold">สถานะการฝึกงานของนักศึกษา</h4>
-                   <p class="bold color-blue" v-for="(major, index) in majors" :key="index" v-if="tab == major.id">นักศึกษาสาขา {{major.name}} </p>
+                   <p class="bold color-dblue" v-for="(mj, index) in majors" :key="index" v-if="major == mj.id">นักศึกษาสาขา {{mj.name}} </p>
+                    <p class="bold color-dblue"  v-if="major == 'all'">นักศึกษาทั้งหมด</p>
                
                </div>
           </div>
@@ -13,15 +14,12 @@
                 <router-link class="btn btn-outline-primary bold" :to="{name:'adduser' }">สร้างข้อมูลนักศึกษา</router-link>
           </div>
       </div>
-           <ul class="nav ml-3" >
-                
-                <li v-for="(major, index) in majors" :key="index">  
-                      <a  href="#"  @click="setTab(major.id)">
-                       {{major.name}}
-                      </a>
-                </li>
-
-            </ul>
+            <div class="input-group mt-2 mb-3">
+              <select class="custom-select col-md-3 ml-2" v-model="major" >
+                <option value="all" selected>นักศึกษาทั้งหมด</option>
+                <option v-for="(major, index) in majors" :value="major.id" :key="index"> {{major.name}}</option>
+              </select>
+            </div>
              <hr class="hr-yellow">
               <div class="row" v-for="(user, index) in users" :key="index" >
                 <div class="col-md-10">
@@ -51,9 +49,9 @@
                     </tr>
                 </thead>
                 <tbody v-for="(student, index) in students" :key="index">
- 
-                    <input class="form-control" type="hidden" v-if="tab == 0" v-model="tab = students[0].major_id">  
-                      <tr v-if="student.major_id == tab"> 
+                    <!-- (stu.result == status || status == 'all') && -->
+                    
+                      <tr v-if="student.major_id == major || major == 'all'"> 
                       <td class="center " scope="col">{{student.number}}</td>
                       <td>{{student.name}} {{student.surname}}</td>
                       <td>
@@ -113,7 +111,7 @@ export default {
   data() {
     return {
       tab: 0,
-
+      major: 'all',
       }
   },
  
@@ -188,7 +186,10 @@ li{
   border-radius: 5px;
 }
 
-
+.custom-select{
+    border-radius: 2rem !important;
+    font-size: 0.80rem;
+}
 
 .badge.review {
   background: #E4EFFE;;

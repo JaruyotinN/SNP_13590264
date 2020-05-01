@@ -13,24 +13,23 @@
                  <div class="row">
                   <div class="form-group col-md-6">
                       <label class="color-blue bold">Username</label>
-                      <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
+                      <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name" required>
                       <has-error :form="form" field="name" />
                 </div>
 
                   <div class="form-group col-md-6">
                       <label class="color-blue bold">Email</label>
-                      <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+                      <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" required>
                       <has-error :form="form" field="email" />
                 </div>
 
                 <div class="form-group col-md-6">
                       <label class="color-blue bold">Password</label>
-                      <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+                      <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password" required>
                       <has-error :form="form" field="password" />
                 </div>
 
                 <div class="form-group col-md-6">
-                  {{form.role}}
                  
                   <label class="color-blue bold">ผู้ใช้งาน</label><br>
                       <div class="form-check form-check-inline">
@@ -46,7 +45,7 @@
             <!-- end row -->
           </div> 
 
-          <div v-if="form.role == 1">
+          <div v-if="form.role == 1" required>
               <div class="mt-4 mb-4">
                 <h5 class="bold">ข้อมูลของอาจารย์</h5>
               </div>
@@ -80,23 +79,23 @@
                    <div class="form-group col-md-4">
                       <label class="color-blue bold">มหาวิทยาลัย</label>
                       <select class="custom-select  m-auto" v-model="form.uni_id" >
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
-                            <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
+                            <option value="" disabled hidden>เลือกมหาวิทยาลัยของคุณ</option>
+                            <option v-for="(uni, index) in university.university" :key="index" :value="uni.id">{{uni.name}} ({{uni.initial}})</option>
                       </select>
                   </div>
                    <div class="form-group col-md-4">
                       <label class="color-blue bold">คณะ</label>
                       <select class="custom-select  m-auto" v-model="form.faculty_id" >
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
-                            <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
+                            <option value="" disabled hidden>เลือกคณะของคุณ</option>
+                            <option v-for="(fac, index) in university.faculty" v-if="fac.uni_id == form.uni_id" :key="index" :value="fac.id">{{fac.name}}</option>
                       </select>
                   </div>
 
                   <div class="form-group col-md-4">
                       <label class="color-blue bold">สาขา</label>
                       <select class="custom-select  m-auto" v-model="form.major_id" >
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
-                            <!-- <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option> -->
+                            <option value="" disabled hidden>เลือกสาขาของคุณ</option>
+                            <option v-for="(maj, index) in university.major" v-if="maj.faculty_id == form.faculty_id" :key="index" :value="maj.id">{{maj.name}}</option>
                       </select>
                   </div>
 
@@ -110,7 +109,7 @@
                   </div>            -->
              </div>
           </div>
-           <div v-else-if="form.role == 2">
+           <div v-else-if="form.role == 2" required>
               <div class="mt-4 mb-4">
                 <h5 class="bold">ข้อมูลของบริษัท</h5>
               </div>
@@ -145,7 +144,7 @@
                   <div class="form-group col-md-6">
                       <label class="color-blue bold">จังหวัด</label>
                       <select class="custom-select  m-auto" v-model="form.province_id" >
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option value="" disabled hidden>เลือกจังหวัดของคุณ</option>
                             <option v-for="(loc, index) in location.province" :key="index" :value="loc.id">{{loc.name_th}}</option>
                       </select>
                   </div>
@@ -154,7 +153,7 @@
                   <div class="form-group col-md-6">
                       <label class="color-blue bold">อำเภอ / เขต</label>
                       <select class="custom-select  m-auto" v-model="form.amphure_id" >
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                            <option value="" disabled hidden>เลือกอำเภอ/เขตของคุณ</option>
                             <option v-for="(loc, index) in location.amphures" v-if="loc.province_id == form.province_id" :key="index" :value="loc.id" >{{loc.name_th}}</option>
                            
                       </select>
@@ -242,6 +241,7 @@ export default {
   computed:{
     ...mapGetters({
       location:'location/province',
+      university:'teacher/alluniversity',
       
     }),
   },
@@ -274,10 +274,12 @@ export default {
     },
       ...mapActions({
       fetchlocation:'location/fetch',
+      fetchalluni: 'teacher/fetchalluni'
     })
   },
     created(){
      this.fetchlocation()
+     this.fetchalluni()
     
   }
 }

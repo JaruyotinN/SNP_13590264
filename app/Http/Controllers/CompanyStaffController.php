@@ -33,9 +33,13 @@ class CompanyStaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+        $comevent = CompanyStaff::create($request->all());
+
+        return $comevent;
     }
 
     /**

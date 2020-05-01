@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 */
 Route::group(['middleware' => 'AuthTeacher'], function () {
     Route::post('adduser', 'Auth\AdminController@adduser');
-
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
@@ -33,6 +32,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/detailreview/{id}', 'StudentReviewController@showdetailreview');
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
+    Route::resource('/comstaff', 'CompanyStaffController');
 
     Route::get('/getjoptype', 'ComeventJoinController@getjoptype');
     
@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('findstudent', 'ScoreController@index');
     Route::get('/alldairy', 'StudentPostController@studentdairy');
     Route::resource('/detaildairy', 'StudentPostController');
+    Route::get('/alluniversity', 'FacultyController@getfaculty');
 
 });
 
@@ -68,6 +69,7 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('createuser', 'Auth\AdminController@createuser');
 
     Route::resource('/province', 'ProvinceController');
+    Route::get('/getfaculty', 'FacultyController@getfaculty');
 
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');

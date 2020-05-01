@@ -31,6 +31,15 @@ class FacultyController extends Controller
         return $majors;
         
     }
+    public function getfaculty()
+    {    
+       
+        $data['university'] = DB::table('universities')->get();
+        $data['faculty'] = DB::table('faculties')->get();
+        $data['major'] = DB::table('majors')->get();
+        return $data;
+        
+    }
 
     /**
      * Show the form for creating a new resource.

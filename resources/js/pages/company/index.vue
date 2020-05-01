@@ -10,7 +10,7 @@
             <div class="col-md-6 mb-3">
               <div class="row" v-for="(info, index) in infos" :key="index">
                 <div class="col-6">
-                 <router-link :to="{name:'postevent', params:{id:info.id }}">
+                 <router-link :to="{name:'createstaff' }">
                    <div class="btn btn-outline-warning bold">สร้างข้อมูลพนักงาน</div>
                 </router-link>
                 </div>
@@ -56,20 +56,22 @@
       	        <div class="card mt-3 mb-2"> 
                   <div class="row">
                       <div class="col-md-6">
-                            <div class="img-circle mb-3 ml-3 mt-2 float: left">
-                               <img src="/uploads/images/comevents/user.png" v-if="stu.img == null"/>
-                              <img v-else :src="stu.img" >
-                            </div>
- 
-                            <div class="mb-3 mt-2 ml-3" style="float: left">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="img-circle mb-3 ml-3 mt-2 float: left">
+                                      <img src="/uploads/images/comevents/user.png" v-if="stu.img == null"/>
+                                      <img v-else :src="stu.img" >
+                                    </div>
+                                </div>
+                               <div class="col-md-8 mb-3 mt-2 ml-3" style="float: left">
                               <div class="f-1 bold m-0">
                                 <label class="color-blue">{{stu.name}} {{stu.surname}} </label>
                                 <label>|</label>
-                                <label >{{stu.university.name}}</label>
+                                <label class="color-dblue" >เกรดเฉลี่ย : {{stu.grade}} </label>
                               </div>
                               <div class="f-075 m-0">
+                                  <label >{{stu.university.name}}</label>
                                   <label>{{stu.faculty.name}} </label>
-                                  <label>สาขา </label>
                                   <label>{{stu.major.name}}</label>
                                     <div  class="d-flex">
                                       <!-- <pre>{{stu.score}}</pre> -->
@@ -78,30 +80,47 @@
                               </div>
 
                             </div>   
+
+                            </div>
+                        
+ 
+
                       </div>
                       <div class="col-md-6">
                           <div class="mb-3 mt-2 mr-3" style="float: left">
                               <div class="f-1" v-if="stu.port != null">
-                                <a  class="mb05" href="" v-on:click.stop.prevent="openWindow(stu.port )">Portfolio</a>
+                                <a  class="mb05 f-075" href="" v-on:click.stop.prevent="openWindow(stu.port )">Portfolio</a>
                                 <br>
-                                <i class="ml-1 fa fa-file-image-o fa-3x color-dblue" ></i>
+                                <i style="cursor: pointer;" v-on:click.stop.prevent="openWindow(stu.port)" class="ml-1 fa fa-file-image-o fa-3x color-dblue" ></i>
                               </div>
                               <div class="f-1" v-else>
-                                <label>Portfolio</label>
+                                <label class="f-075 color-gray">ไม่พบไฟล์</label>
                                 <br>
                                 <i class="ml-1 fa fa-file-image-o fa-3x color-gray" ></i>
                               </div>
                           </div>
                           <div class="mb-3 mr-3 mt-2" style="float:left">
                               <div class="f-1" v-if="stu.cv != null">
-                              <a class="mb05" href="" v-on:click.stop.prevent="openWindow(stu.cv )">Resume</a>
+                              <a class="mb05 f-075" href="" v-on:click.stop.prevent="openWindow(stu.cv )">Resume</a>
                                 <br>
-                                <i class="ml-1 fa fa-file-pdf-o fa-3x color-dblue" ></i>
+                                <i style="cursor: pointer;" v-on:click.stop.prevent="openWindow(stu.cv)" class="ml-1 fa fa-file-pdf-o fa-3x color-dblue" ></i>
                               </div>
                               <div class="f-1" v-else>
-                                <label>Resume</label>
+                                <label class="f-075 color-gray">ไม่พบไฟล์</label>
                                 <br>
-                                <i class="ml-1 fa fa-file-pdf-o fa-3x color-gray" ></i>
+                                <i  class="ml-1 fa fa-file-pdf-o fa-3x color-gray" ></i>
+                              </div>
+                          </div>
+                           <div class="mb-3 mr-3 mt-2" style="float:left">
+                              <div class="f-1" v-if="stu.transcript != null">
+                              <a class="mb05 f-075" href="" v-on:click.stop.prevent="openWindow(stu.transcript)">Resume</a>
+                                <br>
+                                <i style="cursor: pointer;" v-on:click.stop.prevent="openWindow(stu.transcript)"  class="ml-1 fa fa-file-o  fa-3x color-dblue" ></i>
+                              </div>
+                              <div class="f-1" v-else>
+                                <label class="f-075 color-gray">ไม่พบไฟล์</label>
+                                <br>
+                                <i class="ml-1 fa fa-file-o  fa-3x color-gray" ></i>
                               </div>
                           </div>
                           <form @submit.prevent="update(stu.id)" @keydown="form.onKeydown($event)">  
@@ -192,6 +211,9 @@ export default {
         console.log(data);
         console.log(this.users);
     },
+    openWindow: function (link) {
+         window.open(link);
+    },
     ...mapActions({
       fetch:'profile/fetch',
       fetchjob : 'jobs/fetchjob',
@@ -209,7 +231,9 @@ export default {
 </script>
 
 <style scoped>
-
+.color-gray{
+  color:rgb(168, 168, 168);
+}
 .custom-select{
    width: 80% !important;
    border-radius: 2rem !important;

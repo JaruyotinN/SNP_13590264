@@ -33,7 +33,7 @@
       
           <Status01  v-if="user.student.intern_id == 1"/>
           <Status02 v-else-if="user.student.intern_id == 2" />
-          <Status03 v-else-if="user.student.intern_id == 3" :body="body"/>
+          <Status03 v-else-if="user.student.intern_id == 3"/>
           <Status04 v-else-if="user.student.intern_id >= 4"/>
           
       </div>

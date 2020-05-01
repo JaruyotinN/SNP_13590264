@@ -6,6 +6,8 @@ export const state = {
   allstudent: null,
   majors:null,
   alldairy:null,
+  alluniversity:null,
+  authalluniversity:null
 }
 
 
@@ -14,6 +16,9 @@ export const getters = {
     allstudent: state => state.allstudent,
     majors: state => state.majors,
     alldairy : state => state.alldairy,
+    alluniversity : state => state.alluniversity,
+    authalluniversity : state => state.authalluniversity
+    
     
 }
 
@@ -27,6 +32,12 @@ export const mutations = {
   },
   [types.FETCH_ALLDAIRY] (state, data) {
     state.alldairy = data
+  },
+  [types.FETCH_ALLUNIVERSITY] (state, data) {
+    state.alluniversity = data
+  },
+  [types.FETCH_AUTHALLUNIVERSITY] (state, data) {
+    state.authalluniversity = data
   },
   
 }
@@ -53,6 +64,22 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/alldairy`)
       commit(types.FETCH_ALLDAIRY,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchalluni ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/getfaculty`)
+      commit(types.FETCH_ALLUNIVERSITY,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async fetchauthuni ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/alluniversity`)
+      commit(types.FETCH_AUTHALLUNIVERSITY,  data )
     } catch (e) {
       console.log(e)
     }

@@ -14,6 +14,8 @@ class AdminController extends Controller
         $this->middleware('AuthTeacher');
 
         $status = 'error';
+        $front = $request->front;
+        $back = $request->back;
         $start = $request->start;
         $end = $request->end;
         $len = strlen($start);
@@ -30,7 +32,7 @@ class AdminController extends Controller
 
             $id = DB::table('users')->insertGetId([
                 'name' => $text . $i,
-                'email' => 'su' . $text . $i . '@inlearnshio.com',
+                'email' => $front . $text . $i . '@' . $back,
                 'password' => bcrypt($text . $i),
                 'role' => 1,
             ]);
@@ -45,13 +47,13 @@ class AdminController extends Controller
                         'faculty_id' => $request->faculty_id,
                         'major_id' => $request->major_id,
                         'intern_id' => 1,
-                        'teacher_id' => 1,
+                        'teacher_id' => $request->teacher_id,
                         'sendinvite' => 5,
                         'number' => $text . $i,
+                        'grade'=> 2,
                         'name' => 'name',
                         'surname' => 'surname',
                         'phonenumber' => 'phonenumber',
-                        'img' => 'none',
                         'address' => 'none'
 
                     ]);
@@ -64,7 +66,7 @@ class AdminController extends Controller
                                 'type_id' => $request->jobtypes_id[$s],
                                  ]);
                         }
-                        $status =  'success';      
+                      $status =  'success';      
                     } else{
                         DB::table('profiles')->where('id', $profile_id)->delete();
                         DB::table('user')->where('id', $id)->delete();

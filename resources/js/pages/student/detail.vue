@@ -20,7 +20,10 @@
                                 <lable>โครงการ : </lable><label class="bold"> &nbsp {{ comevent.division }}</label><br>
                                 <label>จำนวนที่เปิดรับ อัตรา/ตำแหน่ง: </label><label class="bold"> &nbsp{{ comevent.quantity }}</label><br>
                                 <label>เวลาปฏิบัติงาน : </label><label class="bold"> &nbsp {{comevent.jobtime}}</label><br>
-                                <label>ค่าตอบแทน : </label><label class="bold"> &nbsp {{comevent.reward}}</label><br>
+                                <label>ค่าตอบแทน : </label>
+                                <label v-if="comevent.havereward == 1" class="bold"> &nbsp {{comevent.reward}} {{comevent.formreward}}</label>
+                                <label v-else class="bold"> &nbsp ไม่มีค่าตอบแทน</label>
+                                <br>
                                 <label>วันปิดรับสมัคร :</label> <label class="bold"> &nbsp {{moment(comevent.enddate)}}</label>
                                 <label>สถานที่บริษัท : {{ comevent.company.address }}</label>
                                 <hr class="hr-orange mt-3 mb-3">

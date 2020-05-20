@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CompanyStaff;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyStaffController extends Controller
 {
@@ -12,9 +13,14 @@ class CompanyStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   
+        $user = $request->user();
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->company = DB::table('companyinfos')->where('profile_id',$profile->id)->first();
+        
+        $staffs = CompanyStaff::where('com_id',$profile->company->id)->get();
+        return $staffs;
     }
 
     /**

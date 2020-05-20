@@ -104,7 +104,7 @@ export default {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'ยกเลิก',
-        confirmButtonText: 'ยืนยันการสมัคร'
+        confirmButtonText: 'ยืนยันส่งคำร้องครั้งที่ 1'
         }).then((result) => {
         if (result.value) {
           this.update()
@@ -125,7 +125,7 @@ export default {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'ยกเลิก',
-        confirmButtonText: 'ยืนยันการสมัคร'
+        confirmButtonText: 'ยืนยันส่งคำร้องครั้งที่ 1'
         }).then((result) => {
         if (result.value) {
           this.update2()

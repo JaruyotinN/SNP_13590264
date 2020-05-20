@@ -99,7 +99,7 @@
                             </select>
                           <select class="custom-select  col-md-6 m-auto" v-model="form.jobtypes_id[i]" required>
                                 <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
-                                <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id[i] == type.job_id">{{type.id}}{{type.name}}</option>
+                                <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id[i] == type.job_id">{{type.name}}</option>
                             </select>   
                     </div> 
                   </div>

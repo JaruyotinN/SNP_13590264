@@ -22,39 +22,11 @@ class ComeventController extends Controller
     public function index(Request $request)
     {   
         $user = $request->user(); //เอาข้อมูล User
-        /*$profile = DB::table('profiles')->where('user_id',$user->id)->first();
-        $profile->student = DB::table('student_infos')->where('profile_id',$profile->id)->first();
-        $profile->student->major = DB::table('majors')->where('id',$profile->student->major_id)->first();
-        $profile->student->major->faculty = DB::table('faculties')->where('id',$profile->student->major->faculty_id)->first();
-        $profile->student->major->faculty->university = DB::table('universities')->where('id',$profile->student->major->faculty->uni_id)->first();
-
-        $profile->student->courses = DB::table('student_coutses')->where('id',$profile->student->course_id)->first();
-
-        $profile->student->score = DB::table('scores')->where('user_id',$profile->user_id)->get();
-        foreach($profile->student->score as $key => $value){
-            if($value->type_id!=''){
-                $profile->student->score[$key]->joptypes = DB::table('joptypes')->where('id',$value->type_id)->get();
-            }
-        }
-        */
-        // $profile->student->score->jobtype = DB::table('joptypes')->where('id',$profile->student->score->type_id)->get();
-        // $profile->student->score->jobtype->job = DB::table('jobs')->where('id',$profile->student->score->jobtype->job_id)->get();
-
-         //echo '<pre>';print_r($profile);echo '</pre>';die();
-     
+       
         $arrayjob = []; //ประกาศตัวแปลเก็บ job_id ของ user 
         $arraycomjob = []; //ประกาศตัวแปลเก็บ com_id ของ comevent ที่ตรงกับค่าของ user 
 
         $userjobs = Score::where('user_id','=',$user->id)->get(); //หาหมวดหมู่ job ที่ user กรอกคะแนน
-        /**
-            $user = DB::table('scores')->where('user_id',$user->id)->get();
-            foreach($user as $key => $value){
-                if($value->type_id!=''){
-
-                }
-            }
-            echo '<pre>';print_r($user);echo '</pre>';die();
-        **/
  
         foreach($userjobs as $index=>$userjob){ 
             if($userjob->joptype != ''){
@@ -127,7 +99,27 @@ class ComeventController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        $comevent = Comevent::create($request->all());
+        $starttime =  date('H:i',strtotime($request->strtime));
+        $endtime = date('H:i',strtotime($request->endtime));
+        $combine = $starttime .' - '. $endtime ;
+        $comevent = Comevent::create([
+            'division' => $request->division,
+            'desciption' => $request->desciption,
+            'quantity' => $request->quantity,
+            'jobtime' => $combine,
+            'staff_id' => $request->staff_id,
+            'havereward' => $request->havereward,
+            'reward' => $request->reward,
+            'formreward' => $request->formreward,
+            'job_id' => $request->job_id,
+            'requirement' => $request->requirement,
+            'img' => $request->img,
+            'question1' => $request->question1,
+            'question2' => $request->question2,
+            'invite' => 5,
+            'enddate' => $request->enddate,
+            'com_id' => $request->com_id,
+        ]);; 
 
         return $comevent;
     }

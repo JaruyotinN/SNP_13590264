@@ -41,8 +41,8 @@
         
                  <div class="card mt-4">
                   <div class="card-info">
-                  <h5 class="bold mt-4 center">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(1)</h5>
-                    <div class="col-md-10 m-auto"> 
+                  <h5 class="bold mt-4 center color-blue">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(1)</h5>
+                    <div class="col-md-10 m-auto "> 
                          <h5 class="center mt-2" >{{showstudent.comevent.question1}}</h5>
                         <hr class="hr-orange">
                          <div class="form-group">
@@ -53,7 +53,7 @@
             </div>
              <div class="card mt-4">
                   <div class="card-info">
-                  <h5 class="bold mt-4 center">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(2)</h5>
+                  <h5 class="bold mt-4 center color-blue">คำถาม / โจทย์งาน ถึงนักศึกษาที่สมัครฝึกงาน(2)</h5>
                     <div class="col-md-10 m-auto"> 
                          <h5 class="center mt-2" >{{showstudent.comevent.question2}}</h5>
                         <hr class="hr-orange">
@@ -88,8 +88,6 @@
               </div> 
             </div>
            
-            
-          <label>inputinterview: {{form.interview}} , inputresult: {{ form.result }}</label> 
            <div class="btn-detail-style mt-3 mb-3">
                 <button class="btn btn-primary bold" 
                 :loading="form.busy">

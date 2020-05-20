@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-6">
         <div class="card mt-4">
-             <div class="col-12">
+             <div class="col-12">intern.comevent.company
                   <div class="card-info">
                     <h5 class="bold mt-3 mb-3 color-blue">ข้อมูลของบริษัทฝึกงาน</h5>
                     <label>บริษัท : </label><label class="bold"> &nbsp{{ intern.comevent.company.name }}</label><br>
@@ -37,7 +37,7 @@
                     <label>ตำแหน่ง : </label><label class="bold"> &nbsp{{ intern.comevent.staff.career }}</label><br>
                     <label>Email ผู้ดูแล : </label><label class="bold"> &nbsp{{ intern.comevent.staff.email }}</label><br>
                     <label>เบอร์ติดต่อผู้ดูแล : </label><label class="bold"> &nbsp{{ intern.comevent.staff.phonenumber }}</label><br>
-                    <label>สถานที่ : {{ body.caddress }}</label>
+                    <label>สถานที่ : {{ intern.comevent.company.address }}</label>
                     <div class="img-circle">
                         <img :src="intern.comevent.company.logo">
                     </div> 
@@ -54,7 +54,8 @@
                   <div class="card-info">
                     <h5 class="bold mt-3 mb-3 color-blue">ข้อมูลของอาจารย์ที่ปรึกษา</h5>
                     <label>ชื่อ : </label><label class="bold"> &nbspอาจารย์&nbsp{{ intern.student.teacher.name }}&nbsp{{ intern.student.teacher.surname }}</label><br> 
-                    <label>Email อาจารย์ : </label><label class="bold"> &nbsp{{intern.student.teacher.email }}</label>&nbsp&nbsp&nbsp<label>เบอร์ติดต่ออาจารย์ฺ : </label><label class="bold"> &nbsp{{ body.tpnum }}</label><br><br>
+                    <label>Email อาจารย์ : </label><label class="bold"> &nbsp{{intern.student.teacher.email }}</label>&nbsp&nbsp&nbsp<label>เบอร์ติดต่ออาจารย์ฺ : </label>
+                    <label class="bold"> &nbsp{{ intern.student.teacher.phonenumber }}</label><br><br>
                    
                     <div class="img-circle">
                         <img :src="intern.student.teacher.img">

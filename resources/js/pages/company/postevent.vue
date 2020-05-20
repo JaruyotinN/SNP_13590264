@@ -34,47 +34,64 @@
                                 <input class="form-control" v-model="form.division" type="text" placeholder="ชื่อโครงการของคุณ" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <p>ผู้ดูแลโครงการ</p>
-                            <!-- <select class="custom-select col-md-3 m-auto" v-model="form.job_id" required>
-                              <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
-                              <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
-                            </select> -->
-                             <div class="input-group mt-2 mb-3">
-                                <select class="custom-select" v-model="form.staff_id" required>
-                                   <option value="" disabled hidden>เลือกผู้ดูแลโครงการ</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                            <div class="input-group mt-2 mb-3">
+                            <select class="custom-select " v-model="form.staff_id" required>
+                              <option value="" disabled hidden>โปรดสร้างผู้ดูแลโครงการ เพื่อสร้างแบบฟอร์ม</option>
+                              <option v-if="staffs != null" v-for="(staff, index) in staffs" :key="index" :value="staff.id">{{staff.career}} | คุณ{{staff.name}} {{staff.surname}}</option>
+                            </select>
                              </div>
                         </div> 
-
-                        <div class="col-md-3">
-                            <p>เวลาในการปฏิบัติงาน</p>
-                            <div class="input-group mt-2 mb-3">
-                                <select class="custom-select" v-model="form.jobtime" required>
-                                  <option value="" disabled hidden>เลือกเวลาปฏิบัติงาน</option>
-                                    <option value="8.00 - 16.00">8.00 - 16.00</option>
-                                    <option value="8.30 - 16.30">8.30 - 16.30</option>
-                                    <option value="9.00 - 17.00">9.00 - 17.00</option> 
-                                    <option value="9.30 - 17.30">9.30 - 17.30</option>
-                                    <option value="10.00 - 18.00">10.00 - 18.00</option>
-                                    <option value="กำหนดในภายหลัง">กำหนดในภายหลัง</option>
-                                </select>
-                             </div>
+                                     
+                        <div class="col-md-4">
+                            <p>ปิดรับสมัคร</p>
+                            <div class="mt-2 mb-3">
+                               <transition name="calendar-fade">
+                                  <date-picker color="#E7B223"
+                                              @close="show = false"
+                                              v-if="show"
+                                              v-model="form.enddate">
+                                              </date-picker>
+                                </transition>
+                                   <div class="input-group">
+                                        <input class="form-control py-2 border-right-0 border" type="text" @focus="show = true" v-model="form.enddate" required>
+                                        <span class="input-group-append">
+                                            <div class="input-group-text bg-transparent form-control"><i class="fa fa-calendar-o" aria-hidden="true"></i></div>
+                                        </span>
+                                    </div>
+                            </div>
                         </div>
 
                         <div class="col-md-4">
-                            <p>ค่าตอบแทน</p>
-                            <div class="mt-2 mb-3">
-                                  <input class="form-control" v-model="form.reward" type="text" placeholder="ค่าตอบแทน / วัน , ไม่มีใส่ -" required>
-                              </div>
+                            <p>เวลาเริ่มปฏิบัติงาน</p>
+                            <div class="input-group mt-2 mb-3" >
+                                <datetime  
+                                value-zone="Asia/Bangkok"
+                                zone="Asia/Bangkok"
+                                format="HH:mm"
+                                placeholder="เวลาเริ่มปฏิบัติงาน"
+                                type="time" v-model="form.strtime" input-class="form-control" style="border-radius: 2rem !important; ">
+                                </datetime>
+                             </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <p>เวลาจบปฏิบัติงาน</p>
+                            <div class="input-group mt-2 mb-3" >
+                                <datetime  
+                                value-zone="Asia/Bangkok"
+                                zone="Asia/Bangkok"
+                                format="HH:mm"
+                                placeholder="เวลาจบปฏิบัติงาน"
+                                type="time" v-model="form.endtime" input-class="form-control" style="border-radius: 2rem !important; ">
+                                </datetime>
+                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <p>อัตราที่รับนักศึกษา / ตำแหน่ง</p>
-                             <div class="input-group mt-2 mb-3">
+                             <div class="mt-2 mb-3">
                                 <select v-model="form.quantity" class="custom-select" id="inputGroupSelect01" required>
                                     <option value="" disabled hidden>เลือกจำนวนที่ต้องการ</option>
                                     <option value="1">1 อัตรา/ตำแหน่ง</option>
@@ -86,32 +103,36 @@
                                 </select>
                              </div>
                         </div>
-                
-                        <div class="col-md-4">
-                            <p>ปิดรับสมัคร</p>
+
+                          <div class="col-md-4">
+                            <p>ค่าตอบแทน</p>
                             <div class="mt-2 mb-3">
-                               <transition name="calendar-fade">
-                                  <date-picker color="#E7B223"
-                                              @close="show = false"
-                                              v-if="show"
-                                              v-model="form.enddate">
-                                              </date-picker>
-                                </transition>
-                                 <!-- <DatePicker
-                                  v-if="show"
-                                  v-model="form.enddate"
-                                  @close="show = false"
-                                /> -->
-                                   <div class="input-group">
-                                        <input class="form-control py-2 border-right-0 border" type="text" @focus="show = true" v-model="form.enddate" required>
-                                        <span class="input-group-append">
-                                            <div class="input-group-text bg-transparent form-control"><i class="fa fa-calendar-o" aria-hidden="true"></i></div>
-                                        </span>
-                                    </div>
+                                   <select v-model="form.havereward" class="custom-select" id="inputGroupSelect01" required>
+                                    <option value="" disabled hidden>เลือกค่าตอบแทน</option>
+                                    <option value="1">มีค่าตอบแทน</option>
+                                    <option value="0">ไม่มีค่าตอบแทน</option>
+                                </select>
                             </div>
                         </div>
+
+                        <div class="col-md-4" v-if="form.havereward == 1 ">
+                            <p>อัตราค่าตอบแทน</p>
+                             <div class="mt-2 mb-3">
+                                <div class="row">
+                                  <input class="form-control col-md-6" v-model="form.reward" type="number" placeholder="ค่าตอบแทน" required>
+                                    <select v-model="form.formreward" class="ml-3 custom-select col-md-4" id="inputGroupSelect01" required>
+                                    <option value="" disabled hidden>หน่วย</option>
+                                    <option value="/ ต่อวัน">/ ต่อวัน</option>
+                                    <option value="/ ต่อสัปดาห์">/ ต่อสัปดาห์</option>
+                                    <option value="/ ต่อเดือน">/ ต่อเดือน</option>
+                                    <option value="/ การฝึกงาน">/ การฝึกงาน</option>
+                                </select>
+                               </div>
+                             </div>
+                        </div>
+   
                         <div class="col-md-12 mt-3">
-                            <p>หมวดหมู่ที่เกี่ยวข้อง ID: {{ form.job_id }}</p>
+                            <p>หมวดหมู่ที่เกี่ยวข้อง</p>
                             <div class="mt-2 mb-3">
                                <ul class="ks-cboxtags ">
                                   <div  v-for="(job, index) in jobs" :key="index">
@@ -122,7 +143,7 @@
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <p>ตำแหน่งที่ต้องการ ID :  {{ form.requirement }}</p>
+                            <p>ตำแหน่งที่ต้องการ</p>
                             <div class="mt-2 mb-3 overflow-auto customebox" style="height:200px;">
                               <ul class="ks-cboxtags">
                                <div class="" v-for="(job, index) in jobs" :key="index">
@@ -187,6 +208,9 @@
 import ColumHeader from '~/components/ColumHeader';
 import Form from "vform";
 import DatePicker from 'vue-md-date-picker'
+import { Datetime } from 'vue-datetime';
+import 'vue-datetime/dist/vue-datetime.css'
+
 import {mapActions, mapGetters} from 'vuex'
 export default {
   middleware: 'auth',
@@ -195,9 +219,12 @@ export default {
       division:'',
       desciption:'',
       quantity:'',
-      jobtime:'',
+      strtime:'',
+      endtime:'',
       staff_id:'',
+      havereward:'',
       reward:'',
+      formreward:'',
       job_id:[],
       requirement:[],
       img: "",
@@ -213,11 +240,13 @@ export default {
   components:{
     ColumHeader,
     DatePicker,
+    datetime: Datetime,
   },
   computed:{
     ...mapGetters({
       infos:'profile/userinfos',
-      jobs: 'jobs/jobs'
+      jobs: 'jobs/jobs',
+      staffs: 'comevents/staffs',
     })
   },
  methods: {
@@ -247,17 +276,20 @@ export default {
     
     ...mapActions({
       fetch:'profile/fetch',
-      fetchjob : 'jobs/fetchjob'
+      fetchjob : 'jobs/fetchjob',
+      fetchstaffs : 'comevents/fetchstaffs',
     })
   },
   created(){
      this.fetch()
      this.fetchjob()
+     this.fetchstaffs()
   }
 }
 </script>
 
 <style scoped>
+ 
 textarea {
   width: 100%;
   overflow: auto;
@@ -288,8 +320,9 @@ textarea {
    
 }
 .form-control{
-    border-radius: 2rem;
+    border-radius: 2rem !important;
 }
+
 .btn-outline-primary {
     width: 70% ; 
     height: 50px; 
@@ -305,7 +338,10 @@ textarea {
 .custom-select{
     border-radius: 2rem !important;
 }
-
+.input-group-append{
+    right: 0;
+    position: absolute;
+}
 /* //toggle botton */
 ul.ks-cboxtags {
     list-style: none;
@@ -372,4 +408,5 @@ ul.ks-cboxtags li input[type="checkbox"] {
 ul.ks-cboxtags li input[type="checkbox"]:focus + label {
   border: 2px solid #FFB105;
 }
+
 </style>

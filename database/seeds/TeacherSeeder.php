@@ -15,7 +15,6 @@ class TeacherSeeder extends Seeder
             [   
                 'name'=>'Kowit',
                 'surname'=>'Meeboon',
-                'img'=>'',
                 'email'=>'Meeboon_k@silpakorn.edu',
                 'uni_id'=>1,
                 'phonenumber'=>'0987654321',
@@ -26,7 +25,6 @@ class TeacherSeeder extends Seeder
             [
                 'name'=>'Sarayut',
                 'surname'=>'Thibhodee',
-                'img'=>'',
                 'email'=>'Thibhodee_s@silpakorn.edu',
                 'uni_id'=>1,
                 'phonenumber'=>'0987654321',

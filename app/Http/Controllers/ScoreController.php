@@ -32,8 +32,6 @@ class ScoreController extends Controller
 
 
         
-        //  dd($profile);die();
-        
         foreach($profile as $key => $value){
             $profile[$key]->student = DB::table('student_infos')->where('profile_id',$value->id)->first();
             $profile[$key]->score = DB::table('scores')->where('user_id',$value->user_id)->get();

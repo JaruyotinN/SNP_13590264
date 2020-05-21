@@ -10,7 +10,6 @@ export default [
   { path: '/status', name: 'status', component: page('student/status.vue') },
   { path: '/comevents/:id', name: 'detail', component: page('student/detail.vue') },
   { path: '/edit/:id', name: 'edit', component: page('student/edit.vue') },
-  { path: '/try', name: 'try', component: page('student/try.vue') },
 
   { path: '/review/:id', name: 'review', component: page('company/review.vue') },
   { path: '/review2/:id', name: 'review2', component: page('company/review2.vue') },
@@ -20,12 +19,15 @@ export default [
   { path: '/internrequest', name: 'internrequest', component: page('company/internrequest.vue') },
   { path: '/list', name: 'list', component: page('company/list.vue') },
   { path: '/postevent', name: 'postevent', component: page('company/postevent.vue') },
+  { path: '/staffs', name: 'staffs', component: page('company/staffs.vue') },
+  { path: '/editstaff/:id', name: 'editstaff', component: page('company/editstaffs.vue') },
   { path: '/createstaff', name: 'createstaff', component: page('company/createstaff.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
   
   { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },
   { path: '/studairy', name: 'studairy', component: page('teacher/dairy.vue') },
   { path: '/detaildairy/:id', name: 'detaildairy', component: page('teacher/detaildairy.vue') },
+  { path: '/editteacher/:id', name: 'editteacher', component: page('teacher/editteacher.vue') },
 
   { path: '/adduser', name: 'adduser', component: page('admin/adduser.vue') },
   { path: '/admin', name: 'admin', component: page('admin/index.vue') },

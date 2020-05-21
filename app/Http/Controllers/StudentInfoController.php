@@ -49,8 +49,6 @@ class StudentInfoController extends Controller
      */
     public function show(StudentInfo $studentInfo, $id)
     {   
-        // $studentInfo= StudentInfo::get();
-        // return $studentInfo;
         $studentInfo = StudentInfo::find($id);
         return $studentInfo;
     }

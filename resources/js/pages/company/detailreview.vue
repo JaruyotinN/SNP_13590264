@@ -11,15 +11,13 @@
                 <div class="col-md-9">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">ประเมินนักศึกษา</h4>
-                        <label>comeventjoin_id : {{showstudent.id}} / {{form.comevent_joins_id}}</label>
-                        <label>student_id : {{showstudent.student.id}} / {{form.stu_id}} </label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row">
                     <div class="col-md-8 textcustom mt-3">
                     <p class="bold">{{showstudent.student.name}} {{showstudent.student.surname}}</p>
-                    <p>ตำแหน่ง : {{showstudent.jobtype}} </p>
+                    <small>ตำแหน่ง : {{showstudent.comeventjoin.jobtype}}</small>
                     </div>
                     <div class="col-md-4">
                    <div class="img-circle" style="float:right;">

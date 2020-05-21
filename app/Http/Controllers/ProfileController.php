@@ -97,14 +97,18 @@ class ProfileController extends Controller
     public function show(Profile $profile ,$id)
     {
         $profile = Profile::find($id);
-        $profile->student->major->faculty->university;
-        foreach($profile->student->scores as $score){
-            if($score->joptype != null){
-                $score->joptype->job;
+       
+        if($profile->profile_type == 'S'){
+            $profile->student->major->faculty->university;
+            foreach($profile->student->scores as $score){
+                if($score->joptype != null){
+                    $score->joptype->job;
+                }
             }
-           
+        } else if($profile->profile_type == 'T'){
+            $profile->teacher->major->faculty->university;
         }
-
+       
         return $profile;
     }
 

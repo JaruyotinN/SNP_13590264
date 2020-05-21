@@ -1,34 +1,17 @@
 <template>
 <div class="container" >
-  <div  v-for="(info, index) in infos" :key="index" >
+ 
   <form @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
       <div class="mb-5"> 
         <router-link :to="{ name: 'staffs'}">ย้อนกลับ</router-link>
      </div>
-      <div class="col-md-12">
-          <div class="row">
-                <div class="col-md-10">
-                    <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mt-4 bold">{{info.company.name}}</h4>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="img-circle" style="float:right;">
-                            <img :src="info.company.logo">
-                    </div>
-                </div>
-          </div>
-      </div>
-      <hr class="hr-yellow">
           <div class="card mt-5 mb-3">
                 <div class="col-md-10 m-auto">
-                        <h4 class="mb-5 mt-5 bold">สร้างข้อมูลพนักงานดูแลโครงการ</h4>   
+                        <h4 class="mb-5 mt-5 bold">แก้ไขข้อมูลพนักงานดูแลโครงการ</h4>   
                     <hr class="hr-orange">
                 </div>
                 <div class="col-md-10 mt-2 m-auto">
                    <div class="row" style="padding:20px;">
-                     <input class="form-control" type="hidden" v-model="form.com_id = info.company.id">
-
                         <div class="col-md-4">
                             <p class="bold color-blue" >ชื่อพนักงาน</p>
                             <div class="mt-2 mb-3">
@@ -64,23 +47,19 @@
                                   <input class="form-control" v-model="form.career" type="text" placeholder="ตำแหน่งของพนักงานของคุณ" required>
                               </div>
                         </div>
-   
-       
-            
-
                 </div>
                
         </div>   <!-- col-md-12 -->
         </div> <!-- card -->
          <div class="col-md-6 m-auto">
             <button class="btn-outline-primary bold mb-3" :loading="form.busy">
-                สร้างข้อมูลพนักงานดูแลโครงการ
+                แก้ไขข้อมูลพนักงานดูแลโครงการ
             </button>
          </div>
     
   </form>
   </div>
-</div>
+ 
 </template>
 <script>
 import Form from "vform";
@@ -89,19 +68,22 @@ export default {
   middleware: 'auth',
   data: () => ({
     form: new Form({
+      id:'',
       name:'',
       surname:'',
       career:'',
       email:'',
       phonenumber:'',
-      com_id:'',
       }),
     }),
   components:{
   },
   computed:{
+    id(){
+      return parseInt(this.$route.params.id)
+    },
     ...mapGetters({
-      infos:'profile/userinfos',
+      staff : 'comevents/showstaff'
     })
   },
  methods: {
@@ -110,21 +92,25 @@ export default {
     },
     async save() {
      
-      const { data } = await this.form.post("/api/comstaff");
-
-      if (data) {
+       const { data } = await this.form.put(`/api/comstaff/${this.form.id}`);
+        console.log(data)
+        if (data) {
         this.$router.push({
-          name: "company",
+          name: "staffs",
         });
-      }
+        }
     },
     
     ...mapActions({
-      fetch:'profile/fetch',
+      fetch:'comevents/showstaff',
+
     })
   },
-  created(){
-     this.fetch()
+   async  created(){
+     await this.fetch(this.id),
+     this.form.keys().forEach(key => {
+     this.form[key] = this.staff[key]
+    })
   }
 }
 </script>

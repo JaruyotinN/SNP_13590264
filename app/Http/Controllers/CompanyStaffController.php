@@ -43,9 +43,9 @@ class CompanyStaffController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
-        $comevent = CompanyStaff::create($request->all());
+        $staff = CompanyStaff::create($request->all());
 
-        return $comevent;
+        return $staff;
     }
 
     /**
@@ -54,9 +54,10 @@ class CompanyStaffController extends Controller
      * @param  \App\CompanyStaff  $companyStaff
      * @return \Illuminate\Http\Response
      */
-    public function show(CompanyStaff $companyStaff)
+    public function show(CompanyStaff $companyStaff ,$id)
     {
-        //
+        $companyStaff  = CompanyStaff::find($id);
+        return $companyStaff ;
     }
 
     /**
@@ -77,9 +78,17 @@ class CompanyStaffController extends Controller
      * @param  \App\CompanyStaff  $companyStaff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanyStaff $companyStaff)
-    {
-        //
+    public function update(Request $request, $id)
+    {   
+        $staff = CompanyStaff::find($id);
+        $staff->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'career' => $request->career,
+            'email' => $request->email,
+            'phonenumber' => $request->phonenumber,
+        ]);
+        return $staff;
     }
 
     /**

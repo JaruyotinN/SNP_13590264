@@ -33,7 +33,6 @@
                               <label>คณะ : </label><label class="bold"> &nbsp{{ showstudent.student.major.faculty.name }}</label><br>
                               <label>สาขา : </label><label class="bold"> &nbsp{{ showstudent.student.major.name }}</label><br>
                               <label>เบอร์ติดต่อ : </label><label class="bold"> &nbsp{{ showstudent.student.phonenumber }}</label><br>
-                              <label>ที่อยู่ : {{ showstudent.student.address }}</label>
                           </div>
                     </div>
                 </div>

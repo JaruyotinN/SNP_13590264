@@ -74,8 +74,11 @@ class ComeventController extends Controller
     public function getcomevent(Request $request)
     {   
         $user = $request->user();
-        $infos = Profile::where('user_id',$user->id)->select('com_id')->get();
-        $event = DB::table('comevents')->where('com_id',$infos[0]->com_id)->get();
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->company = DB::table('companyinfos')->where('profile_id',$profile->id)->first();
+       
+    
+        $event = DB::table('comevents')->where('com_id',$profile->company->id)->get();
         return $event;
     }
     
@@ -119,7 +122,7 @@ class ComeventController extends Controller
             'invite' => 5,
             'enddate' => $request->enddate,
             'com_id' => $request->com_id,
-        ]);; 
+        ]); 
 
         return $comevent;
     }

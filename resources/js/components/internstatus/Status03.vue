@@ -16,7 +16,6 @@
                     <label>คณะ : </label><label class="bold"> &nbsp{{ intern.student.major.faculty.name }}</label><br>
                     <label>สาขา : </label><label class="bold"> &nbsp{{ intern.student.major.name }}</label><br>
                     <label>เบอร์ติดต่อ : </label><label class="bold"> &nbsp{{ intern.student.phonenumber }}</label><br>
-                    <label>ที่อยู่ : {{ intern.student.address }}</label>
                     <div class="img-circle">
                         <img :src="intern.student.img">
                     </div> 

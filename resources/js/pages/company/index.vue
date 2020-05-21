@@ -1,7 +1,7 @@
 <template>
 <div class="container" >
     <div class="col-md-12">
-        <div class="row">
+          <div class="row">
             <div class="col-md-6">
                 <div class="mb-3 ml-3 mt-2" style="float: left">
                     <h4 class="mb-2 bold">ค้นหาเด็กฝึกงาน</h4>
@@ -9,9 +9,10 @@
             </div>
             <div class="col-md-6 mb-3">
               <div class="row" v-for="(info, index) in infos" :key="index">
+                <input class="form-control" type="hidden" v-model="form.com_id = info.company.id">
                 <div class="col-6">
-                 <router-link :to="{name:'createstaff' }">
-                   <div class="btn btn-outline-warning bold">สร้างข้อมูลพนักงาน</div>
+                 <router-link :to="{name:'staffs' }">
+                   <div class="btn btn-outline-warning bold">ข้อมูลพนักงาน</div>
                 </router-link>
                 </div>
                  <div class="col-6">
@@ -21,7 +22,6 @@
                  </div>
               </div>
             </div>  
-             
             <div class="col-md-12">
                 <form class="was-validated"  @submit.prevent="search" @keydown="form.onKeydown($event)">
                      <div class="input-group mt-2 mb-3 m-auto">
@@ -31,7 +31,7 @@
                         </select>
                        <select class="custom-select col-md-3 m-auto" v-model="form.jobtypes_id" required>
                              <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
-                             <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id == type.job_id">{{type.id}}{{type.name}}</option>
+                             <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id == type.job_id">{{type.name}}</option>
                         </select>
                         <select class="custom-select col-md-3 m-auto" v-model="form.score">
                             <option value="" disabled hidden >เลือกระดับความถนัด</option>
@@ -48,11 +48,9 @@
                 </form>
                     <hr class="hr-yellow mt-4 mb-4">   
                    
-                    <div class="row">
-                
-                      <!-- <pre>   {{users}}</pre> -->
-              <div class="col-md-12" v-for="(stu, index) in users" :key="index">
-               
+              <div class="row">
+              <div class="col-md-12" v-for="(stu, index) in users" :key="index"> 
+                              
       	        <div class="card mt-3 mb-2"> 
                   <div class="row">
                       <div class="col-md-6">
@@ -80,13 +78,11 @@
                               </div>
 
                             </div>   
-
                             </div>
                         
- 
-
                       </div>
                       <div class="col-md-6">
+
                           <div class="mb-3 mt-2 mr-3" style="float: left">
                               <div class="f-1" v-if="stu.port != null">
                                 <a  class="mb05 f-075" href="" v-on:click.stop.prevent="openWindow(stu.port )">Portfolio</a>
@@ -123,7 +119,8 @@
                                 <i class="ml-1 fa fa-file-o  fa-3x color-gray" ></i>
                               </div>
                           </div>
-                          <form @submit.prevent="update(stu.id)" @keydown="form.onKeydown($event)">  
+                         
+                          <form @submit.prevent="cheack(stu.user_id)" @keydown="form.onKeydown($event)">  
                           <div class="col-md-6 mt-3" style="float:right">
                           <button class="btn-outline-primary bold" :loading="form.busy">
                             <i class="fa fa-envelope fa-lg"></i> ส่งคำเชิญ
@@ -144,11 +141,12 @@
 </template>
 
 <script>
-
 import CompanyCard from '~/components/Companyindex/CompanyCard'
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
 import axios from "axios";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   data: () => ({
@@ -156,38 +154,13 @@ export default {
       job_id:'',
       jobtypes_id:'',
       score:'',
+      name: [],
+      valHtmlCode : '',
+      val:[],
+      user_id:'',
+      com_id:'',
       }),
       users:"",
-      cards: [
-     {
-      img:'/uploads/images/comevents/profile.JPG',
-      name:'นายณัทกฤช จารุโยธิน',
-      university:'มหาวิทยาลัยศิลปากร' ,
-      type: 'Graphic Design',
-      score: 'Advance',
-      type2: 'Motion',
-      score2: 'Beginning',
-
-    },
-    {
-      img:'/uploads/images/comevents/DSCF9731.jpeg',
-      name:'นายสิทธิชัย อยู่ถาวร',
-      university:'มหาวิทยาลัยศิลปากร' ,
-      type: 'Graphic Design',
-      score: 'Advance',
-      type2: 'Frontend-Developer',
-      score2: 'Basic',
-    },
-    {
-      img:'/uploads/images/comevents/DSCF9683.JPG',
-      name:'นายณัฐพล ปัญญาดี',
-      university:'มหาวิทยาลัยศิลปากร' ,
-      type: 'Graphic Design',
-      score: 'Advance',
-      type2: 'Photoshop',
-      score2: 'Basic',
-    },
-    ]
    }),      
    components:{
     CompanyCard,
@@ -199,10 +172,23 @@ export default {
     ...mapGetters({
       infos:'profile/userinfos',
       jobs: 'jobs/jobs',
-      types: 'jobs/types'
+      types: 'jobs/types',
+      comevent :'comevents/getcomevent'
     }),
   },
   methods: {
+    htmlCode(){
+       var vm = this
+       vm.form.valHtmlCode = '';
+       this.comevent.map(function(value, key) {
+       vm.form.valHtmlCode += '<div>'+value.division+'</div> <div class="row">'
+       var req = value.requirement.split(",");
+       req.forEach(element => {
+         vm.form.valHtmlCode += '<div class="col-md-12"><input value="'+value.id+','+element+'" id="inputjobtype" name="inputjobtype" type="radio"> '+element+'</div>'
+       });
+       vm.form.valHtmlCode += '</div><br>'
+      })
+    },
     async search() {
         this.users = "";
         const { data } = await this.form.post(`/api/search`);
@@ -211,13 +197,49 @@ export default {
         console.log(data);
         console.log(this.users);
     },
+    async cheack(id){
+      
+      var vm = this
+      
+      vm.form.name = [];
+      this.comevent.map(function(value, key) {
+       vm.form.name.push(value);
+      })
+      this.htmlCode()
+    
+ 
+      const { value: formValues } = await Swal.fire({
+      title: 'Multiple inputs',
+      html:this.form.valHtmlCode,
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.querySelector('input#inputjobtype:checked').value
+        ]
+      }
+      })
+      console.log(formValues);
+      if (formValues) {
+        vm.form.user_id = id;
+        this.form.val = formValues
+        this.save()
+        Swal.fire(JSON.stringify(formValues))
+      }
+    
+   },
+    async save() {
+
+      const { data } = await this.form.post("/api/comevent_invite");
+    },
+   
     openWindow: function (link) {
          window.open(link);
     },
     ...mapActions({
       fetch:'profile/fetch',
       fetchjob : 'jobs/fetchjob',
-      fetchtype : 'jobs/fetchtype'
+      fetchtype : 'jobs/fetchtype',
+      fetchgetcomevent : 'comevents/fetchgetcomevent',
     })
     
   },
@@ -226,6 +248,7 @@ export default {
      this.fetchjob()
      this.fetchtype()
      this.search()
+     this.fetchgetcomevent()
   }
 }
 </script>

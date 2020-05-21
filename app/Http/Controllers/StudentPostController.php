@@ -68,9 +68,7 @@ class StudentPostController extends Controller
     {
         $user = $request->user();
         $posts = StudentPost::create($request->all());
-        foreach($posts as $post){
-            $post->student;
-        }
+        
        
         return $posts;
     }

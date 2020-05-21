@@ -148,6 +148,28 @@ class ComeventJoinController extends Controller
         return $comjoin;
     }
 
+    public function cominvite(Request $request)
+    {
+        $profiles = DB::table('profiles')->where('user_id',$request->user_id)->first();
+        $student_infos = DB::table('student_infos')->where('profile_id',$profiles->id)->first();
+        $toStr =  implode(',',$request->val);
+        $value = explode(',',$toStr);
+        $event_id = $value[0];
+        $jobtype = $value[1];
+        $cominvite = ComeventJoin::create([
+            'user_id' => $request->user_id,
+            'jobtype' => $jobtype,
+            'event_id' => $event_id,
+            'stu_id' => $student_infos->id,
+            'com_id' => $request->com_id,
+            'result' => 50,
+            'course_id' => $student_infos->course_id,
+        ]); 
+
+
+        return $cominvite;
+    }
+   
     /**
      * Display the specified resource.
      *

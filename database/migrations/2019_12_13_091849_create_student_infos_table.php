@@ -26,7 +26,6 @@ class CreateStudentInfosTable extends Migration
             $table->double('grade')->nullable();
             $table->string('phonenumber')->nullable();
             $table->string('img')->nullable();
-            $table->string('address')->nullable();
             $table->string('port')->nullable();
             $table->string('cv')->nullable();
             $table->string('transcript')->nullable();

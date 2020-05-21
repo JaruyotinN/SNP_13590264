@@ -42,7 +42,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/internconfirm', 'ComeventJoinController@internstepconfirm');
     Route::resource('/update', 'ComeventJoinController');
     Route::resource('/updateprofile', 'StudentInfoController');
+    Route::resource('/updateteacher', 'TeacherinfosController');
     Route::post('/comevent_join', 'ComeventJoinController@store');
+    Route::post('/comevent_invite', 'ComeventJoinController@cominvite');
     Route::resource('/comevent/join', 'ComeventJoinController');
     Route::resource('/company', 'CompanyinfosController');
     Route::post('uploadImage', 'UploadController@uploadImage');

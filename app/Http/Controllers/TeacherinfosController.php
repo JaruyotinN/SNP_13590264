@@ -79,7 +79,8 @@ class TeacherinfosController extends Controller
      */
     public function edit(Teacherinfos $teacherinfos)
     {
-        //
+     
+
     }
 
     /**
@@ -89,9 +90,21 @@ class TeacherinfosController extends Controller
      * @param  \App\Teacherinfos  $teacherinfos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teacherinfos $teacherinfos)
+     public function update(Request $request, $id)
     {
-        //
+        $Teacher = Teacherinfos::find($id);
+
+        if($Teacher->img != $request->img){
+            @unlink(public_path($Teacher->img));
+        }
+        $Teacher->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'img' => $request->img,
+            'email' => $request->email,
+            'phonenumber' => $request->phonenumber,
+
+        ]);
     }
 
     /**

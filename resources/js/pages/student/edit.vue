@@ -282,7 +282,6 @@ export default {
       fetchshow:'profile/show',
       fetchcourses:'profile/fetchcourses',
      
-      
     }),
     openWindow: function (link) {
          window.open(link);

@@ -6,7 +6,8 @@
               <div class="mb-3 ml-3 mt-2" style="float: left">
                  <h4 class="mb-2 bold">บันทึกฝึกงานของนักศึกษา</h4>
                    <p class="bold color-dblue" v-for="(mj, index) in majors" :key="index" v-if="major == mj.id">นักศึกษาสาขา {{mj.name}} </p>
-               
+                   <p class="bold color-dblue"  v-if="major == 'all'">นักศึกษาทั้งหมด</p>
+               </div>
                </div>
           </div>
       </div>
@@ -18,19 +19,21 @@
             </div>
              <hr class="hr-yellow">
               <div class="row" v-for="(user, index) in users" :key="index" >
-                <div class="col-md-10">
+                <div class="col-md-6">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">ข้อมูลนักศึกษาฝึกงาน</h4>
                         <p>เข้าสู่ระบบโดย "อาจารย์ {{user.teacher.name}} {{user.teacher.surname}}"</p>
                     </div>
                 </div>
-                <div class="col-md-2">
+                  <div class="col-md-4">
                    <div class="img-circle" style="float:right;">
-                      <img src="/uploads/images/comevents/user.png"  v-if="user.teacher.img == null" center  class="card-img-top" />
-                      <img v-else :src="user.teacher.img" />
-                          
+                      <img src="/uploads/images/comevents/user.png"  v-if="user.teacher.img == null"   />
+                      <img v-else :src="user.teacher.img" /> 
                     </div>
                 </div>
+                 <div class="col-md-2">
+                   <router-link class="btn btn-outline-pmr mt-3" :to="{name:'editteacher' , params:{id:user.user_id }}  ">แก้ไขข้อมูล</router-link>
+                 </div>
             </div>
             <div class="table-responsive mt-3">
                 <table class="table mb-5" >
@@ -132,6 +135,15 @@ li{
     border: 2px solid #133CBA ;
     box-shadow:none;
     /* font-size: 0.75rem; */
+}
+.btn-outline-pmr{
+   width: 100% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
 }
 .w15{
     width: 15%

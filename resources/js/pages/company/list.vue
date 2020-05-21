@@ -5,6 +5,9 @@
                 <div class="col-md-10">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">ข้อมูลนักศึกษาฝึกงาน</h4>
+                        <p class="bold color-blue" v-if="tab == 1" > ดำเนินการอยู่ </p>
+                        <p class="bold color-blue" v-if="tab == 2" > ประเมินนักศึกษา </p>
+                        <p class="bold color-blue" v-if="tab == 3" > จบฝึกงาน </p>
                     </div>
                 </div>
                 <div class="col-md-2" v-for="(info, index) in infos" :key="index">
@@ -41,7 +44,7 @@
              <div v-if="tab == 1">
                 <div class="row" v-if="ongoing.length != 0 ">
                   <div class="col-md-4 mb-2" v-for="(stu, index) in ongoing" :key="index" >
-                        <div class="card mt-4 h-100">
+                        <div class="card mt-4">
                             <div class="radio-img">
                                 <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
                                 <img :src="stu.student.img" v-else center  class="card-img-top"/>
@@ -49,14 +52,13 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                       <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                       <h4 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h4> 
                                       <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
                                       <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
                                        <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
-                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
-                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
-                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
-                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                      <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                      <label class="bold">สถานศึกษา : {{ stu.student.major.faculty.university.name }}</label> <br>
+                                      <small> {{stu.student.major.faculty.name}}  {{ stu.student.major.name }}  </small>  <br>
                                     </div> 
                                 </div>
                               </div>
@@ -73,7 +75,7 @@
                 <div class="row" v-if="needreview.length != 0 ">
                   <div class="col-md-4 mb-2" v-for="(stu, index) in needreview" :key="index" >
                     <!-- <pre>{{stu}}</pre> -->
-                        <div class="card mt-4 h-100">
+                        <div class="card mt-4">
                             <div class="radio-img">
                                 <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
                                 <img :src="stu.student.img" center  class="card-img-top"/>
@@ -81,17 +83,17 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                      <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                      <h4 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h4> 
                                       <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
                                       <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
                                        <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
-                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
-                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
-                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
-                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                     <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                      <label class="bold">สถานศึกษา : {{ stu.student.major.faculty.university.name }}</label> <br>
+                                      <small> {{stu.student.major.faculty.name}}  {{ stu.student.major.name }}  </small>  <br>
+                                      <div class="mt-3">
                                          <label v-if="stu.sturev01_id != null"  ><label>ผลประเมินครั้งที่ 1 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev01_id}}">ตรวจสอบผล</router-link> </label>
                                          <label v-if="stu.sturev02_id != null"  ><label>ผลประเมินครั้งที่ 2 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev02_id}}">ตรวจสอบผล</router-link> </label>
-                                    
+                                      </div>
                                     </div> 
                                 </div>
                               </div>
@@ -116,7 +118,7 @@
             <div v-if="tab == 3">
                 <div class="row" v-if="finishintern.length != 0 ">
                   <div class="col-md-4 mb-2" v-for="(stu, index) in finishintern" :key="index" >
-                        <div class="card mt-4 h-100">
+                        <div class="card mt-4">
                             <div class="radio-img">
                                 <img src="/uploads/images/comevents/user.png" v-if="stu.student.img == null" center  class="card-img-top" />
                                 <img :src="stu.student.img" center  class="card-img-top"/>
@@ -124,14 +126,18 @@
                               <div class="top-box textcustom">
                                 <div class="col-12">
                                     <div class="card-info">
-                                      <h5 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h5> 
+                                      <h4 class="bold mt-3 center mb-3 color-blue"> {{ stu.student.name }} {{stu.student.surname }} </h4> 
                                       <label>โครงการ :</label> <label class="bold">{{stu.comevent.division}} </label> <br>
                                       <label>ตำแหน่ง :</label> <label class="bold">{{ stu.jobtype }} </label> <br>
-                                       <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
-                                      <label>สถานศึกษา :</label> <label class="bold">{{ stu.student.major.faculty.university.name }}  </label>  <br>
-                                        <label class="bold"> {{stu.student.major.faculty.name}}  </label>  <br>
-                                         <label>สาขา :</label> <label class="bold">{{ stu.student.major.name }}</label><br>
-                                         <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                      <label>ระยะเวลา</label> <label class="bold">{{moment(stu.student.course.start_date)}} - {{moment(stu.student.course.end_date)}}</label> <br> 
+                                      <label>ติดต่อ :</label> <label class="bold">{{stu.student.phonenumber}}</label><br>
+                                      <label class="bold">สถานศึกษา : {{ stu.student.major.faculty.university.name }}</label> <br>
+                                      <small> {{stu.student.major.faculty.name}}  {{ stu.student.major.name }}  </small>  <br>
+                                      <div class="mt-3">
+                                         <label v-if="stu.sturev01_id != null"  ><label>ผลประเมินครั้งที่ 1 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev01_id}}">ตรวจสอบผล</router-link> </label>
+                                         <label v-if="stu.sturev02_id != null"  ><label>ผลประเมินครั้งที่ 2 :</label> <router-link  :to="{name:'detailreview', params:{id:stu.sturev02_id}}">ตรวจสอบผล</router-link> </label>
+                                      </div>
+                                    
                                     </div> 
                                 </div>
                               </div>

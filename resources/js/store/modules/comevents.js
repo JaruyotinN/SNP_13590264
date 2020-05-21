@@ -14,6 +14,8 @@ export const state = {
   nointern:null,
   comjob:null,
   staffs:null,
+  showstaff : null,
+  getcomevent : null,
 }
 
 
@@ -29,6 +31,8 @@ export const getters = {
     stuconfirm : state => state.stuconfirm,
     comjob : state => state.comjob,
     staffs: state => state.staffs,
+    showstaff : state => state.showstaff,
+    getcomevent : state => state.getcomevent,
     ongoing (state) {
       if (state.stuconfirm) {
         return state.stuconfirm.filter((stuconfirm) => {
@@ -89,6 +93,13 @@ export const mutations = {
   [types.FETCH_STAFFS] (state, data) {
     state.staffs = data
   },
+  [types.FETCH_SHOWSTAFFS] (state, data) {
+    state.showstaff = data
+  },
+  [types.FETCH_GETCOMEVENT] (state, data) {
+    state.getcomevent = data
+  },
+
 }
 
 // actions
@@ -125,6 +136,14 @@ export const actions = {
       console.log(e)
     }
   },
+  async fetchgetcomevent ({ commit }) {
+    try {
+      const { data } = await axios.get(`/api/getcomevent`)
+      commit(types.FETCH_GETCOMEVENT,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
   async fetchstaffs ({ commit }) {
     try {
       const { data } = await axios.get(`/api/comstaff`)
@@ -145,6 +164,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/getstudent/${id}`)
       commit(types.FETCH_SHOWSTUDENT_JOIN,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async showstaff ({ commit }, id) {
+    try {
+      const { data } = await axios.get(`/api/comstaff/${id}`)
+      commit(types.FETCH_SHOWSTAFFS,  data )
     } catch (e) {
       console.log(e)
     }

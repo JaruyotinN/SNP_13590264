@@ -22,9 +22,7 @@
           <div class="col-md-9">
                <h4 class="bold mt-5">สถานที่ฝึกงานที่เหมาะกับคุณ</h4>
             <div class="row">
-                <div class="col-md-4" v-for="(test, index) in tests" :key="index">
-                <test-card :test="test"/>
-                </div>
+             
             </div>
           </div>
         </div>
@@ -49,7 +47,7 @@
  }
 </style>
 <script>
-import TestCard from '~/components/ComEventCard'
+ 
 import Profile from '~/components/Profile'
 import Calendar from '~/components/Calendar'
 
@@ -128,7 +126,7 @@ data() {
     return { title: 'home' }
   },
   components:{
-    TestCard,
+ 
     Profile,
     Calendar,
   }

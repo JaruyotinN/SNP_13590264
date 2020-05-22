@@ -29,8 +29,9 @@
                              
                             <input class="form-control" type="hidden" v-model="form.id = intern.stu_id">  
                              <input class="form-control" type="hidden" v-model="form.startdate = intern.student.course.start_date">  
-                            <div class="mt-2 center" v-if="intern.sturev01_id">
-                                <button class="btn-outline-warning  " disabled>ประเมินเรียบร้อย</button>
+                         
+                            <div class="mt-2 center color-yellow bold" v-if="intern.sturev01_id">
+                                <i class="fa fa-check-square-o fa-lg"></i><p>ประเมินเรียบร้อย</p>
                             </div>
                              <div class="mt-2 center" v-else>
                                 <button class="btn-outline-primary  " :loading="form.busy" >ขอประเมินครั้งที่ 1</button>
@@ -50,8 +51,8 @@
 
                              <input class="form-control" type="hidden" v-model="form2.id =  intern.stu_id">  
                              <input class="form-control" type="hidden" v-model="form2.enddate =  intern.student.course.end_date">  
-                            <div class="mt-2 center" v-if="intern.sturev02_id">
-                                <button class="btn-outline-warning  " disabled>ประเมินเรียบร้อย</button>
+                            <div class="mt-2 center color-yellow bold" v-if="intern.sturev02_id">
+                                <i class="fa fa-check-square-o fa-lg "></i><p>ประเมินเรียบร้อย</p>
                             </div>
                             <div class="mt-2 center" v-else>
                                 <button class="btn-outline-primary " :loading="form2.busy" >ขอประเมินครั้งที่ 2</button>
@@ -93,6 +94,7 @@ export default {
      fetch:'profile/fetch'
    }),
     moment: function (value) {
+          moment.locale('th');
           return moment(String(value)).format('LL')
       },
       cheackform1(){
@@ -198,20 +200,8 @@ export default {
     background-color: #133CBA;
     border-color: #133CBA;
 }
-.btn-outline-warning{
-    width: 70% ; 
-    height: 50px; 
-    line-height: 35px;
-    border-radius: 2rem; 
-    color:gray;
-    border: 2px solid gray ;
-    box-shadow:none;
-}
-.btn-outline-warning:hover {
-    color: #212529;
-    background-color: #FFB105;;
-    border-color: #FFB105;;
-}
+
+
 .btn-detail-style .btn-primary{ 
     background-color: #0047BA ;
     border:none; 

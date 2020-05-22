@@ -183,6 +183,7 @@ data() {
       this.tab = tab
     },
      moment: function (value) {
+          moment.locale('th');
           return moment(String(value)).format('L')
       },
     

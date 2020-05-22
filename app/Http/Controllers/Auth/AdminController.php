@@ -54,7 +54,6 @@ class AdminController extends Controller
                         'name' => 'name',
                         'surname' => 'surname',
                         'phonenumber' => 'phonenumber',
-                        'address' => 'none'
 
                     ]);
                     if ($stu_id) {

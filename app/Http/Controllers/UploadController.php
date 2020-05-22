@@ -9,7 +9,7 @@ class UploadController extends Controller
 {
     public function uploadImage(Request $request)
     {
-        $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+        $imageName = time().'_'.$request->image->getClientOriginalName();
         $set = '/uploads/images/' . $request->path . '/' . $imageName;
         $request->image->move(public_path('uploads/images/' . $request->path), $imageName);
         return $set;

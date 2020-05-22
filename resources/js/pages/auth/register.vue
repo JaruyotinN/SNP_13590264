@@ -140,7 +140,6 @@
 
                       </textarea>
                   </div>
-                  {{form.province_id}}
                   <div class="form-group col-md-6">
                       <label class="color-blue bold">จังหวัด</label>
                       <select class="custom-select  m-auto" v-model="form.province_id" >

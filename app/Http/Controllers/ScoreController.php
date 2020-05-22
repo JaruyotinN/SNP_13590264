@@ -24,14 +24,21 @@ class ScoreController extends Controller
     {   
 
 
-        $user = $request->user();  
+        $user = $request->user();
+        $company_profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $company_info = DB::table('companyinfos')->where('profile_id',$company_profile->id)->first();
+        $com_join = DB::table('comevent_joins')->where('com_id',$company_info->id)->get();
+        $arr = [];
+        foreach($com_join as $index => $cm){
+            $arr[$index] = $cm->user_id; 
+        }
         $profile = DB::table('profiles')->leftJoin('student_infos','student_infos.profile_id','profiles.id')
                         ->where('profile_type','S')
                         ->where('intern_id',1)
+                        ->whereNotIn('user_id',$arr)
                         ->get();  //ได้รายชื่อนักเรียน
 
 
-        
         foreach($profile as $key => $value){
             $profile[$key]->student = DB::table('student_infos')->where('profile_id',$value->id)->first();
             $profile[$key]->score = DB::table('scores')->where('user_id',$value->user_id)->get();
@@ -42,13 +49,16 @@ class ScoreController extends Controller
                 $profile[$key]->score[$kkey]->types = DB::table('joptypes')->where('id',$vvalue->type_id)->first();
             }
         }
-
         if($request->job_id){
             $temp = [];
             foreach($profile as $key => $value){ // loop student
                 foreach($value->score as $kkey => $vvalue){ //loop
-                    if($vvalue->type_id == $request->jobtypes_id && $vvalue->score >= $request->score){ // 2 >= 1
-                        array_push($temp,$value);
+                    if($vvalue->type_id == $request->jobtypes_id){ // 2 >= 1
+                        if($vvalue->score >= $request->score && $request->score != 'all'){
+                            array_push($temp,$value);
+                        }else if($request->score == 'all'){
+                            array_push($temp,$value);
+                        }
                     }
                 }
             }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\StudentInfo;
 use Illuminate\Http\Request;
 
+
 class StudentInfoController extends Controller
 {
     /**
@@ -14,7 +15,6 @@ class StudentInfoController extends Controller
      */
     public function index()
     {   
-        
         $studentInfos = StudentInfo::get();
         dd($studentInfos);
         return $studentInfos;
@@ -49,6 +49,7 @@ class StudentInfoController extends Controller
      */
     public function show(StudentInfo $studentInfo, $id)
     {   
+       
         $studentInfo = StudentInfo::find($id);
         return $studentInfo;
     }

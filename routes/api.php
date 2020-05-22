@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/alldairy', 'StudentPostController@studentdairy');
     Route::resource('/detaildairy', 'StudentPostController');
     Route::get('/alluniversity', 'FacultyController@getfaculty');
+    Route::resource('/authprovince', 'ProvinceController');
 
 });
 
@@ -84,4 +85,11 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
+    Route::get('/clear', function() {
+        Artisan::call('cache:clear');
+        Artisan::call('config:cache');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+        return "Routes ,Config ,View is cleared <a href='".url('/')."'>Home</a>";
+    });
 });

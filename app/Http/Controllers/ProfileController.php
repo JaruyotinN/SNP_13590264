@@ -6,6 +6,7 @@ use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -95,21 +96,23 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Profile $profile ,$id)
-    {
-        $profile = Profile::find($id);
-       
-        if($profile->profile_type == 'S'){
-            $profile->student->major->faculty->university;
-            foreach($profile->student->scores as $score){
-                if($score->joptype != null){
-                    $score->joptype->job;
+    {   
+        $user = Auth::user()->id;
+        if($id == $user){
+            $profile = Profile::where('user_id',$id)->first();
+            if($profile->profile_type == 'S'){
+                $profile->student->major->faculty->university;
+                foreach($profile->student->scores as $score){
+                    if($score->joptype != null){
+                        $score->joptype->job;
+                    }
                 }
+            } else if($profile->profile_type == 'T'){
+                $profile->teacher->major->faculty->university;
             }
-        } else if($profile->profile_type == 'T'){
-            $profile->teacher->major->faculty->university;
+        
+            return $profile;
         }
-       
-        return $profile;
     }
 
     /**

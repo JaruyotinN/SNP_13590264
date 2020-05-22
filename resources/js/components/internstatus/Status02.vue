@@ -44,7 +44,7 @@
                   </div>
               </div>
               <div class="" v-for="(user, index) in users" :key="index" :class="{ active: index == 0 }">
-                  <p>stu : id {{user.student.id}}</p> <input class="form-control" type="hidden" v-model="form.id = user.student.id">
+                 <input class="form-control" type="hidden" v-model="form.id = user.student.id">
               </div>
               <div class="mt-3 mb-3 center">
                     <button class="btn-outline-primary bold" :loading="form.busy" >ดำเนินการขั้นต่อไป</button>

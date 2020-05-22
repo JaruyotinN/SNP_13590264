@@ -180,6 +180,7 @@ data() {
       this.$router.push({name:'status'})
     },
     moment: function (value) {
+       moment.locale('th');
        return moment(String(value)).format('LL')
     },
     enddate: function () {

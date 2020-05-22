@@ -24,23 +24,30 @@
             </div>  
             <div class="col-md-12">
                 <form class="was-validated"  @submit.prevent="search" @keydown="form.onKeydown($event)">
-                     <div class="input-group mt-2 mb-3 m-auto">
-                        <select class="custom-select col-md-3 m-auto" v-model="form.job_id" required>
-                            <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
-                            <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
-                        </select>
-                       <select class="custom-select col-md-3 m-auto" v-model="form.jobtypes_id" required>
-                             <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
-                             <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id == type.job_id">{{type.name}}</option>
-                        </select>
-                        <select class="custom-select col-md-3 m-auto" v-model="form.score">
-                            <option value="" disabled hidden >เลือกระดับความถนัด</option>
-                            <option value="1">01 เริ่มต้น(Beginning)</option>
-                            <option value="2">02 พื้นฐาน(Basic)</option>
-                            <option value="3">03 เชี่ยวชาญ(Advance)</option>
-                        </select>   
-                        <div class="m-auto col-md-2">
-                            <button class="btn btn-detail-style  bold" :loading="form.busy">
+                     <div class="input-group mt-2 mb-3 d-flex justify-content-between flex-column flex-md-row p-2 p-lg-4">
+                       <div class="my-1 my-lg-0 w-100 w-md-30">
+                          <select class="w-100 custom-select" v-model="form.job_id" required>
+                              <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
+                              <option v-for="(job, index) in jobs" :key="index" :value="job.id">{{job.title}}</option>
+                          </select>
+                        </div>
+                        <div class="my-1 my-lg-0 w-100 w-md-30">
+                            <select class="w-100 custom-select " v-model="form.jobtypes_id" required>
+                                  <option value="" disabled hidden>เลือกตำแหน่งการฝึกงาน</option>
+                                  <option v-for="(type, index) in types" :key="index" :value="type.id" v-if="form.job_id == type.job_id">{{type.name}}</option>
+                              </select>
+                        </div>
+                        <div class="my-1 my-lg-0 w-100 w-md-30">
+                            <select class="w-100 custom-select " v-model="form.score">
+                                <option value="" disabled hidden >เลือกระดับความถนัด</option>
+                                <option value="all">ระดับความถนัดทั้งหมด</option>
+                                <option value="1">01 เริ่มต้น(Beginning)</option>
+                                <option value="2">02 พื้นฐาน(Basic)</option>
+                                <option value="3">03 เชี่ยวชาญ(Advance)</option>
+                            </select>  
+                        </div>
+                        <div class="my-1 my-lg-0 w-100 w-md-10">
+                            <button class="w-100 btn btn-detail-style  bold" :loading="form.busy">
                               ค้นหา
                             </button>
                         </div> 
@@ -262,15 +269,13 @@ export default {
   color:rgb(168, 168, 168);
 }
 .custom-select{
-   width: 80% !important;
    border-radius: 2rem !important;
    border:none;
 }
 
 .input-group {
-    height: 100px;
     background-color: #F0DDCF;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 1rem !important;
 }
 .btn-outline-primary {
@@ -335,6 +340,14 @@ export default {
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
 }
-
+@media screen and (min-width:992px) {
+  .w-md-30{
+    width: calc(30% - 10px) !important;
+    margin-right: 10px;
+  }
+  .w-md-10{
+    width: 10% !important;
+  }
+}
 
 </style>

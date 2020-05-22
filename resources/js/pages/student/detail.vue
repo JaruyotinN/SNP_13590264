@@ -197,31 +197,7 @@ data() {
 }
 </script>
 <style scoped>
-/* .btn-detail-style .btn-primary{ 
-    background-color: #0047BA ;
-    border:none; 
-    border-radius: 30px;
-    width: 80%;
-    height: 60px;
-    padding-top:20px;
-}
-.btn-detail-style .btn-primary:hover { 
-    background-color:  #E7B223 ;
-    color: black;
-    font-size: 1.5rem;
-    border-radius: 60px;
-    width: 90%;
-    height: 60px;
-    padding-top:14px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    transition: 0.3s ease-in-out;
-}
-.btn-detail-style{
-  text-align: center;
-  padding-top:20px ;
-  padding-bottom:20px;
-} */
+ 
 .btn-outline-primary {
     width: 40% ; 
     height: 50px; 
@@ -231,6 +207,11 @@ data() {
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-warning{
     width: 40% ; 
     height: 50px; 
@@ -239,6 +220,11 @@ data() {
     color:gray;
     border: 2px solid gray ;
     box-shadow:none;
+}
+.btn-outline-warning:hover {
+    color: #212529;
+    background-color: #FFB105;;
+    border-color: #FFB105;;
 }
 textarea {
   padding : 1.5rem;

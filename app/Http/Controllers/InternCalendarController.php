@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\InternCalendar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InternCalendarController extends Controller
 {
@@ -12,9 +13,21 @@ class InternCalendarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        if($profile->profile_type == 'S'){
+            $profile->student = DB::table('student_infos')->where('profile_id',$profile->id)->first();
+            $courses = InternCalendar::where('faculty_id',$profile->student->faculty_id)->get();
+
+        } else if ($profile->profile_type == 'T'){
+            $profile->teacher = DB::table('teacherinfos')->where('profile_id',$profile->id)->first();
+            $courses = InternCalendar::where('faculty_id',$profile->teacher->faculty_id)->get();
+        }
+      
+        
+        return $courses;
     }
 
     /**

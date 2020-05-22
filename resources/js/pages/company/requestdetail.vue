@@ -24,7 +24,9 @@
                     <div class="card mt-4">
                         <div class="col-12">
                               <h5 class="bold mt-3 mb-3 color-blue">ข้อมูลของนักศึกษาฝึกงาน</h5>
-                              <label>ชื่อ : </label><label class="bold"> &nbsp{{ showstudent.student.name }} {{ showstudent.student.surname }}</label><br>
+                              <label>ชื่อ : </label><label class="bold"> &nbsp{{ showstudent.student.name }} {{ showstudent.student.surname }}</label>
+                              <label>เกรดเฉลี่ย : </label><label class="bold">&nbsp{{ showstudent.student.grade }}</label>
+                              <br>
                               <label>ตำแหน่งที่สมัคร : </label><label class="bold"> &nbsp{{ showstudent.jobtype }}</label><br>
                               <label>หลักสูตร : </label><label class="bold"> &nbsp{{ showstudent.student.course.name }} </label><label class="smalltext">&nbsp({{showstudent.student.course.description}})</label><br>
                               <label>ช่วงเวลาที่สามารถฝึกงาน : </label><label class="bold"> &nbsp{{moment(showstudent.student.course.start_date)}} - {{moment(showstudent.student.course.end_date)}} </label>

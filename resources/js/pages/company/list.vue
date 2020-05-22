@@ -29,7 +29,6 @@
                     ประเมินนักศึกษา 
                       </a>
                   
-
                 </li>
                  <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                  <li >
@@ -163,20 +162,6 @@ export default {
     
 data() {
   return {
-    lists: [
-     {
-      img:'https://picsum.photos/id/237/200/300',
-      name:'นายณัทกฤช จารุโยธิน',
-      division:'Future Trends',
-      university:'ศิลปากร' ,
-    },
-    {
-      img:'https://picsum.photos/id/137/200/300',
-      name:'นายณัฐพล ปัญญาดี',
-      division:'Future Trends',
-      university:'ศิลปากร' ,
-    },
-    ],
     tab :1,
   }
   },
@@ -267,5 +252,10 @@ label{
     color:#133CBA;
     border: 2px solid #133CBA ;
     box-shadow:none;
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 </style>

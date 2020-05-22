@@ -267,8 +267,8 @@ a {
   margin-bottom: 0.5rem;
   display: inline-block;
 }
-color-gray {
-  color: gainsboro;
+.color-gray{
+  color:rgb(168, 168, 168);
 }
 .f-075 {
   font-size: 0.75rem !important;
@@ -319,5 +319,10 @@ color-gray {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 </style>

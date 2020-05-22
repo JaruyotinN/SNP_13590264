@@ -1,53 +1,43 @@
 <template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
+ <div class="container" > 
+    <div class="col-md-10 m-auto">
+    <div class="card">
+      <div class="col-md-10 m-auto" >
+        <form @submit.prevent="login()" @keydown="form.onKeydown($event)">
+          <div class="mt-4 mb-4">
+            <h5 class="bold">เข้าสู่ระบบ</h5>
+          </div>
+          <hr class="hr-orange">
+       
+            <div class="col-md-12">
+                 <div class="row">
+
+                  <div class="form-group col-md-6">
+                      <label class="color-blue bold">Email</label>
+                      <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email" required>
+                      <has-error :form="form" field="email" />
+                </div>
+
+                <div class="form-group col-md-6">
+                      <label class="color-blue bold">Password</label>
+                      <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password" required>
+                      <has-error :form="form" field="password" />
+                </div>
+
+              
             </div>
+            <!-- end row -->
+          </div> 
+
+          <div class="col-md-6 m-auto">
+            <button class="btn-outline-primary bold mt-3 mb-3" :loading="form.busy">
+                เข้าสู่ระบบ
+            </button>
           </div>
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password" />
-            </div>
-          </div>
-
-          <!-- Remember Me -->
-          <div class="form-group row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
-                {{ $t('remember_me') }}
-              </checkbox>
-
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('login') }}
-              </v-button>
-
-              <!-- GitHub Login Button -->
-              <login-with-github />
-            </div>
-          </div>
         </form>
-      </card>
+      </div>
+    </div>      
     </div>
   </div>
 </template>
@@ -56,13 +46,11 @@
 import Form from 'vform'
 import { mapGetters } from 'vuex'
 
-import LoginWithGithub from '~/components/LoginWithGithub'
 
 export default {
   middleware: 'guest',
 
   components: {
-    LoginWithGithub
   },
 
   metaInfo () {
@@ -111,3 +99,35 @@ export default {
   }
 }
 </script>
+<style scoped>
+ 
+.form-control{
+    border-radius: 2rem;
+}
+.card{
+    padding :25px;
+    box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
+    border-radius: 5px;
+}
+.btn-outline-primary {
+    width: 60% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
+
+ 
+
+</style>
+

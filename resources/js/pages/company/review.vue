@@ -330,6 +330,11 @@ data: () => ({
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-active {
     width: 40% ; 
     height: 50px; 

@@ -180,14 +180,10 @@
              </div>
            </div>
 
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('register') }}
-              </v-button>
-
-            </div>
+         <div class="col-md-6 m-auto" v-if="form.role != ''"> 
+            <button class="btn-outline-primary bold mt-3 mb-3" :loading="form.busy">
+                สมัครสมาชิก
+            </button>
           </div>
         </form>
       </div>
@@ -339,9 +335,7 @@ textarea {
     border-radius: 2rem !important;
     font-size: 0.80rem;
 }
-.form-control{
-    border-radius: 2rem;
-}
+ 
 .card{
     padding :25px;
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;

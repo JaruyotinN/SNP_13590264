@@ -340,6 +340,11 @@ data: () => ({
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-warning{
     width: 40% ; 
     height: 50px; 
@@ -348,6 +353,11 @@ data: () => ({
     color:gray;
     border: 2px solid gray ;
     box-shadow:none;
+}
+.btn-outline-warning:hover {
+    color: #212529;
+    background-color: #FFB105;;
+    border-color: #FFB105;;
 }
 .fright{
     float: right;

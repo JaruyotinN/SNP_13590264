@@ -193,6 +193,11 @@ export default {
     margin-right: auto;
     display: block;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-warning{
     width: 70% ; 
     height: 50px; 
@@ -201,6 +206,11 @@ export default {
     color:gray;
     border: 2px solid gray ;
     box-shadow:none;
+}
+.btn-outline-warning:hover {
+    color: #212529;
+    background-color: #FFB105;;
+    border-color: #FFB105;;
 }
 .btn-detail-style .btn-primary{ 
     background-color: #0047BA ;

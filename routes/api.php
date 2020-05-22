@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/jobs', 'JobController');
     Route::resource('/types', 'JoptypeController');
     Route::resource('/courses', 'StudentCoutseController');
+    Route::get('/allcourses', 'StudentCoutseController@course');
+    Route::resource('/calendar', 'InternCalendarController');
     Route::resource('/comevents', 'ComeventController');
     Route::resource('/review', 'StudentReviewController');
     Route::get('/detailreview/{id}', 'StudentReviewController@showdetailreview');
@@ -35,6 +37,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/comstaff', 'CompanyStaffController');
 
     Route::get('/getjoptype', 'ComeventJoinController@getjoptype');
+   
     
     Route::get('/getstudent/{id}', 'ComeventJoinController@showcomjoin');
     Route::get('/studentconfirm', 'ComeventJoinController@studentconfirm');

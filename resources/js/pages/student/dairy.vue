@@ -91,6 +91,11 @@ export default {
     box-shadow:none;
     /* font-size: 0.75rem; */
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-secondary {
     width: 40% ; 
     height: 50px; 

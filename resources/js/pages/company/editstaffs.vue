@@ -160,6 +160,11 @@ textarea {
     margin-right:auto;
     display:block;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .custom-select{
     border-radius: 2rem !important;
 }

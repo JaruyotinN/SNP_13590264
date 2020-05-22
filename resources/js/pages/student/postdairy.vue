@@ -128,6 +128,11 @@ textarea {
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 
 .custom-select{
     border-radius: 2rem !important;

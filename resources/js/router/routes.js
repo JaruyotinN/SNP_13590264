@@ -26,6 +26,9 @@ export default [
   
   { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },
   { path: '/studairy', name: 'studairy', component: page('teacher/dairy.vue') },
+  { path: '/createcourse', name: 'createcourse', component: page('teacher/createcourse.vue') },
+  { path: '/createcalendar', name: 'createcalendar', component: page('teacher/createcalendar.vue') },
+  { path: '/editcalendar/:id', name: 'editcalendar', component: page('teacher/editcalendar.vue') },
   { path: '/detaildairy/:id', name: 'detaildairy', component: page('teacher/detaildairy.vue') },
   { path: '/editteacher/:id', name: 'editteacher', component: page('teacher/editteacher.vue') },
 

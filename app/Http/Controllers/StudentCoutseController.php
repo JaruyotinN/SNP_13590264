@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\StudentCoutse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentCoutseController extends Controller
 {
@@ -18,6 +19,18 @@ class StudentCoutseController extends Controller
         foreach($courses as $course){
             $course->majors;
         }
+        return $courses;
+
+    }
+
+    public function course(Request $request)
+    {   
+        $user = $request->user();
+        $profile = DB::table('profiles')->where('user_id',$user->id)->first();
+        $profile->teacher = DB::table('teacherinfos')->where('profile_id',$profile->id)->first();
+        
+        $courses = StudentCoutse::where('faculty_id',$profile->teacher->faculty_id)->get();
+        
         return $courses;
 
     }

@@ -181,7 +181,7 @@ export default {
        var vm = this
        vm.form.valHtmlCode = '';
        this.comevent.map(function(value, key) {
-       vm.form.valHtmlCode += '<div>'+value.division+'</div> <div class="row">'
+       vm.form.valHtmlCode += '<div class="bold color-dblue"><h4>'+value.division+'</h4></div> <div class="row">'
        var req = value.requirement.split(",");
        req.forEach(element => {
          vm.form.valHtmlCode += '<div class="col-md-12"><input value="'+value.id+','+element+'" id="inputjobtype" name="inputjobtype" type="radio"> '+element+'</div>'
@@ -209,7 +209,7 @@ export default {
     
  
       const { value: formValues } = await Swal.fire({
-      title: 'Multiple inputs',
+      title: 'เลือกประกาศฝึกงาน',
       html:this.form.valHtmlCode,
       focusConfirm: false,
       preConfirm: () => {
@@ -223,7 +223,11 @@ export default {
         vm.form.user_id = id;
         this.form.val = formValues
         this.save()
-        Swal.fire(JSON.stringify(formValues))
+        Swal.fire(
+          'ส่งคำเชิญเรียบร้อย',
+          'ติดตามผลการตอบรับในคำร้องขอฝึกงาน',
+          'success',
+        )
       }
     
    },
@@ -278,6 +282,11 @@ export default {
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .btn-outline-warning{
     width: 100% ; 
     height: 50px; 
@@ -286,6 +295,11 @@ export default {
     color:#FFB105;
     border: 2px solid #FFB105;
     box-shadow:none;
+}
+.btn-outline-warning:hover {
+    color: #212529;
+    background-color: #FFB105;;
+    border-color: #FFB105;;
 }
 .btn-detail-style {
     width: 100% ; 

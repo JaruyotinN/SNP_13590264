@@ -11,15 +11,9 @@
                         <p class="m-0">{{user.student.major.faculty.university.name}} คณะ {{user.student.major.faculty.name}}</p>
                         <label class="m-0">สาขา {{ user.student.major.name}}</label>
                         <label class="m-0">รหัส {{user.student.number}}</label>
-                          <!-- <pre>{{user}}</pre>
-                          <div v-for="(score, index) in user.student.scores" :key="index" :class="{ active: index == 0 }">
-                              {{score.joptype.name}}
-                          </div> -->
                     </div>
                 </div>
                 <div class="col-md-2 mt-4">
-                 
-                    <!-- <router-link class="btn btn-primary bold" :to="{ name:'edit', query: { id:user.id}}">แก้ไข้อมูล</router-link> -->
                     <router-link class="btn btn-outline-primary bold" :to="{name:'edit', params:{id:user.user_id}}">แก้ไข้อมูลส่วนตัว</router-link>
                 </div>
             </div>
@@ -71,6 +65,11 @@ data() {
     color:#133CBA;
     border: 2px solid #133CBA ;
     box-shadow:none;
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 
 </style>

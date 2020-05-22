@@ -97,6 +97,11 @@ li{
     box-shadow:none;
     /* font-size: 0.75rem; */
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .w15{
     width: 15%
 }

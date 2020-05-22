@@ -126,15 +126,10 @@ li{
   padding: 0;
   margin: 0;
 }
-.btn-outline-primary {
-    width: 100% ; 
-    height: 50px; 
-    line-height: 35px;
-    border-radius: 2rem; 
-    color:#133CBA;
-    border: 2px solid #133CBA ;
-    box-shadow:none;
-    /* font-size: 0.75rem; */
+.btn-outline-pmr:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 .btn-outline-pmr{
    width: 100% ; 

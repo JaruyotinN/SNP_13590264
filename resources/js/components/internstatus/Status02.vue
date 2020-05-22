@@ -133,6 +133,11 @@ import 'sweetalert2/src/sweetalert2.scss'
     border: 2px solid #133CBA ;
     box-shadow:none;
 }
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
+}
 .card-info{
     margin-top: 2px;
     padding: 10px;

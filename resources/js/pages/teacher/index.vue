@@ -12,7 +12,7 @@
             <div class="col-md-6 mb-3">
               <div class="row" >
                 <div class="col-6">
-                 <router-link :to="{name:'staffs' }">
+                 <router-link :to="{name:'calendar' }">
                    <div class="btn btn-outline-warning bold">สร้างปฎิทินกำหนดการ</div>
                 </router-link>
                 </div>
@@ -161,6 +161,11 @@ li{
     border: 2px solid #FFB105;
     box-shadow:none;
 }
+.btn-outline-warning:hover {
+    color: #212529;
+    background-color: #FFB105;;
+    border-color: #FFB105;;
+}
 .btn-outline-primary {
     width: 100% ; 
     height: 50px; 
@@ -170,6 +175,11 @@ li{
     border: 2px solid #133CBA ;
     box-shadow:none;
     /* font-size: 0.75rem; */
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 .w15{
     width: 15%

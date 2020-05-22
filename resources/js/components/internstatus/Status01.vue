@@ -49,7 +49,7 @@
                           <br>
                            <div class="input-group mb-3">
                                 <select class="custom-select" v-model="form.id" required>
-                                    <option v-for="(userjoin, index) in userjoins" :key="index" :value="userjoin.id" v-if="userjoin.result == 3">บริษัท {{userjoin.comevent.company.name}}</option>
+                                    <option v-for="(userjoin, index) in userjoins" :key="index" :value="userjoin.id" v-if="userjoin.result == 3 || userjoin.result == 50">บริษัท {{userjoin.comevent.company.name}}</option>
                                 </select>
                             </div>
                              <!-- <label>comeventjoin_id : {{form.id}} stu_id : {{form.stu_id}}</label> -->
@@ -246,6 +246,11 @@ tr.spaceUnder>td {
     color:#133CBA;
     border: 2px solid #133CBA ;
     box-shadow:none;
+}
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 .btn-outline-secondary {
     width: 40% ; 

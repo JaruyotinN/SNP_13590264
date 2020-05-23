@@ -28,6 +28,7 @@ class CreateInternCalendarsTable extends Migration
                 ->references('id')
                 ->on('faculties')
                 ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

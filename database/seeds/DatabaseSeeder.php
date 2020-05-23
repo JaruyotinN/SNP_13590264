@@ -21,13 +21,14 @@ class DatabaseSeeder extends Seeder
             JobtypeSeeder::class,
             MajorSeeder::class,
             TeacherSeeder::class,
+            StudentCourseSeeder::class,
             StudentSeeder::class,
             CompanySeeder::class,
             ComStaffSeeder::class,
             StudentPostSeeder::class,
             EventSeeder::class,
-            StudentCourseSeeder::class,
-           
+            InternCalendarSeeder::class,
+            ScoreSeeder::class,
         ]);
     }
 }

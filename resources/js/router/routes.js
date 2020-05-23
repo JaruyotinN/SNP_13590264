@@ -23,6 +23,7 @@ export default [
   { path: '/editstaff/:id', name: 'editstaff', component: page('company/editstaffs.vue') },
   { path: '/createstaff', name: 'createstaff', component: page('company/createstaff.vue') },
   { path: '/posttests', name: 'posttests', component: page('company/posttests.vue') },
+  { path: '/editcompany/:id', name: 'editcompany', component: page('company/editcompany.vue') },
   
   { path: '/teacher', name: 'teacher', component: page('teacher/index.vue') },
   { path: '/studairy', name: 'studairy', component: page('teacher/dairy.vue') },
@@ -32,6 +33,7 @@ export default [
   { path: '/editcalendar/:id', name: 'editcalendar', component: page('teacher/editcalendar.vue') },
   { path: '/detaildairy/:id', name: 'detaildairy', component: page('teacher/detaildairy.vue') },
   { path: '/editteacher/:id', name: 'editteacher', component: page('teacher/editteacher.vue') },
+ 
 
   { path: '/adduser', name: 'adduser', component: page('admin/adduser.vue') },
   { path: '/admin', name: 'admin', component: page('admin/index.vue') },

@@ -109,6 +109,8 @@ class ProfileController extends Controller
                 }
             } else if($profile->profile_type == 'T'){
                 $profile->teacher->major->faculty->university;
+            }  else if($profile->profile_type == 'C'){
+                $profile->company;
             }
         
             return $profile;

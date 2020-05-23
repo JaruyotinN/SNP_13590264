@@ -44,6 +44,7 @@ class StudentCoutseController extends Controller
     {
         //
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -53,8 +54,10 @@ class StudentCoutseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $courses = StudentCoutse::create($request->all());
+        return $courses;
     }
+    
 
     /**
      * Display the specified resource.

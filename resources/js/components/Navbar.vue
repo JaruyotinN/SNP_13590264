@@ -40,11 +40,11 @@
                 <fa icon="cog" fixed-width />
                 {{ $t('settings') }}
               </router-link>
-               <router-link v-if="user.role == 3" :to="{ name: 'settings.profile' }" class="dropdown-item pl-3">
+               <router-link v-if="user.role == 3" :to="{name:'editcompany' , params:{id:user.id }}" class="dropdown-item pl-3">
                 <i class="fa fa-user-circle-o"></i>
                 แก้ไขข้อมูลผู้ใช้
               </router-link>
-              
+
 
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">

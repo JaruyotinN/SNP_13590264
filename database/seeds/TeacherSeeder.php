@@ -17,21 +17,13 @@ class TeacherSeeder extends Seeder
                 'surname'=>'Meeboon',
                 'email'=>'Meeboon_k@silpakorn.edu',
                 'uni_id'=>1,
+                'img' => '/uploads/images/updateteacher/1590211316_ajk.jpg',
                 'phonenumber'=>'0987654321',
                 'faculty_id'=>1,
                 'major_id'=>1,
                 'profile_id'=>2,
             ],
-            [
-                'name'=>'Sarayut',
-                'surname'=>'Thibhodee',
-                'email'=>'Thibhodee_s@silpakorn.edu',
-                'uni_id'=>1,
-                'phonenumber'=>'0987654321',
-                'faculty_id'=>1,
-                'major_id'=>1,
-                'profile_id'=>NULL,
-            ]
+
         ]);
     }
 }

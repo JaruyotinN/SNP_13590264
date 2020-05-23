@@ -19,6 +19,7 @@ class StudentCourseSeeder extends Seeder
                 'end_date'=>'2020-05-06',
                 'faculty_id'=>1,
                 
+                
             ],
             [
                 'name'=>'หลักสูตรที่ 2',

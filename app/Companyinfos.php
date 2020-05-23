@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Companyinfos extends Model
 {   
-    protected $fillable = ['profile_id','name','email','logo','phonenumber','address','province_id','amphure_id','juristic'];
+    protected $fillable = ['profile_id','name','email','logo','phonenumber','address','province_id','amphure_id'];
     public function company(){
         return $this->hasOne('App\Companyinfos','id','id');
     }

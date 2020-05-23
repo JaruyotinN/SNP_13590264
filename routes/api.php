@@ -35,6 +35,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/getcomevent', 'ComeventController@getcomevent');
     Route::get('/getstudent', 'ComeventJoinController@getstudent');
     Route::resource('/comstaff', 'CompanyStaffController');
+    Route::resource('/course', 'StudentCoutseController');
+    Route::resource('/calendar', 'InternCalendarController');
+    
 
     Route::get('/getjoptype', 'ComeventJoinController@getjoptype');
    
@@ -46,6 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/update', 'ComeventJoinController');
     Route::resource('/updateprofile', 'StudentInfoController');
     Route::resource('/updateteacher', 'TeacherinfosController');
+    Route::resource('/updatecompany', 'CompanyinfosController');
     Route::post('/comevent_join', 'ComeventJoinController@store');
     Route::post('/comevent_invite', 'ComeventJoinController@cominvite');
     Route::resource('/comevent/join', 'ComeventJoinController');

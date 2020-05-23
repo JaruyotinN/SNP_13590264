@@ -10,6 +10,7 @@ export const state = {
   authalluniversity:null,
   calendar : null,
   course : null,
+  showcalendar : null,
 }
 
 
@@ -22,7 +23,7 @@ export const getters = {
     authalluniversity : state => state.authalluniversity,
     calendar : state => state.calendar,
     course : state => state.course,
-    
+    showcalendar : state => state.showcalendar,
 }
 
 // mutations
@@ -48,9 +49,11 @@ export const mutations = {
   [types.FETCH_CALENDAR] (state, data) {
     state.calendar = data
   },
-
   [types.FETCH_TCOURSE] (state, data) {
     state.course = data
+  },
+  [types.FETCH_SHOWCALENDAR] (state, data) {
+    state.showcalendar = data
   },
 
   
@@ -110,6 +113,14 @@ export const actions = {
     try {
       const { data } = await axios.get(`/api/allcourses`)
       commit(types.FETCH_TCOURSE,  data )
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async showcalendar ({ commit }, id) {
+    try {
+      const { data } = await axios.get(`/api/calendar/${id}`)
+      commit(types.FETCH_SHOWCALENDAR,  data )
     } catch (e) {
       console.log(e)
     }

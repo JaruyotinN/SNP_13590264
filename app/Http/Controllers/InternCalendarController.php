@@ -48,7 +48,16 @@ class InternCalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         
+        $calendar = InternCalendar::create([
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'uni_id' => $request->uni_id,
+            'faculty_id' => $request->faculty_id,
+             
+        ]); 
+        return $calendar;
     }
 
     /**
@@ -57,9 +66,10 @@ class InternCalendarController extends Controller
      * @param  \App\InternCalendar  $internCalendar
      * @return \Illuminate\Http\Response
      */
-    public function show(InternCalendar $internCalendar)
+    public function show(InternCalendar $internCalendar ,$id)
     {
-        //
+        $calendar  = InternCalendar::find($id);
+        return $calendar ;
     }
 
     /**
@@ -80,9 +90,17 @@ class InternCalendarController extends Controller
      * @param  \App\InternCalendar  $internCalendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InternCalendar $internCalendar)
+    public function update(Request $request, $id)
     {
-        //
+        $calendar = InternCalendar::find($id);
+        $calendar->update([
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'uni_id' => $request->uni_id,
+            'faculty_id' => $request->faculty_id,
+        ]);
+        return $calendar;
     }
 
     /**

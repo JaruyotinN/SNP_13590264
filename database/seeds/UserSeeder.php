@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'role'=> 3
             ],
             [
-                'name'=>'Nattakit',
+                'name'=>'Jettapon',
                 'email'=>'stu02@inlearnship.com',
                 'password'=> bcrypt('123456'),
                 'role'=> 1
@@ -47,6 +47,54 @@ class UserSeeder extends Seeder
                 'email'=>'stu04@inlearnship.com',
                 'password'=> bcrypt('123456'),
                 'role'=> 1
+            ],
+            [
+                'name'=>'Uppercutz',
+                'email'=>'uppercutz@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'Rabbit',
+                'email'=>'rabbit@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'Grappik',
+                'email'=>'grappik@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'Inspiredigi',
+                'email'=>'inspiredigi@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'Kidyer',
+                'email'=>'kidyer@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'bangkokweb',
+                'email'=>'bangkokweb@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'miracalelife',
+                'email'=>'miracalelife@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
+            ],
+            [
+                'name'=>'RobertB',
+                'email'=>'bosch@inlearnship.com',
+                'password'=> bcrypt('123456'),
+                'role'=> 3
             ],
         ]);
     }

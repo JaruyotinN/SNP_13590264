@@ -79,9 +79,23 @@ class CompanyinfosController extends Controller
      * @param  \App\Companyinfos  $companyinfos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Companyinfos $companyinfos)
+
+    public function update(Request $request, $id)
     {
-        //
+       $Company = Companyinfos::find($id);
+       if($Company->logo != $request->logo){
+        @unlink(public_path($Company->logo));
+       }
+       $Company->update([
+        'name' => $request->name,
+        'address' => $request->address,
+        'logo' => $request->logo,
+        'email' => $request->email,
+        'phonenumber' => $request->phonenumber,
+        'province_id' => $request->province_id,
+        'amphure_id' => $request->amphure_id,
+        ]);
+
     }
 
     /**

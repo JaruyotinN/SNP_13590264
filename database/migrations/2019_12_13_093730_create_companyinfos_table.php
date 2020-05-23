@@ -28,7 +28,6 @@ class CreateCompanyinfosTable extends Migration
             $table->string('address')->nullable();
             $table->integer('province_id')->unsigned()->nullable();
             $table->integer('amphure_id')->unsigned()->nullable();
-            $table->string('juristic')->nullable();
             $table->timestamps();
         });
         Schema::table('company_staff', function (Blueprint $table) {

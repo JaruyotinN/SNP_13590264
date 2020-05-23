@@ -21,7 +21,7 @@
                 <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                 <li>
                   <a  href="#"  @click="setTab(2)" class="color-blue">
-                    ข้อมูลประกาศเกี่ยวกับการฝึกงาน 
+                    ข้อมูลประกาศปฏิทินฝึกงานของนักศึกษา
                       </a>
 
                 </li>
@@ -58,7 +58,7 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
-                        <h4 class="mb-2 bold">ข้อมูลประกาศเกี่ยวกับการฝึกงาน</h4>
+                        <h4 class="mb-2 bold">ข้อมูลประกาศปฏิทินฝึกงานของนักศึกษา</h4>
                     </div>
                 </div>
                 <ul class="nav ml-3">
@@ -70,9 +70,8 @@
                     <p>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                     <li>
                     <a  href="#"  @click="setTab(2)" class="bold color-dblue">
-                        ข้อมูลประกาศเกี่ยวกับการฝึกงาน 
+                        ข้อมูลประกาศปฏิทินฝึกงานของนักศึกษา
                         </a>
-
                     </li>
                </ul>
  

@@ -18,7 +18,7 @@
                 <div><h4 class="bold">สถานที่ฝึกงานที่เหมาะกับคุณ</h4></div>
                     <div class="d-flex justify-content-end flex-fill">
                         <select class="custom-select w-25" v-model="reward">
-                          <option value="all" selected>ค่าตอบแทน</option>
+                          <option value="all" selected>แสดงค่าตอบแทนทั้งหมด</option>
                           <option value="0">ไม่มีมีค่าตอบแทน</option>
                           <option value="1">มีค่าตอบแทน</option>
                         </select>

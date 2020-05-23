@@ -32,7 +32,7 @@
                     </div>
                 </div>
                  <div class="col-md-2">
-                   <router-link class="btn btn-outline-pmr mt-3" :to="{name:'editteacher' , params:{id:user.user_id }}  ">แก้ไขข้อมูล</router-link>
+                   <router-link class="btn btn-outline-pmr mt-3" :to="{name:'editteacher' , params:{id:user.user_id }}" >แก้ไขข้อมูล</router-link>
                  </div>
             </div>
             <div class="table-responsive mt-3">

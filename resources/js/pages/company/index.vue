@@ -78,10 +78,13 @@
                                   <label >{{stu.university.name}}</label>
                                   <label>{{stu.faculty.name}} </label>
                                   <label>{{stu.major.name}}</label>
-                                    <div  class="d-flex">
-                                      <!-- <pre>{{stu.score}}</pre> -->
-                                      <label v-for="(sc, index) in stu.score" :key="index" class="mr-1">{{sc.types.name}}({{sc.score}}) </label>
-                                    </div>
+
+                                  <div class="row">
+                                      <div class="col-md-6"  v-for="(sc, index) in stu.score" :key="index">
+                                         {{sc.types.name}}({{sc.score}})
+                                      </div>
+                                  </div>
+                               
                               </div>
 
                             </div>   

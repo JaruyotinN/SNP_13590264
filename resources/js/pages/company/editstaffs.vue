@@ -64,6 +64,8 @@
 <script>
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
   middleware: 'auth',
   data: () => ({
@@ -88,7 +90,25 @@ export default {
   },
  methods: {
     submitForm() {
-        this.save();
+    Swal.fire({
+    title: 'ยืนยันแก้ไขข้อมูล',
+    text: "ยืนยันแก้ไขข้อมูลพนักงานดูแลโครงการ",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'บันทึก',
+    }).then((result) => {
+      if (result.value) {
+        this.save()
+        Swal.fire(
+          'แก้ไขข้อมูลเรียบร้อย',
+          'แก้ไขข้อมูลพนักงานดูแลโครงการเรียบร้อย',
+          'success',
+        )
+      }
+    })
     },
     async save() {
      

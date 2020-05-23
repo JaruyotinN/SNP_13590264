@@ -2,7 +2,7 @@
    <div class="container" >    
         <div class="mb-3"> 
               <router-link :to="{ name: 'internrequest'}">ย้อนกลับ</router-link>
-              </div>
+        </div>
               <div class="row">
                   <div class="col-md-10">
                       <div class="mb-3 ml-3 mt-2">
@@ -64,7 +64,7 @@
                     </div>
               </div> 
             </div>
-            <form class="was-validated" @submit.prevent="update" @keydown="form.onKeydown($event)">
+            <form class="was-validated" @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
             <div class="card mt-4">
               <div class="col-md-10  m-auto"> 
                   <div class="card-info">
@@ -89,12 +89,11 @@
               </div> 
             </div>
            
-           <div class="btn-detail-style mt-3 mb-3">
-                <button class="btn btn-primary bold" 
-                :loading="form.busy">
-                  ยืนยันการพิจารณา
+             <div class="col-md-6 m-auto">
+                <button class="btn-outline-primary bold mt-5 mb-5" :loading="form.busy">
+                    ยืนยันเปลี่ยนแปลงข้อมูล
                 </button>
-					</div>
+            </div>
            </form>
   </div>
 </template>
@@ -104,6 +103,8 @@ import ColumHeader from '~/components/ColumHeader'
 import {mapActions, mapGetters} from 'vuex'
 import * as moment from 'moment';
 import Form from "vform";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default {
   middleware: 'auth',
@@ -135,15 +136,28 @@ data: () => ({
     ...mapActions({
       fetch:'comevents/showjoin',
     }),
-  //   cheack(){
-  //     this.update();
-  //  },
-    // async update(id){
-    //   // this.form.event_id = this.comevent.id
-    //   await this.update(this.form , id)
-    //   // this.$router.push({name:'showstudentrequest'})
-    // },
-    
+    submitForm() {
+        Swal.fire({
+        title: 'ยืนยันข้อมูล',
+        text: "ต้อองการเปลี่ยนแปลงสถานะของคำร้อง",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'ยกเลิก',
+        confirmButtonText: 'ยืนยันข้อมูล'
+        }).then((result) => {
+        if (result.value) {
+         this.update();
+            Swal.fire(
+          'ดำเนินการสำเร็จ',
+          'ทำการเปลี่ยนแปลงสถานะคำร้องของนักศึกษาแล้ว',
+          'success',
+            )
+        }
+        })  
+         
+    },
     async update() {
 
       const { data } = await this.form.put(`/api/update/${this.id}`);
@@ -167,30 +181,19 @@ data: () => ({
     box-shadow: rgb(225, 225, 225) 0px 0px 10px 0px;
     border-radius: 5px;
 }
-.btn-detail-style .btn-primary{ 
-    background-color: #0047BA ;
-    border:none; 
-    border-radius: 30px;
-    width: 80%;
-    height: 60px;
-    padding-top:20px;
+.btn-outline-primary {
+    width: 80% ; 
+    height: 50px; 
+    line-height: 35px;
+    border-radius: 2rem; 
+    color:#133CBA;
+    border: 2px solid #133CBA ;
+    box-shadow:none;
 }
-.btn-detail-style .btn-primary:hover { 
-    background-color:  #E7B223 ;
-    color: black;
-    font-size: 1.5rem;
-    border-radius: 60px;
-    width: 90%;
-    height: 60px;
-    padding-top:14px;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
-    transition: 0.3s ease-in-out;
-}
-.btn-detail-style{
-  text-align: center;
-  padding-top:20px ;
-  padding-bottom:20px;
+.btn-outline-primary:hover {
+    color: #fff !important;
+    background-color: #133CBA;
+    border-color: #133CBA;
 }
 .radio-img{
   box-sizing: border-box;

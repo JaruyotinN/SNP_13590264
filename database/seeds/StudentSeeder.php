@@ -49,7 +49,7 @@ class StudentSeeder extends Seeder
                 'surname'=>'อยู่ถาวร',
                 'number'=>'13590271',
                 'phonenumber'=>'097892449',
-                'img'=>'/uploads/images/updateprofile/DSCF9731.JPG',
+                'img'=>'/uploads/images/updateprofile/DSCF9731.jpeg',
                 'url_port'=>'www.behance.com',
                 'grade' => 3.15,
                 'sendinvite'=>5,

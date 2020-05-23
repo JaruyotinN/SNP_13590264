@@ -126,7 +126,7 @@
 
                       <div class="mt-3 upload-btn-wrapper">
                         <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Resume</button>
-                        <input type="file" @change="setCV" />
+                        <input accept="application/pdf"  type="file" @change="setCV" />
                         <has-error :form="form" field="file" />
                       </div>
                     </div>
@@ -143,7 +143,7 @@
         
                       <div class="mt-3 upload-btn-wrapper">
                           <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Portfolio</button>
-                          <input type="file" @change="setPort" />
+                          <input accept="application/pdf" type="file" @change="setPort" />
                           <has-error :form="form" field="file" />
                       </div>
                     </div>
@@ -158,7 +158,7 @@
                       <br>
                       <div class="mt-3 upload-btn-wrapper">
                           <button class="btn"><i class="fa fa-plus-circle"></i> อัพโหลด Transcript</button>
-                          <input type="file" @change="setTS" />
+                          <input accept="application/pdf" type="file" @change="setTS" />
                           <has-error :form="form" field="file" />
                       </div>
                     </div>
@@ -291,30 +291,47 @@ export default {
     },
     setCV(e) {
       var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
-      console.log(FileSize);
-      if(FileSize <= 2){
+      var FileExtention = e.target.files[0].name.split('.').pop();
+      var status = 0;
+      if(FileSize <= 2 ){
         console.log("size ok")
-        this.filecv = e.target.files[0];
       } else {
+         status = 1;
          console.log("too big");
          Swal.fire(
             
             'ไฟล์ขนาดใหญ่เกินไป',
             'ไฟล์ของคุณมีขนาดใหญ่เกินไป ลองใหม่อีกครั้ง',
             'error',
-            //เหลือ Set Port
           )
+      }
+      if(FileExtention == 'pdf' ){
+        console.log("file is pdf")
+      } else {
+        status = 1;
+         console.log("not pdf");
+         Swal.fire(
+            
+            'คุณอัพโหลดไฟล์ผิดประเภท',
+            'กรุณาอัพโหลดไฟล์ .pdf ลองใหม่อีกครั้ง',
+            'error',
+          )
+      }
+      if(status==0){
+        console.log("filecv is set")
+        this.filecv = e.target.files[0];
       }
       
     },
     setTS(e) {
       var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
-      console.log(FileSize);
+      var FileExtention = e.target.files[0].name.split('.').pop();
+      var status = 0;
       if(FileSize <= 2){
         console.log("size ok")
-        this.filets = e.target.files[0];
       } else {
          console.log("too big");
+         status = 1;
          Swal.fire(
             
             'ไฟล์ขนาดใหญ่เกินไป',
@@ -322,11 +339,58 @@ export default {
             'error',
             //เหลือ Set Port
           )
+      } 
+      if(FileExtention == 'pdf' ){
+        console.log("file is pdf")
+      } else {
+        status = 1;
+         console.log("not pdf");
+         Swal.fire(
+            
+            'คุณอัพโหลดไฟล์ผิดประเภท',
+            'กรุณาอัพโหลดไฟล์ .pdf ลองใหม่อีกครั้ง',
+            'error',
+          )
+      }
+      if(status==0){
+        console.log("filets is set")
+        this.filets = e.target.files[0];
       }
       
     },
      setPort(e) {
-      this.fileport = e.target.files[0];
+      var FileSize = e.target.files[0].size / 1024 / 1024; // in MB
+      var FileExtention = e.target.files[0].name.split('.').pop();
+      var status = 0;
+      if(FileSize <= 2 ){
+        console.log("size ok")
+      } else {
+         status = 1;
+         console.log("too big");
+         Swal.fire(
+            
+            'ไฟล์ขนาดใหญ่เกินไป',
+            'ไฟล์ของคุณมีขนาดใหญ่เกินไป ลองใหม่อีกครั้ง',
+            'error',
+          )
+      }
+      if(FileExtention == 'pdf' ){
+        console.log("file is pdf")
+      } else {
+        status = 1;
+         console.log("not pdf");
+         Swal.fire(
+            
+            'คุณอัพโหลดไฟล์ผิดประเภท',
+            'กรุณาอัพโหลดไฟล์ .pdf ลองใหม่อีกครั้ง',
+            'error',
+          )
+      }
+      if(status==0){
+        console.log("fileport is set")
+        this.fileport = e.target.files[0];
+      }
+     
     },
     async update(useform) {
     
@@ -367,7 +431,8 @@ export default {
         file: this.filets,
         path: "updateprofile"
         });
-      }
+      } 
+        
         const { data } = await this.form2.put(`/api/updateprofile/${this.form2.id}`);
         console.log(data)
         

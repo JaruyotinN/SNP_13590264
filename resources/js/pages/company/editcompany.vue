@@ -1,6 +1,6 @@
 <template>
 <div class="container" >
-  <form @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
+  <form @submit.prevent="cheack" @keydown="form.onKeydown($event)">
       <div class="mb-5"> 
         <router-link :to="{ name: 'company'}">ย้อนกลับ</router-link>
      </div> 
@@ -87,6 +87,8 @@
 <script>
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
   middleware: 'auth',
   data: () => ({
@@ -121,6 +123,27 @@ export default {
         this.save();
         this.fetchauth()
     },
+    cheack(){
+     Swal.fire({
+    title: 'ยืนยันแก้ไขข้อมูล',
+    text: "คุณต้องการเปลี่ยนแปลงข้อมูลบริษัทหรือไม่?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'บันทึก',
+    }).then((result) => {
+      if (result.value) {
+        this.save()
+        Swal.fire(
+          'บันทึกข้อมูลเรียบร้อย',
+          'แก้ไขข้อมูลบริษัทเรียบร้อย',
+          'success',
+        )
+      }
+    })
+   },
     async save() {
         
          if (this.image) {
@@ -129,13 +152,8 @@ export default {
           path: "updatecompany"
         });
         }
-       const { data } = await this.form.put(`/api/updatecompany/${this.form.id}`);
-        console.log(data)
-        if (data) {
-        this.$router.push({
-          name: "company",
-        });
-        }
+        const { data } = await this.form.put(`/api/updatecompany/${this.form.id}`);
+
     },
     
     ...mapActions({

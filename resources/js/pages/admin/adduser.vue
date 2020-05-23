@@ -3,7 +3,7 @@
     <div class="mb-3"> 
         <router-link :to="{ name: 'teacher'}">ย้อนกลับ</router-link>
      </div>
-    <form @submit.prevent="save" @keydown="form.onKeydown($event)">
+    <form @submit.prevent="submitForm" @keydown="form.onKeydown($event)">
     <div class="card mt-5">
       <div class="col-md-12">  
           <div class="row">
@@ -53,21 +53,11 @@
 
                </div>
             </div>
-          
-
-             <div class="form-group col-md-4" v-for="(user, index) in users" :key="index">
-                  <label class="color-blue bold">มหาวิทยาลัย {{form.uni_id}}</label>
-                  <select class="custom-select  m-auto" v-model="form.uni_id">
-                    <option value="" disabled hidden>เลือกมหาวิทยาลัย</option>
-                    <option v-for="(uni, index) in university.university" v-if="user.teacher.uni_id == uni.id" :key="index" :value="uni.id" selected>{{uni.name}} ({{uni.initial}})</option>
-                  </select>
-              
-    
-                  <input class="form-control" type="hidden" v-model="form.teacher_id = user.teacher.id">  
-             </div>  
             
             <div class="form-group col-md-4" v-for="(user, index) in users" :key="index">
-                <label class="color-blue bold">คณะ {{form.faculty_id}}</label>
+                <input class="form-control" type="hidden" v-model="form.uni_id = user.teacher.uni_id">  
+                <input class="form-control" type="hidden" v-model="form.teacher_id = user.teacher.id">  
+                <label class="color-blue bold">คณะ </label>
                 <select class="custom-select  m-auto" v-model="form.faculty_id" >
                     <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
                     <option v-for="(fac, index) in university.faculty" v-if="fac.id == user.teacher.faculty_id" :key="index" :value="fac.id">{{fac.name}}</option>
@@ -75,10 +65,18 @@
             </div>
 
             <div class="form-group col-md-4">
-                <label class="color-blue bold">สาขา {{form.major_id}}</label>
+                <label class="color-blue bold">สาขา </label>
                 <select class="custom-select  m-auto" v-model="form.major_id" >
                     <option value="" disabled hidden>เลือกหมวดหมู่การฝึกงาน</option>
                     <option v-for="(maj, index) in university.major" v-if="maj.faculty_id == form.faculty_id" :key="index" :value="maj.id">{{maj.name}}</option>
+                </select>
+            </div>
+
+             <div class="form-group col-md-4" >
+                <label class="color-blue bold">หลักสูตรการฝึกงาน</label>
+                <select class="custom-select  m-auto" v-model="form.course_id" >
+                    <option value="" disabled hidden>เลือกหลักสูตรการฝึกงาน</option>
+                    <option v-for="(co, index) in course" :key="index" :value="co.id">{{co.name}} {{co.description}}</option>
                 </select>
             </div>
 
@@ -122,6 +120,8 @@
 <script>
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
 
 data: () => ({
@@ -131,6 +131,7 @@ data: () => ({
       start:'',
       end:'',
       role:1,
+      course_id:'',
       uni_id:'',
       faculty_id:'',
       major_id:'',
@@ -146,6 +147,8 @@ data: () => ({
       jobs: 'jobs/jobs',
       types: 'jobs/types',
       university:'teacher/authalluniversity',
+      course: 'teacher/course', 
+      
     })
   },
   components:{
@@ -156,17 +159,39 @@ data: () => ({
       fetch:'profile/fetch',
       fetchjob : 'jobs/fetchjob',
       fetchtype : 'jobs/fetchtype',
-      fetchauthuni: 'teacher/fetchauthuni'
+      fetchauthuni: 'teacher/fetchauthuni',
+      fetchcourse : 'teacher/fetchcourse',
       
     }),
+    submitForm() {
+    Swal.fire({
+    title: 'ยืนยันเพิ่มผู้ใช้งานนักศึกษา',
+    text: "หากดำเนินการแล้วจะไม่สามารถแก้ไขได้",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'ยืนยันข้อมูล',
+    }).then((result) => {
+      if (result.value) {
+        this.save()
+        Swal.fire(
+          'เพิ่มผู้ใช้นักศึกษาสำเร็จ',
+          'เสร็จสิ้นเพิ่มผู้ใช้งานนักศึกษา',
+          'success',
+        )
+      }
+    })
+    },
     async save() {
      
       const { data } = await this.form.post("/api/adduser");
       if (data) {
-        alert('register success!!!')
-        
-        
-      }else{
+        this.$router.push({
+          name: "teacher",
+        });
+        }else{
         alert('error!!')
       }
     },
@@ -176,6 +201,7 @@ data: () => ({
       this.fetchtype()
       this.fetch()
       this.fetchauthuni()
+      this.fetchcourse()
   }
 }
 </script>

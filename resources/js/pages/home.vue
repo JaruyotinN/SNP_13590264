@@ -49,7 +49,6 @@
 <script>
  
 import Profile from '~/components/Profile'
-import Calendar from '~/components/Calendar'
 
 export default {
   middleware: 'auth',
@@ -128,7 +127,7 @@ data() {
   components:{
  
     Profile,
-    Calendar,
+ 
   }
 }
 </script>

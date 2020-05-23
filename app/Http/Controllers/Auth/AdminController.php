@@ -54,6 +54,7 @@ class AdminController extends Controller
                         'name' => 'name',
                         'surname' => 'surname',
                         'phonenumber' => 'phonenumber',
+                        'course_id' => $request->course_id,
 
                     ]);
                     if ($stu_id) {
@@ -139,79 +140,7 @@ class AdminController extends Controller
             $data['role'] = $request->role;
             return $data;
 
-            /* -----------------------------------------------*/
-            // if($request->role == 1) {
-            //     $id = DB::table('users')->insertGetId([
-            //         'name' => $request->name,
-            //         'email' => $request->email,
-            //         'password' => bcrypt($request->password),
-            //         'role' => 2,
-            //     ]);
-            //     if ($id) {
-            //         $profile_id = DB::table('profiles')->insertGetId([
-            //             'user_id' => $id,
-            //             'profile_type' => 'T'
-            //         ]);
-            //         if ($profile_id) {
-            //             $teacher_id = DB::table('teacherinfos')->insertGetId([
- 
-            //                 'profile_id' => $profile_id,
-            //                 'name' => $request->tname,
-            //                 'surname' => $request->tsurname,
-            //                 'phonenumber' => $request->tphonenumber,
-            //                 'email' => $request->temail,
-            //                 'uni_id' => $request->uni_id,
-            //                 'faculty_id' => $request->faculty_id,
-            //                 'major_id' => $request->major_id,
-       
-    
-            //             ]);
-            //             if ($teacher_id) {
-            //                 $status =  'success';      
-            //             } else{
-            //                 DB::table('profiles')->where('id', $profile_id)->delete();
-            //                 DB::table('user')->where('id', $id)->delete();
-            //             }
-            //         } else {
-            //             DB::table('user')->where('id', $id)->delete();
-            //         }
-            //     }
-            // }
-            // else if($request->role == 2) {
-            //     $id = DB::table('users')->insertGetId([
-            //         'name' => $request->name,
-            //         'email' => $request->email,
-            //         'password' => bcrypt($request->password),
-            //         'role' => 3,
-            //     ]);
-            //     if ($id) {
-            //         $profile_id = DB::table('profiles')->insertGetId([
-            //             'user_id' => $id,
-            //             'profile_type' => 'C'
-            //         ]);
-            //         if ($profile_id) {
-            //             $com_id = DB::table('companyinfos')->insertGetId([
-
-            //                 'profile_id' => $profile_id,
-            //                 'name' => $request->cname,
-            //                 'phonenumber' => $request->cphonenumber,
-            //                 'email' => $request->cemail,
-            //                 'province_id' => $request->province_id,
-            //                 'amphure_id' => $request->amphure_id,
-            //                 'address' => $request->address,
-    
-            //             ]);
-            //             if ($com_id) {
-            //                 $status =  'success';      
-            //             } else{
-            //                 DB::table('profiles')->where('id', $profile_id)->delete();
-            //                 DB::table('user')->where('id', $id)->delete();
-            //             }
-            //         } else {
-            //             DB::table('user')->where('id', $id)->delete();
-            //         }
-            //     }
-            // } 
+           
         
     }
 }

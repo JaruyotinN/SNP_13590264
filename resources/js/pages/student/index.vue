@@ -8,8 +8,13 @@
                 <div class="c-header">
                   <h4 class="bold">ปฏิทินฝึกงาน</h4>
                 </div>
-                <div class="inactive" v-for="(info, index) in infos" :key="index" :class="{ active: index == 0 }">
-                <calendar :info="info"/>
+                <div class="inactive" v-for="(car, index) in calendar" :key="index" :class="{ active: index == 0 }">  
+                    <div class="col-md-12">
+                        <h5 class="bold">{{moment(car.start_date)}} - {{moment(car.end_date)}}</h5>
+                        <small>{{car.description}}</small>
+                        <hr>
+                    </div>
+                    
                 </div>
                 </div>
           </div>     
@@ -78,7 +83,6 @@
 
 <script>
 import Profile from '~/components/Profile'
-import Calendar from '~/components/Calendar'
 import { mapGetters, mapActions } from "vuex";
 import * as moment from 'moment';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -92,7 +96,8 @@ export default {
     fetch:'comevents/fetch',
     del:'comevents/del',
     fetchjob : 'jobs/fetchjob',
-    fetchauth : 'location/fetchauth'
+    fetchauth : 'location/fetchauth',
+    fetchcalendar : 'teacher/fetchcalendar',
    }),
    confirmDel(id){
      Swal.fire({
@@ -125,9 +130,11 @@ export default {
     this.fetch()
     this.fetchjob()
     this.fetchauth()
+    this.fetchcalendar()
   },
   computed:{
   ...mapGetters({
+      calendar: 'teacher/calendar', 
       comevents:'comevents/comevents',
       jobs: 'jobs/jobs',
       location : 'location/authprovince'
@@ -142,7 +149,6 @@ data() {
 },
   components:{
     Profile,
-    Calendar,
   }
 }
 </script>

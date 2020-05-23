@@ -4,7 +4,7 @@
     <div class="mb-5"> 
     <router-link :to="{ name: 'list'}">ย้อนกลับ</router-link>
      </div>
-      <form @submit.prevent="submit()" @keydown="form.onKeydown($event)">
+      <form @submit.prevent="cheack()" @keydown="form.onKeydown($event)">
    <div class="col-md-12">
             <div class="row">
                 <div class="col-md-9">

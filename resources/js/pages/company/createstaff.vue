@@ -32,7 +32,7 @@
                         <div class="col-md-4">
                             <p class="bold color-blue" >ชื่อพนักงาน</p>
                             <div class="mt-2 mb-3">
-                                <input class="form-control" v-model="form.name" type="text" placeholder="ชื่อพนักงานรของคุณ" required>
+                                <input class="form-control" v-model="form.name" type="text" placeholder="ชื่อพนักงานของคุณ" required>
                             </div>
                         </div>
 
@@ -85,6 +85,8 @@
 <script>
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
   middleware: 'auth',
   data: () => ({
@@ -106,7 +108,25 @@ export default {
   },
  methods: {
     submitForm() {
-        this.save();
+    Swal.fire({
+    title: 'ยืนยันข้อมูล',
+    text: "ยืนยันสร้างข้อมูลพนักงานดูแลโครงการ",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'ยืนยันข้อมูล',
+    }).then((result) => {
+      if (result.value) {
+        this.save()
+        Swal.fire(
+          'ดำเนินการเสร็จสิ้น',
+          'สร้างข้อมูลพนักงานดูแลโครงการเรียบร้อย',
+          'success',
+        )
+      }
+    })
     },
     async save() {
      
@@ -114,7 +134,7 @@ export default {
 
       if (data) {
         this.$router.push({
-          name: "company",
+          name: "staffs",
         });
       }
     },

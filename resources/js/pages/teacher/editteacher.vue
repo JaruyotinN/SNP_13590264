@@ -70,6 +70,8 @@
 <script>
 import Form from "vform";
 import {mapActions, mapGetters} from 'vuex'
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
   middleware: 'auth',
   data: () => ({
@@ -98,7 +100,25 @@ export default {
       this.image = e.target.files[0];
     },
     submitForm() {
-        this.save();
+    Swal.fire({
+    title: 'ยืนยันแก้ไขข้อมูล',
+    text: "ต้องการแก้ไขข้อมูลอาจารย์?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'ยกเลิก',
+    confirmButtonText: 'ยืนยันข้อมูล',
+    }).then((result) => {
+      if (result.value) {
+        this.save()
+        Swal.fire(
+          'ดำเนินการแก้ไข',
+          'แก้ไขข้อมูลอาจารย์เรียบร้อย',
+          'success',
+        )
+      }
+    })
     },
     async save() {
         
@@ -109,12 +129,10 @@ export default {
         });
         }
        const { data } = await this.form.put(`/api/updateteacher/${this.form.id}`);
-        console.log(data)
-        if (data) {
-        this.$router.push({
+       this.$router.push({
           name: "teacher",
         });
-        }
+  
     },
     
     ...mapActions({

@@ -127,7 +127,7 @@ export default {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'ยกเลิก',
-        confirmButtonText: 'ยืนยันส่งคำร้องครั้งที่ 1'
+        confirmButtonText: 'ยืนยันส่งคำร้องครั้งที่ 2'
         }).then((result) => {
         if (result.value) {
           this.update2()

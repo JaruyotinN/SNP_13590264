@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-6">
         <div class="card mt-4">
-             <div class="col-12">intern.comevent.company
+             <div class="col-12">
                   <div class="card-info">
                     <h5 class="bold mt-3 mb-3 color-blue">ข้อมูลของบริษัทฝึกงาน</h5>
                     <label>บริษัท : </label><label class="bold"> &nbsp{{ intern.comevent.company.name }}</label><br>

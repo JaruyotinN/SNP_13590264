@@ -10,20 +10,18 @@
                 <div class="col-md-9">
                     <div class="mb-3 ml-3 mt-2" style="float: left">
                         <h4 class="mb-2 bold">ประเมินนักศึกษาครั้งที่ 2</h4>
-                        <!-- <label>comeventjoin_id : {{showstudent.id}} / {{form.comevent_joins_id}}</label>
-                        <label>student_id : {{showstudent.student.id}} / {{form.stu_id}} </label> -->
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row">
                     <div class="col-md-8 textcustom mt-3">
                     <p class="bold">{{showstudent.student.name}} {{showstudent.student.surname}}</p>
-                    <p>ตำแหน่ง : {{showstudent.comeventjoin.jobtype}}</p>
+                    <small>ตำแหน่ง : {{showstudent.jobtype}}</small>
                     </div>
                     <div class="col-md-4">
                    <div class="img-circle" style="float:right;">
-                            <img src="/uploads/images/comevents/user.png" v-if="showstudent.student.img == null" />
-                            <img v-else :src="showstudent.student.img">
+                         <img src="/uploads/images/comevents/user.png" v-if="showstudent.student.img == null" />
+                         <img v-else :src="showstudent.student.img">
                     </div>
                     </div>
                     </div>
